@@ -11,7 +11,7 @@ public class Warehouse {
         return capacity;
     }
 
-    public void setCapacity(int capcity) {
-        this.capacity = capcity;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }
