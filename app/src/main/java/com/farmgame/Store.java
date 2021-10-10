@@ -32,6 +32,7 @@ public class Store {
     public int getStoreLevel(){
         return StoreLevel;
     }
+    /*
     public List<Plants> buyingProducts(){
         Date date = Calendar.getInstance().getTime();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("ddMMyyyy");
@@ -71,4 +72,6 @@ public class Store {
         }
         return price;
     }
+
+     */
 }
