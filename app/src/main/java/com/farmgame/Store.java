@@ -26,6 +26,12 @@ public class Store {
         currentProducts = totalProducts.subList(0, StoreLevel);
 
     }
+    public List<Plants> getCurrentProducts(){
+        return currentProducts;
+    }
+    public int getStoreLevel(){
+        return StoreLevel;
+    }
     public List<Plants> buyingProducts(){
         Date date = Calendar.getInstance().getTime();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("ddMMyyyy");
