@@ -26,19 +26,23 @@ public class Plants {
 
     public String getPlantName(){
         return this.PlantName;
-    } // Get the PlantName of object
+    }
+    // Get the PlantName of object
 
     public int getPlantingTime(){
         return this.PlantingTime;
-    } // Get the PlantingTime of object
+    }
+    // Get the PlantingTime of object
 
     public int getSellingPrice(){
         return this.SellingPrice;
-    } // Get the SellingPrice of object
+    }
+    // Get the SellingPrice of object
 
     public int getBuyingPrice(){
         return this.BuyingPrice;
-    } // Get the BuyingPrice of object
+    }
+    // Get the BuyingPrice of object
 
     public int getExperiencePoint(){
         return this.ExperiencePoint;
