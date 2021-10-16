@@ -1,6 +1,9 @@
 package com.farmgame.entity;
 
 
+/**
+ *
+ */
 public class LandEntity {
 
     public static final int LOCK_STATUS_LOCKED = 0;
@@ -24,7 +27,14 @@ public class LandEntity {
     //Question: Should this be plant's attribute? Since we can harvest a plant before it is grown to clear up a land
     private int waterTime;
     private int fertilizeTime;
-
+    /**
+     * wet: if the land is wet
+     * fertilize: if the land is fertilized
+     * unlocked: if the land is unlocked
+     * harvestTime: the time left until the plant can be harvaseted
+     * waterTime: the time left until the land can be watered again
+     * fertilizeTime: the time left until the land can be watered again
+     */
 
 
     public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize, int harvestTime, int waterTime, int fertilizeTime) {
@@ -37,6 +47,14 @@ public class LandEntity {
         this.fertilizeTime = fertilizeTime;
     }
 
+    public boolean isUnlocked() {
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
+    }
+
     public int getLockStatus(){
         return this.lockStatus;
     }
@@ -44,15 +62,6 @@ public class LandEntity {
     public void setLockStatus(int lockStatus) {
         this.lockStatus = lockStatus;
     }
-
-    /**
-     * wet: if the land is wet
-     * fertilize: if the land is fertilized
-     * unlocked: if the land is unlocked
-     * harvestTime: the time left until the plant can be harvaseted
-     * waterTime: the time left until the land can be watered again
-     * fertilizeTime: the time left until the land can be watered again
-     */
 
     public LandEntity(){
         this.empty = true;
