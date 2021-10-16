@@ -1,7 +1,7 @@
 package com.farmgame.usecase;
 
-import com.farmgame.Plants;
-import com.farmgame.Store;
+import com.farmgame.entity.Plants;
+import com.farmgame.entity.Store;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.usecase;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

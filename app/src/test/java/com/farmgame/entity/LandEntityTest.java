@@ -1,7 +1,5 @@
 package com.farmgame.entity;
 
-import com.farmgame.Plants;
-
 import static com.farmgame.constants.Constants.*;
 import static org.junit.Assert.*;
 
