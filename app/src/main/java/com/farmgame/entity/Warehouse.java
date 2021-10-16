@@ -1,24 +1,35 @@
 package com.farmgame.entity;
 
 import com.farmgame.Item.Item;
+import com.farmgame.Plants;
 
 import java.util.ArrayList;
 
 public class Warehouse {
     private int capacity;
-    private ArrayList<Item> inventory;
+    private ArrayList<Item> itemInventory;
+    private ArrayList<Plants> plantInventory;
 
     public Warehouse(){
         this.capacity = 5;
-        this.inventory = new ArrayList<Item>();
+        this.itemInventory = new ArrayList<Item>();
+        this.plantInventory = new ArrayList<Plants>();
     }
 
-    public ArrayList<Item> getInventory() {
-        return inventory;
+    public ArrayList<Item> getItemInventory() {
+        return itemInventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
+    public void setItemInventory(ArrayList<Item> itemInventory) {
+        this.itemInventory = itemInventory;
+    }
+
+    public ArrayList<Plants> getPlantInventory() {
+        return plantInventory;
+    }
+
+    public void setPlantInventory(ArrayList<Plants> plantInventory) {
+        this.plantInventory = plantInventory;
     }
 
     public int getCapacity() {
