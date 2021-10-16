@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 import com.farmgame.Item.Item;
 
