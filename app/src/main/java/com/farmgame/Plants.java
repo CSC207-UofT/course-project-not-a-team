@@ -1,13 +1,11 @@
 package com.farmgame;
 
-import java.security.PrivateKey;
-
 public class Plants {
-    private String PlantName;
-    private int PlantingTime;
-    private int BuyingPrice;
-    private int SellingPrice;
-    private int ExperiencePoint;
+    private final String PlantName;
+    private final int PlantingTime;
+    private final int BuyingPrice;
+    private final int SellingPrice;
+    private final int ExperiencePoint;
 
     // PlantName -- Name of plant
     // PlantingTime -- The time it takes for a plant to mature
