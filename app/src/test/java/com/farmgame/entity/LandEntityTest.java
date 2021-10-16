@@ -5,7 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class LandEntityTest {
-    LandEntity land = new LandEntity(LandEntity.LOCK_STATUS_LOCKED, true, false, false, -1, -1,-1);
+    LandEntity land = new LandEntity(LandEntity.LOCK_STATUS_LOCKED, true, false, false, false, -1, -1 , -1);
+    @Test
+    public void isUnlocked() {
+        assertFalse(land.isUnlocked());
+    }
+
     @Test
     public void setUnlocked() {
         land.setUnlocked(true);
@@ -16,7 +21,7 @@ public class LandEntityTest {
     public void getLockStatus() {
         assertEquals(land.getLockStatus(), LandEntity.LOCK_STATUS_LOCKED);
     }
-
+//
 //    @Test
 //    public void setLockStatus() {
 //    }
