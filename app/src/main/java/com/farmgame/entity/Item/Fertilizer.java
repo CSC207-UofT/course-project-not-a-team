@@ -1,4 +1,4 @@
-package com.farmgame.Item;
+package com.farmgame.entity.Item;
 
 public class Fertilizer extends Item {
 
@@ -7,10 +7,5 @@ public class Fertilizer extends Item {
      */
     public Fertilizer() {
         super(10);
-    }
-
-    @Override
-    public void use() {
-        // usage of fertilizer
     }
 }

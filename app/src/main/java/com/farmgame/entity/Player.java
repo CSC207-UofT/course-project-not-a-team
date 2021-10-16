@@ -1,4 +1,6 @@
-package com.farmgame;
+package com.farmgame.entity;
+
+import com.farmgame.Warehouse;
 
 public class Player {
     private final String name;
