@@ -1,5 +1,7 @@
 package com.farmgame;
 
+import com.farmgame.entity.Warehouse;
+
 public class Player {
     private int level;
     private int[] exp_bar;

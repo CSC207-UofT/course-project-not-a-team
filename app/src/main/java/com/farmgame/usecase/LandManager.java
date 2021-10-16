@@ -4,7 +4,7 @@ import com.farmgame.Item.Fertilizer;
 import com.farmgame.Item.Hoe;
 import com.farmgame.Plants;
 import com.farmgame.Player;
-import com.farmgame.Warehouse;
+import com.farmgame.entity.Warehouse;
 import com.farmgame.entity.LandEntity;
 
 
@@ -13,30 +13,9 @@ import static com.farmgame.constants.Constants.*;
 public class LandManager {
 
 
-
-
-    /**
-
-     */
     public LandManager(){
     }
 
-    /**
-     *
-     * @param land the land that is clicked
-     * precondition: index < landArray.length.
-     * response to clicking an item
-     */
-    public void onClick(LandEntity land){
-        switch (land.getLockStatus()){
-            case LOCK_STATUS_LOCKED:
-                break;
-            case LOCK_STATUS_NOT_BOUGHT:
-                break;
-            case LOCK_STATUS_BOUGHT:
-                break;
-        }
-    }
 
     public void buyLand(LandEntity land, Player player){
 
@@ -49,17 +28,15 @@ public class LandManager {
 
     public void harvest(LandEntity land, Player player, Hoe hoe){
         if (land.getHarvestTime() == 0 && hoe != null){
-            hoe.use();
-            land.setPlant(null);
             player.gainExp(land.getPlant().getExperiencePoint());
+            land.reset();
         }
     }
 
     public void fertilize(LandEntity land, Fertilizer fertilizer){
-        if (land.getFertilizeTime() == 0){
-            fertilizer.use();
+        if (land.getFertilizeTime() == 0 && fertilizer.getNum_usage() != 0){
             land.setFertilizeTime(100);
-            land.setFertilize(true);
+            land.setHarvestTime((int) (land.getHarvestTime() * 0.75));
         }
 
     }

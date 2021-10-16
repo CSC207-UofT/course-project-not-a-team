@@ -12,24 +12,23 @@ public class LandEntity {
      */
     private int lockStatus;
     private Plants plant;
-    private boolean empty;
-    private boolean wet;
-    private boolean fertilize;
     private int harvestTime;
-    //Question: Should this be plant's attribute? Since we can harvest a plant before it is grown to clear up a land
     private int waterTime;
     private int fertilizeTime;
 
+    /**
+     * lockStatus: whether the land is unlocked, not bought or bought
+     * plant: the plant on the land
+     * harvestTime: the time left until the plant can be harvested
+     * waterTime: the time left until the land can be watered again
+     * fertilizeTime: the time left until the land can be watered again
+     */
 
-
-    public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize,
-                      boolean unlocked, int harvestTime, int waterTime, int fertilizeTime) {
+    public LandEntity(int lockStatus, Plants plant, int harvestTime, int waterTime,
+                      int fertilizeTime) {
 
         this.lockStatus = lockStatus;
         this.plant = plant;
-        this.empty = empty;
-        this.wet = wet;
-        this.fertilize = fertilize;
         this.harvestTime = harvestTime;
         this.waterTime = waterTime;
         this.fertilizeTime = fertilizeTime;
@@ -44,37 +43,18 @@ public class LandEntity {
         this.lockStatus = lockStatus;
     }
 
-    /**
-     * wet: if the land is wet
-     * fertilize: if the land is fertilized
-     * unlocked: if the land is unlocked
-     * harvestTime: the time left until the plant can be harvested
-     * waterTime: the time left until the land can be watered again
-     * fertilizeTime: the time left until the land can be watered again
-     */
 
     public boolean isEmpty() {
-        return empty;
+        return this.plant == null;
     }
 
-    public void setEmpty(boolean empty) {
-        this.empty = empty;
-    }
 
     public boolean isWet() {
-        return wet;
-    }
-
-    public void setWet(boolean wet) {
-        this.wet = wet;
+        return this.getWaterTime() != 0;
     }
 
     public boolean isFertilize() {
-        return fertilize;
-    }
-
-    public void setFertilize(boolean fertilize) {
-        this.fertilize = fertilize;
+        return this.getFertilizeTime() != 0;
     }
 
     public int getHarvestTime() {
@@ -107,6 +87,14 @@ public class LandEntity {
 
     public void setPlant(Plants plant) {
         this.plant = plant;
+        this.setHarvestTime(plant.getPlantingTime());
+    }
+
+    public void reset(){
+        this.plant = null;
+        this.harvestTime = 0;
+        this.fertilizeTime = 0;
+        this.waterTime = 0;
     }
 
 }

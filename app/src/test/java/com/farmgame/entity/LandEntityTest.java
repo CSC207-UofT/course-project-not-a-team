@@ -1,76 +1,87 @@
 package com.farmgame.entity;
 
+import com.farmgame.Plants;
+
+import static com.farmgame.constants.Constants.*;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class LandEntityTest {
-    LandEntity land = new LandEntity(LandEntity.LOCK_STATUS_LOCKED, true, false, false, false, -1, -1 , -1);
-    @Test
-    public void isUnlocked() {
-        assertFalse(land.isUnlocked());
-    }
 
-    @Test
-    public void setUnlocked() {
-        land.setUnlocked(true);
-        assertTrue(land.isUnlocked());
+    LandEntity land;
+
+    @Before
+    public void setUp() throws Exception {
+
+        Plants plant = new Plants("plantA", 30, 23, 43, 5);
+        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 30 , 0);
     }
 
     @Test
     public void getLockStatus() {
-        assertEquals(land.getLockStatus(), LandEntity.LOCK_STATUS_LOCKED);
+        assertEquals(land.getLockStatus(), LOCK_STATUS_LOCKED);
     }
 //
-//    @Test
-//    public void setLockStatus() {
-//    }
-//
-//    @Test
-//    public void isEmpty() {
-//    }
-//
-//    @Test
-//    public void setEmpty() {
-//    }
-//
-//    @Test
-//    public void isWet() {
-//    }
-//
-//    @Test
-//    public void setWet() {
-//    }
-//
-//    @Test
-//    public void isFertilize() {
-//    }
-//
-//    @Test
-//    public void setFertilize() {
-//    }
-//
-//    @Test
-//    public void getHarvestTime() {
-//    }
-//
-//    @Test
-//    public void setHarvestTime() {
-//    }
-//
-//    @Test
-//    public void getWaterTime() {
-//    }
-//
-//    @Test
-//    public void setWaterTime() {
-//    }
-//
-//    @Test
-//    public void getFertilizeTime() {
-//    }
-//
-//    @Test
-//    public void setFertilizeTime() {
-//    }
+    @Test
+    public void setLockStatus() {
+        land.setLockStatus(LOCK_STATUS_BOUGHT);
+        assertEquals(land.getLockStatus(), LOCK_STATUS_BOUGHT);
+    }
+
+    @Test
+    public void isEmpty() {
+        assertFalse(land.isEmpty());
+    }
+
+
+    @Test
+    public void isWet() {
+        assertTrue(land.isWet());
+    }
+
+
+    @Test
+    public void isFertilize() {
+        assertFalse(land.isFertilize());
+    }
+
+
+
+    @Test
+    public void getHarvestTime() {
+        assertEquals(land.getHarvestTime(), 23);
+    }
+
+    @Test
+    public void setHarvestTime() {
+        land.setHarvestTime(50);
+        assertEquals(land.getHarvestTime(), 50);
+    }
+
+    @Test
+    public void getWaterTime() {
+        assertEquals(land.getWaterTime(), 30);
+    }
+
+    @Test
+    public void setWaterTime() {
+        land.setWaterTime(60);
+        assertEquals(land.getWaterTime(), 60);
+    }
+
+    @Test
+    public void getFertilizeTime() {
+        assertEquals(land.getFertilizeTime(), 0);
+    }
+
+    @Test
+    public void reset() {
+        land.reset();
+        assertTrue(land.isEmpty());
+        assertEquals(land.getHarvestTime(), 0);
+        assertFalse(land.isWet());
+        assertFalse(land.isFertilize());
+    }
 }
