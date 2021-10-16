@@ -26,7 +26,8 @@ public class LandEntity {
     private int fertilizeTime;
 
 
-    public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize, int harvestTime, int waterTime, int fertilizeTime) {
+    public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize,
+                      boolean unlocked, int harvestTime, int waterTime, int fertilizeTime) {
         this.lockStatus = lockStatus;
         this.empty = empty;
         this.wet = wet;
@@ -34,6 +35,7 @@ public class LandEntity {
         this.harvestTime = harvestTime;
         this.waterTime = waterTime;
         this.fertilizeTime = fertilizeTime;
+        this.unlocked = unlocked;
     }
     public boolean isUnlocked() {
         return unlocked;
