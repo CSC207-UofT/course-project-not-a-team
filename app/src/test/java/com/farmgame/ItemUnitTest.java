@@ -16,4 +16,10 @@ public class ItemUnitTest {
         assertEquals(10, fertilizer.getNum_usage());
         assertEquals(-1, hoe.getNum_usage());
     }
+
+    @Test
+    public void test_setNum_usage() {
+        fertilizer.setNum_usage(9);
+        assertEquals(9, fertilizer.getNum_usage());
+    }
 }

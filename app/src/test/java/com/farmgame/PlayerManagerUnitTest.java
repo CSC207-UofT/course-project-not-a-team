@@ -41,8 +41,8 @@ public class PlayerManagerUnitTest {
     @Test(timeout = 50)
     public void test_subtractMoney() {
         assertTrue(pm.subtractMoney(500));
-        assertEquals(1000, pm.getPlayer().getMoney());
+        assertEquals(500, pm.getPlayer().getMoney());
         assertFalse(pm.subtractMoney(1000));
-        assertEquals(1000, pm.getPlayer().getMoney());
+        assertEquals(500, pm.getPlayer().getMoney());
     }
 }
