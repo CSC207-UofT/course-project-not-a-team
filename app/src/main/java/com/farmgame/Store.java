@@ -33,15 +33,14 @@ public class Store {
 
         return currentProducts;
     }
-    public void setCurrentProducts(int level){
-        // set the current products according to given level
-        for(int i = 0; i < level; i++) {
-            currentProducts.set(i, totalProducts.get(i));
-        }
-    }
     public int getStoreLevel(){
         //return store level
         return StoreLevel;
+    }
+    public void setStoreLevel(int level){
+        //set store level
+        this.StoreLevel = level;
+        currentProducts = totalProducts.subList(0, level);
     }
     /*
     public List<Plants> buyingProducts(){
