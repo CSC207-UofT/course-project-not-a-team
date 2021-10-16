@@ -1,4 +1,6 @@
-package com.farmgame;
+package com.farmgame.usecase;
+
+import com.farmgame.entity.Player;
 
 public class PlayerManager {
     private Player player;
@@ -15,6 +17,13 @@ public class PlayerManager {
     public PlayerManager(Player player) {
         this.player = player;
     }
+
+    /**
+     * Getter for Player attribute.
+     *
+     * @return Player
+     */
+    public Player getPlayer() { return player; }
 
     /**
      * Gain exp for player, and level up if necessary.
