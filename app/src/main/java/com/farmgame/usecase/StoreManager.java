@@ -40,7 +40,7 @@ public class StoreManager {
         /*
         The input includes a list of products player wants to sell.
         Plants buying price varies according to the date.
-        Calculate total payment, remove the sold plants from player's warehouse, add money to player
+        Calculate total payment, remove the sold plants from player's warehouse, add money to player.
          */
     }
 }
