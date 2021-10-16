@@ -2,6 +2,7 @@ package com.farmgame.entity;
 
 
 import com.farmgame.Plants;
+import com.farmgame.constants.Constants;
 
 public class LandEntity {
 
