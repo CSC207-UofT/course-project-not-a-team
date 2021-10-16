@@ -1,6 +1,6 @@
 package com.farmgame.usecase;
 
-import com.farmgame.Item.Item;
+import com.farmgame.entity.Item.Item;
 import com.farmgame.Plants;
 import com.farmgame.entity.Warehouse;
 

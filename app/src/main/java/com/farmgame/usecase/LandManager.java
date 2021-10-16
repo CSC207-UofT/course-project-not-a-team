@@ -1,9 +1,9 @@
 package com.farmgame.usecase;
 
-import com.farmgame.Item.Fertilizer;
-import com.farmgame.Item.Hoe;
+import com.farmgame.entity.Item.Fertilizer;
+import com.farmgame.entity.Item.Hoe;
 import com.farmgame.Plants;
-import com.farmgame.Player;
+import com.farmgame.entity.Player;
 import com.farmgame.entity.Warehouse;
 import com.farmgame.entity.LandEntity;
 
@@ -28,7 +28,7 @@ public class LandManager {
 
     public void harvest(LandEntity land, Player player, Hoe hoe){
         if (land.getHarvestTime() == 0 && hoe != null){
-            player.gainExp(land.getPlant().getExperiencePoint());
+           // player.gainExp(land.getPlant().getExperiencePoint());
             land.reset();
         }
     }
