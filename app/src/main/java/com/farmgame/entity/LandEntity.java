@@ -22,7 +22,9 @@ public class LandEntity {
 
 
 
-    public LandEntity(int lockStatus, Plants plant, boolean empty, boolean wet, boolean fertilize, int harvestTime, int waterTime, int fertilizeTime) {
+    public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize,
+                      boolean unlocked, int harvestTime, int waterTime, int fertilizeTime) {
+
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.empty = empty;
@@ -31,6 +33,7 @@ public class LandEntity {
         this.harvestTime = harvestTime;
         this.waterTime = waterTime;
         this.fertilizeTime = fertilizeTime;
+
     }
 
     public int getLockStatus(){
@@ -45,7 +48,7 @@ public class LandEntity {
      * wet: if the land is wet
      * fertilize: if the land is fertilized
      * unlocked: if the land is unlocked
-     * harvestTime: the time left until the plant can be harvaseted
+     * harvestTime: the time left until the plant can be harvested
      * waterTime: the time left until the land can be watered again
      * fertilizeTime: the time left until the land can be watered again
      */
