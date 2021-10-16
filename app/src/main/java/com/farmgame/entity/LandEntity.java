@@ -1,6 +1,13 @@
 package com.farmgame.entity;
 
+
 public class LandEntity {
+    public static final int LOCK_STATUS_LOCKED = 0;
+    public static final int LOCK_STATUS_NOT_BOUGHT = 1;
+    public static final int LOCK_STATUS_BOUGHT = 2;
+
+
+    private int lockStatus;
     private boolean empty;
     private boolean wet;
     private boolean fertilize;
@@ -8,10 +15,23 @@ public class LandEntity {
     private int waterTime;
     private int fertilizeTime;
 
-    public LandEntity(){
-        this.empty = true;
-        this.wet = false;
-        this.fertilize = false;
+
+    public LandEntity(int lockStatus, boolean empty, boolean wet, boolean fertilize, int harvestTime, int waterTime, int fertilizeTime) {
+        this.lockStatus = lockStatus;
+        this.empty = empty;
+        this.wet = wet;
+        this.fertilize = fertilize;
+        this.harvestTime = harvestTime;
+        this.waterTime = waterTime;
+        this.fertilizeTime = fertilizeTime;
+    }
+
+    public int getLockStatus(){
+        return this.lockStatus;
+    }
+
+    public void setLockStatus(int lockStatus){
+        this.lockStatus = lockStatus;
     }
 
     public boolean isEmpty() {
@@ -61,4 +81,6 @@ public class LandEntity {
     public void setFertilizeTime(int fertilizeTime) {
         this.fertilizeTime = fertilizeTime;
     }
+
+
 }
