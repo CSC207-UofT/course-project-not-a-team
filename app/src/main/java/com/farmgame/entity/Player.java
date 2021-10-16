@@ -1,7 +1,5 @@
 package com.farmgame.entity;
 
-import com.farmgame.entity.Warehouse;
-
 public class Player {
     private final String name;
     private int level;

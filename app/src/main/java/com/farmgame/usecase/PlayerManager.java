@@ -3,11 +3,10 @@ package com.farmgame.usecase;
 import com.farmgame.entity.Player;
 
 public class PlayerManager {
-    private Player player;
+    private final Player player;
 
     // constant
     private final int MAX_LEVEL = 50;
-    private final int LEVEL_1_EXP = 10;
 
     /**
      * Constructor for PlayerManager
@@ -48,6 +47,7 @@ public class PlayerManager {
             this.player.setLevel(this.player.getLevel() + 1) ;
 
             // how to calculate new exp_bar when level up?
+            int LEVEL_1_EXP = 10;
             this.player.getExp_bar()[1] = this.player.getLevel() * LEVEL_1_EXP;
         }
         else {

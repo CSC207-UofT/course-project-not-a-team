@@ -14,7 +14,7 @@ public class LandEntityTest {
     public void setUp() throws Exception {
 
         Plants plant = new Plants("plantA", 30, 23, 43, 5);
-        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 30 , 0);
+        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 30 , 0, 1);
     }
 
     @Test
@@ -79,6 +79,7 @@ public class LandEntityTest {
         land.reset();
         assertTrue(land.isEmpty());
         assertEquals(land.getHarvestTime(), 0);
+        assertEquals(land.getStage(), 0);
         assertFalse(land.isWet());
         assertFalse(land.isFertilize());
     }

@@ -1,9 +1,5 @@
 package com.farmgame.entity;
 
-
-
-import com.farmgame.entity.Plants;
-
 import java.util.ArrayList;
 
 import java.util.List;
