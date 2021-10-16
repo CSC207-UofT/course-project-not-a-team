@@ -11,8 +11,8 @@ public class Warehouse {
 
     public Warehouse(){
         this.capacity = 5;
-        this.itemInventory = new ArrayList<Item>();
-        this.plantInventory = new ArrayList<Plants>();
+        this.itemInventory = new ArrayList<>();
+        this.plantInventory = new ArrayList<>();
     }
 
     public ArrayList<Item> getItemInventory() {
