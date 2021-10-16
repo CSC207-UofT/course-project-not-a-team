@@ -1,4 +1,4 @@
-package com.farmgame.entity;
+package com.farmgame.usecase;
 
 
 import com.farmgame.usecase.LandManager;

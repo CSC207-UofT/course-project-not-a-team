@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

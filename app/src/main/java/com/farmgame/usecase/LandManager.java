@@ -2,13 +2,10 @@ package com.farmgame.usecase;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Hoe;
-import com.farmgame.Plants;
+import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
-import com.farmgame.entity.Warehouse;
 import com.farmgame.entity.LandEntity;
 
-
-import static com.farmgame.constants.Constants.*;
 
 public class LandManager {
 
