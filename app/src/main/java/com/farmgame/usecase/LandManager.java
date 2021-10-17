@@ -4,6 +4,7 @@ import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Hoe;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.LandEntity;
+import com.farmgame.entity.Warehouse;
 
 
 public class LandManager {
@@ -47,8 +48,9 @@ public class LandManager {
      * @param pm the player manager to manage the player
      * @param hoe a hoe needed for harvest
      */
-    public void harvest(PlayerManager pm, Hoe hoe){
+    public void harvest(PlayerManager pm, Hoe hoe, Warehouse warehouse){
         if (land.getStage() == 2 && land.getHarvestTime() == 0 && hoe != null){
+            warehouse.getPlantInventory().add(land.getPlant());
             pm.gainExp(land.getPlant().getExperiencePoint());
             land.reset();
         }

@@ -43,8 +43,9 @@ public class LandManagerTest {
     public void Harvest() {
         landManager.getLand().addStage();
         landManager.getLand().addStage();
-        landManager.harvest(pm, hoe);
+        landManager.harvest(pm, hoe, warehouse);
         assertArrayEquals(new int[]{5, 10}, pm.getPlayer().getExp_bar());
+        assertTrue(warehouse.getPlantInventory().contains(plant1));
 
     }
     @Test
