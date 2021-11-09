@@ -1,4 +1,6 @@
-package com.farmgame.entity;
+package com.farmgame;
+
+
 
 import java.util.ArrayList;
 
