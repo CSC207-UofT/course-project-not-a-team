@@ -5,29 +5,33 @@ import com.farmgame.entity.Store;
 
 import java.util.List;
 
-public class StoreManager<T> implements StorePurchase, StoreSell{
-    private List<Plants> totalProducts;
-    List<Plants> currentProducts;
-
-
-    @Override
-    public void checkvalidity(T object) {
-
-
+public class StoreManager {
+    public void storeLevelUp(Store store, int level){
+        store.setStoreLevel(level+1);
     }
 
-    @Override
-    public void makepurchase() {
-
+    public void sellToPlayer(Store store){
+        /*
+        Display all current products, allow player to choose what to buy.
+        Plants selling price varies according to the date.
+        Calculate total payment, check if player has enough money to pay.
+        If not, the order fails and display a warning message.
+        If yes, money deduct from player, and add purchased products to player's warehouse
+         */
     }
-
-    @Override
-    public void updatewarehouse() {
-
+    public void purchaseTools(){
+        /*
+        Display all items(only fertilizer for now), , allow player to choose what to buy.
+        Calculate total payment, check if player has enough money to pay.
+        If not, the order fails and display a warning message.
+        If yes, money deduct from player, and add purchased products to player's warehouse
+         */
     }
-
-    @Override
-    public void sell() {
-
+    public void buyFromPlayer(Store store, List<Plants> plants){
+        /*
+        The input includes a list of products player wants to sell.
+        Plants buying price varies according to the date.
+        Calculate total payment, remove the sold plants from player's warehouse, add money to player.
+         */
     }
 }
