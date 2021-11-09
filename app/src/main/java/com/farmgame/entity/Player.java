@@ -1,13 +1,10 @@
 package com.farmgame.entity;
 
-import com.farmgame.Warehouse;
-
 public class Player {
     private final String name;
     private int level;
     private int money;
     private final int[] exp_bar;
-    private final Warehouse warehouse;
 
     /**
      * Constructor for Player.
@@ -16,14 +13,12 @@ public class Player {
      * @param level level of player
      * @param money money of player
      * @param exp_bar exp bar of player
-     * @param warehouse warehouse of player
      */
-    public Player(String name, int level, int money, int[] exp_bar, Warehouse warehouse) {
+    public Player(String name, int level, int money, int[] exp_bar) {
         this.name = name;
         this.level = level;
         this.money = money;
         this.exp_bar = exp_bar;
-        this.warehouse = warehouse;
     }
 
     /**
@@ -60,15 +55,6 @@ public class Player {
      */
     public int[] getExp_bar() {
         return this.exp_bar;
-    }
-
-    /**
-     * Getter for Warehouse attribute.
-     *
-     * @return Warehouse
-     */
-    public Warehouse getWarehouse() {
-        return this.warehouse;
     }
 
     /**
