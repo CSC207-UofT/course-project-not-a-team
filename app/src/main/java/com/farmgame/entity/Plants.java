@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 import java.security.PrivateKey;
 

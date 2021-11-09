@@ -1,4 +1,4 @@
-package com.farmgame.Item;
+package com.farmgame.entity.Item;
 
 public class Item{
     private int num_usage;    // -1 means this item can be used infinitely many times.

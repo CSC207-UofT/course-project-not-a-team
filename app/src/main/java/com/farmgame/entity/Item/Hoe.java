@@ -1,4 +1,4 @@
-package com.farmgame.Item;
+package com.farmgame.entity.Item;
 
 public class Hoe extends Item implements Usable {
 

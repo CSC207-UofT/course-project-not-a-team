@@ -1,14 +1,8 @@
-package com.farmgame;
-
-import android.annotation.SuppressLint;
+package com.farmgame.entity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.util.Random;
-import java.util.Scanner;
+import com.farmgame.entity.Player;
 
 public class Store {
     List<Plants> totalProducts;             //we need to define later
@@ -21,9 +15,9 @@ public class Store {
      * currentProducts ArrayList of plants that sells in store(current level)
      * @param StoreLevel an integer that shows the level of the store
      */
-    public Store( int StoreLevel){
+    public Store(Player player){
         //constructor, take StoreLevel as parameter, initiate ArrayList currentProducts given the StoreLevel
-        this.StoreLevel = StoreLevel;
+        this.StoreLevel = player.getLevel();
         currentProducts = new ArrayList<>();
         currentProducts = totalProducts.subList(0, StoreLevel);
 

@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 public class Warehouse {
     private int capacity;

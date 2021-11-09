@@ -1,4 +1,4 @@
-package com.farmgame.Item;
+package com.farmgame.entity.Item;
 
 public class Fertilizer extends Item implements Usable {
     public Fertilizer() {
