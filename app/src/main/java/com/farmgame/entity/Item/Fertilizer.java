@@ -8,3 +8,4 @@ public class Fertilizer implements Item{
         land.setFertilize(true);
     }
 }
+
