@@ -1,12 +1,10 @@
 package com.farmgame.entity.Item;
 
-public class Fertilizer extends Item implements Usable {
-    public Fertilizer() {
-        super(10);
-    }
+import com.farmgame.entity.LandEntity;
 
+public class Fertilizer implements Item{
     @Override
-    public void use() {
-        // usage of Fertilizer
+    public void use(LandEntity land) {
+        // TODO implement this
     }
 }
