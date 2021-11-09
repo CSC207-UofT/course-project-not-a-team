@@ -27,7 +27,7 @@ public class Warehouse {
             this.capacity = 40;
         }else if (playerLevel >30 && playerLevel <= 40){
             this.capacity = 60;
-        }else if(playerLevel >40){
+        }else{
             this.capacity = 100;
         }
         this.itemInventory = new ArrayList<>();
