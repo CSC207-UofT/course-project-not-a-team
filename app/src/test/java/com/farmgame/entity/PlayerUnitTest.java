@@ -1,9 +1,10 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.farmgame.entity.Player;
+import com.farmgame.entity.Warehouse;
 
 public class PlayerUnitTest {
     Player player = new Player("Connor", 1, 1000, new int[]{0, 10});

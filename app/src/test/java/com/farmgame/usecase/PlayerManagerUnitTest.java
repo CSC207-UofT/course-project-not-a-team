@@ -1,9 +1,10 @@
-package com.farmgame;
+package com.farmgame.usecase;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.farmgame.entity.Player;
+import com.farmgame.entity.Warehouse;
 import com.farmgame.usecase.PlayerManager;
 
 public class PlayerManagerUnitTest {

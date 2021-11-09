@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 public class Plants {
     private final String PlantName;
