@@ -7,8 +7,7 @@ import com.farmgame.entity.Player;
 import com.farmgame.entity.Warehouse;
 
 public class PlayerUnitTest {
-    Warehouse warehouse = new Warehouse();
-    Player player = new Player("Connor", 1, 1000, new int[]{0, 10}, warehouse);
+    Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
 
     @Test(timeout = 50)
     public void test_getName() {
@@ -28,11 +27,6 @@ public class PlayerUnitTest {
     @Test(timeout = 50)
     public void test_getExp_bar() {
         assertArrayEquals(new int[]{0, 10}, player.getExp_bar());
-    }
-
-    @Test(timeout = 50)
-    public void test_getWarehouse() {
-        assertEquals(warehouse, player.getWarehouse());
     }
 
     @Test(timeout = 50)

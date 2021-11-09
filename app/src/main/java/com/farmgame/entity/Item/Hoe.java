@@ -1,13 +1,10 @@
 package com.farmgame.entity.Item;
 
-public class Hoe extends Item implements Usable {
+import com.farmgame.entity.LandEntity;
 
-    public Hoe() {
-        super(-1);
-    }
-
+public class Hoe implements Item{
     @Override
-    public void use() {
-        // usage of Hoe
+    public void use(LandEntity land) {
+        // todo implement this
     }
 }
