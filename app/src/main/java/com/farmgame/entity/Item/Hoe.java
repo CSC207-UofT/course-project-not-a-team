@@ -2,9 +2,9 @@ package com.farmgame.entity.Item;
 
 import com.farmgame.entity.LandEntity;
 
-public class Fertilizer implements Item{
+public class Hoe implements Item{
     @Override
     public void use(LandEntity land) {
-        // TODO implement this
+        // todo implement this
     }
 }

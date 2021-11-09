@@ -46,4 +46,3 @@ public class PlayerManagerUnitTest {
         assertEquals(500, pm.getPlayer().getMoney());
     }
 }
-

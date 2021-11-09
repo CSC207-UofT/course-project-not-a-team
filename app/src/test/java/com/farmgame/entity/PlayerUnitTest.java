@@ -41,4 +41,3 @@ public class PlayerUnitTest {
         assertEquals(2000, player.getMoney());
     }
 }
-
