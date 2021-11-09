@@ -6,18 +6,24 @@ import com.farmgame.entity.Warehouse;
 
 import java.util.ArrayList;
 
+import javax.xml.parsers.FactoryConfigurationError;
+
 public class WarehouseManager {
     /**
      * Add item to Warehouse's Item Inventory
      * @param warehouse an Warehouse instance
      * @param item an item that needs to be added to the warehouse
      */
-    public void addItem(Warehouse warehouse, Item item) {
+    public boolean addItem(Warehouse warehouse, Item item) {
         ArrayList<Item> lst = warehouse.getItemInventory();
-        lst.add(item);
-        warehouse.setItemInventory(lst);
+        if (warehouse.getPlantInventory().size() + warehouse.getItemInventory().size() < warehouse.getCapacity()) {
+            lst.add(item);
+            warehouse.setItemInventory(lst);
+            return true;
+        } else {
+            return false;
+        }
     }
-
     /**
      * Remove item from Warehouse's Item Inventory
      * @param warehouse an Warehouse instance
@@ -34,10 +40,16 @@ public class WarehouseManager {
      * @param warehouse an Warehouse instance
      * @param plant a plant that needs to be added to the warehouse
      */
-    public void addPlant(Warehouse warehouse, Plants plant){
+    public boolean addPlant(Warehouse warehouse, Plants plant){
         ArrayList<Plants> lst = warehouse.getPlantInventory();
-        lst.add(plant);
-        warehouse.setPlantInventory(lst);
+        if (warehouse.getPlantInventory().size() + warehouse.getItemInventory().size() < warehouse.getCapacity()){
+            lst.add(plant);
+            warehouse.setPlantInventory(lst);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -50,6 +62,4 @@ public class WarehouseManager {
         lst.remove(plant);
         warehouse.setPlantInventory(lst);
     }
-
-
 }
