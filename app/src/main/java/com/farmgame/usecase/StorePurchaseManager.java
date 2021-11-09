@@ -1,9 +1,11 @@
 package com.farmgame.usecase;
 
+import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Store;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.usecase.PlayerManager;
+import com.farmgame.usecase.WarehouseManager;
 
 public class StorePurchaseManager implements StorePurchase, Tradable{
     private final Store store;
@@ -14,9 +16,9 @@ public class StorePurchaseManager implements StorePurchase, Tradable{
 
     @Override
     public int getPrice(Object object) {
-        if (object instanceof Item) {
+        if (object instanceof Fertilizer) {
             if (this.store.getCurrentProducts_items().contains((object)){
-                return ((Item) object).
+                return ((Fertilizer) object).getPrice();
             }
         } else if (object instanceof Plants) {
             if (this.store.getcurrentProducts_plants().contains(object)) {
@@ -35,19 +37,8 @@ public class StorePurchaseManager implements StorePurchase, Tradable{
     public void makepurchase(Object object, PlayerManager playermanager) {
         if (checkvalidity(object)){
             playermanager.subtractMoney(getPrice(object));
-
     }
 
-    @Override
-    public void updatewarehouse() {
-
-    }
-
-
-    @Override
-    public boolean checkvalidity() {
-        return false;
-    }
 
 
 //    @Override
@@ -62,6 +53,12 @@ public class StorePurchaseManager implements StorePurchase, Tradable{
 //        }
 
 
+
+    }
+
+    @Override
+    public void updatewarehouse(Object object, WarehouseManager warehouseManager) {
+        warehouseManager.addItem(warehouseManager, (Item) object);
 
     }
 
