@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.farmgame.Activity.databinding.FragmentSecondBinding;
+import com.farmgame.R;
+import com.farmgame.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 

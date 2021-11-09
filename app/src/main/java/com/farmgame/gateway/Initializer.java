@@ -1,2 +1,4 @@
-package com.farmgame.gateway;public class Initializer {
+package com.farmgame.gateway;
+
+public class Initializer extends SQLite{
 }
