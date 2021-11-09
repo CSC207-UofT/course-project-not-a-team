@@ -1,10 +1,14 @@
 package com.farmgame.entity.Item;
 
-import com.farmgame.entity.LandEntity;
-
 public class Fertilizer implements Item{
+    private int price = 10;
+
+    public int getPrice() {
+        return this.price;
+    }
+
     @Override
-    public void use(LandEntity land) {
-        // TODO implement this
+    public void use() {
+        // usage of fertilizer
     }
 }

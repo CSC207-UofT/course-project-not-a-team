@@ -1,7 +1,7 @@
 package com.farmgame.entity.Item;
 
-import com.farmgame.entity.LandEntity;
-
 public interface Item {
-    void use(LandEntity land);
+    int price = 0;
+
+    void use();
 }
