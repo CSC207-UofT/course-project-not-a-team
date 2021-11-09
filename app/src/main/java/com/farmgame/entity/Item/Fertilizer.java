@@ -1,11 +1,12 @@
 package com.farmgame.entity.Item;
 
-public class Fertilizer extends Item {
-
-    /**
-     * Constructor for Fertilizer, which can be used 10 times (limited).
-     */
+public class Fertilizer extends Item implements Usable {
     public Fertilizer() {
         super(10);
+    }
+
+    @Override
+    public void use() {
+        // usage of Fertilizer
     }
 }

@@ -1,11 +1,13 @@
 package com.farmgame.entity.Item;
 
-public class Hoe extends Item {
+public class Hoe extends Item implements Usable {
 
-    /**
-     * Constructor for Hoe, which can be used infinitely many times.
-     */
     public Hoe() {
         super(-1);
+    }
+
+    @Override
+    public void use() {
+        // usage of Hoe
     }
 }
