@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.farmgame.R;
-import com.farmgame.databinding.FragmentFirstBinding;
+
+import com.farmgame.databinding.FragmentRegisterBinding;
+import com.farmgame.entity.Player;
 import com.farmgame.gateway.Initializer;
+import com.farmgame.gateway.UserUpdater;
+import com.farmgame.viewModel.LoginViewModel;
 
-public class FirstFragment extends Fragment {
+public class RegisgerFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentRegisterBinding binding;
 
     @Override
     public View onCreateView(
@@ -28,7 +36,7 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentRegisterBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -36,9 +44,11 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final LoginViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
 
-        Initializer init = new Initializer(this.getActivity());
-        SQLiteDatabase db = init.getReadableDatabase();
+
+        SQLiteDatabase db = viewModel.getDB();
 
         Cursor cursor = db.query("User", new String[]{"name"}, null, null, null, null, null);
 
@@ -52,7 +62,11 @@ public class FirstFragment extends Fragment {
 
         binding.register.setOnClickListener(v -> {
             if (hasData){
+                Player player = viewModel.getPlayer();
+                Log.d("sev", player.getName());
                 Toast.makeText(that, "成功了！", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(RegisgerFragment.this)
+                        .navigate(R.id.action_RegisterFragment_to_SecondFragment);
             } else {
                 if (binding.username.getText().toString().length() > 0){
                     ContentValues contentValues = new ContentValues();
@@ -73,5 +87,7 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 
 }

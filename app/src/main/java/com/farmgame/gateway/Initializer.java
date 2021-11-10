@@ -3,7 +3,6 @@ package com.farmgame.gateway;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -23,10 +22,10 @@ public class Initializer extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(createUser());
-        db.execSQL(createPlant());
-        db.execSQL(createWarehouse());
-        db.execSQL(createLevel());
+        db.execSQL(createUserTable());
+        db.execSQL(createPlantTable());
+        db.execSQL(createWarehouseTable());
+        db.execSQL(createLevelTable());
     }
 
     @Override
@@ -34,37 +33,38 @@ public class Initializer extends SQLiteOpenHelper {
 
     }
 
-    private String createUser(){
+    private String createUserTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("name", TEXT);
-        map.put("level", INT);
-        map.put("exp", INT);
-        return createTable("User", map);
+        map.put(USER_NAME, TEXT);
+        map.put(USER_LEVEL, INT);
+        map.put(USER_EXP, INT);
+        map.put(USER_MONEY, INT);
+        return createTable(USER, map);
     }
 
-    private String createPlant(){
+    private String createPlantTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("name", TEXT);
-        map.put("time", TEXT);
-        map.put("buyPrice", INT);
-        map.put("sellPrice", INT);
-        map.put("exp", INT);
-        return createTable("Plant", map);
+        map.put(PLANT_NAME, TEXT);
+        map.put(PLANT_TIME, TEXT);
+        map.put(PLANT_BUY_PRICE, INT);
+        map.put(PLANT_SELL_PRICE, INT);
+        map.put(PLANT_EXP, INT);
+        return createTable(PLANT, map);
     }
 
-    private String createWarehouse(){
+    private String createWarehouseTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("type", TEXT);
-        map.put("id", INT);
-        map.put("quantity", INT);
-        return createTable("Warehouse", map);
+        map.put(WAREHOUSE_TYPE, TEXT);
+        map.put(WAREHOUSE_ID, INT);
+        map.put(WAREHOUSE_QUANTITY, INT);
+        return createTable(WAREHOUSE, map);
     }
 
-    private String createLevel(){
+    private String createLevelTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("level", INT);
-        map.put("exp", INT);
-        return createTable("LevelUpExp", map);
+        map.put(LEVEL_LEVEL, INT);
+        map.put(LEVEL_EXP, INT);
+        return createTable(LEVEL, map);
     }
 
     public static String createTable(String tableName, HashMap<String, Integer> map){
