@@ -24,7 +24,11 @@ public class LoginViewModel extends ViewModel {
     }
 
     public Player getPlayer(){
-        return UserUpdater.getPlayer();
+        return playerMutableLiveData.getValue();
+    }
+
+    public void setPlayer(Player player){
+        playerMutableLiveData.setValue(player);
     }
 
     private void initUpdaters(){

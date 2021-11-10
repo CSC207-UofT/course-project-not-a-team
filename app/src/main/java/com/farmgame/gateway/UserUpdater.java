@@ -17,6 +17,18 @@ public class UserUpdater {
         db = database;
     }
 
+    public static Player createPlayer(String name){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USER_NAME, name);
+        contentValues.put(USER_LEVEL, 1);
+        contentValues.put(USER_MONEY, 0);
+        contentValues.put(USER_EXP, 0);
+        db.insert(USER, null, contentValues);
+
+        return getPlayer();
+
+    }
+
     public static Player getPlayer(){
         Cursor cursor = db.query(USER, new String[]{"*"},
                 null, null, null, null, null);

@@ -68,13 +68,9 @@ public class RegisgerFragment extends Fragment {
                         .navigate(R.id.action_RegisterFragment_to_SecondFragment);
             } else {
                 if (binding.username.getText().toString().length() > 0){
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put("name", binding.username.getText().toString());
-                    contentValues.put("level", 1);
-                    contentValues.put("exp", 1);
-                    db.insert("User", null, contentValues);
+                    viewModel.setPlayer(UserUpdater.createPlayer(binding.username.getText().toString()));
                 } else {
-                    Toast.makeText(that, "！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(that, "please enter your ", Toast.LENGTH_SHORT).show();
                 }
             }
         });

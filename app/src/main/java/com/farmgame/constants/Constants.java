@@ -30,6 +30,7 @@ public class Constants {
 
 
     // Plant SQL Column names
+    public static final String PLANT_ID= "id";
     public static final String PLANT_NAME = "name";
     public static final String PLANT_TIME = "time";
     public static final String PLANT_BUY_PRICE = "buyPrice";
@@ -45,9 +46,10 @@ public class Constants {
     // Level SQL Column names
     public static final String LEVEL_LEVEL = "level";
     public static final String LEVEL_EXP = "exp";
-    public static final String LEVEL_QUANTITY = "quantity";
 
-    // Type of Item
+    // Type of StoreAble
     public static final String Type_Fertilizer = "Fertilizer";
     public static final String Type_WateringCan = "WateringCan";
+    public static final String Type_SEED = "WateringCan";
+    public static final String Type_PLANT = "plant";
 }

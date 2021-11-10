@@ -45,7 +45,8 @@ public class Initializer extends SQLiteOpenHelper {
     private String createPlantTable(){
         HashMap<String, Integer> map = new HashMap<>();
         map.put(PLANT_NAME, TEXT);
-        map.put(PLANT_TIME, TEXT);
+        map.put(PLANT_TIME, INT);
+        map.put(PLANT_ID, INT);
         map.put(PLANT_BUY_PRICE, INT);
         map.put(PLANT_SELL_PRICE, INT);
         map.put(PLANT_EXP, INT);
