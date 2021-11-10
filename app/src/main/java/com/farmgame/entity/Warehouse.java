@@ -96,7 +96,7 @@ public class Warehouse {
             }
         }
         for(ArrayList<Plants> plantsList: this.plantInventory.values()){
-            if (plantsList.get(0).getPlantName().equals(s)){
+            if (plantsList.get(0).getName().equals(s)){
                 return true;
             }
         }
