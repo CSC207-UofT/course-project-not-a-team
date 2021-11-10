@@ -94,7 +94,7 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
             }else{
                 tempPlantsList.put(object.getId(), 1);
             }
-            this.warehouse.setItemInventory(tempItemList);
+            this.warehouse.setPlantInventory(tempPlantsList);
         }
     }
 
@@ -119,7 +119,7 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
                     tempPlantsList.remove(object.getId());
                 }
             }
-            this.warehouse.setItemInventory(tempItemList);
+            this.warehouse.setPlantInventory(tempPlantsList);
         }
     }
 
