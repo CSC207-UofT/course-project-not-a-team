@@ -13,6 +13,7 @@ public class Fertilizer implements Item, StoreAble {
      */
     private final int price;
     private final String item_name;
+    private final int id;
 
 
 
@@ -22,6 +23,18 @@ public class Fertilizer implements Item, StoreAble {
     public Fertilizer(){
         this.price = 10;
         this.item_name = Type_Fertilizer;
+        this.id = 14159;
+    }
+
+
+
+    /**
+     * A getter method for the id of fertilizer.
+     *
+     * @return the id of fertilizer.
+     */
+    public int getId() {
+        return this.id;
     }
 
 
@@ -44,7 +57,9 @@ public class Fertilizer implements Item, StoreAble {
      * @return the name of fertilizer.
      */
     @Override
-    public String getName(){ return this.item_name; }
+    public String getName(){
+        return this.item_name;
+    }
 
 
 
