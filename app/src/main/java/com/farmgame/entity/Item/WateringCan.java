@@ -13,6 +13,7 @@ public class WateringCan implements Item, StoreAble {
      */
     private final int price;
     private final String item_name;
+    private final int id;
 
 
 
@@ -22,6 +23,17 @@ public class WateringCan implements Item, StoreAble {
     public WateringCan(){
         this.price = 5;
         this.item_name = Type_WateringCan;
+        this.id = 26535;
+    }
+
+
+    /**
+     * A getter method for id of watering can.
+     *
+     * @return the id of watering can.
+     */
+    public int getId() {
+        return this.id;
     }
 
 
@@ -44,7 +56,9 @@ public class WateringCan implements Item, StoreAble {
      * @return the name of watering can.
      */
     @Override
-    public String getName(){ return this.item_name;}
+    public String getName(){
+        return this.item_name;
+    }
 
 
 
