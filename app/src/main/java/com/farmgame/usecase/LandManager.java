@@ -1,88 +1,89 @@
 package com.farmgame.usecase;
 
 import com.farmgame.entity.Item.Fertilizer;
-import com.farmgame.entity.Item.Hoe;
+import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.entity.Warehouse;
+
 
 
 public class LandManager {
     /**
-     * A use case class of LandEntity to manage the land
+     * A use case class of LandEntity, which stores a land to manage.
      */
-
     private final LandEntity land;
+
+
 
     /**
      * Construct a land manager
+     *
      * @param land load the land into the land manager
      */
     public LandManager(LandEntity land){
         this.land = land;
     }
 
+
+
     /**
-     * getter
+     * getter for the land stored in land manager
+     *
      * @return the land held by the land manager
      */
     public LandEntity getLand() {
-        return land;
+        return this.land;
     }
+
 
 
     /**
      * Plant a plant into the land
+     *
      * @param plant the plant to be planted
      */
     public void planting(Plants plant){
         if (land.getPlant() == null){
             land.setPlant(plant);
-            land.setHarvestTime(plant.getPlantingTime());
+            land.setWaterTime(plant.getPlantingTime());
         }
-
     }
+
+
 
     /**
      * To harvest the land if it is harvestable
+     *
      * @param pm the player manager to manage the player
-     * @param hoe a hoe needed for harvest
      */
-    public void harvest(PlayerManager pm, Hoe hoe, Warehouse warehouse){
-        if (land.getStage() == 2 && land.getHarvestTime() == 0 && hoe != null){
-            warehouse.getPlantInventory().add(land.getPlant());
-            pm.gainExp(land.getPlant().getExperiencePoint());
-            land.reset();
+    public void harvest(PlayerManager pm, WarehouseManager wm){
+        if (land.getStage() == 2 && land.getWaterTime() == 0){
+            wm.addPlant(this.land.getPlant());
+            pm.gainExp(this.land.getPlant().getExperiencePoint());
+            this.land.reset();
         }
     }
+
+
 
     /**
-     * To fertilize the land
-     * @param fertilizer the fertilizer used to fertilize the land
+     * To fertilize this land
+     *
      */
     public void fertilize(Fertilizer fertilizer){
-        if (!land.isFertilize() && fertilizer.getNum_usage() != 0){
-            land.setFertilizeTime(100);
-            land.setHarvestTime((int) (land.getHarvestTime() * 0.75));
+        if (!land.isFertilize()) {
+            fertilizer.use(this.land);
         }
-
     }
+
+
 
     /**
      * To water the land
      */
-    public void watering(){
+    public void watering(WateringCan wateringCan){
         if (land.getStage() < 2 && !land.isWet()){
-            land.setWaterTime(100);
-            land.addStage();
+            wateringCan.use(this.land);
         }
     }
-
-
-
-
-
-
-
-
 }
