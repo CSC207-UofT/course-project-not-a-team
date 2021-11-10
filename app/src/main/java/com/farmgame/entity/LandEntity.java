@@ -9,7 +9,7 @@ public class LandEntity {
      * attributes indicating how long can you water or fertilize the plant grown on the land.
      */
     private int lockStatus;
-    private Plants plant;
+    private Seeds plant;
     private int waterTime;
     private int fertilizeTime;
     private int stage;
@@ -24,7 +24,7 @@ public class LandEntity {
      * @param waterTime the cool down of water time, which depends on the plant.
      * @param stage the stage of the land.
      */
-    public LandEntity(int lockStatus, Plants plant, int waterTime, int stage, int fertilizeTime) {
+    public LandEntity(int lockStatus, Seeds plant, int waterTime, int stage, int fertilizeTime) {
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.waterTime = waterTime;
@@ -116,7 +116,7 @@ public class LandEntity {
      *
      * @return the plant on the land
      */
-    public Plants getPlant() {
+    public Seeds getPlant() {
         return plant;
     }
 
@@ -127,7 +127,7 @@ public class LandEntity {
      *
      * @param plant a plant to be set
      */
-    public void setPlant(Plants plant) {
+    public void setPlant(Seeds plant) {
         this.plant = plant;
         this.setWaterTime(plant.getPlantingTime());
     }
