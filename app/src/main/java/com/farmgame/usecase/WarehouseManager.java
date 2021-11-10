@@ -26,13 +26,15 @@ public class WarehouseManager {
     }
 
     /**
-     * Add item to Warehouse's Item Inventory
+     * Add item to Warehouse's Item Inventory if capable
      * @param item an item that needs to be added to the warehouse
      */
     public void addItem(Item item) {
         ArrayList<Item> lst = this.warehouse.getItemInventory();
-        lst.add(item);
-        this.warehouse.setItemInventory(lst);
+        if (lst.size() < this.warehouse.getCapacity()){
+            lst.add(item);
+            this.warehouse.setItemInventory(lst);
+        }
     }
 
     /**
