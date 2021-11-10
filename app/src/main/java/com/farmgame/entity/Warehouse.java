@@ -10,6 +10,7 @@ public class Warehouse {
     private int capacity;
     private HashMap<Integer, ArrayList<Item>> itemInventory;
     private HashMap<Integer, ArrayList<Plants>> plantInventory;
+    private HashMap<Integer, ArrayList<Seeds>> seedInventory;
 
 
     /**
@@ -17,7 +18,8 @@ public class Warehouse {
      * Warehouse's capacity increases based on the player's level
      * @param player The warehouse's capacity will increase as the player's level increase.
      */
-    public Warehouse(Player player, HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer, ArrayList<Plants>> plantInventory){
+    public Warehouse(Player player, HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer,
+            ArrayList<Plants>> plantInventory, HashMap<Integer, ArrayList<Seeds>> seedInventory){
         int playerLevel = player.getLevel();
         if (playerLevel >=1 && playerLevel <= 5){
             this.capacity = 5;
@@ -34,6 +36,7 @@ public class Warehouse {
         }
         this.itemInventory = itemInventory;
         this.plantInventory = plantInventory;
+        this.seedInventory = seedInventory;
     }
 
     /**
@@ -50,6 +53,22 @@ public class Warehouse {
      */
     public void setItemInventory(HashMap<Integer, ArrayList<Item>> itemInventory) {
         this.itemInventory = itemInventory;
+    }
+
+    /**
+     * get seed inventory
+     * @return an arraylist that represents seed inventory
+     */
+    public HashMap<Integer, ArrayList<Seeds>> getSeedInventory() {
+        return seedInventory;
+    }
+
+    /**
+     * given an arraylist, set it to seed inventory
+     * @param seedInventory an arraylist of items
+     */
+    public void setSeedInventory(HashMap<Integer, ArrayList<Seeds>> seedInventory) {
+        this.seedInventory = seedInventory;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.farmgame.usecase.WarehouseManager;
 
+import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Plants;
@@ -41,7 +42,10 @@ public class WarehouseManager implements WarehouseManipulate{
 //        return null;
 //    }
 
-
+    /**
+     * Add product to warehouse hashmap according to its type
+     * @param object given an StoreAble object
+     */
     @Override
     public void addProduct(StoreAble object) {
         if (object instanceof Item) {
@@ -57,8 +61,20 @@ public class WarehouseManager implements WarehouseManipulate{
 
             }
             this.warehouse.setPlantInventory(tempPlantsList);
+        }else if (object instanceof Seeds){
+            HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
+            if(tempSeedList.containsKey(((Seeds) object).getSeedId())){
+                tempSeedList.put(((Seeds) object).getSeedId(), tempSeedList.get(((Seeds) object).getSeedId()));
+
+            }
+            this.warehouse.setSeedInventory(tempSeedList);
         }
     }
+
+    /**
+     * Remove product from warehouse hashmap according to its type
+     * @param object object given an StoreAble object
+     */
 
     @Override
     public void removeProduct(StoreAble object) {
@@ -88,9 +104,22 @@ public class WarehouseManager implements WarehouseManipulate{
                         tempPlantsList.put(((Plants) object).getPlantID(), new ArrayList<>());
                     }
                 }
-                }
-
+            }
             this.warehouse.setPlantInventory(tempPlantsList);
+        }else if (object instanceof Seeds){
+            HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
+            if(tempSeedList.containsKey(((Seeds) object).getSeedId())){
+                ArrayList<Seeds> tempRemove = tempSeedList.get(((Seeds) object).getSeedId());
+                if (tempRemove != null){
+                    if(tempRemove.size()>0){
+                        tempRemove.remove(object);
+                        tempSeedList.put(((Seeds) object).getSeedId(),tempRemove);
+                    }else{
+                        tempSeedList.put(((Seeds) object).getSeedId(), new ArrayList<>());
+                    }
+                }
+            }
+            this.warehouse.setSeedInventory(tempSeedList);
         }
     }
 //
