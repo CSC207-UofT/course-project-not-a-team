@@ -1,15 +1,14 @@
 package com.farmgame.usecase.WarehouseManager;
 
-import com.farmgame.entity.Item.Fertilizer;
+import com.farmgame.usecase.StoreAble;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Warehouse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class WarehouseManager implements WarehouseMunipulate{
+public class WarehouseManager implements WarehouseManipulate{
     private final Warehouse warehouse;
     /**
      * Initialize warehouse
@@ -67,27 +66,30 @@ public class WarehouseManager implements WarehouseMunipulate{
             HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
             if(tempItemList.containsKey(((Plants) object).getPlantID())){
                 ArrayList<Item> tempRemove = tempItemList.get(((Item) object).getId());
-                assert tempRemove != null;
-                if(tempRemove.size()>0){
-                    tempItemList.put(((Item) object).getId(), tempItemList.remove(object));
-                }else{
-                    tempItemList.put(((Item) object).getId(), new ArrayList<Item>());
+                if (tempRemove != null){
+                    if(tempRemove.size()>0){
+                        tempRemove.remove(object);
+                        tempItemList.put(((Item) object).getId(),tempRemove);
+                    }else{
+                        tempItemList.put(((Item) object).getId(), new ArrayList<>());
+                    }
                 }
             }
-
-
             this.warehouse.setItemInventory(tempItemList);
         }else if (object instanceof Plants){
             HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
             if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
                 ArrayList<Plants> tempRemove = tempPlantsList.get(((Plants) object).getPlantID());
-                assert tempRemove != null;
-                if(tempRemove.size()>0){
-                    tempPlantsList.put(((Plants) object).getPlantID(),tempPlantsList.remove(object));
-                }else{
-                    tempPlantsList.put(((Plants) object).getPlantID(), new ArrayList<Plants>());
+                if (tempRemove != null){
+                    if(tempRemove.size()>0){
+                        tempRemove.remove(object);
+                        tempPlantsList.put(((Plants) object).getPlantID(),tempRemove);
+                    }else{
+                        tempPlantsList.put(((Plants) object).getPlantID(), new ArrayList<>());
+                    }
                 }
-            }
+                }
+
             this.warehouse.setPlantInventory(tempPlantsList);
         }
     }

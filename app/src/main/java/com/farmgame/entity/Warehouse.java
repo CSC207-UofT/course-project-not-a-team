@@ -17,7 +17,7 @@ public class Warehouse {
      * Warehouse's capacity increases based on the player's level
      * @param player The warehouse's capacity will increase as the player's level increase.
      */
-    public Warehouse(Player player){
+    public Warehouse(Player player, HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer, ArrayList<Plants>> plantInventory){
         int playerLevel = player.getLevel();
         if (playerLevel >=1 && playerLevel <= 5){
             this.capacity = 5;
@@ -32,8 +32,8 @@ public class Warehouse {
         }else{
             this.capacity = 100;
         }
-        this.itemInventory = new HashMap<>();
-        this.plantInventory = new HashMap<>();
+        this.itemInventory = itemInventory;
+        this.plantInventory = plantInventory;
     }
 
     /**
