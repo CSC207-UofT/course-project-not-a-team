@@ -1,97 +1,95 @@
 package com.farmgame.entity;
 
 
-public class LandEntity {
 
+public class LandEntity {
     /**
-     * Land entity class defines a block of land.  It has attribute to indicate if the land is unlocked, watered,
-     * fertilized, and if the land has a plant grown on it. There will be attributes indicating how long can you
-     * water, fertilize, or harvest the plant grown on the land.
+     * Land entity class defines a block of land. It has attribute to indicate if the land is
+     * unlocked, watered, fertilized, and if the land has a plant grown on it. There will be
+     * attributes indicating how long can you water or fertilize the plant grown on the land.
      */
     private int lockStatus;
     private Plants plant;
-    private int harvestTime;
     private int waterTime;
     private int fertilizeTime;
     private int stage;
 
+
+
     /**
-     * lockStatus: whether the land is unlocked, not bought or bought
-     * plant: the plant on the land
-     * harvestTime: the time left until the plant can be harvested
-     * waterTime: the time left until the land can be watered again
-     * fertilizeTime: the time left until the land can be watered again
-     * stage: the stage of the land, from 0 to 2
+     * Constructor of LandEntity class
+     *
+     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     * @param plant the plant grown on the land.
+     * @param waterTime the cool down of water time, which depends on the plant.
+     * @param stage the stage of the land.
      */
-
-    public LandEntity(int lockStatus, Plants plant, int harvestTime, int waterTime,
-                      int fertilizeTime, int stage) {
-
+    public LandEntity(int lockStatus, Plants plant, int waterTime, int stage, int fertilizeTime) {
         this.lockStatus = lockStatus;
         this.plant = plant;
-        this.harvestTime = harvestTime;
         this.waterTime = waterTime;
-        this.fertilizeTime = fertilizeTime;
         this.stage = stage;
-
+        this.fertilizeTime = fertilizeTime;
     }
 
+
+
     /**
-     * getter
+     * getter for LockStatus.
+     *
      * @return the lock status
      */
     public int getLockStatus(){
         return this.lockStatus;
     }
 
+
+
     /**
-     * setter of lockStatus
-     * @param lockStatus a lockStatus to be set
+     * setter of LockStatus.
+     *
+     * @param lockStatus lockStatus to be set, 0 is locked, 1 is unlocked but un-bought, or bought.
      */
     public void setLockStatus(int lockStatus) {
         this.lockStatus = lockStatus;
     }
 
+
+
     /**
-     * getter
-     * @return if the land is empty
+     * Whether this land is empty
+     *
+     * @return true if and only if the land is empty
      */
     public boolean isEmpty() {
         return this.plant == null;
     }
 
+
+
     /**
-     * getter
-     * @return if the land is wet
+     * Whether this land is wet
+     *
+     * @return true if and only if the land is wet
      */
     public boolean isWet() {
         return this.getWaterTime() != 0;
     }
 
+    public int getFertilizeTime() {
+        return fertilizeTime;
+    }
+
     /**
-     * getter
-     * @return if the land is fertilized
+     * Whether this land is fertilized or not.
+     *
+     * @return true if and only if the land is fertilized.
      */
     public boolean isFertilize() {
         return this.getFertilizeTime() != 0;
     }
 
-    /**
-     * getter
-     * @return the remaining harvest time
-     */
-    public int getHarvestTime() {
-        return harvestTime;
-    }
 
-    /**
-     * setter of harvestTime
-     * @param harvestTime a harvestTime to be set
-     */
-
-    public void setHarvestTime(int harvestTime) {
-        this.harvestTime = harvestTime;
-    }
 
     /**
      * getter
@@ -101,6 +99,8 @@ public class LandEntity {
         return waterTime;
     }
 
+
+
     /**
      * setter of waterTime
      * @param waterTime a waterTime to be set
@@ -109,46 +109,41 @@ public class LandEntity {
         this.waterTime = waterTime;
     }
 
-    /**
-     * getter
-     * @return the remaining fertilized time
-     */
-    public int getFertilizeTime() {
-        return fertilizeTime;
-    }
+
 
     /**
-     * setter of fertilizeTime
-     * @param fertilizeTime a fertilizeTime to be set
-     */
-    public void setFertilizeTime(int fertilizeTime) {
-        this.fertilizeTime = fertilizeTime;
-    }
-
-    /**
-     * getter
+     * getter for plants on the land
+     *
      * @return the plant on the land
      */
     public Plants getPlant() {
         return plant;
     }
 
+
+
     /**
      * setter of plant
+     *
      * @param plant a plant to be set
      */
     public void setPlant(Plants plant) {
         this.plant = plant;
-        this.setHarvestTime(plant.getPlantingTime());
+        this.setWaterTime(plant.getPlantingTime());
     }
 
+
+
     /**
-     * getter
+     * getter for the stage of the land.
+     *
      * @return the stage of the land
      */
     public int getStage() {
         return stage;
     }
+
+
 
     /**
      * add 1 to the stage
@@ -159,15 +154,16 @@ public class LandEntity {
         }
     }
 
+
+
     /**
-     * Reset the land to an empty land
+     * Reset the land to an empty land, which has null plant, zero water time and fertilize time,
+     * and its stage is at zero.
      */
     public void reset(){
         this.plant = null;
-        this.harvestTime = 0;
-        this.fertilizeTime = 0;
         this.waterTime = 0;
         this.stage = 0;
+        this.fertilizeTime = 0;
     }
-
 }
