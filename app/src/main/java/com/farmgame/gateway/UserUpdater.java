@@ -18,7 +18,8 @@ public class UserUpdater {
     }
 
     public static Player getPlayer(){
-        Cursor cursor = db.query(USER, new String[]{"*"}, null, null, null, null, null);
+        Cursor cursor = db.query(USER, new String[]{"*"},
+                null, null, null, null, null);
         if(!cursor.moveToFirst()){
             return null;
         }
@@ -34,8 +35,15 @@ public class UserUpdater {
         ContentValues contentValues = new ContentValues();
         contentValues.put(USER_LEVEL, level);
         contentValues.put(USER_EXP, exp);
-//        db.update(USER, contentValues);
-        return true;
+
+        Cursor cursor = db.query(USER, new String[]{"*"},
+                null, null, null, null, null);
+        cursor.moveToFirst();
+        String name = cursor.getString(cursor.getColumnIndex(USER_NAME));
+        cursor.close();
+
+        return db.update(
+                USER, contentValues, USER_NAME + " = ?", new String[]{name}) == 1;
     }
 
     // player get money, spend money

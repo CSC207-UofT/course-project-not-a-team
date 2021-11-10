@@ -63,7 +63,6 @@ public class RegisgerFragment extends Fragment {
         binding.register.setOnClickListener(v -> {
             if (hasData){
                 Player player = viewModel.getPlayer();
-                Log.d("sev", player.getName());
                 Toast.makeText(that, "成功了！", Toast.LENGTH_SHORT).show();
                 NavHostFragment.findNavController(RegisgerFragment.this)
                         .navigate(R.id.action_RegisterFragment_to_SecondFragment);
