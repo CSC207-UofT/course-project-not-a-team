@@ -1,13 +1,16 @@
 package com.farmgame.entity;
 
 import com.farmgame.entity.Item.Item;
-import com.farmgame.entity.Player;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Warehouse {
     private int capacity;
-    private ArrayList<Item> itemInventory;
-    private ArrayList<Plants> plantInventory;
+    private HashMap<Integer, ArrayList<Item>> itemInventory;
+    private HashMap<Integer, ArrayList<Plants>> plantInventory;
+    private HashMap<Integer, ArrayList<Seeds>> seedInventory;
 
 
     /**
@@ -15,7 +18,8 @@ public class Warehouse {
      * Warehouse's capacity increases based on the player's level
      * @param player The warehouse's capacity will increase as the player's level increase.
      */
-    public Warehouse(Player player){
+    public Warehouse(Player player, HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer,
+            ArrayList<Plants>> plantInventory, HashMap<Integer, ArrayList<Seeds>> seedInventory){
         int playerLevel = player.getLevel();
         if (playerLevel >=1 && playerLevel <= 5){
             this.capacity = 5;
@@ -30,15 +34,16 @@ public class Warehouse {
         }else{
             this.capacity = 100;
         }
-        this.itemInventory = new ArrayList<>();
-        this.plantInventory = new ArrayList<>();
+        this.itemInventory = itemInventory;
+        this.plantInventory = plantInventory;
+        this.seedInventory = seedInventory;
     }
 
     /**
      * get item inventory
      * @return an arraylist that represents item inventory
      */
-    public ArrayList<Item> getItemInventory() {
+    public HashMap<Integer, ArrayList<Item>> getItemInventory() {
         return itemInventory;
     }
 
@@ -46,15 +51,31 @@ public class Warehouse {
      * given an arraylist, set it to item inventory
      * @param itemInventory an arraylist of items
      */
-    public void setItemInventory(ArrayList<Item> itemInventory) {
+    public void setItemInventory(HashMap<Integer, ArrayList<Item>> itemInventory) {
         this.itemInventory = itemInventory;
+    }
+
+    /**
+     * get seed inventory
+     * @return an arraylist that represents seed inventory
+     */
+    public HashMap<Integer, ArrayList<Seeds>> getSeedInventory() {
+        return seedInventory;
+    }
+
+    /**
+     * given an arraylist, set it to seed inventory
+     * @param seedInventory an arraylist of items
+     */
+    public void setSeedInventory(HashMap<Integer, ArrayList<Seeds>> seedInventory) {
+        this.seedInventory = seedInventory;
     }
 
     /**
      * get plant inventory
      * @return an arraylist that represents plant inventory
      */
-    public ArrayList<Plants> getPlantInventory() {
+    public HashMap<Integer, ArrayList<Plants>> getPlantInventory() {
         return plantInventory;
     }
 
@@ -62,7 +83,7 @@ public class Warehouse {
      *  given an arraylist, set it to plant inventory,
      * @param plantInventory an arraylist of plants
      */
-    public void setPlantInventory(ArrayList<Plants> plantInventory) {
+    public void setPlantInventory(HashMap<Integer, ArrayList<Plants>> plantInventory) {
         this.plantInventory = plantInventory;
     }
 
@@ -84,17 +105,17 @@ public class Warehouse {
 
     /**
      * check if s is contained in item inventory/plant inventory
-     * @param s stiring s that need to be checked
+     * @param s string s that need to be checked
      * @return true if s is contained, false otherwise
      */
     public Boolean contains(String s){
-        for(Item item: this.itemInventory){
-            if (item.getName().equals(s)){
+        for(ArrayList<Item> itemList: this.itemInventory.values()){
+            if (itemList.get(0).getName().equals(s)){
                 return true;
             }
         }
-        for(Plants plant: this.plantInventory){
-            if (plant.getPlantName().equals(s)){
+        for(ArrayList<Plants> plantsList: this.plantInventory.values()){
+            if (plantsList.get(0).getName().equals(s)){
                 return true;
             }
         }

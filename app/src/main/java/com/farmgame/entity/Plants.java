@@ -1,49 +1,35 @@
 package com.farmgame.entity;
 
-public class Plants {
-    private final String NAME;
-    private final int PLANTING_TIME;
-    private final int BUYING_PRICE;
+import com.farmgame.usecase.WarehouseManager.StoreAble;
+
+public class Plants implements StoreAble {
+
+    private final String PLANTS_NAME;
     private final int SELLING_PRICE;
-    private final int EXPERIMENT_POINT;
+    private final int PLANTS_ID;
 
     /**
-     * Constructor for player.
-     *
-     * @param name -- Name of plant
-     * @param time -- The time it takes for a plant to mature to another stage
-     * @param buying -- The price of the plant when you buy it
+     * Constructor for plants.
+     * @param name -- The name of the plant
      * @param selling -- The price of the plant when you sell it
-     * @param exp -- Experience points gained while harvesting plants
+     * @param id -- the id of the plant, same as seed
      */
-    public Plants(String name, int time, int buying, int selling, int exp) {
-        this.NAME = name;
-        this.PLANTING_TIME = time;
-        this.BUYING_PRICE = buying;
+
+    public Plants(String name, int selling, int id) {
+        this.PLANTS_NAME = name;
         this.SELLING_PRICE = selling;
-        this.EXPERIMENT_POINT = exp;
+        this.PLANTS_ID = id;
     }
 
     /**
-     * Getter for NAME attributes.
+     * Getter for PLANTS_NAME attributes.
      *
      * @return String
      */
 
-    public String getPlantName(){
-
-        return this.NAME;
-    }
-
-    /**
-     * Getter for PLANTING_TIME attributes.
-     *
-     * @return int
-     */
-
-    public int getPlantingTime(){
-
-        return this.PLANTING_TIME;
+    @Override
+    public String getName() {
+        return this.PLANTS_NAME;
     }
 
     /**
@@ -58,25 +44,17 @@ public class Plants {
     }
 
     /**
-     * Getter for BUYING_PRICE attributes.
+     * Getter for PLANT_ID attributes.
      *
      * @return int
      */
 
-    public int getBuyingPrice(){
+    public int getPlantID(){
 
-        return this.BUYING_PRICE;
+        return this.PLANTS_ID;
     }
 
-    /**
-     * Getter for EXPERIMENT_POINT attributes.
-     *
-     * @return int
-     */
 
-    public int getExperiencePoint(){
-        return this.EXPERIMENT_POINT;
-    }
 
 
 }

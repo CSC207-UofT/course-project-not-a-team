@@ -12,7 +12,7 @@ public class LandEntityTest {
     @Before
     public void setUp() {
 
-        Plants plant = new Plants("plantA", 30, 23, 43, 5);
+        Seeds plant = new Seeds("plantA", 30, 23, 43, 5);
         land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 0 , 0);
     }
 

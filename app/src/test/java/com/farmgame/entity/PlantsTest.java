@@ -1,38 +1,26 @@
 package com.farmgame.entity;
 
+import static org.junit.Assert.assertEquals;
+import com.farmgame.usecase.WarehouseManager.StoreAble;
 import com.farmgame.entity.Plants;
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class PlantsTest {
-    Plants Potato = new Plants("Potato", 60, 12, 18, 30);
+    Plants Potato = new Plants("Potato", 60, 1);
 
     @Test(timeout = 50)
     public void test_name(){
-        assertEquals(Potato.getPlantName(), "Potato");
-    }
-
-    @Test(timeout = 50)
-    public void test_time(){
-        assertEquals(Potato.getPlantingTime(), 60);
-    }
-
-    @Test(timeout = 50)
-    public void test_buying(){
-        assertEquals(Potato.getBuyingPrice(), 12);
+        assertEquals(Potato.getName(), "Potato");
     }
 
     @Test(timeout = 50)
     public void test_selling(){
-        assertEquals(Potato.getSellingPrice(), 18);
+        assertEquals(Potato.getSellingPrice(), 60);
     }
 
     @Test(timeout = 50)
-    public void test_exp(){
-        assertEquals(Potato.getExperiencePoint(), 30);
+    public void test_id(){
+        assertEquals(Potato.getPlantID(), 1);
     }
-
 }
 
