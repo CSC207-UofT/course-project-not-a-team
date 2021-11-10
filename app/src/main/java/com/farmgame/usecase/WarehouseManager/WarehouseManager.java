@@ -28,16 +28,6 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
         return this.warehouse;
     }
 
-    /**
-     * Add item to Warehouse's Item Inventory if capable
-     * @param item an item that needs to be added to the warehouse
-     */
-
-
-    /**
-     * Remove item from Warehouse's Item Inventory
-     * @param item an item that needs to be removed from the warehouse
-     */
 
 
 //    public Item getItem(String s) {
@@ -52,25 +42,17 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
 //        return null;
 //    }
 
-    /**
-     * Add plant to Warehouse's Plant Inventory
-     * @param plant a plant that needs to be added to the warehouse
-     */
-
-
-    /**
-     * Remove plant from Warehouse's plant Inventory
-     * @param plant a plant that needs to be removed from the warehouse
-     */
 
 
 
-    public String getName() {
+
+
+    public String getName(StoreAble object) {
         if (object instanceof Item) {
             return ((Item) object).getName();
 
         }else if (object instanceof Plants){
-            return ((Plants) object).getPlantName();
+            return ((Plants) object).getName();
         }
         return null;
     }
@@ -79,19 +61,17 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
     public void addProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
-            if(tempItemList.containsKey(object.getId())){
-                tempItemList.put(object.getId(), tempItemList.get(object.getId())+1);
-            }else{
-                tempItemList.put(object.getId(), 1);
+            if(tempItemList.containsKey(((Item) object).getId())){
+                ArrayList<Item> addedItem =  tempItemList.get(((Item) object).getId());
+                addedItem.add(-1,addedItem.get(0));
+                tempItemList.put(((Item) object).getId(), addedItem);
             }
             this.warehouse.setItemInventory(tempItemList);
         }else if (object instanceof Plants){
             HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-            if(tempPlantsList.containsKey(object.getId())){
-                tempPlantsList.put(object.getId(), tempPlantsList.get(object.getId())+1);
+            if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
+                tempPlantsList.put(((Plants) object).getPlantID(), tempPlantsList.get(((Plants) object).getPlantID()));
 
-            }else{
-                tempPlantsList.put(object.getId(), 1);
             }
             this.warehouse.setPlantInventory(tempPlantsList);
         }
@@ -101,60 +81,67 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
     public void removeProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
-            if(tempItemList.containsKey(object.getId())){
-                if(tempItemList.get(object.getId())>0){
-                    tempItemList.put(object.getId(), tempItemList.get(object.getId())-1);
+            if(tempItemList.containsKey(((Plants) object).getPlantID())){
+                ArrayList<Item> tempRemove = tempItemList.get(((Item) object).getId());
+                assert tempRemove != null;
+                if(tempRemove.size()>0){
+                    tempItemList.put(((Item) object).getId(), tempItemList.remove(object));
                 }else{
-                    tempItemList.remove(object.getId());
+                    tempItemList.put(((Item) object).getId(), new ArrayList<Item>());
                 }
             }
+
+
             this.warehouse.setItemInventory(tempItemList);
         }else if (object instanceof Plants){
             HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-            if(tempPlantsList.containsKey(object.getId())){
-                if(tempPlantsList.get(object.getId())>0){
-                    tempPlantsList.put(object.getId(), tempPlantsList.get(object.getId())-1);
+            if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
+                ArrayList<Plants> tempRemove = tempPlantsList.get(((Plants) object).getPlantID());
+                assert tempRemove != null;
+                if(tempRemove.size()>0){
+                    tempPlantsList.put(((Plants) object).getPlantID(),tempPlantsList.remove(object));
                 }else{
-                    tempPlantsList.remove(object.getId());
+                    tempPlantsList.put(((Plants) object).getPlantID(), new ArrayList<Plants>());
                 }
             }
             this.warehouse.setPlantInventory(tempPlantsList);
         }
     }
-
-    @Override
-    public StoreAble getProduct(String s) {
-        HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
-        HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-        for (ArrayList<Item> tempIterateItemList:tempItemList.values()) {
-            if(tempIterateItemList.get(0).getName().equals(s)){
-                if(tempItemList.size()>1){
-                    Item resultItem = tempIterateItemList.get(0);
-                    tempItemList.put(object.getId(), tempItemList.get(object.getId())-1);
-                    return resultItem;
-                }else{
-                    Item resultItem = tempIterateItemList.get(0);
-                    tempItemList.remove(object.getId());
-                    return resultItem;
-                }
-
-            }
-        }
-        for (ArrayList<Plants> plantIteratePlantsList:tempPlantsList.values()) {
-            if(plantIteratePlantsList.get(0).getName().equals(s)){
-                if(tempItemList.size()>1){
-                    Plants resultPlants = plantIteratePlantsList.get(0);
-                    tempItemList.put(object.getId(), tempItemList.get(object.getId())-1);
-                    return resultPlants;
-                }else{
-                    Plants resultPlants = plantIteratePlantsList.get(0);
-                    tempItemList.remove(object.getId());
-                    return resultPlants;
-                }
-
-            }
-        }
-    }
+//
+//    @Override
+//    public StoreAble getProduct(String s) {
+//        HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
+//        HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
+//        for (ArrayList<Item> tempIterateItemList:tempItemList.values()) {
+//            if(tempIterateItemList.get(0).getName().equals(s)){
+//                if(tempItemList.size()>1){
+//                    Item resultItem = tempIterateItemList.get(0);
+//                    tempItemList.put(tempIterateItemList.get(0).getId(), tempIterateItemList.remove(tempIterateItemList.get(0)));
+//                    return (StoreAble) resultItem;
+//                }else{
+//                    Item resultItem = tempIterateItemList.get(0);
+//                    tempItemList.remove(object.getId());
+//                    return (StoreAble) resultItem;
+//                }
+//
+//            }
+//        }
+//        for (ArrayList<Plants> plantIteratePlantsList:tempPlantsList.values()) {
+//            if(plantIteratePlantsList.get(0).getName().equals(s)){
+//                if(tempPlantsList.size()>1){
+//                    Plants resultPlants = plantIteratePlantsList.get(0);
+//                    plantIteratePlantsList.remove(resultPlants);
+//                    tempPlantsList.put(plantIteratePlantsList.get(0).getPlantID(), plantIteratePlantsList);
+//                    return (StoreAble) resultPlants;
+//                }else{
+//                    Plants resultPlants = plantIteratePlantsList.get(0);
+//                    tempPlantsList.put(plantIteratePlantsList.get(0).getPlantID(), new ArrayList<Plants>());
+//                    return (StoreAble) resultPlants;
+//                }
+//
+//            }
+//        }
+//    }
 
 
 }

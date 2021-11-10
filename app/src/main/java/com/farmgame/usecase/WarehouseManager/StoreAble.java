@@ -1,5 +1,5 @@
 package com.farmgame.usecase.WarehouseManager;
 
 public interface StoreAble {
-    String getName();
+    String getName(StoreAble object);
 }
