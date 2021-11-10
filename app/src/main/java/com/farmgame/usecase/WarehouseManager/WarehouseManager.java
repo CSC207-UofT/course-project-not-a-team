@@ -11,14 +11,13 @@ import java.util.List;
 
 public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
     private final Warehouse warehouse;
-    private final T object;
     /**
      * Initialize warehouse
      * @param warehouse an warehouse instance
      */
-    public WarehouseManager(Warehouse warehouse, T object) {
+    public WarehouseManager(Warehouse warehouse) {
         this.warehouse = warehouse;
-        this.object = object;
+
     }
 
     /**
@@ -65,7 +64,7 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
      */
 
 
-    @Override
+
     public String getName() {
         if (object instanceof Item) {
             return ((Item) object).getName();
@@ -77,7 +76,7 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
     }
 
     @Override
-    public void addProduct() {
+    public void addProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
             if(tempItemList.containsKey(object.getId())){
@@ -99,7 +98,7 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
     }
 
     @Override
-    public void remove() {
+    public void removeProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
             if(tempItemList.containsKey(object.getId())){
@@ -120,6 +119,40 @@ public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
                 }
             }
             this.warehouse.setPlantInventory(tempPlantsList);
+        }
+    }
+
+    @Override
+    public StoreAble getProduct(String s) {
+        HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
+        HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
+        for (ArrayList<Item> tempIterateItemList:tempItemList.values()) {
+            if(tempIterateItemList.get(0).getName().equals(s)){
+                if(tempItemList.size()>1){
+                    Item resultItem = tempIterateItemList.get(0);
+                    tempItemList.put(object.getId(), tempItemList.get(object.getId())-1);
+                    return resultItem;
+                }else{
+                    Item resultItem = tempIterateItemList.get(0);
+                    tempItemList.remove(object.getId());
+                    return resultItem;
+                }
+
+            }
+        }
+        for (ArrayList<Plants> plantIteratePlantsList:tempPlantsList.values()) {
+            if(plantIteratePlantsList.get(0).getName().equals(s)){
+                if(tempItemList.size()>1){
+                    Plants resultPlants = plantIteratePlantsList.get(0);
+                    tempItemList.put(object.getId(), tempItemList.get(object.getId())-1);
+                    return resultPlants;
+                }else{
+                    Plants resultPlants = plantIteratePlantsList.get(0);
+                    tempItemList.remove(object.getId());
+                    return resultPlants;
+                }
+
+            }
         }
     }
 
