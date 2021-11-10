@@ -7,7 +7,13 @@ public class Fertilizer implements Item{
      * Fertilizer is a class that implements Item interface, it has a fixed price, which is 10. Its
      * purpose is to fertilize a land if necessary.
      */
-    private int price = 10;
+    private final int price;
+    private final String itemname;
+
+    public Fertilizer(){
+        this.price = 10;
+        this.itemname = "Fertilizer";
+    }
 
     /**
      * A getter method for the price of fertilizer.
@@ -17,6 +23,11 @@ public class Fertilizer implements Item{
     @Override
     public int getPrice() {
         return this.price;
+    }
+
+    @Override
+    public String getName(){
+        return this.itemname;
     }
 
     /**
