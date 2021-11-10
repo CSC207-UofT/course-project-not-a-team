@@ -2,6 +2,8 @@ package com.farmgame;
 
 import static org.junit.Assert.assertEquals;
 
+import com.farmgame.entity.Seeds;
+
 import org.junit.Test;
 
 public class SeedsTest {
