@@ -1,15 +1,16 @@
 package com.farmgame.entity;
 
 import static org.junit.Assert.assertEquals;
-
+import com.farmgame.usecase.WarehouseManager.StoreAble;
+import com.farmgame.entity.Plants;
 import org.junit.Test;
 
 public class PlantsTest {
-    Plants Potato = new Plants("Potato", 60);
+    Plants Potato = new Plants("Potato", 60, 1);
 
     @Test(timeout = 50)
     public void test_name(){
-        assertEquals(Potato.getPlantName(), "Potato");
+        assertEquals(Potato.getName(), "Potato");
     }
 
     @Test(timeout = 50)
@@ -17,5 +18,9 @@ public class PlantsTest {
         assertEquals(Potato.getSellingPrice(), 60);
     }
 
+    @Test(timeout = 50)
+    public void test_id(){
+        assertEquals(Potato.getPlantID(), 1);
+    }
 }
 
