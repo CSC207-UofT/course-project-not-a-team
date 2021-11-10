@@ -5,7 +5,6 @@ import static com.farmgame.constants.Constants.*;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.farmgame.entity.Player;
 
@@ -19,7 +18,7 @@ public class UserUpdater {
     }
 
     public static Player getPlayer(){
-        Cursor cursor = db.query("User", new String[]{"*"}, null, null, null, null, null);
+        Cursor cursor = db.query(USER, new String[]{"*"}, null, null, null, null, null);
         if(!cursor.moveToFirst()){
             return null;
         }
@@ -39,6 +38,13 @@ public class UserUpdater {
         return true;
     }
 
+    // player get money, spend money
+
+    // plant
+
+    // store buy, read, sell
+
+    //
 
 
 }

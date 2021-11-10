@@ -16,7 +16,7 @@ public class LoginViewModel extends ViewModel {
     public void initViewModel(SQLiteDatabase db){
         dbMutableLiveData.setValue(db);
         initUpdaters();
-        playerMutableLiveData.postValue(UserUpdater.getPlayer());
+        playerMutableLiveData.setValue(UserUpdater.getPlayer());
     }
 
     public SQLiteDatabase getDB(){
