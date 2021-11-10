@@ -1,6 +1,7 @@
 package com.farmgame.entity;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
@@ -31,11 +32,17 @@ public class WarehouseTest {
         warehouse.setPlantInventory(plantInventory);
         assertEquals(new ArrayList<Plants>(Arrays.asList(Potato, Berry, Potato)), plantInventory);
     }
-
+    @Test(timeout = 50)
+    public void test_contains(){
+        warehouse.setPlantInventory(plantInventory);
+        assertTrue(warehouse.contains("Potato"));
+    }
     @Test(timeout = 50)
     public void test_getCapacity(){
         assertEquals(warehouse.getCapacity(),5);
         warehouse.setCapacity(5);
         assertEquals(warehouse.getCapacity(),10);
     }
+
+
 }

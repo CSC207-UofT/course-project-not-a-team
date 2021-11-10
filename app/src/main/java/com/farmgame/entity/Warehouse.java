@@ -81,4 +81,26 @@ public class Warehouse {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    /**
+     * check if s is contained in item inventory/plant inventory
+     * @param s stiring s that need to be checked
+     * @return true if s is contained, false otherwise
+     */
+    public Boolean contains(String s){
+        for(Item item: this.itemInventory){
+            if (item.getName().equals(s)){
+                return true;
+            }
+        }
+        for(Plants plant: this.plantInventory){
+            if (plant.getPlantName().equals(s)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
+
