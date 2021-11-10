@@ -1,6 +1,5 @@
-package com.farmgame.entity;
+package com.farmgame.usecase;
 
 public interface StoreAble {
     String getName();
-
 }
