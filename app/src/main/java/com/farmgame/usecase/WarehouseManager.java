@@ -18,6 +18,14 @@ public class WarehouseManager {
     }
 
     /**
+     * return the warehouse
+     * @return warehouse
+     */
+    public Warehouse getWarehouse(){
+        return this.warehouse;
+    }
+
+    /**
      * Add item to Warehouse's Item Inventory
      * @param item an item that needs to be added to the warehouse
      */

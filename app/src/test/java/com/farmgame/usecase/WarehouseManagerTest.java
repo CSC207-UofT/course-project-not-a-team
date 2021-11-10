@@ -21,7 +21,10 @@ public class WarehouseManagerTest {
     Plants Berry = new Plants("Berry", 60, 12, 18, 30);
     WarehouseManager wm = new WarehouseManager(warehouse);
     Fertilizer fertilizer = new Fertilizer();
-
+    @Test(timeout = 50)
+    public void test_getWarehouse(){
+        assertEquals(new Warehouse(player), wm.getWarehouse());
+    }
     @Test(timeout = 50)
     public void test_addItem() {
         wm.addItem(fertilizer);
