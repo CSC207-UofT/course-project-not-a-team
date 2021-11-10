@@ -2,7 +2,7 @@ package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.Type_WateringCan;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.usecase.StoreAble;
+import com.farmgame.usecase.WarehouseManager.StoreAble;
 
 
 
@@ -27,16 +27,6 @@ public class WateringCan implements Item, StoreAble {
     }
 
 
-    /**
-     * A getter method for id of watering can.
-     *
-     * @return the id of watering can.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-
 
     /**
      * A getter method for the price of watering can.
@@ -46,6 +36,18 @@ public class WateringCan implements Item, StoreAble {
     @Override
     public int getPrice() {
         return this.price;
+    }
+
+
+
+    /**
+     * A getter method for id of watering can.
+     *
+     * @return the id of watering can.
+     */
+    @Override
+    public int getId() {
+        return this.id;
     }
 
 

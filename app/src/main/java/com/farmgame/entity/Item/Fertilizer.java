@@ -2,7 +2,7 @@ package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.Type_Fertilizer;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.usecase.StoreAble;
+import com.farmgame.usecase.WarehouseManager.StoreAble;
 
 
 
@@ -33,6 +33,7 @@ public class Fertilizer implements Item, StoreAble {
      *
      * @return the id of fertilizer.
      */
+    @Override
     public int getId() {
         return this.id;
     }
