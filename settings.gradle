@@ -1,2 +1,3 @@
 rootProject.name = "Farm game"
 include ':app'
+include ':core'

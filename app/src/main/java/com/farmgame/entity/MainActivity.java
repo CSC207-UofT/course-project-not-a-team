@@ -1,7 +1,9 @@
-package com.farmgame;
+package com.farmgame.entity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.farmgame.R;
 
 public class MainActivity extends AppCompatActivity {
 

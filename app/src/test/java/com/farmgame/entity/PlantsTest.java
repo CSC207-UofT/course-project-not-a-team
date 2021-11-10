@@ -1,4 +1,6 @@
-package com.farmgame;
+package com.farmgame.entity;
+
+import com.farmgame.entity.Plants;
 
 import static org.junit.Assert.*;
 
