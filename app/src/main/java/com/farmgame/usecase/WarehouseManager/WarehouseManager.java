@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class WarehouseManager<T> implements StoreAble, WarehouseMunipulate{
+public class WarehouseManager implements StoreAble, WarehouseMunipulate{
     private final Warehouse warehouse;
     /**
      * Initialize warehouse
