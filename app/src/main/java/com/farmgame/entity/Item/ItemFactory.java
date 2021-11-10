@@ -1,5 +1,7 @@
 package com.farmgame.entity.Item;
 
+import static com.farmgame.constants.Constants.*;
+
 public class ItemFactory {
 
     /**
@@ -9,10 +11,10 @@ public class ItemFactory {
      * @return an item with desired type.
      */
     public Item createItem(String itemType) {
-        if (itemType.equals("Fertilizer")) {
+        if (itemType.equals(Type_Fertilizer)) {
             return new Fertilizer();
         }
-        else if (itemType.equals("WateringCan")) {
+        else if (itemType.equals(Type_WateringCan)) {
             return new WateringCan();
         }
         else {

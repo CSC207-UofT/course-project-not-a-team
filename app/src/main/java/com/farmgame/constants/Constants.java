@@ -47,5 +47,7 @@ public class Constants {
     public static final String LEVEL_EXP = "exp";
     public static final String LEVEL_QUANTITY = "quantity";
 
-
+    // Type of Item
+    public static final String Type_Fertilizer = "Fertilizer";
+    public static final String Type_WateringCan = "WateringCan";
 }
