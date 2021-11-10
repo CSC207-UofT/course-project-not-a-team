@@ -7,36 +7,63 @@ import com.farmgame.entity.Warehouse;
 import java.util.ArrayList;
 
 public class WarehouseManager {
-    public void addItem(Warehouse warehouse, Item item) {
-        ArrayList<Item> lst = warehouse.getItemInventory();
+    private final Warehouse warehouse;
+
+    /**
+     * Initialize warehouse
+     * @param warehouse an warehouse instance
+     */
+    public WarehouseManager(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    /**
+     * return the warehouse
+     * @return warehouse
+     */
+    public Warehouse getWarehouse(){
+        return this.warehouse;
+    }
+
+    /**
+     * Add item to Warehouse's Item Inventory
+     * @param item an item that needs to be added to the warehouse
+     */
+    public void addItem(Item item) {
+        ArrayList<Item> lst = this.warehouse.getItemInventory();
         lst.add(item);
-        warehouse.setItemInventory(lst);
+        this.warehouse.setItemInventory(lst);
     }
 
-    public void removeItem(Warehouse warehouse, Item item) {
-        ArrayList<Item> lst = warehouse.getItemInventory();
+    /**
+     * Remove item from Warehouse's Item Inventory
+     * @param item an item that needs to be removed from the warehouse
+     */
+    public void removeItem( Item item) {
+        ArrayList<Item> lst = this.warehouse.getItemInventory();
         lst.remove(item);
-        warehouse.setItemInventory(lst);
+        this.warehouse.setItemInventory(lst);
     }
 
-    public void addPlant(Warehouse warehouse, Plants plant){
-        ArrayList<Plants> lst = warehouse.getPlantInventory();
+    /**
+     * Add plant to Warehouse's Plant Inventory
+     * @param plant a plant that needs to be added to the warehouse
+     */
+    public void addPlant( Plants plant){
+        ArrayList<Plants> lst = this.warehouse.getPlantInventory();
         lst.add(plant);
-        warehouse.setPlantInventory(lst);
+        this.warehouse.setPlantInventory(lst);
     }
 
-
-    public void removePlant(Warehouse warehouse, Plants plant){
-        ArrayList<Plants> lst = warehouse.getPlantInventory();
+    /**
+     * Remove plant from Warehouse's plant Inventory
+     * @param plant a plant that needs to be removed from the warehouse
+     */
+    public void removePlant( Plants plant){
+        ArrayList<Plants> lst = this.warehouse.getPlantInventory();
         lst.remove(plant);
-        warehouse.setPlantInventory(lst);
+        this.warehouse.setPlantInventory(lst);
     }
 
-    public void upgradeCapacity(Warehouse warehouse) {
-        warehouse.setCapacity(warehouse.getCapacity() + 5);
-    }
 
-    public void upgradeCapacity(Warehouse warehouse, int capacity) {
-        warehouse.setCapacity(capacity);
-    }
 }

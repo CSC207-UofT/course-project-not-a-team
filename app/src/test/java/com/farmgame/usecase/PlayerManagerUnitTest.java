@@ -8,8 +8,7 @@ import com.farmgame.entity.Warehouse;
 import com.farmgame.usecase.PlayerManager;
 
 public class PlayerManagerUnitTest {
-    Warehouse warehouse = new Warehouse();
-    Player player = new Player("Connor", 1, 1000, new int[]{0, 10}, warehouse);
+    Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
     PlayerManager pm = new PlayerManager(player);
 
     @Test(timeout = 50)

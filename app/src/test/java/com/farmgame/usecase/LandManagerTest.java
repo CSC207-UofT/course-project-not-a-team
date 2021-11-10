@@ -18,8 +18,8 @@ public class LandManagerTest {
     LandManager landManager;
     Hoe hoe = new Hoe();
     Fertilizer fertilizer = new Fertilizer();
-    Warehouse warehouse = new Warehouse();
-    Player player = new Player("Connor", 1, 1000, new int[]{0, 10}, warehouse);
+    Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
+    Warehouse warehouse = new Warehouse(player);
     PlayerManager pm = new PlayerManager(player);
     Plants plant1 = new Plants("plantA", 30, 23, 43, 5);
     Plants plant2 = new Plants("plantB", 30, 23, 43, 5);
