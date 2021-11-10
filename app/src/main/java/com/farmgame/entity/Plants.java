@@ -1,49 +1,28 @@
 package com.farmgame.entity;
 
 public class Plants {
-    private final String NAME;
-    private final int PLANTING_TIME;
-    private final int BUYING_PRICE;
+
+    private final String PLANTS_NAME;
     private final int SELLING_PRICE;
-    private final int EXPERIMENT_POINT;
 
     /**
-     * Constructor for player.
-     *
-     * @param name -- Name of plant
-     * @param time -- The time it takes for a plant to mature to another stage
-     * @param buying -- The price of the plant when you buy it
+     * Constructor for plants.
      * @param selling -- The price of the plant when you sell it
-     * @param exp -- Experience points gained while harvesting plants
      */
-    public Plants(String name, int time, int buying, int selling, int exp) {
-        this.NAME = name;
-        this.PLANTING_TIME = time;
-        this.BUYING_PRICE = buying;
+
+    public Plants(String name, int selling) {
+        this.PLANTS_NAME = name;
         this.SELLING_PRICE = selling;
-        this.EXPERIMENT_POINT = exp;
     }
-
     /**
-     * Getter for NAME attributes.
-     *
-     * @return String
+            * Getter for PLANTS_NAME attributes.
+            *
+            * @return String
      */
 
-    public String getPlantName(){
+    public String getPlantName() {
 
-        return this.NAME;
-    }
-
-    /**
-     * Getter for PLANTING_TIME attributes.
-     *
-     * @return int
-     */
-
-    public int getPlantingTime(){
-
-        return this.PLANTING_TIME;
+        return this.PLANTS_NAME;
     }
 
     /**
@@ -57,26 +36,7 @@ public class Plants {
         return this.SELLING_PRICE;
     }
 
-    /**
-     * Getter for BUYING_PRICE attributes.
-     *
-     * @return int
-     */
 
-    public int getBuyingPrice(){
-
-        return this.BUYING_PRICE;
-    }
-
-    /**
-     * Getter for EXPERIMENT_POINT attributes.
-     *
-     * @return int
-     */
-
-    public int getExperiencePoint(){
-        return this.EXPERIMENT_POINT;
-    }
 
 
 }
