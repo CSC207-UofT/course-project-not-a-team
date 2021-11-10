@@ -2,9 +2,9 @@ package com.farmgame.usecase;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.WateringCan;
-import com.farmgame.entity.Plants;
 import com.farmgame.entity.LandEntity;
-
+import com.farmgame.entity.Seeds;
+import com.farmgame.usecase.WarehouseManager.WarehouseMunipulate;
 
 
 public class LandManager {
@@ -42,7 +42,7 @@ public class LandManager {
      *
      * @param plant the plant to be planted
      */
-    public void planting(Plants plant){
+    public void planting(Seeds plant){
         if (land.getPlant() == null){
             land.setPlant(plant);
             land.setWaterTime(plant.getPlantingTime());
@@ -56,9 +56,9 @@ public class LandManager {
      *
      * @param pm the player manager to manage the player
      */
-    public void harvest(PlayerManager pm, WarehouseManager wm){
+    public void harvest(PlayerManager pm, WarehouseMunipulate wm){
         if (land.getStage() == 2 && land.getWaterTime() == 0){
-            wm.addPlant(this.land.getPlant());
+            wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
         }
@@ -70,9 +70,9 @@ public class LandManager {
      * To fertilize this land
      *
      */
-    public void fertilize(Fertilizer fertilizer){
+    public void fertilize(StoreAble fertilizer){
         if (!land.isFertilize()) {
-            fertilizer.use(this.land);
+            ((Fertilizer) fertilizer).use(this.land);
         }
     }
 
@@ -81,9 +81,9 @@ public class LandManager {
     /**
      * To water the land
      */
-    public void watering(WateringCan wateringCan){
+    public void watering(StoreAble wateringCan){
         if (land.getStage() < 2 && !land.isWet()){
-            wateringCan.use(this.land);
+            ((WateringCan) wateringCan).use(this.land);
         }
     }
 }

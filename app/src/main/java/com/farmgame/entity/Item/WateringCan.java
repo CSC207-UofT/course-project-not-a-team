@@ -2,7 +2,7 @@ package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.Type_WateringCan;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.usecase.WarehouseManager.StoreAble;
+import com.farmgame.usecase.StoreAble;
 
 
 
