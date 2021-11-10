@@ -7,14 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LandEntityTest {
-
     LandEntity land;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         Plants plant = new Plants("plantA", 30, 23, 43, 5);
-        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 30 , 0, 1);
+        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 0 , 0);
     }
 
     @Test
@@ -45,19 +44,6 @@ public class LandEntityTest {
         assertFalse(land.isFertilize());
     }
 
-
-
-    @Test
-    public void getHarvestTime() {
-        assertEquals(land.getHarvestTime(), 23);
-    }
-
-    @Test
-    public void setHarvestTime() {
-        land.setHarvestTime(50);
-        assertEquals(land.getHarvestTime(), 50);
-    }
-
     @Test
     public void getWaterTime() {
         assertEquals(land.getWaterTime(), 30);
@@ -78,7 +64,6 @@ public class LandEntityTest {
     public void reset() {
         land.reset();
         assertTrue(land.isEmpty());
-        assertEquals(land.getHarvestTime(), 0);
         assertEquals(land.getStage(), 0);
         assertFalse(land.isWet());
         assertFalse(land.isFertilize());
