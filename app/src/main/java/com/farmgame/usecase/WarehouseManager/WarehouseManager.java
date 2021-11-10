@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class WarehouseManager implements StoreAble, WarehouseMunipulate{
+public class WarehouseManager implements WarehouseMunipulate{
     private final Warehouse warehouse;
     /**
      * Initialize warehouse
@@ -43,28 +43,12 @@ public class WarehouseManager implements StoreAble, WarehouseMunipulate{
 //    }
 
 
-
-
-
-
-    public String getName(StoreAble object) {
-        if (object instanceof Item) {
-            return ((Item) object).getName();
-
-        }else if (object instanceof Plants){
-            return ((Plants) object).getName();
-        }
-        return null;
-    }
-
     @Override
     public void addProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
             if(tempItemList.containsKey(((Item) object).getId())){
-                ArrayList<Item> addedItem =  tempItemList.get(((Item) object).getId());
-                addedItem.add(-1,addedItem.get(0));
-                tempItemList.put(((Item) object).getId(), addedItem);
+                tempItemList.put(((Item) object).getId(), tempItemList.get(((Plants) object).getPlantID()));
             }
             this.warehouse.setItemInventory(tempItemList);
         }else if (object instanceof Plants){
