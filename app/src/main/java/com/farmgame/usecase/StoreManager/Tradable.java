@@ -1,4 +1,4 @@
-package com.farmgame.usecase;
+package com.farmgame.usecase.StoreManager;
 
 public interface Tradable {
     int MISSING_PRICE = -1;

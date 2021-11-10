@@ -1,9 +1,11 @@
-package com.farmgame.usecase;
+package com.farmgame.usecase.StoreManager;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Store;
 import com.farmgame.entity.Item.Item;
+import com.farmgame.usecase.PlayerManager;
+import com.farmgame.usecase.WarehouseManager;
 
 public class StoreManager<T> implements Storetranscation, Tradable {
     /**
