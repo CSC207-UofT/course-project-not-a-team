@@ -36,6 +36,7 @@ public class WateringCan implements Item{
      */
     @Override
     public void use(LandEntity land) {
-        // usage of WateringCan
+        land.setWaterTime(land.getPlant().getPlantingTime());
+        land.addStage();
     }
 }

@@ -37,6 +37,6 @@ public class Fertilizer implements Item{
      */
     @Override
     public void use(LandEntity land) {
-        // usage of fertilizer
+        land.setWaterTime((int) land.getPlant().getPlantingTime() / 3);
     }
 }
