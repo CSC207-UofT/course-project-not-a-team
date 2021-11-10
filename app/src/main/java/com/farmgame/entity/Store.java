@@ -19,7 +19,7 @@ public class Store {
 
     List<Item> currentItem;
     /**
-     * User can use store to buy plants, sell plants. The price varies each day. Sold plants are
+     * User can use store to buy plants, sell plants. Sold plants are
      * automatically stored into warehouse.
      * totalProducts is a List of plants sells in store in TOTAL
      * currentProducts ArrayList of plants that sells in store(current level)
@@ -33,19 +33,27 @@ public class Store {
         this.currentProducts = this.totalProducts_plants.subList(0, this.StoreLevel);
 
     }
+
+    /**
+     * Return the current plants list
+     * @return List
+     */
     public List<Plants> getcurrentProducts_plants(){
-        return new ArrayList<Plants>(this.currentProducts);
+        return new ArrayList<>(this.currentProducts);
     }
 
+    /**
+     * Return the current item list
+     * @return List
+     */
    public List<Item> getCurrentProducts_items(){
-       return new ArrayList<Item>(this.currentItem);
+       return new ArrayList<>(this.currentItem);
    }
 
-    public int getStoreLevel(){
-        //return store level
-        return this.StoreLevel;
-    }
-
+    /**
+     * Return the current player money
+     * @return int
+     */
     public int getPlayerMoney() {
         return PlayerMoney;
     }
