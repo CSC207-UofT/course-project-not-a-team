@@ -1,4 +1,4 @@
-package com.farmgame.usecase;
+package com.farmgame.usecase.WarehouseManager;
 
 public interface StoreAble {
     String getName();

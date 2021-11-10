@@ -1,13 +1,15 @@
 package com.farmgame.entity;
 
 import com.farmgame.entity.Item.Item;
-import com.farmgame.entity.Player;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Warehouse {
     private int capacity;
-    private ArrayList<Item> itemInventory;
-    private ArrayList<Plants> plantInventory;
+    private HashMap<Integer, ArrayList<Item>> itemInventory;
+    private HashMap<Integer, ArrayList<Plants>> plantInventory;
 
 
     /**
@@ -30,15 +32,15 @@ public class Warehouse {
         }else{
             this.capacity = 100;
         }
-        this.itemInventory = new ArrayList<>();
-        this.plantInventory = new ArrayList<>();
+        this.itemInventory = new HashMap<>();
+        this.plantInventory = new HashMap<>();
     }
 
     /**
      * get item inventory
      * @return an arraylist that represents item inventory
      */
-    public ArrayList<Item> getItemInventory() {
+    public HashMap<Integer, ArrayList<Item>> getItemInventory() {
         return itemInventory;
     }
 
@@ -46,7 +48,7 @@ public class Warehouse {
      * given an arraylist, set it to item inventory
      * @param itemInventory an arraylist of items
      */
-    public void setItemInventory(ArrayList<Item> itemInventory) {
+    public void setItemInventory(HashMap<Integer, ArrayList<Item>> itemInventory) {
         this.itemInventory = itemInventory;
     }
 
@@ -54,7 +56,7 @@ public class Warehouse {
      * get plant inventory
      * @return an arraylist that represents plant inventory
      */
-    public ArrayList<Plants> getPlantInventory() {
+    public HashMap<Integer, ArrayList<Plants>> getPlantInventory() {
         return plantInventory;
     }
 
@@ -62,7 +64,7 @@ public class Warehouse {
      *  given an arraylist, set it to plant inventory,
      * @param plantInventory an arraylist of plants
      */
-    public void setPlantInventory(ArrayList<Plants> plantInventory) {
+    public void setPlantInventory(HashMap<Integer, ArrayList<Plants>> plantInventory) {
         this.plantInventory = plantInventory;
     }
 
@@ -84,17 +86,17 @@ public class Warehouse {
 
     /**
      * check if s is contained in item inventory/plant inventory
-     * @param s stiring s that need to be checked
+     * @param s string s that need to be checked
      * @return true if s is contained, false otherwise
      */
     public Boolean contains(String s){
-        for(Item item: this.itemInventory){
-            if (item.getName().equals(s)){
+        for(ArrayList<Item> itemList: this.itemInventory.values()){
+            if (itemList.get(0).getName().equals(s)){
                 return true;
             }
         }
-        for(Plants plant: this.plantInventory){
-            if (plant.getPlantName().equals(s)){
+        for(ArrayList<Plants> plantsList: this.plantInventory.values()){
+            if (plantsList.get(0).getPlantName().equals(s)){
                 return true;
             }
         }
