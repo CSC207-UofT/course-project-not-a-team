@@ -3,6 +3,7 @@ package com.farmgame.gateway;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -84,8 +85,10 @@ public class Initializer extends SQLiteOpenHelper {
                     break;
                 case TEXT:
                     list.add(key + " TEXT");
+                    break;
                 case BOOLEAN:
                     list.add(key + " BOOLEAN");
+                    break;
             }
         }
 

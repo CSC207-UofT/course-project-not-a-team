@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,32 +36,33 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         Initializer init = new Initializer(this.getActivity());
         SQLiteDatabase db = init.getReadableDatabase();
 
         Cursor cursor = db.query("User", new String[]{"name"}, null, null, null, null, null);
 
+
+        boolean hasData = cursor.moveToFirst();
+
         cursor.close();
 
         Context that = this.getActivity();
 
-        Boolean hasData = cursor.moveToFirst();
 
-        binding.register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (hasData){
-                    Toast.makeText(that, "成功了！", Toast.LENGTH_SHORT).show();
+        binding.register.setOnClickListener(v -> {
+            if (hasData){
+                Toast.makeText(that, "成功了！", Toast.LENGTH_SHORT).show();
+            } else {
+                if (binding.username.getText().toString().length() > 0){
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("name", binding.username.getText().toString());
+                    contentValues.put("level", 1);
+                    contentValues.put("exp", 1);
+                    db.insert("User", null, contentValues);
                 } else {
-                    if (binding.username.getText().toString().length() > 0){
-                        ContentValues contentValues = new ContentValues();
-                        contentValues.put("name", binding.username.getText().toString());
-                        contentValues.put("level", 1);
-                        contentValues.put("exp", 1);
-                        db.insert("User", null, contentValues);
-                    }
+                    Toast.makeText(that, "！", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
