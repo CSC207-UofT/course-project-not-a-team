@@ -7,13 +7,12 @@ import com.farmgame.entity.Seeds;
 import org.junit.Test;
 
 public class SeedsTest {
-    Seeds potatoseed = new Seeds("PotatoSeed", 30, 12, 10);
+    Seeds potatoseed = new Seeds("PotatoSeed", 30, 12, 10, 1);
 
     @Test(timeout = 50)
     public void test_name(){
-        assertEquals(potatoseed.getSeedsName(), "PotatoSeed");
+        assertEquals(potatoseed.getName(), "PotatoSeed");
     }
-
 
     @Test(timeout = 50)
     public void test_planttime(){
@@ -33,5 +32,10 @@ public class SeedsTest {
     @Test(timeout = 50)
     public void test_namechange(){
         assertEquals(potatoseed.getPlantFromSeed(), "Potato");
+    }
+
+    @Test(timeout = 50)
+    public void test_id(){
+        assertEquals(potatoseed.getSeedId(), 1);
     }
 }
