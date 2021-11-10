@@ -2,12 +2,10 @@ package com.farmgame.Activity;
 
 import android.os.Bundle;
 
-import com.farmgame.gateway.Initializer;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,8 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Initializer init = new Initializer(this.getApplicationContext());
-        init.getReadableDatabase();
+
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

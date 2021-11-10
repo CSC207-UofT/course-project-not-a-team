@@ -22,14 +22,10 @@ public class Initializer extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL(createUser());
         db.execSQL(createPlant());
         db.execSQL(createWarehouse());
         db.execSQL(createLevel());
-
-
-        // plants, warehouse, store
     }
 
     @Override
@@ -40,7 +36,6 @@ public class Initializer extends SQLiteOpenHelper {
     private String createUser(){
         HashMap<String, Integer> map = new HashMap<>();
         map.put("name", TEXT);
-        map.put("pwd", TEXT);
         map.put("level", INT);
         map.put("exp", INT);
         return createTable("User", map);
