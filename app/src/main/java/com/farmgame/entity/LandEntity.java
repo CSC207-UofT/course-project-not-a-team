@@ -13,23 +13,42 @@ public class LandEntity {
     private int waterTime;
     private int fertilizeTime;
     private int stage;
+    private int price;
+    private int index;
 
+    public int getPrice() {
+        return price;
+    }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     /**
      * Constructor of LandEntity class
-     *
-     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     *  @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
      * @param plant the plant grown on the land.
      * @param waterTime the cool down of water time, which depends on the plant.
      * @param stage the stage of the land.
+     * @param price the price of the land
+     * @param index the index of the land
      */
-    public LandEntity(int lockStatus, Seeds plant, int waterTime, int stage, int fertilizeTime) {
+    public LandEntity(int lockStatus, Seeds plant, int waterTime, int stage, int fertilizeTime, int price, int index) {
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.waterTime = waterTime;
         this.stage = stage;
         this.fertilizeTime = fertilizeTime;
+        this.price = price;
+        this.index = index;
     }
 
 
