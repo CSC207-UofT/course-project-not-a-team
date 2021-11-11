@@ -3,7 +3,6 @@ package com.farmgame.gateway;
 import static com.farmgame.constants.Constants.*;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
@@ -14,21 +13,14 @@ import com.farmgame.entity.Seeds;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class WarehouseDBApi {
-
-    private static SQLiteDatabase db;
-
-
-    public static void setDb(SQLiteDatabase database){
-        db = database;
-    }
+public class WarehouseDBApi extends DataBaseAPI {
 
     public static HashMap<Integer, ArrayList<Plants>> getPlantsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + PLANT,
                 new String[]{WAREHOUSE_QUANTITY, PLANT_MATURE_NAME, PLANT_ID, PLANT_SELL_PRICE},
                 WAREHOUSE_TYPE + " =?",
-                new String[]{Type_PLANT},
+                new String[]{TYPE_PLANT},
                 null,
                 null,
                 null);
@@ -57,7 +49,7 @@ public class WarehouseDBApi {
                 new String[]{WAREHOUSE_QUANTITY, PLANT_SEED_NAME,
                         PLANT_TIME, PLANT_BUY_PRICE, PLANT_EXP, PLANT_ID},
                 WAREHOUSE_TYPE + " = ?",
-                new String[]{Type_SEED},
+                new String[]{TYPE_SEED},
                 null,
                 null,
                 null);

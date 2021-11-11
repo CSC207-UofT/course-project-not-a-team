@@ -18,7 +18,7 @@ import com.farmgame.R;
 
 import com.farmgame.databinding.FragmentRegisterBinding;
 import com.farmgame.entity.Player;
-import com.farmgame.gateway.UserUpdater;
+import com.farmgame.gateway.PlayerDBApi;
 import com.farmgame.viewModel.LoginViewModel;
 
 public class RegisterFragment extends Fragment {
@@ -63,7 +63,7 @@ public class RegisterFragment extends Fragment {
                         .navigate(R.id.action_RegisterFragment_to_SecondFragment);
             } else {
                 if (binding.username.getText().toString().length() > 0){
-                    viewModel.setPlayer(UserUpdater.createPlayer(binding.username.getText().toString()));
+                    viewModel.setPlayer(PlayerDBApi.createPlayer(binding.username.getText().toString()));
                 } else {
                     Toast.makeText(that, "please enter your ", Toast.LENGTH_SHORT).show();
                 }

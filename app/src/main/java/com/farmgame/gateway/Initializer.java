@@ -27,6 +27,7 @@ public class Initializer extends SQLiteOpenHelper {
         db.execSQL(createItemTable());
         db.execSQL(createWarehouseTable());
         db.execSQL(createLevelTable());
+        db.execSQL(createLandTable());
     }
 
     @Override
@@ -76,6 +77,14 @@ public class Initializer extends SQLiteOpenHelper {
         map.put(LEVEL_LEVEL, INT);
         map.put(LEVEL_EXP, INT);
         return createTable(LEVEL, map);
+    }
+
+    private String createLandTable(){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put(LAND_INDEX, INT);
+        map.put(LAND_PRICE, INT);
+        map.put(LAND_LOCK_STATUS, BOOLEAN);
+        return createTable(LAND, map);
     }
 
     private static String createTable(String tableName, HashMap<String, Integer> map){

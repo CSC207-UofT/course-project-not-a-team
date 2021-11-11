@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.farmgame.entity.Player;
 import com.farmgame.gateway.PlantDBApi;
-import com.farmgame.gateway.UserUpdater;
+import com.farmgame.gateway.PlayerDBApi;
 import com.farmgame.gateway.WarehouseDBApi;
 
 public class LoginViewModel extends ViewModel {
@@ -18,7 +18,7 @@ public class LoginViewModel extends ViewModel {
     public void initViewModel(SQLiteDatabase db){
         dbMutableLiveData.setValue(db);
         initUpdaters();
-        playerMutableLiveData.setValue(UserUpdater.getPlayer());
+        playerMutableLiveData.setValue(PlayerDBApi.getPlayer());
     }
 
     public SQLiteDatabase getDB(){
@@ -34,7 +34,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     private void initUpdaters(){
-        UserUpdater.setDb(getDB());
+        PlayerDBApi.setDb(getDB());
         WarehouseDBApi.setDb(getDB());
         PlantDBApi.setDb(getDB());
     }
