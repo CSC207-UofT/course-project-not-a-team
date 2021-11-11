@@ -5,7 +5,6 @@ import com.farmgame.entity.LandEntity;
 import com.farmgame.usecase.StoreAble;
 
 
-
 public class WateringCan implements Item, StoreAble {
     /**
      * WateringCan is a class that implements Item interface, it has a fixed price, which is 5. Its
@@ -62,6 +61,10 @@ public class WateringCan implements Item, StoreAble {
         return this.item_name;
     }
 
+    @Override
+    public String getType() {
+        return TYPE_WATERING_CAN;
+    }
 
 
     /**
