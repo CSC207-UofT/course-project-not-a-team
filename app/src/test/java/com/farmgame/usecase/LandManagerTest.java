@@ -28,7 +28,8 @@ public class LandManagerTest {
     Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
     HashMap<Integer, ArrayList<Item>> itemInventory = new HashMap<>();
     HashMap<Integer, ArrayList<Plants>> plantInventory = new HashMap<>();
-    Warehouse warehouse = new Warehouse(player, itemInventory, plantInventory);
+    HashMap<Integer, ArrayList<Seeds>> seedInventory = new HashMap<>();
+    Warehouse warehouse = new Warehouse(player, itemInventory, plantInventory, seedInventory);
     WarehouseManipulate wm = new WarehouseManager(warehouse);
     PlayerManager pm = new PlayerManager(player);
     Seeds plant1 = new Seeds("plantA", 30, 23, 10, 1);
