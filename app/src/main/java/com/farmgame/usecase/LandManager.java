@@ -43,10 +43,8 @@ public class LandManager {
      * @param plant the plant to be planted
      */
     public void planting(Seeds plant){
-        if (land.getPlant() == null){
             land.setPlant(plant);
             land.setWaterTime(plant.getPlantingTime());
-        }
     }
 
 
