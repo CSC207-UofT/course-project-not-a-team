@@ -38,11 +38,11 @@ public class Initializer extends SQLiteOpenHelper {
 
     private String createUserTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put(USER_NAME, TEXT);
-        map.put(USER_LEVEL, INT);
-        map.put(USER_EXP, INT);
-        map.put(USER_MONEY, INT);
-        return createTable(USER, map ,USER_NAME);
+        map.put(PLAYER_NAME, TEXT);
+        map.put(PLAYER_LEVEL, INT);
+        map.put(PLAYER_EXP, INT);
+        map.put(PLAYER_MONEY, INT);
+        return createTable(PLAYER, map , PLAYER_NAME);
     }
 
     private String createPlantTable(){

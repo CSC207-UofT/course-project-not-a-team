@@ -3,7 +3,7 @@
 table of the user info, in practical this table will only contain 1 row once the player is created
 will be updated during game
 
-Table User(
+Table Player(
     name  TEXT,
     level INT,
     exp INT,

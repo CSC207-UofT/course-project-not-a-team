@@ -10,7 +10,7 @@ public class Constants {
 
 
     // SQL Table Names
-    public static final String USER = "User";
+    public static final String PLAYER = "Player";
     public static final String PLANT = "Plant";
     public static final String ITEM = "Item";
     public static final String WAREHOUSE = "Warehouse";
@@ -25,10 +25,10 @@ public class Constants {
     public static final int BOOLEAN = 2;
 
     // User SQL Column names
-    public static final String USER_NAME = "name";
-    public static final String USER_LEVEL = "level";
-    public static final String USER_EXP = "exp";
-    public static final String USER_MONEY = "money";
+    public static final String PLAYER_NAME = "name";
+    public static final String PLAYER_LEVEL = "level";
+    public static final String PLAYER_EXP = "exp";
+    public static final String PLAYER_MONEY = "money";
 
 
     // Plant SQL Column names
