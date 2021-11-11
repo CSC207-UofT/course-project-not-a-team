@@ -28,6 +28,7 @@ public class Store {
         this.PlayerMoney = playerManager.getPlayer().getMoney();
         this.totalProducts_plants = new ArrayList<>();
         this.currentProducts = this.totalProducts_plants.subList(0, this.StoreLevel);
+        this.currentItem = new ArrayList<>();
 
     }
 
