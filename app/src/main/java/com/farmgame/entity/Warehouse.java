@@ -119,7 +119,27 @@ public class Warehouse {
                 return true;
             }
         }
+        for(ArrayList<Seeds> seedsArrayList: this.seedInventory.values()){
+            if (seedsArrayList.get(0).getName().equals(s)){
+                return true;
+            }
+        }
         return false;
+    }
+
+    public Boolean checkCapacity(){
+        int use = 0;
+        for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
+            use += plantInventory.size();
+        }
+        for(ArrayList<Seeds> seedsArrayList: this.seedInventory.values()){
+            use += seedsArrayList.size();
+        }
+        for(ArrayList<Item> itemArrayList: this.itemInventory.values()){
+            use += itemArrayList.size();
+        }
+        return use < this.capacity;
+
     }
 }
 

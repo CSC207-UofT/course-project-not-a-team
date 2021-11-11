@@ -48,27 +48,30 @@ public class WarehouseManager implements WarehouseManipulate{
      */
     @Override
     public void addProduct(StoreAble object) {
-        if (object instanceof Item) {
-            HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
-            if(tempItemList.containsKey(((Item) object).getId())){
-                tempItemList.put(((Item) object).getId(), tempItemList.get(((Plants) object).getPlantID()));
-            }
-            this.warehouse.setItemInventory(tempItemList);
-        }else if (object instanceof Plants){
-            HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-            if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
-                tempPlantsList.put(((Plants) object).getPlantID(), tempPlantsList.get(((Plants) object).getPlantID()));
+        if (warehouse.checkCapacity()){
+            if (object instanceof Item) {
+                HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
+                if(tempItemList.containsKey(((Item) object).getId())){
+                    tempItemList.put(((Item) object).getId(), tempItemList.get(((Plants) object).getPlantID()));
+                }
+                this.warehouse.setItemInventory(tempItemList);
+            }else if (object instanceof Plants){
+                HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
+                if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
+                    tempPlantsList.put(((Plants) object).getPlantID(), tempPlantsList.get(((Plants) object).getPlantID()));
 
-            }
-            this.warehouse.setPlantInventory(tempPlantsList);
-        }else if (object instanceof Seeds){
-            HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
-            if(tempSeedList.containsKey(((Seeds) object).getSeedId())){
-                tempSeedList.put(((Seeds) object).getSeedId(), tempSeedList.get(((Seeds) object).getSeedId()));
+                }
+                this.warehouse.setPlantInventory(tempPlantsList);
+            }else if (object instanceof Seeds){
+                HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
+                if(tempSeedList.containsKey(((Seeds) object).getSeedId())){
+                    tempSeedList.put(((Seeds) object).getSeedId(), tempSeedList.get(((Seeds) object).getSeedId()));
 
+                }
+                this.warehouse.setSeedInventory(tempSeedList);
             }
-            this.warehouse.setSeedInventory(tempSeedList);
         }
+
     }
 
     /**
