@@ -28,7 +28,7 @@ public class WarehouseDBApi {
                 WAREHOUSE + " NATURAL JOIN " + PLANT,
                 new String[]{WAREHOUSE_QUANTITY, PLANT_MATURE_NAME, PLANT_ID, PLANT_SELL_PRICE},
                 WAREHOUSE_TYPE + " =?",
-                new String[]{Type_PLANT},
+                new String[]{TYPE_PLANT},
                 null,
                 null,
                 null);
@@ -57,7 +57,7 @@ public class WarehouseDBApi {
                 new String[]{WAREHOUSE_QUANTITY, PLANT_SEED_NAME,
                         PLANT_TIME, PLANT_BUY_PRICE, PLANT_EXP, PLANT_ID},
                 WAREHOUSE_TYPE + " = ?",
-                new String[]{Type_SEED},
+                new String[]{TYPE_SEED},
                 null,
                 null,
                 null);
