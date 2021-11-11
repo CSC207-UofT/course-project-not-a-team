@@ -1,6 +1,6 @@
 package com.farmgame.entity.Item;
 
-import static com.farmgame.constants.Constants.Type_Fertilizer;
+import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.usecase.StoreAble;
 
@@ -22,7 +22,7 @@ public class Fertilizer implements Item, StoreAble {
      */
     public Fertilizer(){
         this.price = 10;
-        this.item_name = Type_Fertilizer;
+        this.item_name = TYPE_FERTILIZER;
         this.id = 14159;
     }
 

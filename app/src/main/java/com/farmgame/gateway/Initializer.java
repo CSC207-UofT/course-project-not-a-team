@@ -24,6 +24,7 @@ public class Initializer extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createUserTable());
         db.execSQL(createPlantTable());
+        db.execSQL(createItemTable());
         db.execSQL(createWarehouseTable());
         db.execSQL(createLevelTable());
     }
@@ -44,13 +45,23 @@ public class Initializer extends SQLiteOpenHelper {
 
     private String createPlantTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put(PLANT_NAME, TEXT);
-        map.put(PLANT_TIME, TEXT);
+        map.put(PLANT_SEED_NAME, TEXT);
+        map.put(PLANT_MATURE_NAME, TEXT);
+        map.put(PLANT_TIME, INT);
+        map.put(PLANT_ID, INT);
         map.put(PLANT_BUY_PRICE, INT);
         map.put(PLANT_SELL_PRICE, INT);
         map.put(PLANT_EXP, INT);
         return createTable(PLANT, map);
     }
+
+    private String createItemTable(){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put(ITEM_ID, INT);
+        map.put(ITEM_NAME, TEXT);
+        return createTable(ITEM, map);
+    }
+
 
     private String createWarehouseTable(){
         HashMap<String, Integer> map = new HashMap<>();

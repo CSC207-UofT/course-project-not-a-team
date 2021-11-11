@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/RegisterFragment"
-        android:name="com.farmgame.Activity.RegisgerFragment"
+        android:name="com.farmgame.Activity.RegisterFragment"
         tools:layout="@layout/fragment_register">
 
         <action

@@ -1,6 +1,6 @@
 package com.farmgame.entity.Item;
 
-import static com.farmgame.constants.Constants.Type_WateringCan;
+import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.usecase.StoreAble;
 
@@ -22,7 +22,7 @@ public class WateringCan implements Item, StoreAble {
      */
     public WateringCan(){
         this.price = 5;
-        this.item_name = Type_WateringCan;
+        this.item_name = TYPE_WATERING_CAN;
         this.id = 26535;
     }
 
