@@ -38,4 +38,9 @@ public class SeedsTest {
     public void test_id(){
         assertEquals(potatoseed.getSeedId(), 1);
     }
+
+    @Test(timeout = 50)
+    public void test_type(){
+        assertEquals(potatoseed.getType(), "seed");
+    }
 }

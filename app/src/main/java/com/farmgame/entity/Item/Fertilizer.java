@@ -62,6 +62,10 @@ public class Fertilizer implements Item, StoreAble {
         return this.item_name;
     }
 
+    @Override
+    public String getType() {
+        return TYPE_FERTILIZER;
+    }
 
 
     /**
@@ -71,6 +75,6 @@ public class Fertilizer implements Item, StoreAble {
      */
     @Override
     public void use(LandEntity land) {
-        land.setWaterTime((int) land.getPlant().getPlantingTime() / 3);
+        land.setWaterTime(land.getPlant().getPlantingTime() / 3);
     }
 }
