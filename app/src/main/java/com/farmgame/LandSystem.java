@@ -5,7 +5,6 @@ import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
-import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.gateway.PlantDBApi;
@@ -17,106 +16,100 @@ import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 
 public class LandSystem {
-    private final LandManager[][] list_of_land;
+    private final LandManager landManager;
     private final PlayerManager playerManager;
     private final WarehouseManager warehouseManager;
-    private final int[] unlock_new_land;
-    private final int[] buy_new_land;
 
 
 
-    public LandSystem(PlayerManager playerManager, WarehouseManager warehouseManager) {
-        this.list_of_land = new LandManager[3][4];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.list_of_land[j][i] = new LandManager(
-                        new LandEntity(0, null, 0, 0, 0));
-            }
-        }
-
+    public LandSystem(LandManager landManager, PlayerManager playerManager, WarehouseManager warehouseManager) {
+        this.landManager = landManager;
         this.playerManager = playerManager;
         this.warehouseManager = warehouseManager;
-        this.unlock_new_land = new int[]{1, 0};
-        list_of_land[0][0].getLand().setLockStatus(1);
-        this.buy_new_land = new int[]{0, 0};
     }
 
 
 
     public void unlockLand() {
-        LandEntity land = list_of_land[unlock_new_land[0]][unlock_new_land[1]].getLand();
-        land.setLockStatus(1);
-        if (unlock_new_land[0] < 2) {
-            unlock_new_land[0] += 1;
-        }
-        else if (unlock_new_land[1] < 3) {
-            unlock_new_land[0] = 0;
-            unlock_new_land[1] += 1;
+        if (landManager.getLand().getLockStatus() == 0) {
+            landManager.getLand().setLockStatus(1);
+            // inform player that he/she has unlocked the land successfully
         }
         else {
-            // return error?
+            // return error: invalid initial lock status. This should happen during game
         }
     }
 
 
 
     public void buyLand() {
-        LandEntity land = list_of_land[buy_new_land[0]][buy_new_land[1]].getLand();
-        if (buy_new_land[1] < unlock_new_land[1] |
-                ( buy_new_land[1] == unlock_new_land[1] && buy_new_land[0] < unlock_new_land[0])) {
-            land.setLockStatus(2);
-            if (buy_new_land[0] < 2) {
-                buy_new_land[0] += 1;
-            }
-            else if (buy_new_land[1] < 3) {
-                buy_new_land[0] = 0;
-                buy_new_land[1] += 1;
+        if (landManager.getLand().getLockStatus() == 1) {
+            if (playerManager.subtractMoney(landManager.getLand().getPrice())) {
+                landManager.getLand().setLockStatus(2);
+                // inform player that he/she has bought the land successfully
             }
             else {
-                // return error?
+                // inform player that he/she doesn't have enough money to buy
             }
         }
         else {
-            // return error?
+            // return error" invalid initial lock status. This should happen during game
         }
     }
 
 
 
-    public void planting(int[] coordinate, String plant) {
-        LandManager landManager = list_of_land[coordinate[0]][coordinate[1]];
+    public void planting(String plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
         if (landManager.getLand().getLockStatus() == 2
                 && landManager.getLand().getPlant() == null
                 && seed !=null) {
             landManager.planting(seed);
             warehouseManager.removeProduct(seed);
+            // inform player that he/she has planted the plant successfully
+        }
+        else if (landManager.getLand().getLockStatus() != 2) {
+            // inform player that this land hasn't been owned by him/her
+        }
+        else if (landManager.getLand().getPlant() != null) {
+            // inform player that this land has been planted already
+        }
+        else if (seed == null) {
+            // inform player that this seed is not in warehouse
         }
         else {
-            // return error message?
+            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
     }
 
 
 
-    public void fertilize(int[] coordinate) {
-        LandManager landManager = list_of_land[coordinate[0]][coordinate[1]];
+    public void fertilize() {
         Item fertilizer = this.warehouseManager.getWarehouse().getItem(TYPE_FERTILIZER);
         if (fertilizer != null
                 && landManager.getLand().getPlant() != null
                 && !landManager.getLand().isFertilize()) {
             landManager.fertilize((Fertilizer) fertilizer);
             warehouseManager.removeProduct((StoreAble) fertilizer);
+            // inform player that he/she has fertilized the land successfully
+        }
+        else if (fertilizer == null) {
+            // inform player that the warehouse has not fertilizer left
+        }
+        else if (landManager.getLand().getPlant() == null) {
+            // inform player that this land hasn't been planted yet
+        }
+        else if (landManager.getLand().isFertilize()) {
+            // inform player that this land has been fertilized recently, thus should wait for a few minutes for next fertilization.
         }
         else {
-            // return error message?
+            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
     }
 
 
 
-    public void watering(int[] coordinate) {
-        LandManager landManager = list_of_land[coordinate[0]][coordinate[1]];
+    public void watering() {
         Item wateringCan = this.warehouseManager.getWarehouse().getItem(TYPE_WATERING_CAN);
         if (wateringCan != null
                 && landManager.getLand().getPlant() != null
@@ -124,17 +117,28 @@ public class LandSystem {
                 && !landManager.getLand().isWet()) {
             landManager.watering((WateringCan) wateringCan);
             warehouseManager.removeProduct((StoreAble) wateringCan);
+            // inform player that he/she has watered the land successfully
+        }
+        else if (wateringCan == null) {
+            // inform player that the warehouse has not watering can left
+        }
+        else if (landManager.getLand().getPlant() == null) {
+            // inform player that this land hasn't been planted yet
+        }
+        else if (landManager.getLand().isWet()) {
+            // inform player that this land has been water recently, thus should wait for a few minutes for next watering.
+        }
+        else if (landManager.getLand().getStage() == 2) {
+            // inform player that this land has a fully grown plant, thus should not be watered
         }
         else {
-            // return error message
+            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
     }
 
 
 
-    public void harvest(int[] coordinate) {
-        LandManager landManager = list_of_land[coordinate[0]][coordinate[1]];
-
+    public void harvest() {
         if (landManager.getLand().getPlant() != null
                 && landManager.getLand().getStage() == 2
                 && !landManager.getLand().isWet()) {
@@ -143,8 +147,14 @@ public class LandSystem {
             Plants plant = PlantDBApi.createPlant(plantId);
             warehouseManager.addProduct((StoreAble) plant);
         }
+        else if (landManager.getLand().getPlant() == null) {
+            // inform player that this land has not been planted yet
+        }
+        else if (landManager.getLand().getStage() < 2 | landManager.getLand().isWet()) {
+            // inform player that this plant has not fully grown
+        }
         else {
-            // return error message
+            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
     }
 }
