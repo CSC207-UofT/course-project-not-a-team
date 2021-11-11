@@ -9,7 +9,7 @@ import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
-public class StoreManager implements Storetranscation, Tradable {
+public class StoreManager implements StoreTransaction, TradeAble {
     /**
      * StoreManager is a class that manages the buying and selling transaction between player
      * and store. The player can only trade plants, items with store. The attribute store is the
@@ -32,7 +32,7 @@ public class StoreManager implements Storetranscation, Tradable {
                 return ((Fertilizer) object).getPrice();
             }
         } else if (object instanceof Seeds) {
-            if (this.store.getcurrentProducts_plants().contains(((Seeds) object).getSeedId())) {
+            if (this.store.getCurrentProducts_plants().contains(((Seeds) object).getSeedId())) {
                 return ((Seeds) object).getBuyingPrice();
             }
         }
@@ -47,7 +47,7 @@ public class StoreManager implements Storetranscation, Tradable {
      */
 
     @Override
-    public boolean checkvalidity(StoreAble object) {
+    public boolean checkValidity(StoreAble object) {
         if (getObjectPrice(object) == -1) {
             return false;
         } else if (object instanceof Item) {
@@ -61,16 +61,16 @@ public class StoreManager implements Storetranscation, Tradable {
      * If the buy is valid, then subtract money from this player's account and then add
      * this object to warehouse.
      *
-     * @param playermanager:    The player manager
+     * @param playerManager:    The player manager
      * @param warehouseManager: The warehouse manager
      * @return boolean
      */
     @Override
-    public boolean makepurchase(StoreAble object, PlayerManager playermanager,
+    public boolean makePurchase(StoreAble object, PlayerManager playerManager,
                                 WarehouseManager warehouseManager) {
-        if (checkvalidity(object)) {
-            playermanager.subtractMoney(getObjectPrice(object));
-            updatewarehouse(object, warehouseManager);
+        if (checkValidity(object)) {
+            playerManager.subtractMoney(getObjectPrice(object));
+            updateWarehouse(object, warehouseManager);
             return true;
         }
         return false;
@@ -82,7 +82,7 @@ public class StoreManager implements Storetranscation, Tradable {
      * @param warehouseManager: The warehouse manager.
      */
     @Override
-    public void updatewarehouse(StoreAble object, WarehouseManager warehouseManager) {
+    public void updateWarehouse(StoreAble object, WarehouseManager warehouseManager) {
         warehouseManager.addProduct(object);
     }
 
@@ -98,8 +98,8 @@ public class StoreManager implements Storetranscation, Tradable {
     public void sell(StoreAble object, PlayerManager playerManager, WarehouseManager
             warehouseManager) {
         if (object instanceof Plants) {
-            int sellingprice = ((Plants) object).getSellingPrice();
-            playerManager.addMoney(sellingprice);
+            int sellingPrice = ((Plants) object).getSellingPrice();
+            playerManager.addMoney(sellingPrice);
             warehouseManager.removeProduct(object);
         }
     }

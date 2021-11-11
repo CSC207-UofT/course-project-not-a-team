@@ -1,12 +1,9 @@
 package com.farmgame.entity;
 
 
-
 import com.farmgame.usecase.PlayerManager;
-import com.farmgame.entity.Item.Item;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -38,7 +35,7 @@ public class Store {
      * Return the current plants list
      * @return List
      */
-    public List<Integer> getcurrentProducts_plants(){
+    public List<Integer> getCurrentProducts_plants(){
         return new ArrayList<>(this.currentProducts);
     }
 
