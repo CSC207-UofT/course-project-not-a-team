@@ -109,4 +109,21 @@ public class WarehouseDBApi extends DataBaseAPI {
         cursor.close();
         return map;
     }
+
+    public static HashMap<Integer, Integer> getCapacityTable(){
+        Cursor cursor = db.query(
+                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_CAPACITY},
+                null, null, null ,null, null);
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        if (cursor.moveToNext()){
+            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
+            int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
+            map.put(level, capacity);
+        }
+
+        cursor.close();
+
+        return map;
+    }
 }
