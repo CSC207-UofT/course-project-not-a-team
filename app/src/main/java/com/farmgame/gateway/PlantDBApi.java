@@ -4,21 +4,13 @@ package com.farmgame.gateway;
 import static com.farmgame.constants.Constants.*;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.farmgame.entity.Plants;
 
 import java.util.HashMap;
 
 
-public class PlantDBApi {
-
-    private static SQLiteDatabase db;
-
-
-    public static void setDb(SQLiteDatabase database){
-        db = database;
-    }
+public class PlantDBApi extends DataBaseAPI {
 
     public static HashMap<Integer, Integer> getBuyPrice(){
         Cursor cursor = db.query(PLANT, new String[]{PLANT_ID, PLANT_BUY_PRICE}, null, null, null, null, null);

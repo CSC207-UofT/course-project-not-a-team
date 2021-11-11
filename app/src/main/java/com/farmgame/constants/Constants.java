@@ -15,6 +15,7 @@ public class Constants {
     public static final String ITEM = "Item";
     public static final String WAREHOUSE = "Warehouse";
     public static final String LEVEL = "Level";
+    public static final String LAND = "Land";
 
 
     // SQLite Column Type
@@ -52,6 +53,11 @@ public class Constants {
     // Level SQL Column names
     public static final String LEVEL_LEVEL = "level";
     public static final String LEVEL_EXP = "exp";
+
+    // Land SQL Column names
+    public static final String LAND_INDEX = "index";
+    public static final String LAND_PRICE = "price";
+    public static final String LAND_LOCK_STATUS = "lockStatus";
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
