@@ -29,6 +29,9 @@ public class Initializer extends SQLiteOpenHelper {
         db.execSQL(createLevelTable());
         db.execSQL(createLandTable());
         db.execSQL(createStoreTable());
+        if (!checkInit()){
+            initDataInsertion();
+        }
     }
 
     @Override
@@ -104,13 +107,13 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(STORE, map, STORE_ID);
     }
 
-    private static String createTable(String tableName, HashMap<String, Integer> map,
+    private String createTable(String tableName, HashMap<String, Integer> map,
                                       String primaryKey){
         return "CREATE TABLE IF NOT EXISTS " +
                 tableName + "(" + handlePropertySet(map, primaryKey) + ")";
     }
 
-    private static String handlePropertySet(HashMap<String, Integer> map, String primaryKey){
+    private String handlePropertySet(HashMap<String, Integer> map, String primaryKey){
         ArrayList<String> list = new ArrayList<>();
         String primary = null;
         for (String key: map.keySet()){
@@ -136,5 +139,13 @@ public class Initializer extends SQLiteOpenHelper {
 
 
         return String.join(", ", list);
+    }
+
+    private void initDataInsertion(){
+
+    }
+
+    private boolean checkInit(){
+        return PlayerDBApi.getPlayer() != null;
     }
 }
