@@ -1,5 +1,7 @@
 package com.farmgame.entity;
 
+import static com.farmgame.constants.Constants.TYPE_SEED;
+
 import com.farmgame.usecase.StoreAble;
 
 public class Seeds implements StoreAble {
@@ -8,6 +10,7 @@ public class Seeds implements StoreAble {
     private final int BUYING_PRICE;
     private final int EXPERIMENT_POINT;
     private final int SEEDS_ID;
+    private final String SEEDS_TYPE;
 
     /**
      * Constructor for seeds.
@@ -25,6 +28,7 @@ public class Seeds implements StoreAble {
         this.BUYING_PRICE = buying;
         this.EXPERIMENT_POINT = exp;
         this.SEEDS_ID = id;
+        this.SEEDS_TYPE = TYPE_SEED;
     }
     /**
      * Getter for NAME attributes.
@@ -88,6 +92,18 @@ public class Seeds implements StoreAble {
 
         return this.SEEDS_ID;
     }
+
+    /**
+     * Method to get the type of the seed.
+     * @return int
+     */
+    @Override
+    public String getType(){
+
+        return this.SEEDS_TYPE;
+    }
+
+
 
 
 }
