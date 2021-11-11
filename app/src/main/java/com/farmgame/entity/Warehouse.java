@@ -130,7 +130,7 @@ public class Warehouse {
     public Boolean checkCapacity(){
         int use = 0;
         for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
-            use += plantInventory.size();
+            use += plantsArrayList.size();
         }
         for(ArrayList<Seeds> seedsArrayList: this.seedInventory.values()){
             use += seedsArrayList.size();
@@ -140,6 +140,31 @@ public class Warehouse {
         }
         return use < this.capacity;
 
+    }
+
+    public Plants getPlants(String plant){
+        for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
+            if(plantsArrayList.get(0).getName().equals(plant)){
+                return plantsArrayList.get(0);
+            }
+        }
+        return null;
+    }
+    public Seeds getSeeds(String seed){
+        for(ArrayList<Seeds> seedsArrayList: this.seedInventory.values()){
+            if(seedsArrayList.get(0).getName().equals(seed)){
+                return seedsArrayList.get(0);
+            }
+        }
+        return null;
+    }
+    public Item getItem(String item){
+        for(ArrayList<Item> itemArrayList: this.itemInventory.values()){
+            if(itemArrayList.get(0).getName().equals(item)){
+                return itemArrayList.get(0);
+            }
+        }
+        return null;
     }
 }
 
