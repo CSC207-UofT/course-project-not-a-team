@@ -1,4 +1,4 @@
-package com.farmgame;
+package com.farmgame.controller;
 
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
