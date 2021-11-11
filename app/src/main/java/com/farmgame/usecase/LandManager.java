@@ -4,7 +4,7 @@ import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Seeds;
-import com.farmgame.usecase.WarehouseManager.WarehouseMunipulate;
+import com.farmgame.usecase.WarehouseManager.WarehouseManipulate;
 
 
 public class LandManager {
@@ -56,7 +56,7 @@ public class LandManager {
      *
      * @param pm the player manager to manage the player
      */
-    public void harvest(PlayerManager pm, WarehouseMunipulate wm){
+    public void harvest(PlayerManager pm, WarehouseManipulate wm){
         if (land.getStage() == 2 && land.getWaterTime() == 0){
             wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());

@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.farmgame.entity.Player;
-import com.farmgame.entity.Warehouse;
-import com.farmgame.usecase.PlayerManager;
 
 public class PlayerManagerUnitTest {
     Player player = new Player("Connor", 1, 1000, new int[]{0, 10});

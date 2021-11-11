@@ -2,13 +2,15 @@ package com.farmgame.usecase;
 
 
 import com.farmgame.entity.Item.Fertilizer;
+import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.LandEntity;
+import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Warehouse;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
-import com.farmgame.usecase.WarehouseManager.WarehouseMunipulate;
+import com.farmgame.usecase.WarehouseManager.WarehouseManipulate;
 
 import static com.farmgame.constants.Constants.*;
 import static org.junit.Assert.*;
@@ -16,13 +18,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class LandManagerTest {
     LandManager landManager;
     Fertilizer fertilizer = new Fertilizer();
     WateringCan wateringCan = new WateringCan();
     Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
-    Warehouse warehouse = new Warehouse(player);
-    WarehouseMunipulate wm = new WarehouseManager<>(warehouse);
+    HashMap<Integer, ArrayList<Item>> itemInventory = new HashMap<>();
+    HashMap<Integer, ArrayList<Plants>> plantInventory = new HashMap<>();
+    HashMap<Integer, ArrayList<Seeds>> seedInventory = new HashMap<>();
+    Warehouse warehouse = new Warehouse(player, itemInventory, plantInventory, seedInventory);
+    WarehouseManipulate wm = new WarehouseManager(warehouse);
     PlayerManager pm = new PlayerManager(player);
     Seeds plant1 = new Seeds("plantA", 30, 23, 10, 1);
     Seeds plant2 = new Seeds("plantB", 40, 33, 20, 2);
