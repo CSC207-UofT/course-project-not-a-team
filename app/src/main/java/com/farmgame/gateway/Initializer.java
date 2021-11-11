@@ -78,7 +78,7 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(LEVEL, map);
     }
 
-    public static String createTable(String tableName, HashMap<String, Integer> map){
+    private static String createTable(String tableName, HashMap<String, Integer> map){
         return "CREATE TABLE IF NOT EXISTS " +
                 tableName + "(" + handlePropertySet(map) + ")";
     }
