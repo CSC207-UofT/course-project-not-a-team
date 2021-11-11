@@ -17,8 +17,21 @@ public class UserUpdater {
         db = database;
     }
 
+    public static Player createPlayer(String name){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USER_NAME, name);
+        contentValues.put(USER_LEVEL, 1);
+        contentValues.put(USER_MONEY, 0);
+        contentValues.put(USER_EXP, 0);
+        db.insert(USER, null, contentValues);
+
+        return getPlayer();
+
+    }
+
     public static Player getPlayer(){
-        Cursor cursor = db.query(USER, new String[]{"*"}, null, null, null, null, null);
+        Cursor cursor = db.query(USER, new String[]{"*"},
+                null, null, null, null, null);
         if(!cursor.moveToFirst()){
             return null;
         }
@@ -30,12 +43,21 @@ public class UserUpdater {
         return new Player(name, level, money, new int[]{exp, 10});
     }
 
-    public static boolean levelUp(int level, int exp){
+    public static boolean levelUp(Player player){
+        int level = player.getLevel();
+        int exp = player.getExp_bar()[0];
         ContentValues contentValues = new ContentValues();
         contentValues.put(USER_LEVEL, level);
         contentValues.put(USER_EXP, exp);
-//        db.update(USER, contentValues);
-        return true;
+
+        Cursor cursor = db.query(USER, new String[]{"*"},
+                null, null, null, null, null);
+        cursor.moveToFirst();
+        String name = cursor.getString(cursor.getColumnIndex(USER_NAME));
+        cursor.close();
+
+        return db.update(
+                USER, contentValues, USER_NAME + " = ?", new String[]{name}) == 1;
     }
 
     // player get money, spend money

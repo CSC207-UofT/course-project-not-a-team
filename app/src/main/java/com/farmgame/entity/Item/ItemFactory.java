@@ -11,10 +11,10 @@ public class ItemFactory {
      * @return an item with desired type.
      */
     public Item createItem(String itemType) {
-        if (itemType.equals(Type_Fertilizer)) {
+        if (itemType.equals(TYPE_FERTILIZER)) {
             return new Fertilizer();
         }
-        else if (itemType.equals(Type_WateringCan)) {
+        else if (itemType.equals(TYPE_WATERING_CAN)) {
             return new WateringCan();
         }
         else {
