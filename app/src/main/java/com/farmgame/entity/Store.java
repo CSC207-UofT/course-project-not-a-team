@@ -14,10 +14,10 @@ public class Store {
     //List<Plants> totalProducts;             //we need to define later
     int StoreLevel;
     int PlayerMoney;
-    List<Plants> currentProducts;
-    List<Plants> totalProducts_plants;
+    List<Integer> currentProducts;
+    List<Integer> totalProducts_plants;
 
-    List<Item> currentItem;
+    List<Integer> currentItem;
     /**
      * User can use store to buy plants, sell plants. Sold plants are
      * automatically stored into warehouse.
@@ -38,7 +38,7 @@ public class Store {
      * Return the current plants list
      * @return List
      */
-    public List<Plants> getcurrentProducts_plants(){
+    public List<Integer> getcurrentProducts_plants(){
         return new ArrayList<>(this.currentProducts);
     }
 
@@ -46,7 +46,7 @@ public class Store {
      * Return the current item list
      * @return List
      */
-   public List<Item> getCurrentProducts_items(){
+   public List<Integer> getCurrentProducts_items(){
        return new ArrayList<>(this.currentItem);
    }
 
