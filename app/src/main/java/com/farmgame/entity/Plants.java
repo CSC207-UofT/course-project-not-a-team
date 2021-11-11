@@ -1,6 +1,6 @@
 package com.farmgame.entity;
 
-import com.farmgame.usecase.WarehouseManager.StoreAble;
+import com.farmgame.usecase.StoreAble;
 
 public class Plants implements StoreAble {
 
