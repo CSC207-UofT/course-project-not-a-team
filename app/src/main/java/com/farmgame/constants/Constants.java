@@ -56,6 +56,12 @@ public class Constants {
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
     public static final String TYPE_WATERING_CAN = "WateringCan";
+
     public static final String TYPE_SEED = "seed";
     public static final String TYPE_PLANT = "plant";
+
+
+    // Missing Value
+    public static final int MISSING_VALUE = -1;
+
 }
