@@ -87,7 +87,7 @@ public class WarehouseDBApi extends DataBaseAPI {
 
         HashMap<Integer, ArrayList<Item>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
             ArrayList<Item> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(ITEM_NAME));

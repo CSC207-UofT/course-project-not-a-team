@@ -7,6 +7,8 @@ import android.database.Cursor;
 
 import com.farmgame.entity.Player;
 
+import java.util.HashMap;
+
 public class PlayerDBApi extends DataBaseAPI {
 
 
@@ -46,6 +48,23 @@ public class PlayerDBApi extends DataBaseAPI {
         return db.update(
                 USER, contentValues, USER_NAME + " = ?",
                 new String[]{player.getName()}) == 1;
+    }
+
+    public static HashMap<Integer, Integer> getExpTable(){
+        Cursor cursor = db.query(
+                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_EXP},
+                null, null, null ,null, null);
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        if (cursor.moveToNext()){
+            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
+            int exp = cursor.getInt(cursor.getColumnIndex(LEVEL_EXP));
+            map.put(level, exp);
+        }
+
+        cursor.close();
+
+        return map;
     }
 
     // player get money, spend money
