@@ -87,8 +87,8 @@ public class WarehouseDBApi {
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
                 new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_NAME},
-                WAREHOUSE_TYPE + " = ? OR " + WAREHOUSE_ID + " = ?",
-                new String[]{TYPE_FERTILIZER, TYPE_WATERING_CAN},
+                null,
+                null,
                 null,
                 null,
                 null);

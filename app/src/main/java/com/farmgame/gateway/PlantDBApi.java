@@ -6,6 +6,8 @@ import static com.farmgame.constants.Constants.*;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.farmgame.entity.Plants;
+
 import java.util.HashMap;
 
 
@@ -40,6 +42,22 @@ public class PlantDBApi {
         }
         cursor.close();
         return map;
+    }
+
+    public static Plants createPlant(int id){
+        Cursor cursor = db.query(
+                PLANT, new String[]{PLANT_SELL_PRICE, PLANT_MATURE_NAME},
+                PLANT_ID + " = ?", new String[]{String.valueOf(id)},
+                null, null, null, null);
+        cursor.moveToFirst();
+
+        int price = cursor.getInt(cursor.getColumnIndex(PLANT_SELL_PRICE));
+        String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
+
+
+        cursor.close();
+
+        return new Plants(name, price, id);
     }
 
 }
