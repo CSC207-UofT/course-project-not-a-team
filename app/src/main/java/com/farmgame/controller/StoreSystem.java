@@ -1,16 +1,14 @@
 package com.farmgame.controller;
 
-import com.farmgame.entity.Item.Fertilizer;
-import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Plants;
-import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Store;
+import com.farmgame.gateway.PlantDBApi;
 import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.StoreAble;
-import com.farmgame.usecase.StoreManager.StoreTransaction;
-import com.farmgame.usecase.StoreManager.TradeAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
-import com.farmgame.usecase.WarehouseManager.WarehouseManipulate;
+import com.farmgame.presenter.StorePresenter;
+
+import java.util.HashMap;
 
 public class StoreSystem{
     /**
@@ -19,6 +17,7 @@ public class StoreSystem{
      * store this class will manage, the attribute object can either be item or plants.
      */
      private final Store store;
+     private final HashMap<Integer, Integer> PlantBuyPrice;
      private final PlayerManager playerManager;
      private final WarehouseManager warehouseManager;
 
@@ -26,14 +25,16 @@ public class StoreSystem{
          this.store = store;
          this.playerManager = playerManager;
          this.warehouseManager = warehouseManager;
+         this.PlantBuyPrice = PlantDBApi.getBuyPrice();
      }
 
      /**
      * Return the price of the object.
-     */
+      * @return plant_price: return the price of this plant
+      */
 
-     @Override
      public int getPlantPrice(int plant) {
+         return this.PlantBuyPrice.get(plant);
 //         if (object instanceof Item) {
 //             if (this.store.getCurrentProducts_items().contains(((Item) object).getId())) {
 //                 return ((Fertilizer) object).getPrice();
@@ -52,14 +53,19 @@ public class StoreSystem{
      *
      * @return boolean
      */
-     @Override
-     public boolean checkValidity(StoreAble object) {
-         if (getObjectPrice(object) == -1) {
-                return false;
-         } else if (object instanceof Item) {
-                return getObjectPrice(object) <= this.store.getPlayerMoney();
-         } else {
-                return ((Seeds) object).getBuyingPrice() <= this.store.getPlayerMoney();
+     public boolean checkValidity(int plant) {
+         StorePresenter storePresenter = new StorePresenter();
+         if (getPlantPrice(plant) > this.store.getPlayerMoney()){
+             storePresenter.not_enough_money();
+             return false;
+
+
+//         if (getObjectPrice(object) == -1) {
+//                return false;
+//         } else if (object instanceof Item) {
+//                return getObjectPrice(object) <= this.store.getPlayerMoney();
+//         } else {
+//                return ((Seeds) object).getBuyingPrice() <= this.store.getPlayerMoney();
             }
         }
 
