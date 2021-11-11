@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.farmgame.entity.Player;
+import com.farmgame.gateway.PlantDBApi;
 import com.farmgame.gateway.UserUpdater;
+import com.farmgame.gateway.WarehouseDBApi;
 
 public class LoginViewModel extends ViewModel {
 
@@ -33,6 +35,8 @@ public class LoginViewModel extends ViewModel {
 
     private void initUpdaters(){
         UserUpdater.setDb(getDB());
+        WarehouseDBApi.setDb(getDB());
+        PlantDBApi.setDb(getDB());
     }
 
 }

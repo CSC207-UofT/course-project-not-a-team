@@ -43,7 +43,9 @@ public class UserUpdater {
         return new Player(name, level, money, new int[]{exp, 10});
     }
 
-    public static boolean levelUp(int level, int exp){
+    public static boolean levelUp(Player player){
+        int level = player.getLevel();
+        int exp = player.getExp_bar()[0];
         ContentValues contentValues = new ContentValues();
         contentValues.put(USER_LEVEL, level);
         contentValues.put(USER_EXP, exp);
