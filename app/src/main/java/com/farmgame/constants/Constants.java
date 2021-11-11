@@ -58,4 +58,7 @@ public class Constants {
     public static final String TYPE_WATERING_CAN = "WateringCan";
     public static final String Type_SEED = "seed";
     public static final String Type_PLANT = "plant";
+
+    // Missing Value
+    public static final int MISSING_VALUE = -1;
 }

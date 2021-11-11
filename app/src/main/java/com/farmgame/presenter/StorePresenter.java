@@ -1,14 +1,14 @@
 package com.farmgame.presenter;
 
 public class StorePresenter {
-    public StorePresenter(){};
-
-    public void welcome(){
-        System.out.println("Welcome to Store");
-    }
+    public StorePresenter(){}
 
     public void remaining_money(int money){
-        System.out.println("You have " + String.valueOf(money) + "remaining");
+        System.out.println("You have " + money + "remaining");
+    }
+
+    public void invalid_product(){
+        System.out.println("This product is not provided in store.");
     }
 
     public void not_enough_money(){
@@ -26,6 +26,10 @@ public class StorePresenter {
     }
 
     public void sell_success(int money){
-        System.out.println("Congratulations! You have earned" + String.valueOf(money));
+        System.out.println("Congratulations! You have earned" + money);
+    }
+
+    public void update_success(){
+        System.out.println("The purchased object has already been added to warehouse.");
     }
 }

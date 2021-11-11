@@ -1,12 +1,14 @@
 package com.farmgame.controller;
 
 import com.farmgame.entity.Plants;
+import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Store;
-import com.farmgame.gateway.PlantDBApi;
+import com.farmgame.entity.Item.Item;
 import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 import com.farmgame.presenter.StorePresenter;
+import static com.farmgame.constants.Constants.*;
 
 import java.util.HashMap;
 
@@ -17,7 +19,6 @@ public class StoreSystem{
      * store this class will manage, the attribute object can either be item or plants.
      */
      private final Store store;
-     private final HashMap<Integer, Integer> PlantBuyPrice;
      private final PlayerManager playerManager;
      private final WarehouseManager warehouseManager;
 
@@ -25,26 +26,29 @@ public class StoreSystem{
          this.store = store;
          this.playerManager = playerManager;
          this.warehouseManager = warehouseManager;
-         this.PlantBuyPrice = PlantDBApi.getBuyPrice();
      }
 
      /**
      * Return the price of the object.
-      * @return plant_price: return the price of this plant
+      * @return int: return the price of this plant
       */
 
-     public int getPlantPrice(int plant) {
-         return this.PlantBuyPrice.get(plant);
-//         if (object instanceof Item) {
-//             if (this.store.getCurrentProducts_items().contains(((Item) object).getId())) {
-//                 return ((Fertilizer) object).getPrice();
-//             }
-//         } else if (object instanceof Seeds) {
-//             if (this.store.getCurrentProducts_plants().contains(((Seeds) object).getSeedId())) {
-//                 return ((Seeds) object).getBuyingPrice();
-//                }
-//            }
-//            return MISSING_PRICE;
+     public int getPrice(StoreAble object) {
+         if (object instanceof Item) {
+             for (Item item : this.store.getCurrentProducts_items()){
+                 if (((Item) object).getId() == item.getId()){
+                     return item.getPrice();
+                 }
+             }
+
+         } else if (object instanceof Seeds) {
+             for (Seeds seed : this.store.getCurrentSeed()){
+                 if (((Seeds) object).getSeedId() == seed.getSeedId()){
+                     return seed.getBuyingPrice();
+                 }
+             }
+     }
+         return MISSING_VALUE;
      }
 
      /**
@@ -53,11 +57,23 @@ public class StoreSystem{
      *
      * @return boolean
      */
-     public boolean checkValidity(int plant) {
-         StorePresenter storePresenter = new StorePresenter();
-         if (getPlantPrice(plant) > this.store.getPlayerMoney()){
-             storePresenter.not_enough_money();
-             return false;
+     public boolean checkValidity(StoreAble object){
+             StorePresenter storePresenter = new StorePresenter();
+             int object_price = getPrice(object);
+             if (object_price == MISSING_VALUE){
+                 storePresenter.invalid_product();
+                 return false;
+             }
+             else if (object_price > this.store.getPlayerMoney()) {
+                 storePresenter.not_enough_money();
+                 return false;
+             } else if (!this.warehouseManager.getWarehouse().checkCapacity()) {
+                 storePresenter.not_enough_capacity();
+                 return false;
+             } else {
+                 return true;
+             }
+         }
 
 
 //         if (getObjectPrice(object) == -1) {
@@ -66,53 +82,51 @@ public class StoreSystem{
 //                return getObjectPrice(object) <= this.store.getPlayerMoney();
 //         } else {
 //                return ((Seeds) object).getBuyingPrice() <= this.store.getPlayerMoney();
-            }
-        }
 
      /**
      * If the buy is valid, then subtract money from this player's account and then add
      * this object to warehouse.
      *
-     * @param playerManager:    The player manager
-     * @param warehouseManager: The warehouse manager
-     * @return boolean
+     * @param  object: The object the player wants to purchase.
      */
-     @Override
-     public boolean makePurchase(StoreAble object, PlayerManager playerManager,
-                                 WarehouseManager warehouseManager) {
+     public void makePurchase(StoreAble object) {
+         StorePresenter storePresenter = new StorePresenter();
          if (checkValidity(object)) {
-             playerManager.subtractMoney(getObjectPrice(object));
-             updateWarehouse(object, warehouseManager);
-             return true;
+             playerManager.subtractMoney(getPrice(object));
+             storePresenter.purchase_success();
+             storePresenter.remaining_money(playerManager.getPlayer().getMoney());
+             updateWarehouse(object);
          }
-            return false;
      }
      /**
      * If the buy is successful, add the object to the warehouse.
      *
-     *  @param warehouseManager: The warehouse manager.
+     *  @param object: The purchased object
      */
-     @Override
-     public void updateWarehouse(StoreAble object, WarehouseManager warehouseManager) {
+     public void updateWarehouse(StoreAble object) {
+         StorePresenter storePresenter = new StorePresenter();
          warehouseManager.addProduct(object);
+         storePresenter.update_success();
      }
 
      /**
      * The player will only sell plants to store. After the selling, the player money will increase
      * and the warehouse will add the new item
      *
-     * @param object:           The object the player wants to sell, only plants are allowed to sell
-     * @param playerManager:    The player manager
-     * @param warehouseManager: The warehouse manager
+     * @param object: The object the player wants to sell, only plants are allowed to sell
      */
-     @Override
-     public void sell(StoreAble object, PlayerManager playerManager, WarehouseManager
-             warehouseManager) {
-     if (object instanceof Plants) {
-         int sellingPrice = ((Plants) object).getSellingPrice();
-         playerManager.addMoney(sellingPrice);
-         warehouseManager.removeProduct(object);
+     public void sell(StoreAble object) {
+         StorePresenter storePresenter = new StorePresenter();
+         if (object instanceof Plants) {
+             for (Plants plant : this.store.getCurrentProducts_plants()){
+                 if (plant.getPlantID() == ((Plants) object).getPlantID()){
+                 int sellingPrice = ((Plants) object).getSellingPrice();
+                 playerManager.addMoney(sellingPrice);
+                 warehouseManager.removeProduct(object);
+                 storePresenter.sell_success(playerManager.getPlayer().getMoney());
+             }
             }
         }
     }
+}
 

@@ -1,6 +1,7 @@
 package com.farmgame.entity;
 
 
+import com.farmgame.entity.Item.Item;
 import com.farmgame.usecase.PlayerManager;
 
 import java.util.ArrayList;
@@ -8,13 +9,12 @@ import java.util.List;
 
 
 public class Store {
-    //List<Plants> totalProducts;             //we need to define later
     int StoreLevel;
     int PlayerMoney;
-    List<Integer> currentProducts;
-    List<Integer> totalProducts_plants;
-
-    List<Integer> currentItem;
+    List<Plants> currentPlants;
+    List<Plants> totalProducts_plants;
+    List<Item> currentItem;
+    List<Seeds> currentSeed;
     /**
      * User can use store to buy plants, sell plants. Sold plants are
      * automatically stored into warehouse.
@@ -27,8 +27,9 @@ public class Store {
         this.StoreLevel = playerManager.getPlayer().getLevel();
         this.PlayerMoney = playerManager.getPlayer().getMoney();
         this.totalProducts_plants = new ArrayList<>();
-        this.currentProducts = this.totalProducts_plants.subList(0, this.StoreLevel);
+        this.currentPlants = this.totalProducts_plants.subList(0, this.StoreLevel);
         this.currentItem = new ArrayList<>();
+        this.currentSeed = new ArrayList<>();
 
     }
 
@@ -36,15 +37,19 @@ public class Store {
      * Return the current plants list
      * @return List
      */
-    public List<Integer> getCurrentProducts_plants(){
-        return new ArrayList<>(this.currentProducts);
+    public List<Plants> getCurrentProducts_plants(){
+        return new ArrayList<>(this.currentPlants);
+    }
+
+    public List<Seeds> getCurrentSeed(){
+        return new ArrayList<>(this.currentSeed);
     }
 
     /**
      * Return the current item list
      * @return List
      */
-   public List<Integer> getCurrentProducts_items(){
+   public List<Item> getCurrentProducts_items(){
        return new ArrayList<>(this.currentItem);
    }
 
