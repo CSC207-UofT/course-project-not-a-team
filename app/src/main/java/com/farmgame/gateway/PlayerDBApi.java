@@ -4,18 +4,11 @@ import static com.farmgame.constants.Constants.*;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.farmgame.entity.Player;
 
-public class UserUpdater {
+public class PlayerDBApi extends DataBaseAPI {
 
-    private static SQLiteDatabase db;
-
-
-    public static void setDb(SQLiteDatabase database){
-        db = database;
-    }
 
     public static Player createPlayer(String name){
         ContentValues contentValues = new ContentValues();
@@ -50,14 +43,9 @@ public class UserUpdater {
         contentValues.put(USER_LEVEL, level);
         contentValues.put(USER_EXP, exp);
 
-        Cursor cursor = db.query(USER, new String[]{"*"},
-                null, null, null, null, null);
-        cursor.moveToFirst();
-        String name = cursor.getString(cursor.getColumnIndex(USER_NAME));
-        cursor.close();
-
         return db.update(
-                USER, contentValues, USER_NAME + " = ?", new String[]{name}) == 1;
+                USER, contentValues, USER_NAME + " = ?",
+                new String[]{player.getName()}) == 1;
     }
 
     // player get money, spend money

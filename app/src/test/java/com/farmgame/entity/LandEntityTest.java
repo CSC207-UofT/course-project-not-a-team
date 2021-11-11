@@ -13,7 +13,7 @@ public class LandEntityTest {
     public void setUp() {
 
         Seeds plant = new Seeds("plantA", 30, 23, 43, 5);
-        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 0 , 0);
+        land = new LandEntity(LOCK_STATUS_LOCKED, plant,  23, 0 , 0, 0, 0);
     }
 
     @Test
