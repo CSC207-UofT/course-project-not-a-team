@@ -64,7 +64,7 @@ public class StoreSystem{
                  storePresenter.invalid_product();
                  return false;
              }
-             else if (object_price > this.store.getPlayerMoney()) {
+             else if (object_price > playerManager.getPlayer().getMoney()) {
                  storePresenter.not_enough_money();
                  return false;
              } else if (!this.warehouseManager.getWarehouse().checkCapacity()) {
