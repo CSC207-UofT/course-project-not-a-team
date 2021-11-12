@@ -44,14 +44,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        if (viewModel.getPlayer() != null){
+            navController.navigate(R.id.action_RegisterFragment_to_SecondFragment);
+        }
 
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }

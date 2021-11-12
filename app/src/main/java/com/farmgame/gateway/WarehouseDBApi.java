@@ -138,8 +138,7 @@ public class WarehouseDBApi extends DataBaseAPI {
                 PLAYER_NAME + " = ?", new String[]{name},
                 null ,null, null);
 
-        boolean isFirst = cursor.moveToFirst();
-        int co = cursor.getColumnIndex(LEVEL_CAPACITY);
+        cursor.moveToFirst();
         int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
         cursor.close();
 
