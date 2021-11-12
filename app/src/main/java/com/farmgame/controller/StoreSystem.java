@@ -28,6 +28,8 @@ public class StoreSystem implements Observer {
          this.store = store;
          this.playerManager = playerManager;
          this.warehouseManager = warehouseManager;
+
+         this.playerManager.addObserver(this);
      }
 
      /**
