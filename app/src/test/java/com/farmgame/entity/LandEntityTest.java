@@ -46,13 +46,13 @@ public class LandEntityTest {
 
     @Test
     public void getWaterTime() {
-        assertEquals(land.getWaterTime(), 30);
+        assertEquals(land.getWaterTime(), "-1");
     }
 
     @Test
     public void setWaterTime() {
         land.setWaterTime();
-        assertEquals(land.getWaterTime(), 60);
+        assertEquals(land.getWaterTime(), "-1");
     }
 
     @Test
