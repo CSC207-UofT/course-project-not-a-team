@@ -62,7 +62,7 @@ public class Initializer extends SQLiteOpenHelper {
         HashMap<String, Integer> map = new HashMap<>();
         map.put(ITEM_ID, INT);
         map.put(ITEM_NAME, TEXT);
-        map.put(ITEM_UNLOCK_LEVEL, INT);
+        map.put(ITEM_TYPE, TEXT);
         return createTable(ITEM, map, ITEM_ID);
     }
 
