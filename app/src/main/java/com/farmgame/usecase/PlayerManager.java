@@ -1,9 +1,6 @@
 package com.farmgame.usecase;
 
 import static com.farmgame.constants.Constants.*;
-
-import android.util.Log;
-
 import com.farmgame.entity.Player;
 import com.farmgame.gateway.PlayerDBApi;
 
@@ -57,9 +54,7 @@ public class PlayerManager extends Observable {
             this.player.setLevel(this.player.getLevel() + 1) ;
 
             Integer exp = this.expMap.get(this.getPlayer().getLevel());
-            if (exp == null) {
-                Log.e("Error!", "exp is null!");} //???
-            else {
+            if (exp != null) {
                 this.player.getExp_bar()[1] = (int) exp;
             }
         }
