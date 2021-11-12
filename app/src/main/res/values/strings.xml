@@ -9,4 +9,6 @@
     <string name="Welcome">Welcome</string>
     <string name="username">username</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="shop">Shop</string>
+    <string name="player">Player</string>
 </resources>

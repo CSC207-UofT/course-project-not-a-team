@@ -36,6 +36,8 @@ public class SecondFragment extends Fragment {
 
         binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(SecondFragment.this)
                 .navigate(R.id.action_SecondFragment_to_RegisterFragment));
+        final LoginViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
     }
 
     @Override
