@@ -12,7 +12,6 @@ public class LandEntityTest {
     @Before
     public void setUp() {
 
-        Seeds plant = new Seeds("plantA", 30, 23, 43, 5);
         land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , 0, 0, 0);
     }
 
@@ -20,7 +19,19 @@ public class LandEntityTest {
     public void getLockStatus() {
         assertEquals(land.getLockStatus(), LOCK_STATUS_LOCKED);
     }
-//
+
+    @Test
+    public void test_getIndex_setIndex(){
+        land.setIndex(1);
+        assertEquals(1, land.getIndex());
+    }
+
+    @Test
+    public void test_setPrice() {
+        land.setPrice(1000);
+        assertEquals(1000, land.getPrice());
+    }
+
     @Test
     public void setLockStatus() {
         land.setLockStatus(LOCK_STATUS_BOUGHT);
