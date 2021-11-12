@@ -20,6 +20,7 @@ import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LoginViewModel extends ViewModel {
 
@@ -65,6 +66,10 @@ public class LoginViewModel extends ViewModel {
 
     public Warehouse getWarehouse(){
             return wm.getWarehouse();
+    }
+
+    public LandEntity getLand(int landIndex){
+        return Objects.requireNonNull(lmMap.get(landIndex)).getLand();
     }
 
 

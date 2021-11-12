@@ -50,7 +50,7 @@ public class LandManager extends Observable {
             land.setPlant(plant);
             land.setWaterTime();
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
     }
 
 
@@ -61,12 +61,12 @@ public class LandManager extends Observable {
      * @param pm the player manager to manage the player
      */
     public void harvest(PlayerManager pm, WarehouseManipulate wm){
-        if (land.getStage() == 2 && land.getWaterTime() == "-1"){
+        if (land.getStage() == 2 && land.getWaterTime().equals("-1")){
             wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 
@@ -80,7 +80,7 @@ public class LandManager extends Observable {
         if (!land.isFertilize()) {
             ((Fertilizer) fertilizer).use(this.land);
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 
@@ -93,7 +93,7 @@ public class LandManager extends Observable {
         if (land.getStage() < 2 && !land.isWet()){
             ((WateringCan) wateringCan).use(this.land);
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 }

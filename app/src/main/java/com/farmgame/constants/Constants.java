@@ -86,12 +86,9 @@ public class Constants {
 
 
     // observable messages Store
-    public static final int OB_LEVEL_UP = 0;
-    public static final int ADD_MONEY = 1;
-    public static final int SUBTRACT_MONEY = 2;
-    public static final int WAREHOUSE_ADD = 3;
-    public static final int WAREHOUSE_SUBTRACT = 4;
-    public static final int OB_LAND_CHANGED = 5;
+    public static final int UPDATE_PLAYER = 0;
+    public static final int UPDATE_WAREHOUSE = 1;
+    public static final int UPDATE_LAND = 2;
 
 
 }

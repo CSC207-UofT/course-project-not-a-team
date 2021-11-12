@@ -2,10 +2,12 @@ package com.farmgame.gateway;
 
 import static com.farmgame.constants.Constants.*;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 
 
 import com.farmgame.entity.LandEntity;
+import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
 
 import java.util.ArrayList;
@@ -32,5 +34,20 @@ public class LandDBApi extends DataBaseAPI {
         return map;
     }
 
+
+
+    public static void updateLand(int landIndex){
+        LandEntity land = vm.getLand(landIndex);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LAND_LOCK_STATUS, land.getLockStatus());
+        contentValues.put(LAND_PLANT, land.getPlant().getSeedId());
+        contentValues.put(LAND_WATER_TIME, land.getWaterTime());
+        contentValues.put(LAND_FERTILIZE_TIME, land.getFertilizeTime());
+        contentValues.put(LAND_STAGE, land.getStage());
+
+        db.update(
+                LAND, contentValues, LAND_INDEX + " = ?",
+                new String[]{String.valueOf(land.getIndex())});
+    }
 
 }
