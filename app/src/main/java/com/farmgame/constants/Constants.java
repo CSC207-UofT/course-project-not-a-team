@@ -10,25 +10,25 @@ public class Constants {
 
 
     // SQL Table Names
-    public static final String USER = "User";
+    public static final String PLAYER = "Player";
     public static final String PLANT = "Plant";
     public static final String ITEM = "Item";
     public static final String WAREHOUSE = "Warehouse";
     public static final String LEVEL = "Level";
     public static final String LAND = "Land";
+    public static final String STORE = "Store";
 
 
     // SQLite Column Type
     public static final int INT = 0;
-    public static final int REAL = 1;
-    public static final int TEXT = 2;
-    public static final int BOOLEAN = 3;
+    public static final int TEXT = 1;
+    public static final int BOOLEAN = 2;
 
     // User SQL Column names
-    public static final String USER_NAME = "name";
-    public static final String USER_LEVEL = "level";
-    public static final String USER_EXP = "exp";
-    public static final String USER_MONEY = "money";
+    public static final String PLAYER_NAME = "name";
+    public static final String PLAYER_LEVEL = "level";
+    public static final String PLAYER_EXP = "exp";
+    public static final String PLAYER_MONEY = "money";
 
 
     // Plant SQL Column names
@@ -39,10 +39,12 @@ public class Constants {
     public static final String PLANT_BUY_PRICE = "buyPrice";
     public static final String PLANT_SELL_PRICE = "sellPrice";
     public static final String PLANT_EXP = "exp";
+    public static final String PLANT_UNLOCK_LEVEL = "unlockLevel";
 
     // Item SQL Column names
     public static final String ITEM_ID = "id";
     public static final String ITEM_NAME = "name";
+    public static final String ITEM_UNLOCK_LEVEL = "unlockLevel";
 
 
     // Warehouse SQL Column names
@@ -53,16 +55,28 @@ public class Constants {
     // Level SQL Column names
     public static final String LEVEL_LEVEL = "level";
     public static final String LEVEL_EXP = "exp";
+    public static final String LEVEL_CAPACITY = "capacity";
+    public static final String LEVEL_LAND_MAX = "landMax";
 
     // Land SQL Column names
-    public static final String LAND_INDEX = "index";
+    public static final String LAND_INDEX = "landIndex";
     public static final String LAND_PRICE = "price";
     public static final String LAND_LOCK_STATUS = "lockStatus";
+    public static final String LAND_PLANT = "plant";
+    public static final String LAND_WATER_TIME = "waterTime";
+    public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
+    public static final String LAND_STAGE = "stage";
+
+
+    // Store SQL Column names
+    public static final String STORE_ID = "id";
+    public static final String STORE_TYPE = "type";
+    public static final String STORE_UNLOCK_LEVEL = "unlockLevel";
+
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
     public static final String TYPE_WATERING_CAN = "WateringCan";
-
     public static final String TYPE_SEED = "seed";
     public static final String TYPE_PLANT = "plant";
 

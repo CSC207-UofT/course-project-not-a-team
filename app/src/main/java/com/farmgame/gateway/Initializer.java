@@ -28,6 +28,10 @@ public class Initializer extends SQLiteOpenHelper {
         db.execSQL(createWarehouseTable());
         db.execSQL(createLevelTable());
         db.execSQL(createLandTable());
+        db.execSQL(createStoreTable());
+        if (!checkInit()){
+            initDataInsertion();
+        }
     }
 
     @Override
@@ -37,11 +41,11 @@ public class Initializer extends SQLiteOpenHelper {
 
     private String createUserTable(){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put(USER_NAME, TEXT);
-        map.put(USER_LEVEL, INT);
-        map.put(USER_EXP, INT);
-        map.put(USER_MONEY, INT);
-        return createTable(USER, map);
+        map.put(PLAYER_NAME, TEXT);
+        map.put(PLAYER_LEVEL, INT);
+        map.put(PLAYER_EXP, INT);
+        map.put(PLAYER_MONEY, INT);
+        return createTable(PLAYER, map , PLAYER_NAME);
     }
 
     private String createPlantTable(){
@@ -53,14 +57,16 @@ public class Initializer extends SQLiteOpenHelper {
         map.put(PLANT_BUY_PRICE, INT);
         map.put(PLANT_SELL_PRICE, INT);
         map.put(PLANT_EXP, INT);
-        return createTable(PLANT, map);
+        map.put(PLANT_UNLOCK_LEVEL, INT);
+        return createTable(PLANT, map, PLANT_ID);
     }
 
     private String createItemTable(){
         HashMap<String, Integer> map = new HashMap<>();
         map.put(ITEM_ID, INT);
         map.put(ITEM_NAME, TEXT);
-        return createTable(ITEM, map);
+        map.put(ITEM_UNLOCK_LEVEL, INT);
+        return createTable(ITEM, map, ITEM_ID);
     }
 
 
@@ -69,14 +75,16 @@ public class Initializer extends SQLiteOpenHelper {
         map.put(WAREHOUSE_TYPE, TEXT);
         map.put(WAREHOUSE_ID, INT);
         map.put(WAREHOUSE_QUANTITY, INT);
-        return createTable(WAREHOUSE, map);
+        return createTable(WAREHOUSE, map, WAREHOUSE_ID);
     }
 
     private String createLevelTable(){
         HashMap<String, Integer> map = new HashMap<>();
         map.put(LEVEL_LEVEL, INT);
         map.put(LEVEL_EXP, INT);
-        return createTable(LEVEL, map);
+        map.put(LEVEL_CAPACITY, INT);
+        map.put(LEVEL_LAND_MAX, INT);
+        return createTable(LEVEL, map, LEVEL_LEVEL);
     }
 
     private String createLandTable(){
@@ -84,24 +92,34 @@ public class Initializer extends SQLiteOpenHelper {
         map.put(LAND_INDEX, INT);
         map.put(LAND_PRICE, INT);
         map.put(LAND_LOCK_STATUS, BOOLEAN);
-        return createTable(LAND, map);
+        map.put(LAND_PLANT, INT);
+        map.put(LAND_WATER_TIME, INT);
+        map.put(LAND_FERTILIZE_TIME, INT);
+        map.put(LAND_STAGE, INT);
+        return createTable(LAND, map, LAND_INDEX);
     }
 
-    private static String createTable(String tableName, HashMap<String, Integer> map){
+    private String createStoreTable(){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put(STORE_ID, INT);
+        map.put(STORE_TYPE, TEXT);
+        map.put(STORE_UNLOCK_LEVEL, INT);
+        return createTable(STORE, map, STORE_ID);
+    }
+
+    private String createTable(String tableName, HashMap<String, Integer> map,
+                                      String primaryKey){
         return "CREATE TABLE IF NOT EXISTS " +
-                tableName + "(" + handlePropertySet(map) + ")";
+                tableName + "(" + handlePropertySet(map, primaryKey) + ")";
     }
 
-
-    private static String handlePropertySet(HashMap<String, Integer> map){
+    private String handlePropertySet(HashMap<String, Integer> map, String primaryKey){
         ArrayList<String> list = new ArrayList<>();
+        String primary = null;
         for (String key: map.keySet()){
             switch (map.get(key)){
                 case INT:
                     list.add(key + " INT");
-                    break;
-                case REAL:
-                    list.add(key + " REAL");
                     break;
                 case TEXT:
                     list.add(key + " TEXT");
@@ -110,8 +128,24 @@ public class Initializer extends SQLiteOpenHelper {
                     list.add(key + " BOOLEAN");
                     break;
             }
+            if (key.equals(primaryKey)){
+                primary = "PRIMARY KEY (" + key + ")";
+            }
         }
 
-        return String.join(",", list);
+        if (primary != null){
+            list.add(primary);
+        }
+
+
+        return String.join(", ", list);
+    }
+
+    private void initDataInsertion(){
+
+    }
+
+    private boolean checkInit(){
+        return PlayerDBApi.getPlayer() != null;
     }
 }

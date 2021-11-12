@@ -87,7 +87,7 @@ public class WarehouseDBApi extends DataBaseAPI {
 
         HashMap<Integer, ArrayList<Item>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
             ArrayList<Item> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(ITEM_NAME));
@@ -107,6 +107,23 @@ public class WarehouseDBApi extends DataBaseAPI {
             map.put(id, list);
         }
         cursor.close();
+        return map;
+    }
+
+    public static HashMap<Integer, Integer> getCapacityTable(){
+        Cursor cursor = db.query(
+                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_CAPACITY},
+                null, null, null ,null, null);
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        if (cursor.moveToNext()){
+            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
+            int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
+            map.put(level, capacity);
+        }
+
+        cursor.close();
+
         return map;
     }
 }

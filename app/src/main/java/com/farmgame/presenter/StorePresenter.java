@@ -4,7 +4,7 @@ public class StorePresenter {
     public StorePresenter(){}
 
     public void remaining_money(int money){
-        System.out.println("You have " + money + "remaining");
+        System.out.println("You have " + money + " remaining");
     }
 
     public void invalid_product(){
@@ -26,7 +26,7 @@ public class StorePresenter {
     }
 
     public void sell_success(int money){
-        System.out.println("Congratulations! You have earned" + money);
+        System.out.println("Congratulations! You have earned " + money);
     }
 
     public void update_success(){
