@@ -29,7 +29,7 @@ public class LandManagerTest {
     HashMap<Integer, ArrayList<Item>> itemInventory = new HashMap<>();
     HashMap<Integer, ArrayList<Plants>> plantInventory = new HashMap<>();
     HashMap<Integer, ArrayList<Seeds>> seedInventory = new HashMap<>();
-    Warehouse warehouse = new Warehouse(player, itemInventory, plantInventory, seedInventory);
+    Warehouse warehouse = new Warehouse(itemInventory, plantInventory, seedInventory, 10);
     WarehouseManipulate wm = new WarehouseManager(warehouse);
     PlayerManager pm = new PlayerManager(player);
     Seeds plant1 = new Seeds("plantA", 30, 23, 10, 1);
@@ -66,9 +66,9 @@ public class LandManagerTest {
     }
     @Test
     public void watering(){
-        landManager.getLand().setWaterTime(0);
+        landManager.getLand().setWaterTime();
         landManager.watering(wateringCan);
-        assertEquals(100, landManager.getLand().getWaterTime());
+        assertEquals(100, Integer.parseInt(landManager.getLand().getWaterTime()));
         assertEquals(1, landManager.getLand().getStage());
     }
 }
