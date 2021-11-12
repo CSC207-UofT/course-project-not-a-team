@@ -1,6 +1,7 @@
 package com.farmgame.controller.LandActivitySystem;
 
 import com.farmgame.controller.System;
+import com.farmgame.gateway.LandDBApi;
 import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
@@ -16,14 +17,17 @@ public class LandChangeStatusSystem extends System {
 
     public void unlockLand() {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
-        if (landManager.getLand().getLockStatus() == 0) {
+        Integer max_unlock = LandDBApi.getLandMaxTable().get(playerManager.getPlayer().getLevel());
+        if (landManager.getLand().getLockStatus() == 0
+                && max_unlock !=null
+                && landManager.getLand().getIndex() <= max_unlock) {
             landManager.getLand().setLockStatus(1);
             // inform player that he/she has unlocked the land successfully
             changeStatusPresenter.lockSuccess();
 
         }
         else {
-            // return error: invalid initial lock status. This should happen during game
+            // return error: invalid initial lock status. This should not happen during game
         }
     }
 
@@ -43,7 +47,7 @@ public class LandChangeStatusSystem extends System {
             }
         }
         else {
-            // return error" invalid initial lock status. This should happen during game
+            // return error" invalid initial lock status. This should not happen during game
         }
     }
 }

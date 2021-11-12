@@ -6,8 +6,6 @@ import android.annotation.SuppressLint;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
-
 public class LandEntity {
     /**
      * Land entity class defines a block of land. It has attribute to indicate if the land is
@@ -22,25 +20,46 @@ public class LandEntity {
     private int price;
     private int index;
 
+    /**
+     * Getter for price attribute.
+     *
+     * @return the price of this land
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * Setter for price attribute.
+     *
+     * @param price the price of this land
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
+    /**
+     * Getter for the index attribute.
+     *
+     * @return the index of this land
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Setter for the index attribute.
+     *
+     * @param index the index of this land
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
     /**
      * Constructor of LandEntity class
-     *  @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     *
+     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
      * @param plant the plant grown on the land.
      * @param waterTime the cool down of water time, which depends on the plant.
      * @param stage the stage of the land.
@@ -101,6 +120,11 @@ public class LandEntity {
         return !this.getWaterTime().equals("-1");
     }
 
+    /**
+     * Getter for fertilizeTime.
+     *
+     * @return the fertilize time of this land
+     */
     public int getFertilizeTime() {
         return fertilizeTime;
     }
