@@ -7,14 +7,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentSecondBinding;
+import com.farmgame.viewModel.LoginViewModel;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
+    final LoginViewModel viewModel =
+            new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
 
     @Override
     public View onCreateView(
