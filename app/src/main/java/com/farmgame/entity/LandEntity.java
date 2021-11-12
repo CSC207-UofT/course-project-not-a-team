@@ -1,6 +1,12 @@
 package com.farmgame.entity;
 
 
+import android.annotation.SuppressLint;
+
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 public class LandEntity {
     /**
@@ -10,7 +16,7 @@ public class LandEntity {
      */
     private int lockStatus;
     private Seeds plant;
-    private int waterTime;
+    private String waterTime;
     private int fertilizeTime;
     private int stage;
     private int price;
@@ -41,7 +47,7 @@ public class LandEntity {
      * @param price the price of the land
      * @param index the index of the land
      */
-    public LandEntity(int lockStatus, Seeds plant, int waterTime, int stage, int fertilizeTime, int price, int index) {
+    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, int fertilizeTime, int price, int index) {
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.waterTime = waterTime;
@@ -92,7 +98,7 @@ public class LandEntity {
      * @return true if and only if the land is wet
      */
     public boolean isWet() {
-        return this.getWaterTime() != 0;
+        return !this.getWaterTime().equals("-1");
     }
 
     public int getFertilizeTime() {
@@ -114,7 +120,7 @@ public class LandEntity {
      * getter
      * @return the remaining water time
      */
-    public int getWaterTime() {
+    public String getWaterTime() {
         return waterTime;
     }
 
@@ -122,10 +128,14 @@ public class LandEntity {
 
     /**
      * setter of waterTime
-     * @param waterTime a waterTime to be set
+     *
      */
-    public void setWaterTime(int waterTime) {
-        this.waterTime = waterTime;
+    public void setWaterTime() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar nowTime = Calendar.getInstance();
+        nowTime.add(Calendar.MINUTE, this.plant.getPlantingTime());
+        this.waterTime = sdf.format(nowTime.getTime());
+
     }
 
 
@@ -148,7 +158,10 @@ public class LandEntity {
      */
     public void setPlant(Seeds plant) {
         this.plant = plant;
-        this.setWaterTime(plant.getPlantingTime());
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar nowTime = Calendar.getInstance();
+        nowTime.add(Calendar.MINUTE, plant.getPlantingTime());
+        this.waterTime = sdf.format(nowTime.getTime());
     }
 
 
@@ -181,7 +194,7 @@ public class LandEntity {
      */
     public void reset(){
         this.plant = null;
-        this.waterTime = 0;
+        this.waterTime = "-1";
         this.stage = 0;
         this.fertilizeTime = 0;
     }
