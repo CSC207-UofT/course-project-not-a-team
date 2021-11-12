@@ -1,7 +1,6 @@
 package com.farmgame.usecase;
 
 import com.farmgame.entity.Player;
-import com.farmgame.gateway.PlayerDBApi;
 
 public class PlayerManager {
     private final Player player;
@@ -55,7 +54,6 @@ public class PlayerManager {
             this.player.getExp_bar()[0] = 0;
         }
 
-        PlayerDBApi.levelUp(this.player);
     }
 
     /**
