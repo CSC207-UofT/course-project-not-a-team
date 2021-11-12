@@ -86,6 +86,6 @@ public class Constants {
 
 
     // observable messages
-    public static final int PLAYER_LEVEL_UP = 0;
+    public static final int OB_LEVEL_UP = 0;
 
 }

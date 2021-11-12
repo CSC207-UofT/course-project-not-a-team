@@ -1,13 +1,17 @@
 package com.farmgame.usecase;
 
+import static com.farmgame.constants.Constants.*;
+
 import android.util.Log;
 
 import com.farmgame.entity.Player;
+import com.farmgame.gateway.PlayerDBApi;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class PlayerManager {
+public class PlayerManager extends Observable {
     private final Player player;
     private final HashMap<Integer, Integer> expMap = PlayerDBApi.getExpTable();
 
@@ -62,6 +66,8 @@ public class PlayerManager {
         else {
             this.player.getExp_bar()[0] = 0;
         }
+        setChanged();
+        notifyObservers(OB_LEVEL_UP);
 
     }
 
