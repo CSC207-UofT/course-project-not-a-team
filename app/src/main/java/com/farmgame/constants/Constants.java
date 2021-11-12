@@ -44,7 +44,7 @@ public class Constants {
     // Item SQL Column names
     public static final String ITEM_ID = "id";
     public static final String ITEM_NAME = "name";
-    public static final String ITEM_UNLOCK_LEVEL = "unlockLevel";
+    public static final String ITEM_TYPE = "type";
 
 
     // Warehouse SQL Column names
