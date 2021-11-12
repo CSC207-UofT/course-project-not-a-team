@@ -1,10 +1,11 @@
 package com.farmgame.controller.LandActivitySystem;
 
+import com.farmgame.controller.System;
 import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
 
-public class LandChangeStatusSystem {
+public class LandChangeStatusSystem extends System {
     private final LandManager landManager;
     private final PlayerManager playerManager;
 
