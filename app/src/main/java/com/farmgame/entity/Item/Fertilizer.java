@@ -75,6 +75,6 @@ public class Fertilizer implements Item, StoreAble {
      */
     @Override
     public void use(LandEntity land) {
-        land.setWaterTime(land.getPlant().getPlantingTime() / 3);
+        land.addStage();
     }
 }
