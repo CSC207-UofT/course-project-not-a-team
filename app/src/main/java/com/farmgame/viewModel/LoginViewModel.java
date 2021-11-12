@@ -30,8 +30,12 @@ public class LoginViewModel extends ViewModel {
         db = database;
         initDatabaseAPIs();
         if (PlayerDBApi.hasPlayer()){
-            addManagers();
+            initWhenHasPlayer();
         }
+    }
+
+    public void initWhenHasPlayer(){
+        addManagers();
     }
 
     public void addManagers(){
