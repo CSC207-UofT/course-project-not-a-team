@@ -79,15 +79,6 @@ public class StoreSystem extends System {
                  return true;
              }
          }
-
-
-//         if (getObjectPrice(object) == -1) {
-//                return false;
-//         } else if (object instanceof Item) {
-//                return getObjectPrice(object) <= this.store.getPlayerMoney();
-//         } else {
-//                return ((Seeds) object).getBuyingPrice() <= this.store.getPlayerMoney();
-
      /**
      * If the buy is valid, then subtract money from this player's account and then add
      * this object to warehouse.
