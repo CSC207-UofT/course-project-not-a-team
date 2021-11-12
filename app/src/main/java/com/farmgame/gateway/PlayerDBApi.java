@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class PlayerDBApi extends DataBaseAPI {
 
 
-    public static Player createPlayer(String name){
+    public static void createPlayer(String name){
         ContentValues contentValues = new ContentValues();
         contentValues.put(PLAYER_NAME, name);
         contentValues.put(PLAYER_LEVEL, 1);
@@ -20,7 +20,9 @@ public class PlayerDBApi extends DataBaseAPI {
         contentValues.put(PLAYER_EXP, 0);
         db.insert(PLAYER, null, contentValues);
 
-        return getPlayer();
+        db.execSQL("INSERT INTO LEVEL VALUES (1, 10, 10, 1)");
+        db.execSQL("INSERT INTO LAND VALUES(0, 10, 0, 1, 1, 1, 0)");
+
 
     }
 
