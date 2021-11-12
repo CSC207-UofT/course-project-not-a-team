@@ -1,5 +1,6 @@
 package com.farmgame.controller.LandActivitySystem;
 
+import com.farmgame.controller.System;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.gateway.PlantDBApi;
@@ -9,7 +10,7 @@ import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
-public class LandHarvestPlantSystem {
+public class LandHarvestPlantSystem extends System {
     private final WarehouseManager warehouseManager;
     private final LandManager landManager;
     private final PlayerManager playerManager;

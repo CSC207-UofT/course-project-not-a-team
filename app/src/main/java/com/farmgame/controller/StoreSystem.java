@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-public class StoreSystem implements Observer {
+public class StoreSystem extends System {
     /**
      * StoreManager is a class that manages the buying and selling transaction between player
      * and store. The player can only trade plants, items with store. The attribute store is the
@@ -134,20 +134,5 @@ public class StoreSystem implements Observer {
         }
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-         int state = (int) arg;
-         switch (state){
-             case OB_LEVEL_UP:
-                 break;
-                 case ADD_MONEY:
-                     break;
-                     case SUBTRACT_MONEY:
-                         break;
-                         case WAREHOUSE_ADD:
-                             break;
-
-    }
-     }
 }
 

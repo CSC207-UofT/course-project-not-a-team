@@ -3,6 +3,7 @@ package com.farmgame.controller.LandActivitySystem;
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 
+import com.farmgame.controller.System;
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
@@ -11,7 +12,7 @@ import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
-public class LandManagePlantStatusSystem {
+public class LandManagePlantStatusSystem extends System {
     private final WarehouseManager warehouseManager;
     private final LandManager landManager;
 

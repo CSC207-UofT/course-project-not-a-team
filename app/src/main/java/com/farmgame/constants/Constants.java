@@ -91,6 +91,7 @@ public class Constants {
     public static final int SUBTRACT_MONEY = 2;
     public static final int WAREHOUSE_ADD = 3;
     public static final int WAREHOUSE_SUBTRACT = 4;
+    public static final int OB_LAND_CHANGED = 5;
 
 
 }
