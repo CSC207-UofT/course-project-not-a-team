@@ -3,7 +3,6 @@ package com.farmgame.usecase;
 import android.util.Log;
 
 import com.farmgame.entity.Player;
-import com.farmgame.gateway.PlayerDBApi;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -64,7 +63,6 @@ public class PlayerManager {
             this.player.getExp_bar()[0] = 0;
         }
 
-        PlayerDBApi.levelUp(this.player);
     }
 
     /**

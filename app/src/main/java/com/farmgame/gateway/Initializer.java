@@ -29,9 +29,6 @@ public class Initializer extends SQLiteOpenHelper {
         db.execSQL(createLevelTable());
         db.execSQL(createLandTable());
         db.execSQL(createStoreTable());
-        if (!checkInit()){
-            initDataInsertion();
-        }
     }
 
     @Override
@@ -145,7 +142,4 @@ public class Initializer extends SQLiteOpenHelper {
 
     }
 
-    private boolean checkInit(){
-        return PlayerDBApi.hasPlayer();
-    }
 }
