@@ -24,6 +24,11 @@ public class PlayerDBApi extends DataBaseAPI {
 
     }
 
+
+    public static boolean hasPlayer(){
+        return PlayerDBApi.getPlayer() != null;
+    }
+
     public static Player getPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);

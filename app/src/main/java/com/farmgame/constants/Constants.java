@@ -84,4 +84,8 @@ public class Constants {
     // Missing Value
     public static final int MISSING_VALUE = -1;
 
+
+    // observable messages
+    public static final int PLAYER_LEVEL_UP = 0;
+
 }

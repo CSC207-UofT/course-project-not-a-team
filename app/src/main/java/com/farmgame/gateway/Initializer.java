@@ -146,6 +146,6 @@ public class Initializer extends SQLiteOpenHelper {
     }
 
     private boolean checkInit(){
-        return PlayerDBApi.getPlayer() != null;
+        return PlayerDBApi.hasPlayer();
     }
 }

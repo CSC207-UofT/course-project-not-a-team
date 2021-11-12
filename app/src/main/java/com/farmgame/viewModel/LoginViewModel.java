@@ -5,38 +5,57 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
+import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
+import com.farmgame.entity.Warehouse;
 import com.farmgame.gateway.PlantDBApi;
 import com.farmgame.gateway.PlayerDBApi;
 import com.farmgame.gateway.WarehouseDBApi;
+import com.farmgame.usecase.LandManager;
+import com.farmgame.usecase.PlayerManager;
+import com.farmgame.usecase.WarehouseManager.WarehouseManager;
+
+import java.util.HashMap;
 
 public class LoginViewModel extends ViewModel {
 
-    private final MutableLiveData<SQLiteDatabase> dbMutableLiveData = new MutableLiveData<>();
-    private final MutableLiveData<Player>  playerMutableLiveData = new MutableLiveData<>();
+    private SQLiteDatabase db;
 
-    public void initViewModel(SQLiteDatabase db){
-        dbMutableLiveData.setValue(db);
-        initUpdaters();
-        playerMutableLiveData.setValue(PlayerDBApi.getPlayer());
+    private PlayerManager pm;
+    private WarehouseManager wm;
+    private HashMap<Integer, LandManager> lmMap;
+
+    public void initViewModel(SQLiteDatabase database){
+        db = database;
+        initDatabaseAPIs();
+        if (PlayerDBApi.hasPlayer()){
+            addManagers();
+        }
+    }
+
+    public void addManagers(){
+        pm = new PlayerManager(PlayerDBApi.getPlayer());
+        wm = new WarehouseManager(WarehouseDBApi.getWarehouse());
     }
 
     public SQLiteDatabase getDB(){
-        return dbMutableLiveData.getValue();
+        return db;
     }
 
     public Player getPlayer(){
-        return playerMutableLiveData.getValue();
+        return pm.getPlayer();
     }
 
-    public void setPlayer(Player player){
-        playerMutableLiveData.setValue(player);
+    public Warehouse getWarehouse(){
+            return wm.getWarehouse();
     }
 
-    private void initUpdaters(){
-        PlayerDBApi.setDb(getDB());
-        WarehouseDBApi.setDb(getDB());
-        PlantDBApi.setDb(getDB());
+
+    private void initDatabaseAPIs(){
+        PlayerDBApi.setViewModel(this);
+        WarehouseDBApi.setViewModel(this);
+        PlantDBApi.setViewModel(this);
     }
 
 }
