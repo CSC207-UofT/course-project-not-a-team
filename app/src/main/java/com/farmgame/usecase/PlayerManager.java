@@ -1,12 +1,18 @@
 package com.farmgame.usecase;
 
+import android.util.Log;
+
 import com.farmgame.entity.Player;
+
+import java.util.Collections;
+import java.util.HashMap;
 
 public class PlayerManager {
     private final Player player;
+    private final HashMap<Integer, Integer> expMap = PlayerDBApi.getExpTable();
 
     // constant
-    private final int MAX_LEVEL = 50;
+    private final int MAX_LEVEL = Collections.max(expMap.keySet());
 
     /**
      * Constructor for PlayerManager
@@ -46,9 +52,12 @@ public class PlayerManager {
         if (this.player.getLevel() < MAX_LEVEL) {
             this.player.setLevel(this.player.getLevel() + 1) ;
 
-            // how to calculate new exp_bar when level up?
-            int LEVEL_1_EXP = 10;
-            this.player.getExp_bar()[1] = this.player.getLevel() * LEVEL_1_EXP;
+            Integer exp = this.expMap.get(this.getPlayer().getLevel());
+            if (exp == null) {
+                Log.e("Error!", "exp is null!");} //???
+            else {
+                this.player.getExp_bar()[1] = (int) exp;
+            }
         }
         else {
             this.player.getExp_bar()[0] = 0;
