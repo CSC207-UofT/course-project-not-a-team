@@ -78,6 +78,8 @@ public class PlayerManager extends Observable {
      */
     public void addMoney(int money_num) {
         this.player.setMoney(this.player.getMoney() + money_num);
+        setChanged();
+        notifyObservers(ADD_MONEY);
     }
 
     /**
@@ -92,6 +94,8 @@ public class PlayerManager extends Observable {
         }
         else {
             this.player.setMoney(this.player.getMoney() - money_num);
+            setChanged();
+            notifyObservers(SUBTRACT_MONEY);
             return true;
         }
     }

@@ -1,13 +1,17 @@
 package com.farmgame.usecase;
 
+import static com.farmgame.constants.Constants.*;
+
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.WarehouseManager.WarehouseManipulate;
 
+import java.util.Observable;
 
-public class LandManager {
+
+public class LandManager extends Observable {
     /**
      * A use case class of LandEntity, which stores a land to manage.
      */
@@ -45,6 +49,8 @@ public class LandManager {
     public void planting(Seeds plant){
             land.setPlant(plant);
             land.setWaterTime();
+            setChanged();
+            notifyObservers(OB_LAND_CHANGED);
     }
 
 
@@ -59,6 +65,8 @@ public class LandManager {
             wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
+            setChanged();
+            notifyObservers(OB_LAND_CHANGED);
         }
     }
 
@@ -71,6 +79,8 @@ public class LandManager {
     public void fertilize(StoreAble fertilizer){
         if (!land.isFertilize()) {
             ((Fertilizer) fertilizer).use(this.land);
+            setChanged();
+            notifyObservers(OB_LAND_CHANGED);
         }
     }
 
@@ -82,6 +92,8 @@ public class LandManager {
     public void watering(StoreAble wateringCan){
         if (land.getStage() < 2 && !land.isWet()){
             ((WateringCan) wateringCan).use(this.land);
+            setChanged();
+            notifyObservers(OB_LAND_CHANGED);
         }
     }
 }

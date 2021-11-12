@@ -44,7 +44,7 @@ public class Constants {
     // Item SQL Column names
     public static final String ITEM_ID = "id";
     public static final String ITEM_NAME = "name";
-    public static final String ITEM_UNLOCK_LEVEL = "unlockLevel";
+    public static final String ITEM_TYPE = "type";
 
 
     // Warehouse SQL Column names
@@ -85,7 +85,13 @@ public class Constants {
     public static final int MISSING_VALUE = -1;
 
 
-    // observable messages
+    // observable messages Store
     public static final int OB_LEVEL_UP = 0;
+    public static final int ADD_MONEY = 1;
+    public static final int SUBTRACT_MONEY = 2;
+    public static final int WAREHOUSE_ADD = 3;
+    public static final int WAREHOUSE_SUBTRACT = 4;
+    public static final int OB_LAND_CHANGED = 5;
+
 
 }
