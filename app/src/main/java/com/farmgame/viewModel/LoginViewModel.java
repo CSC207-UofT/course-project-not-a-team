@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
+import com.farmgame.controller.StoreSystem;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
+import com.farmgame.entity.Store;
 import com.farmgame.entity.Warehouse;
 import com.farmgame.gateway.PlantDBApi;
 import com.farmgame.gateway.PlayerDBApi;
+import com.farmgame.gateway.StoreDBApi;
 import com.farmgame.gateway.WarehouseDBApi;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
@@ -26,6 +29,8 @@ public class LoginViewModel extends ViewModel {
     private WarehouseManager wm;
     private HashMap<Integer, LandManager> lmMap;
 
+    private StoreSystem ss;
+
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
@@ -35,12 +40,19 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void initWhenHasPlayer(){
-        addManagers();
+        addSystems();
     }
 
-    public void addManagers(){
+    private void addManagers(){
         pm = new PlayerManager(PlayerDBApi.getPlayer());
         wm = new WarehouseManager(WarehouseDBApi.getWarehouse());
+    }
+
+    private void addSystems(){
+        addManagers();
+
+        Store store = new Store(StoreDBApi.getPlantList(), StoreDBApi.getSeedList(), StoreDBApi.getItemList());
+        ss = new StoreSystem(store, pm, wm);
     }
 
     public SQLiteDatabase getDB(){
