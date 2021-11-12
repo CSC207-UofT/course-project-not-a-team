@@ -44,7 +44,7 @@ public class LandManager {
      */
     public void planting(Seeds plant){
             land.setPlant(plant);
-            land.setWaterTime(plant.getPlantingTime());
+            land.setWaterTime();
     }
 
 
