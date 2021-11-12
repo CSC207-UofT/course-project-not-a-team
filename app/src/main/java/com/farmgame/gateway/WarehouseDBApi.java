@@ -130,12 +130,16 @@ public class WarehouseDBApi extends DataBaseAPI {
         Player player = vm.getPlayer();
         String name = player.getName();
 
+//        String rawQuery = "SELECT ? FROM " + innerJoin(PLAYER, LEVEL, LEVEL_LEVEL);
+//        Cursor cursor = db.rawQuery(rawQuery, new String[]{LEVEL_CAPACITY});
+
         Cursor cursor = db.query(
-                PLAYER + " INNER JOIN " + LEVEL, new String[]{LEVEL_CAPACITY},
+                PLAYER + " NATURAL JOIN " + LEVEL, new String[]{LEVEL_CAPACITY},
                 PLAYER_NAME + " = ?", new String[]{name},
                 null ,null, null);
 
-
+        boolean isFirst = cursor.moveToFirst();
+        int co = cursor.getColumnIndex(LEVEL_CAPACITY);
         int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
         cursor.close();
 
