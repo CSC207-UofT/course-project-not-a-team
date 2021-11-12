@@ -59,9 +59,10 @@ public class LandManager extends Observable {
      * To harvest the land if it is harvestable
      *
      * @param pm the player manager to manage the player
+     * @param wm the warehouse manipulate to manage the warehouse
      */
     public void harvest(PlayerManager pm, WarehouseManipulate wm){
-        if (land.getStage() == 2 && land.getWaterTime() == "-1"){
+        if (land.getStage() == 2 && land.getWaterTime().equals("-1")){
             wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
@@ -75,6 +76,7 @@ public class LandManager extends Observable {
     /**
      * To fertilize this land
      *
+     * @param fertilizer the fertilizer used to fertilize the land
      */
     public void fertilize(StoreAble fertilizer){
         if (!land.isFertilize()) {
@@ -88,6 +90,8 @@ public class LandManager extends Observable {
 
     /**
      * To water the land
+     *
+     * @param wateringCan the watering can used to water the land
      */
     public void watering(StoreAble wateringCan){
         if (land.getStage() < 2 && !land.isWet()){
