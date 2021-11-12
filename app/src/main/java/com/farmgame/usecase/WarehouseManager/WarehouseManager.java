@@ -29,19 +29,6 @@ public class WarehouseManager implements WarehouseManipulate{
     }
 
 
-
-//    public Item getItem(String s) {
-//        ArrayList<Item> lst = this.warehouse.getItemInventory();
-//        for (Item item : lst) {
-//            if (item.getName().equals(s)) {
-//                lst.remove(item);
-//                this.warehouse.setItemInventory(lst);
-//                return item;
-//            }
-//        }
-//        return null;
-//    }
-
     /**
      * Add product to warehouse hashmap according to its type
      * @param object given an StoreAble object
@@ -52,21 +39,40 @@ public class WarehouseManager implements WarehouseManipulate{
             if (object instanceof Item) {
                 HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
                 if(tempItemList.containsKey(((Item) object).getId())){
-                    tempItemList.put(((Item) object).getId(), tempItemList.get(((Plants) object).getPlantID()));
+                    ArrayList<Item> addItemArrayList =  tempItemList.get(((Item) object).getId());
+                    assert addItemArrayList != null;
+                    addItemArrayList.add((Item) object);
+                    tempItemList.put(((Item) object).getId(),addItemArrayList);
+                }else{
+                    ArrayList<Item> addItemArrayListCP = new ArrayList<>();
+                    addItemArrayListCP.add((Item) object);
+                    tempItemList.put(((Item) object).getId(),addItemArrayListCP);
                 }
                 this.warehouse.setItemInventory(tempItemList);
             }else if (object instanceof Plants){
                 HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
                 if(tempPlantsList.containsKey(((Plants) object).getPlantID())){
-                    tempPlantsList.put(((Plants) object).getPlantID(), tempPlantsList.get(((Plants) object).getPlantID()));
-
+                    ArrayList<Plants> addPlantsArrayList =  tempPlantsList.get(((Plants) object).getPlantID());
+                    assert addPlantsArrayList != null;
+                    addPlantsArrayList.add((Plants) object);
+                    tempPlantsList.put(((Plants) object).getPlantID(), addPlantsArrayList);
+                }else{
+                    ArrayList<Plants> addPlantsArrayListCP = new ArrayList<>();
+                    addPlantsArrayListCP.add((Plants) object);
+                    tempPlantsList.put(((Plants) object).getPlantID(), addPlantsArrayListCP);
                 }
                 this.warehouse.setPlantInventory(tempPlantsList);
             }else if (object instanceof Seeds){
                 HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
                 if(tempSeedList.containsKey(((Seeds) object).getSeedId())){
-                    tempSeedList.put(((Seeds) object).getSeedId(), tempSeedList.get(((Seeds) object).getSeedId()));
-
+                    ArrayList<Seeds> addSeedsArrayList =  tempSeedList.get(((Seeds) object).getSeedId());
+                    assert addSeedsArrayList != null;
+                    addSeedsArrayList.add((Seeds) object);
+                    tempSeedList.put(((Seeds) object).getSeedId(), addSeedsArrayList);
+                }else{
+                    ArrayList<Seeds> addSeedsArrayListCP =  new ArrayList<>();
+                    addSeedsArrayListCP.add((Seeds) object);
+                    tempSeedList.put(((Seeds) object).getSeedId(), addSeedsArrayListCP);
                 }
                 this.warehouse.setSeedInventory(tempSeedList);
             }
@@ -125,41 +131,5 @@ public class WarehouseManager implements WarehouseManipulate{
             this.warehouse.setSeedInventory(tempSeedList);
         }
     }
-//
-//    @Override
-//    public StoreAble getProduct(String s) {
-//        HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
-//        HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-//        for (ArrayList<Item> tempIterateItemList:tempItemList.values()) {
-//            if(tempIterateItemList.get(0).getName().equals(s)){
-//                if(tempItemList.size()>1){
-//                    Item resultItem = tempIterateItemList.get(0);
-//                    tempItemList.put(tempIterateItemList.get(0).getId(), tempIterateItemList.remove(tempIterateItemList.get(0)));
-//                    return (StoreAble) resultItem;
-//                }else{
-//                    Item resultItem = tempIterateItemList.get(0);
-//                    tempItemList.remove(object.getId());
-//                    return (StoreAble) resultItem;
-//                }
-//
-//            }
-//        }
-//        for (ArrayList<Plants> plantIteratePlantsList:tempPlantsList.values()) {
-//            if(plantIteratePlantsList.get(0).getName().equals(s)){
-//                if(tempPlantsList.size()>1){
-//                    Plants resultPlants = plantIteratePlantsList.get(0);
-//                    plantIteratePlantsList.remove(resultPlants);
-//                    tempPlantsList.put(plantIteratePlantsList.get(0).getPlantID(), plantIteratePlantsList);
-//                    return (StoreAble) resultPlants;
-//                }else{
-//                    Plants resultPlants = plantIteratePlantsList.get(0);
-//                    tempPlantsList.put(plantIteratePlantsList.get(0).getPlantID(), new ArrayList<Plants>());
-//                    return (StoreAble) resultPlants;
-//                }
-//
-//            }
-//        }
-//    }
-
 
 }
