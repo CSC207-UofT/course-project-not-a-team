@@ -19,23 +19,34 @@ public class WarehouseManagerTest {
     HashMap<Integer, ArrayList<Plants>> plantInventory = new HashMap<>();
     HashMap<Integer, ArrayList<Seeds>> seedInventory = new HashMap<>();
     Warehouse warehouse = new Warehouse(itemInventory, plantInventory,seedInventory,20);
+    WarehouseManager wm = new WarehouseManager(warehouse);
+
+
+    HashMap<Integer, ArrayList<Item>> itemInventory2 = new HashMap<>();
+    HashMap<Integer, ArrayList<Plants>> plantInventory2 = new HashMap<>();
+    HashMap<Integer, ArrayList<Seeds>> seedInventory2 = new HashMap<>();
+    Warehouse warehouse2 = new Warehouse(itemInventory2, plantInventory2,seedInventory2,20);
+    WarehouseManager wm2 = new WarehouseManager(warehouse2);
+
+
     Plants potato = new Plants("Potato", 60, 12);
     Plants berry = new Plants("Berry", 60, 11);
-    WarehouseManager wm = new WarehouseManager(warehouse);
+
     @Test(timeout = 50)
     public void test_getWarehouse(){
-        Warehouse warehouse2 = new Warehouse(this.itemInventory, this.plantInventory,this.seedInventory,20);
-        assertEquals(warehouse2, wm.getWarehouse());
+        assertEquals(this.warehouse, wm.getWarehouse());
     }
     @Test(timeout = 50)
     public void test_addProduct() {
         this.wm.addProduct(this.potato);
+
         ArrayList<Plants> plantsArrayList = new ArrayList<>();
         plantsArrayList.add(this.potato);
-        HashMap<Integer, ArrayList<Plants>> tempPlantInventory = new HashMap<>();
-        tempPlantInventory.put(10, plantsArrayList);
-        Warehouse warehouse2 = new Warehouse(this.itemInventory, tempPlantInventory,this.seedInventory,20);
-        assertEquals(warehouse2, wm.getWarehouse());
+        plantInventory2.put(12, plantsArrayList);
+        warehouse2.setPlantInventory(plantInventory2);
+
+        assertEquals(wm.getWarehouse().getPlantInventory().get(12),wm2.getWarehouse().getPlantInventory().get(12));
+
 
     }
     @Test(timeout = 50)
@@ -49,10 +60,9 @@ public class WarehouseManagerTest {
 
         ArrayList<Plants> berryArrayList2 = new ArrayList<>();
         berryArrayList2.add(this.berry);
-        HashMap<Integer, ArrayList<Plants>> tempPlantInventory2 = new HashMap<>();
-        tempPlantInventory2.put(10,berryArrayList2);
-        Warehouse warehouse3 = new Warehouse(this.itemInventory, tempPlantInventory2,this.seedInventory,20);
-        assertEquals(warehouse3, wm.getWarehouse());
+        this.plantInventory2.put(11,berryArrayList2);
+        warehouse2.setPlantInventory(this.plantInventory2);
+        assertEquals(this.wm2.getWarehouse().getPlantInventory(), this.wm.getWarehouse().getPlantInventory());
 
     }
 
