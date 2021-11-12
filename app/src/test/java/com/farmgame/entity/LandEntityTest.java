@@ -40,13 +40,13 @@ public class LandEntityTest {
 
     @Test
     public void isEmpty() {
-        assertFalse(land.isEmpty());
+        assertTrue(land.isEmpty());
     }
 
 
     @Test
     public void isWet() {
-        assertTrue(land.isWet());
+        assertFalse(land.isWet());
     }
 
 
@@ -57,12 +57,6 @@ public class LandEntityTest {
 
     @Test
     public void getWaterTime() {
-        assertEquals(land.getWaterTime(), "-1");
-    }
-
-    @Test
-    public void setWaterTime() {
-        land.setWaterTime();
         assertEquals(land.getWaterTime(), "-1");
     }
 
