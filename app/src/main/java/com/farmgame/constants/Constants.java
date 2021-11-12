@@ -27,7 +27,7 @@ public class Constants {
     // User SQL Column names
     public static final String PLAYER_NAME = "name";
     public static final String PLAYER_LEVEL = "level";
-    public static final String PLAYER_EXP = "exp";
+    public static final String PLAYER_EXP = "playerExp";
     public static final String PLAYER_MONEY = "money";
 
 
@@ -38,7 +38,7 @@ public class Constants {
     public static final String PLANT_TIME = "time";
     public static final String PLANT_BUY_PRICE = "buyPrice";
     public static final String PLANT_SELL_PRICE = "sellPrice";
-    public static final String PLANT_EXP = "exp";
+    public static final String PLANT_EXP = "plantExp";
     public static final String PLANT_UNLOCK_LEVEL = "unlockLevel";
 
     // Item SQL Column names
