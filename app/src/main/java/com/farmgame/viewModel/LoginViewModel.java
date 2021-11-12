@@ -53,6 +53,7 @@ public class LoginViewModel extends ViewModel {
 
         Store store = new Store(StoreDBApi.getPlantList(), StoreDBApi.getSeedList(), StoreDBApi.getItemList());
         ss = new StoreSystem(store, pm, wm);
+        pm.addObserver(ss);
     }
 
     public SQLiteDatabase getDB(){
