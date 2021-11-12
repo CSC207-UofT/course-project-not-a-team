@@ -8,7 +8,9 @@ import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.Plants;
+import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
+import com.farmgame.entity.Warehouse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,20 +112,41 @@ public class WarehouseDBApi extends DataBaseAPI {
         return map;
     }
 
-    public static HashMap<Integer, Integer> getCapacityTable(){
+//    public static HashMap<Integer, Integer> getCapacityTable(){
+//        Cursor cursor = db.query(
+//                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_CAPACITY},
+//                null, null, null ,null, null);
+//
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        if (cursor.moveToNext()){
+//            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
+//            int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
+//            map.put(level, capacity);
+//        }
+//
+//        cursor.close();
+//
+//        return map;
+//    }
+
+    public static Warehouse getWarehouse(){
+        return new Warehouse(getItemsMap(), getPlantsMap(), getSeedsMap(), getCapacity());
+    }
+
+    public static int getCapacity(){
+
+        Player player = vm.getPlayer();
+        String name = player.getName();
+
         Cursor cursor = db.query(
-                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_CAPACITY},
-                null, null, null ,null, null);
+                LEVEL + " NATURAL JOIN " + PLAYER, new String[]{LEVEL_CAPACITY},
+                PLAYER_NAME + " = ?", new String[]{name},
+                null ,null, null);
 
-        HashMap<Integer, Integer> map = new HashMap<>();
-        if (cursor.moveToNext()){
-            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
-            int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
-            map.put(level, capacity);
-        }
-
+        cursor.moveToFirst();
+        int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
         cursor.close();
 
-        return map;
+        return capacity;
     }
 }
