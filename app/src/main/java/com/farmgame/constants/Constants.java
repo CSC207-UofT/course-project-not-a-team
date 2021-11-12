@@ -85,7 +85,7 @@ public class Constants {
     public static final int MISSING_VALUE = -1;
 
 
-    // observable messages
+    // observable messages Store
     public static final int OB_LEVEL_UP = 0;
     public static final int ADD_MONEY = 1;
     public static final int SUBTRACT_MONEY = 2;
