@@ -1,6 +1,7 @@
 package com.farmgame.usecase;
 
 import static com.farmgame.constants.Constants.*;
+
 import com.farmgame.entity.Player;
 import com.farmgame.gateway.PlayerDBApi;
 
@@ -62,7 +63,7 @@ public class PlayerManager extends Observable {
             this.player.getExp_bar()[0] = 0;
         }
         setChanged();
-        notifyObservers(OB_LEVEL_UP);
+        notifyObservers(UPDATE_PLAYER);
 
     }
 
@@ -74,7 +75,7 @@ public class PlayerManager extends Observable {
     public void addMoney(int money_num) {
         this.player.setMoney(this.player.getMoney() + money_num);
         setChanged();
-        notifyObservers(ADD_MONEY);
+        notifyObservers(UPDATE_PLAYER);
     }
 
     /**
@@ -90,7 +91,7 @@ public class PlayerManager extends Observable {
         else {
             this.player.setMoney(this.player.getMoney() - money_num);
             setChanged();
-            notifyObservers(SUBTRACT_MONEY);
+            notifyObservers(UPDATE_PLAYER);
             return true;
         }
     }

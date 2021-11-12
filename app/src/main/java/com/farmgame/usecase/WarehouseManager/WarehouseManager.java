@@ -1,5 +1,6 @@
 package com.farmgame.usecase.WarehouseManager;
 
+import com.farmgame.constants.Constants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.entity.Item.Item;
@@ -81,7 +82,7 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
             }
         }
         setChanged();
-        notifyObservers(WAREHOUSE_ADD);
+        notifyObservers(UPDATE_WAREHOUSE);
 
     }
 
@@ -136,7 +137,7 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
             this.warehouse.setSeedInventory(tempSeedList);
         }
         setChanged();
-        notifyObservers(WAREHOUSE_SUBTRACT);
+        notifyObservers(Constants.UPDATE_WAREHOUSE);
     }
 
 

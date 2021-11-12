@@ -43,16 +43,19 @@ public class PlayerDBApi extends DataBaseAPI {
         return new Player(name, level, money, new int[]{exp, 10});
     }
 
-    public static boolean levelUp(Player player){
+    public static void updatePlayer(){
+        Player player = vm.getPlayer();
         int level = player.getLevel();
         int exp = player.getExp_bar()[0];
+        int money = player.getMoney();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PLAYER_LEVEL, level);
         contentValues.put(PLAYER_EXP, exp);
+        contentValues.put(PLAYER_MONEY, money);
 
-        return db.update(
+        db.update(
                 PLAYER, contentValues, PLAYER_NAME + " = ?",
-                new String[]{player.getName()}) == 1;
+                new String[]{player.getName()});
     }
 
     public static HashMap<Integer, Integer> getExpTable(){

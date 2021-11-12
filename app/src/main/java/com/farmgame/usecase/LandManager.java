@@ -50,7 +50,7 @@ public class LandManager extends Observable {
             land.setPlant(plant);
             land.setWaterTime();
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
     }
 
 
@@ -67,7 +67,7 @@ public class LandManager extends Observable {
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 
@@ -82,7 +82,7 @@ public class LandManager extends Observable {
         if (!land.isFertilize()) {
             ((Fertilizer) fertilizer).use(this.land);
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 
@@ -97,7 +97,7 @@ public class LandManager extends Observable {
         if (land.getStage() < 2 && !land.isWet()){
             ((WateringCan) wateringCan).use(this.land);
             setChanged();
-            notifyObservers(OB_LAND_CHANGED);
+            notifyObservers(UPDATE_LAND + land.getIndex());
         }
     }
 }
