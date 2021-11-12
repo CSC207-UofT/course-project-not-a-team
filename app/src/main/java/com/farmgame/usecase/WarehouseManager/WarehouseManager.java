@@ -8,8 +8,11 @@ import com.farmgame.entity.Warehouse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
+import static com.farmgame.constants.Constants.*;
 
-public class WarehouseManager implements WarehouseManipulate{
+
+public class WarehouseManager extends Observable implements WarehouseManipulate{
     private final Warehouse warehouse;
     /**
      * Initialize warehouse
@@ -77,6 +80,8 @@ public class WarehouseManager implements WarehouseManipulate{
                 this.warehouse.setSeedInventory(tempSeedList);
             }
         }
+        setChanged();
+        notifyObservers(WAREHOUSE_ADD);
 
     }
 
@@ -130,6 +135,9 @@ public class WarehouseManager implements WarehouseManipulate{
             }
             this.warehouse.setSeedInventory(tempSeedList);
         }
+        setChanged();
+        notifyObservers(WAREHOUSE_SUBTRACT);
     }
+
 
 }

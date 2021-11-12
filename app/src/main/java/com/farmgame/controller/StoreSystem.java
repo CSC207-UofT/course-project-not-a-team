@@ -30,6 +30,7 @@ public class StoreSystem implements Observer {
          this.warehouseManager = warehouseManager;
 
          this.playerManager.addObserver(this);
+         this.warehouseManager.addObserver(this);
      }
 
      /**
@@ -139,7 +140,14 @@ public class StoreSystem implements Observer {
          switch (state){
              case OB_LEVEL_UP:
                  break;
-         }
+                 case ADD_MONEY:
+                     break;
+                     case SUBTRACT_MONEY:
+                         break;
+                         case WAREHOUSE_ADD:
+                             break;
+
     }
+     }
 }
 

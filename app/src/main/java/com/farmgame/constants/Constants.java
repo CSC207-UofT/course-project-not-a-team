@@ -87,5 +87,10 @@ public class Constants {
 
     // observable messages
     public static final int OB_LEVEL_UP = 0;
+    public static final int ADD_MONEY = 1;
+    public static final int SUBTRACT_MONEY = 2;
+    public static final int WAREHOUSE_ADD = 3;
+    public static final int WAREHOUSE_SUBTRACT = 4;
+
 
 }
