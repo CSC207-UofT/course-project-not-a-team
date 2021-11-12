@@ -74,7 +74,7 @@ public class WateringCan implements Item, StoreAble {
      */
     @Override
     public void use(LandEntity land) {
-        land.setWaterTime(land.getPlant().getPlantingTime());
+        land.setWaterTime();
         land.addStage();
     }
 }

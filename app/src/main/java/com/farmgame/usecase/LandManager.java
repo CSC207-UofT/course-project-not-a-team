@@ -55,7 +55,7 @@ public class LandManager {
      * @param pm the player manager to manage the player
      */
     public void harvest(PlayerManager pm, WarehouseManipulate wm){
-        if (land.getStage() == 2 && land.getWaterTime() == 0){
+        if (land.getStage() == 2 && land.getWaterTime() == "-1"){
             wm.addProduct((StoreAble) this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
