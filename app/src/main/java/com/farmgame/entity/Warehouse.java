@@ -4,7 +4,6 @@ import com.farmgame.entity.Item.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Warehouse {
     private int capacity;
@@ -16,24 +15,15 @@ public class Warehouse {
     /**
      * Warehouse is a place where player can store items and plants.
      * Warehouse's capacity increases based on the player's level
-     * @param player The warehouse's capacity will increase as the player's level increase.
+     * @param itemInventory hashmap of item that stored in warehouse
+     * @param plantInventory hashmap of plant that stored in warehouse
+     * @param seedInventory hashmap of seed that stored in warehouse
+     * @param capacity   warehouse's capacity
      */
-    public Warehouse(Player player, HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer,
-            ArrayList<Plants>> plantInventory, HashMap<Integer, ArrayList<Seeds>> seedInventory){
-        int playerLevel = player.getLevel();
-        if (playerLevel >=1 && playerLevel <= 5){
-            this.capacity = 5;
-        }else if (playerLevel >5 && playerLevel <= 10){
-            this.capacity = 10;
-        }else if (playerLevel >10 && playerLevel <= 20){
-            this.capacity = 20;
-        }else if (playerLevel >20 && playerLevel <= 30){
-            this.capacity = 40;
-        }else if (playerLevel >30 && playerLevel <= 40){
-            this.capacity = 60;
-        }else{
-            this.capacity = 100;
-        }
+    public Warehouse( HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer,
+            ArrayList<Plants>> plantInventory, HashMap<Integer, ArrayList<Seeds>> seedInventory, int capacity) {
+        this.capacity = capacity;
+//        this.capacity = UserUpdater.getCapacity(playerLevel);
         this.itemInventory = itemInventory;
         this.plantInventory = plantInventory;
         this.seedInventory = seedInventory;
@@ -127,7 +117,7 @@ public class Warehouse {
         return false;
     }
 
-    public Boolean checkCapacity(){
+    public boolean checkCapacity(){
         int use = 0;
         for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
             use += plantsArrayList.size();
