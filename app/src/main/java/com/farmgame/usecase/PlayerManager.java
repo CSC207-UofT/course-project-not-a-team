@@ -11,10 +11,10 @@ import java.util.Observable;
 
 public class PlayerManager extends Observable {
     private final Player player;
-    private final HashMap<Integer, Integer> expMap = PlayerDBApi.getExpTable();
+    private final HashMap<Integer, Integer> expMap;
 
     // constant
-    private final int MAX_LEVEL = Collections.max(expMap.keySet());
+    private final int MAX_LEVEL;
 
     /**
      * Constructor for PlayerManager
@@ -23,6 +23,8 @@ public class PlayerManager extends Observable {
      */
     public PlayerManager(Player player) {
         this.player = player;
+        expMap = PlayerDBApi.getExpTable();
+        MAX_LEVEL = Collections.max(expMap.keySet());
     }
 
     /**

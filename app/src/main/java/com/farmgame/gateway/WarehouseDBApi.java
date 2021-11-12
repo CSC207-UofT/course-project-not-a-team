@@ -116,6 +116,9 @@ public class WarehouseDBApi extends DataBaseAPI {
     public static void update_warehouse(){
         Warehouse warehouse = vm.getWarehouse();
 
+        HashMap<Integer, ArrayList<Item>> itemMap = warehouse.getItemInventory();
+        HashMap<Integer, ArrayList<Plants>> plantMap = warehouse.getPlantInventory();
+        HashMap<Integer, ArrayList<Seeds>> seedMap = warehouse.getSeedInventory();
     }
 
     public static Warehouse getWarehouse(){
@@ -128,11 +131,11 @@ public class WarehouseDBApi extends DataBaseAPI {
         String name = player.getName();
 
         Cursor cursor = db.query(
-                LEVEL + " NATURAL JOIN " + PLAYER, new String[]{LEVEL_CAPACITY},
+                PLAYER + " INNER JOIN " + LEVEL, new String[]{LEVEL_CAPACITY},
                 PLAYER_NAME + " = ?", new String[]{name},
                 null ,null, null);
 
-        cursor.moveToFirst();
+
         int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
         cursor.close();
 
