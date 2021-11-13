@@ -83,6 +83,10 @@ public class Constants {
 
     // Missing Value
     public static final int MISSING_VALUE = -1;
+    //Invalid Purchase
+    public static final int NOT_ENOUGH_MONEY = -10;
+    public static final int NOT_ENOUGH_SPACE = -20;
+    public static final int SUCCESS = 10;
 
 
     // observable messages Store
