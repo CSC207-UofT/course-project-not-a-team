@@ -12,7 +12,7 @@ public class LandEntityTest {
     @Before
     public void setUp() {
 
-        land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , 0, 0, 0);
+        land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , false, 0, 0);
     }
 
     @Test
@@ -58,11 +58,6 @@ public class LandEntityTest {
     @Test
     public void getWaterTime() {
         assertEquals(land.getWaterTime(), "-1");
-    }
-
-    @Test
-    public void getFertilizeTime() {
-        assertEquals(land.getFertilizeTime(), 0);
     }
 
     @Test
