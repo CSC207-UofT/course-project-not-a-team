@@ -1,5 +1,6 @@
 package com.farmgame.Activity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -43,15 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        if (viewModel.getPlayer() != null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }
