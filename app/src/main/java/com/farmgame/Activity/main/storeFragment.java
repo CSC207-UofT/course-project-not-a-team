@@ -30,7 +30,6 @@ public class storeFragment extends Fragment {
         MainViewModel viewModel =
                 new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-        binding.setViewModel(viewModel);
 
 
         return root;

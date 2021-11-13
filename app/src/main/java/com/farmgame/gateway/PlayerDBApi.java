@@ -39,6 +39,8 @@ public class PlayerDBApi extends DataBaseAPI {
         db.update(
                 PLAYER, contentValues, PLAYER_NAME + " = ?",
                 new String[]{player.getName()});
+
+        vm.updatePlayer();
     }
 
     public static HashMap<Integer, Integer> getExpTable(){
