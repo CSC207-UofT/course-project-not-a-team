@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FarmGame">
         <activity
+            android:name=".Activity.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+        <activity
             android:name=".Activity.PlayerInfo_Activity"
             android:exported="true" />
         <activity
@@ -22,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
