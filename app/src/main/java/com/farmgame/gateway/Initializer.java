@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.farmgame.constants.Constants.*;
 
@@ -36,102 +35,95 @@ public class Initializer extends SQLiteOpenHelper {
     }
 
     private String createUserTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(PLAYER_NAME, TEXT);
-        map.put(PLAYER_LEVEL, INT);
-        map.put(PLAYER_EXP, INT);
-        map.put(PLAYER_MONEY, INT);
-        return createTable(PLAYER, map , PLAYER_NAME);
+        ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{PLAYER_NAME, TEXT});
+        list.add(new String[]{PLAYER_LEVEL, INT});
+        list.add(new String[]{PLAYER_EXP, INT});
+        list.add(new String[]{PLAYER_MONEY, INT});
+        return createTable(PLAYER, list , new String[]{PLAYER_NAME});
     }
 
     private String createPlantTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(PLANT_SEED_NAME, TEXT);
-        map.put(PLANT_MATURE_NAME, TEXT);
-        map.put(PLANT_TIME, INT);
-        map.put(PLANT_ID, INT);
-        map.put(PLANT_BUY_PRICE, INT);
-        map.put(PLANT_SELL_PRICE, INT);
-        map.put(PLANT_EXP, INT);
-        map.put(PLANT_UNLOCK_LEVEL, INT);
-        return createTable(PLANT, map, PLANT_ID);
+        ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{PLANT_ID, INT});
+        list.add(new String[]{PLANT_MATURE_NAME, TEXT});
+        list.add(new String[]{PLANT_SEED_NAME, TEXT});
+        list.add(new String[]{PLANT_TIME, INT});
+        list.add(new String[]{PLANT_BUY_PRICE, INT});
+        list.add(new String[]{PLANT_SELL_PRICE, INT});
+        list.add(new String[]{PLANT_EXP, INT});
+        list.add(new String[]{PLANT_UNLOCK_LEVEL, INT});
+        return createTable(PLANT, list, new String[]{PLANT_ID});
     }
 
     private String createItemTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(ITEM_ID, INT);
-        map.put(ITEM_NAME, TEXT);
-        map.put(ITEM_TYPE, TEXT);
-        return createTable(ITEM, map, ITEM_ID);
+        ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{ITEM_ID, INT});
+        list.add(new String[]{ITEM_NAME, TEXT});
+        list.add(new String[]{ITEM_TYPE, TEXT});
+        return createTable(ITEM, list, new String[]{ITEM_ID});
     }
 
 
     private String createWarehouseTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(WAREHOUSE_TYPE, TEXT);
-        map.put(WAREHOUSE_ID, INT);
-        map.put(WAREHOUSE_QUANTITY, INT);
-        return createTable(WAREHOUSE, map, WAREHOUSE_ID);
+        ArrayList<String[]> list = new ArrayList<>();
+
+        list.add(new String[]{WAREHOUSE_ID, INT});
+        list.add(new String[]{WAREHOUSE_TYPE, TEXT});
+        list.add(new String[]{WAREHOUSE_QUANTITY, INT});
+        return createTable(WAREHOUSE, list, new String[]{WAREHOUSE_ID, WAREHOUSE_TYPE});
     }
 
     private String createLevelTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(LEVEL_LEVEL, INT);
-        map.put(LEVEL_EXP, INT);
-        map.put(LEVEL_CAPACITY, INT);
-        map.put(LEVEL_LAND_MAX, INT);
-        return createTable(LEVEL, map, LEVEL_LEVEL);
+        ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{LEVEL_LEVEL, INT});
+        list.add(new String[]{LEVEL_EXP, INT});
+        list.add(new String[]{LEVEL_CAPACITY, INT});
+        list.add(new String[]{LEVEL_LAND_MAX, INT});
+        return createTable(LEVEL, list, new String[]{LEVEL_LEVEL});
     }
 
     private String createLandTable(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(LAND_INDEX, INT);
-        map.put(LAND_PRICE, INT);
-        map.put(LAND_LOCK_STATUS, BOOLEAN);
-        map.put(LAND_PLANT, INT);
-        map.put(LAND_WATER_TIME, TEXT);
-        map.put(LAND_FERTILIZE_TIME, TEXT);
-        map.put(LAND_STAGE, INT);
-        return createTable(LAND, map, LAND_INDEX);
+        ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{LAND_INDEX, INT});
+        list.add(new String[]{LAND_PRICE, INT});
+        list.add(new String[]{LAND_LOCK_STATUS, BOOLEAN});
+        list.add(new String[]{LAND_PLANT, INT});
+        list.add(new String[]{LAND_WATER_TIME, TEXT});
+        list.add(new String[]{LAND_IS_FERTILIZED, BOOLEAN});
+        list.add(new String[]{LAND_STAGE, INT});
+        return createTable(LAND, list, new String[]{LAND_INDEX});
     }
 
 
-    private String createTable(String tableName, HashMap<String, Integer> map,
-                                      String primaryKey){
+    private String createTable(String tableName, ArrayList<String[]> list,
+                                      String[] primaryKeys){
         return "CREATE TABLE IF NOT EXISTS " +
-                tableName + "(" + handlePropertySet(map, primaryKey) + ")";
+                tableName + "(" + handlePropertySet(list, primaryKeys) + ")";
     }
 
-    private String handlePropertySet(HashMap<String, Integer> map, String primaryKey){
-        ArrayList<String> list = new ArrayList<>();
-        String primary = null;
-        for (String key: map.keySet()){
-            switch (map.get(key)){
+    private String handlePropertySet(ArrayList<String[]> list, String[] primaryKeys){
+        ArrayList<String> lst = new ArrayList<>();
+        for (String[] pair: list){
+            switch (pair[1]){
                 case INT:
-                    list.add(key + " INT");
+                    lst.add(pair[0] + " INT");
                     break;
                 case TEXT:
-                    list.add(key + " TEXT");
+                    lst.add(pair[0] + " TEXT");
                     break;
                 case BOOLEAN:
-                    list.add(key + " BOOLEAN");
+                    lst.add(pair[0] + " BOOLEAN");
                     break;
             }
-            if (key.equals(primaryKey)){
-                primary = "PRIMARY KEY (" + key + ")";
-            }
         }
 
-        if (primary != null){
-            list.add(primary);
+        if (primaryKeys.length > 0){
+            lst.add("PRIMARY KEY (" + String.join(", ", primaryKeys) + ")");
         }
 
 
-        return String.join(", ", list);
-    }
-
-    private void initDataInsertion(){
-
+        return String.join(", ", lst);
     }
 
 }

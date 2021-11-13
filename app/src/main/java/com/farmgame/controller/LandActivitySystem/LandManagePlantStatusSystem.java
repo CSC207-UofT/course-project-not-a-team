@@ -56,7 +56,7 @@ public class LandManagePlantStatusSystem extends System {
 
 
 
-    public void watering() {
+    public String watering() {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";
         Item wateringCan = this.warehouseManager.getWarehouse().getItem(TYPE_WATERING_CAN);

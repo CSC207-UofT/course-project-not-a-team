@@ -51,7 +51,7 @@ public class InitData{
         String[] array = new String[]{
                 // id, name, type
                 "(14159, 'fertilizer', 'Fertilizer')",
-                "(26535. 'watering can', 'WateringCan')"
+                "(26535, 'watering can', 'WateringCan')"
         };
         return "INSERT INTO " + ITEM + " VALUES" + String.join(", ", array);
     }
@@ -87,27 +87,27 @@ public class InitData{
     private static String initLand(){
 
         String[] array = new String[]{
-                // landIndex, price, lockStatus, plant, waterTime, fertilizeTime, stage
-                "(0, 10, 0, NULL, '-1', '-1', 0)",
-                "(1, 10, 0, NULL, '-1', '-1', 0)",
-                "(2, 10, 0, NULL, '-1', '-1', 0)",
-                "(3, 10, 0, NULL, '-1', '-1', 0)",
-                "(4, 10, 0, NULL, '-1', '-1', 0)",
-                "(5, 20, 0, NULL, '-1', '-1', 0)",
-                "(6, 20, 0, NULL, '-1', '-1', 0)",
-                "(7, 20, 0, NULL, '-1', '-1', 0)",
-                "(8, 20, 0, NULL, '-1', '-1', 0)",
-                "(9, 20, 0, NULL, '-1', '-1', 0)",
-                "(10, 30, 0, NULL, '-1', '-1', 0)",
-                "(11, 30, 0, NULL, '-1', '-1', 0)",
-                "(12, 30, 0, NULL, '-1', '-1', 0)",
-                "(13, 30, 0, NULL, '-1', '-1', 0)",
-                "(14, 30, 0, NULL, '-1', '-1', 0)",
-                "(15, 40, 0, NULL, '-1', '-1', 0)",
-                "(16, 40, 0, NULL, '-1', '-1', 0)",
-                "(17, 40, 0, NULL, '-1', '-1', 0)",
-                "(18, 40, 0, NULL, '-1', '-1', 0)",
-                "(19, 40, 0, NULL, '-1', '-1', 0)",
+                // landIndex, price, lockStatus, plant, waterTime, isFertilised, stage
+                "(0, 10, 0, NULL, '-1', 0, 0)",
+                "(1, 10, 0, NULL, '-1', 0, 0)",
+                "(2, 10, 0, NULL, '-1', 0, 0)",
+                "(3, 10, 0, NULL, '-1', 0, 0)",
+                "(4, 10, 0, NULL, '-1', 0, 0)",
+                "(5, 20, 0, NULL, '-1', 0, 0)",
+                "(6, 20, 0, NULL, '-1', 0, 0)",
+                "(7, 20, 0, NULL, '-1', 0, 0)",
+                "(8, 20, 0, NULL, '-1', 0, 0)",
+                "(9, 20, 0, NULL, '-1', 0, 0)",
+                "(10, 30, 0, NULL, '-1', 0, 0)",
+                "(11, 30, 0, NULL, '-1', 0, 0)",
+                "(12, 30, 0, NULL, '-1', 0, 0)",
+                "(13, 30, 0, NULL, '-1', 0, 0)",
+                "(14, 30, 0, NULL, '-1', 0, 0)",
+                "(15, 40, 0, NULL, '-1', 0, 0)",
+                "(16, 40, 0, NULL, '-1', 0, 0)",
+                "(17, 40, 0, NULL, '-1', 0, 0)",
+                "(18, 40, 0, NULL, '-1', 0, 0)",
+                "(19, 40, 0, NULL, '-1', 0, 0)",
         };
 
         return "INSERT INTO " + LAND + " VALUES" + String.join(", ", array);
