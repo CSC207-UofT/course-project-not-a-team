@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.farmgame.Activity.main.HomeFragment"
+        android:name="com.farmgame.Activity.SecondFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_second" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

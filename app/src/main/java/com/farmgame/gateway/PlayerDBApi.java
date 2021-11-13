@@ -12,25 +12,6 @@ import java.util.HashMap;
 public class PlayerDBApi extends DataBaseAPI {
 
 
-    public static void createPlayer(String name){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(PLAYER_NAME, name);
-        contentValues.put(PLAYER_LEVEL, 1);
-        contentValues.put(PLAYER_MONEY, 0);
-        contentValues.put(PLAYER_EXP, 0);
-        db.insert(PLAYER, null, contentValues);
-
-        db.execSQL("INSERT INTO LEVEL VALUES (1, 10, 10, 1)");
-        db.execSQL("INSERT INTO LAND VALUES(0, 10, 0, 1, 1, 1, 0)");
-
-
-    }
-
-
-    public static boolean hasPlayer(){
-        return PlayerDBApi.getPlayer() != null;
-    }
-
     public static Player getPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);
@@ -77,14 +58,6 @@ public class PlayerDBApi extends DataBaseAPI {
         return map;
     }
 
-
-    // player get money, spend money
-
-    // plant
-
-    // store buy, read, sell
-
-    //
 
 
 }
