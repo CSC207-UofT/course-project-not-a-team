@@ -17,8 +17,6 @@ import com.farmgame.viewModel.LoginViewModel;
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
-    final LoginViewModel viewModel =
-            new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
 
     @Override
     public View onCreateView(

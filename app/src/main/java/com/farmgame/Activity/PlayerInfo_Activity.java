@@ -43,6 +43,6 @@ public class PlayerInfo_Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         TextView textView = (TextView) findViewById(R.id.player_name);
-        textView.setText(LoginViewModel.getPlayer().getName());
+        textView.setText(viewModel.getPlayer().getName());
     }
 }

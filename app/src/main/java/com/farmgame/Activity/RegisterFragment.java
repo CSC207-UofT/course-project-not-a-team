@@ -47,19 +47,10 @@ public class RegisterFragment extends Fragment {
 
 
         binding.register.setOnClickListener(v -> {
-            if (PlayerDBApi.hasPlayer()){
-                Player player = viewModel.getPlayer();
-                Toast.makeText(that, "成功了！", Toast.LENGTH_SHORT).show();
-                NavHostFragment.findNavController(RegisterFragment.this)
-                        .navigate(R.id.action_RegisterFragment_to_SecondFragment);
-            } else {
-                if (binding.username.getText().toString().length() > 0){
-                    PlayerDBApi.createPlayer(binding.username.getText().toString());
-                    viewModel.initWhenHasPlayer();
-                } else {
-                    Toast.makeText(that, "please enter your ", Toast.LENGTH_SHORT).show();
-                }
-            }
+            if (binding.username.getText().toString().length() > 0){
+                PlayerDBApi.createPlayer(binding.username.getText().toString());
+                viewModel.initWhenHasPlayer();
+            } else { Toast.makeText(that, "please enter your player name", Toast.LENGTH_SHORT).show(); }
         });
 
     }
