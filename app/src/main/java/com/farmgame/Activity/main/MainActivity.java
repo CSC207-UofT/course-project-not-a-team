@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = init.getReadableDatabase();
 
 
-        final MainViewModel viewModel =
+        MainViewModel viewModel =
                 new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.initViewModel(db);

@@ -27,7 +27,7 @@ public class InitData{
         ContentValues contentValues = new ContentValues();
         contentValues.put(PLAYER_NAME, name);
         contentValues.put(PLAYER_LEVEL, 1);
-        contentValues.put(PLAYER_MONEY, 0);
+        contentValues.put(PLAYER_MONEY, 1000);
         contentValues.put(PLAYER_EXP, 0);
         db.insert(PLAYER, null, contentValues);
 

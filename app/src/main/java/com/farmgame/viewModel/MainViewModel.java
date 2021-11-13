@@ -30,6 +30,8 @@ public class MainViewModel extends ViewModel {
 
     private StoreSystem ss;
 
+    public String name;
+
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
@@ -43,6 +45,7 @@ public class MainViewModel extends ViewModel {
 
     private void addManagers(){
         pm = new PlayerManager(PlayerDBApi.getPlayer());
+        name = getPlayer().getName();
         wm = new WarehouseManager(WarehouseDBApi.getWarehouse());
     }
 
