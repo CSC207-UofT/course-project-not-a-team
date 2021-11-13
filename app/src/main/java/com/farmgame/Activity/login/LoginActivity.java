@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             db.close();
             startActivity(intent);
+            this.finish();
         }
 
     }
