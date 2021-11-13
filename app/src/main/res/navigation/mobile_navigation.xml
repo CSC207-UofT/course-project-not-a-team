@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.farmgame.Activity.main.DashboardFragment"
+        android:name="com.farmgame.Activity.main.storeFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_store" />
 
     <fragment
         android:id="@+id/navigation_notifications"

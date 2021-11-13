@@ -6,6 +6,7 @@ import static com.farmgame.constants.Constants.*;
 import android.database.Cursor;
 
 import com.farmgame.entity.Plants;
+import com.farmgame.entity.Seeds;
 
 import java.util.HashMap;
 
@@ -50,6 +51,26 @@ public class PlantDBApi extends DataBaseAPI {
         cursor.close();
 
         return new Plants(name, price, id);
+    }
+
+    public static Seeds getSeed(int seedId){
+
+        Cursor cursor = db.query(
+                PLANT,
+                new String[]{"*"},
+                PLANT_ID + " = ?", new String[]{String.valueOf(seedId)},
+                null, null, null);
+        cursor.moveToFirst();
+
+        String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
+        int time = cursor.getInt(cursor.getColumnIndex(PLANT_TIME));
+        int buying = cursor.getInt(cursor.getColumnIndex(PLANT_SEED_NAME));
+        int exp = cursor.getInt(cursor.getColumnIndex(PLANT_EXP));
+        int id = cursor.getInt(cursor.getColumnIndex(PLANT_ID));
+
+        cursor.close();
+
+        return new Seeds(name, time, buying, exp, id);
     }
 
 }

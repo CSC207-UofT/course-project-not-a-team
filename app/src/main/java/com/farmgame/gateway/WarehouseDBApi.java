@@ -119,6 +119,8 @@ public class WarehouseDBApi extends DataBaseAPI {
         HashMap<Integer, ArrayList<Item>> itemMap = warehouse.getItemInventory();
         HashMap<Integer, ArrayList<Plants>> plantMap = warehouse.getPlantInventory();
         HashMap<Integer, ArrayList<Seeds>> seedMap = warehouse.getSeedInventory();
+
+        vm.updateWarehouse();
     }
 
     public static Warehouse getWarehouse(){

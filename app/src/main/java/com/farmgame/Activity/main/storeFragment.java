@@ -13,20 +13,24 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
-import com.farmgame.databinding.FragmentDashboardBinding;
+import com.farmgame.databinding.FragmentStoreBinding;
+import com.farmgame.viewModel.MainViewModel;
 
-public class DashboardFragment extends Fragment {
+public class storeFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentStoreBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentStoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
+        MainViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+
 
         return root;
     }
