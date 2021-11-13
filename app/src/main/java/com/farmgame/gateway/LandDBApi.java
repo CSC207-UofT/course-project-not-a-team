@@ -42,7 +42,7 @@ public class LandDBApi extends DataBaseAPI {
         contentValues.put(LAND_LOCK_STATUS, land.getLockStatus());
         contentValues.put(LAND_PLANT, land.getPlant().getSeedId());
         contentValues.put(LAND_WATER_TIME, land.getWaterTime());
-        contentValues.put(LAND_FERTILIZE_TIME, land.getFertilizeTime());
+        contentValues.put(LAND_IS_FERTILIZED, land.isFertilize()? 1 : 0);
         contentValues.put(LAND_STAGE, land.getStage());
 
         db.update(

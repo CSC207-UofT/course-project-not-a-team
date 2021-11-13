@@ -19,9 +19,9 @@ public class Constants {
 
 
     // SQLite Column Type
-    public static final int INT = 0;
-    public static final int TEXT = 1;
-    public static final int BOOLEAN = 2;
+    public static final String INT = "INT";
+    public static final String TEXT = "TEXT";
+    public static final String BOOLEAN = "BOOLEAN";
 
     // User SQL Column names
     public static final String PLAYER_NAME = "name";
@@ -63,7 +63,7 @@ public class Constants {
     public static final String LAND_LOCK_STATUS = "lockStatus";
     public static final String LAND_PLANT = "plant";
     public static final String LAND_WATER_TIME = "waterTime";
-    public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
+    public static final String LAND_IS_FERTILIZED = "isFertilized";
     public static final String LAND_STAGE = "stage";
 
     // Type of StoreAble
