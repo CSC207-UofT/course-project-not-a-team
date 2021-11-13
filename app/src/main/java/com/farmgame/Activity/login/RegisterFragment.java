@@ -1,8 +1,6 @@
-package com.farmgame.Activity;
+package com.farmgame.Activity.login;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-
-import com.farmgame.R;
 
 import com.farmgame.databinding.FragmentRegisterBinding;
-import com.farmgame.entity.Player;
 import com.farmgame.gateway.PlayerDBApi;
-import com.farmgame.viewModel.LoginViewModel;
+import com.farmgame.viewModel.MainViewModel;
 
 public class RegisterFragment extends Fragment {
 
@@ -39,8 +33,8 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final LoginViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        final MainViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
 
         Context that = this.getActivity();

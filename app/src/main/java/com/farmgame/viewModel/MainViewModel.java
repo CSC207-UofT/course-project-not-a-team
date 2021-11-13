@@ -22,7 +22,7 @@ import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class LoginViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private SQLiteDatabase db;
 

@@ -1,25 +1,20 @@
-package com.farmgame.Activity;
+package com.farmgame.Activity.login;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import com.farmgame.Activity.main.MainActivity;
 import com.farmgame.gateway.Initializer;
-import com.farmgame.viewModel.LoginViewModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.farmgame.viewModel.MainViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.farmgame.databinding.ActivityLoginBinding;
-
-import com.farmgame.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,8 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase db = init.getReadableDatabase();
 
 
-        final LoginViewModel viewModel =
-                new ViewModelProvider(this).get(LoginViewModel.class);
+        final MainViewModel viewModel =
+                new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.initViewModel(db);
 

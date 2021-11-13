@@ -6,22 +6,13 @@ import android.os.Bundle;
 import com.farmgame.R;
 
 
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.widget.TextView;
 
-import com.farmgame.gateway.Initializer;
-import com.farmgame.viewModel.LoginViewModel;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
+import com.farmgame.viewModel.MainViewModel;
 
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.farmgame.databinding.ActivityLoginBinding;
 
@@ -36,8 +27,8 @@ public class PlayerInfo_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_info);
-        final LoginViewModel viewModel =
-                new ViewModelProvider(this).get(LoginViewModel.class);
+        final MainViewModel viewModel =
+                new ViewModelProvider(this).get(MainViewModel.class);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
