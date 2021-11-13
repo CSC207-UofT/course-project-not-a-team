@@ -42,7 +42,29 @@ public class InitData{
     private static String initPlant(){
         String[] array = new String[]{
                 // id, plantName, seedName, time, buyPrice, sellPrice, exp, unlockLevel
-                "(1, 'plant1', 'plant1seed', 1, 1, 2, 3,  0)",
+                "(1001,Apple,AppleSeed,5,20,30,1)",
+                "(1002,Banana,BananaSeed,6,25,40,2)",
+                "(1003,Beans,BeansSeed,7,40,70,3)",
+                "(1004,Blueberry,BlueberrySeed,10,50,90,4)",
+                "(1005,Broccoli,BroccoliSeed,12,70,120,5)",
+                "(1006,Cabbage,CabbageSeed,13,80,140,6)",
+                "(1007,Carrot,CarrotSeed,15,90,160,7)",
+                "(1008,Chestnut,ChestnutSeed,20,100,170,8)",
+                "(1009,Chili,ChiliSeed,22,110,190,9)",
+                "(1010,Coconut,CoconutSeed,25,120,210,10)",
+                "(1011,Corn,CornSeed,30,130,230,11)",
+                "(1012,Cucumber,CucumberSeed,32,140,250,12)",
+                "(1013,Dragenfruit,DragenfruitSeed,35,150,270,13)",
+                "(1014,Edamame,EdamameSeed,38,160,290,14)",
+                "(1015,Eggplant,EggplantSeed,45,170,310,15)",
+                "(1016,Fruitchili,FruitchiliSeed,60,180,330,16)",
+                "(1017,Garlic,GarlicSeed,70,190,350,17)",
+                "(1018,Kiwi,KiwiSeed,80,200,370,18)",
+                "(1019,Mango,MangosteenSeed,85,210,390,19)",
+                "(1020,Watermelon,WatermelonSeed,90,220,410,20)",
+                "(1021,Strawberry,StrawberrySeed,100,230,430,20)",
+
+
         };
         return "INSERT INTO " + PLANT + " VALUES" + String.join(", ", array);
     }
@@ -59,26 +81,26 @@ public class InitData{
     private static String initLevel(){
         String[] array = new String[]{
                 // level, exp, capacity, landMax
-                "(1, 10, 10, 1)",
-                "(2, 15, 10, 2)",
-                "(3, 20, 15, 3)",
-                "(4, 25, 15, 4)",
-                "(5, 30, 20, 5)",
-                "(6, 35, 20, 6)",
-                "(7, 40, 25, 7)",
-                "(8, 45, 25, 8)",
-                "(9, 50, 30, 9)",
-                "(10, 55, 30, 10)",
-                "(11, 60, 30, 11)",
-                "(12, 65, 30, 12)",
-                "(13, 70, 30, 13)",
-                "(14, 75, 30, 14)",
-                "(15, 80, 40, 15)",
-                "(16, 85, 40, 20)",
-                "(17, 90, 40, 20)",
-                "(18, 95, 40, 20)",
-                "(19, 100, 40, 20)",
-                "(20, 110, 40, 20)",
+                "(1, 100, 10, 1)",
+                "(2, 150, 10, 2)",
+                "(3, 200, 15, 3)",
+                "(4, 250, 15, 4)",
+                "(5, 300, 20, 5)",
+                "(6, 350, 20, 6)",
+                "(7, 400, 25, 7)",
+                "(8, 450, 25, 8)",
+                "(9, 500, 30, 9)",
+                "(10, 550, 30, 10)",
+                "(11, 600, 30, 11)",
+                "(12, 650, 30, 12)",
+                "(13, 700, 30, 13)",
+                "(14, 750, 30, 14)",
+                "(15, 800, 40, 15)",
+                "(16, 850, 40, 20)",
+                "(17, 900, 40, 20)",
+                "(18, 950, 40, 20)",
+                "(19, 1000, 40, 20)",
+                "(20, 1100, 40, 20)",
         };
 
         return "INSERT INTO " + LEVEL + " VALUES" + String.join(", ", array);
@@ -87,27 +109,27 @@ public class InitData{
     private static String initLand(){
 
         String[] array = new String[]{
-                // landIndex, price, lockStatus, plant, waterTime, isFertilised, stage
-                "(0, 10, 0, NULL, '-1', 0, 0)",
-                "(1, 10, 0, NULL, '-1', 0, 0)",
-                "(2, 10, 0, NULL, '-1', 0, 0)",
-                "(3, 10, 0, NULL, '-1', 0, 0)",
-                "(4, 10, 0, NULL, '-1', 0, 0)",
-                "(5, 20, 0, NULL, '-1', 0, 0)",
-                "(6, 20, 0, NULL, '-1', 0, 0)",
-                "(7, 20, 0, NULL, '-1', 0, 0)",
-                "(8, 20, 0, NULL, '-1', 0, 0)",
-                "(9, 20, 0, NULL, '-1', 0, 0)",
-                "(10, 30, 0, NULL, '-1', 0, 0)",
-                "(11, 30, 0, NULL, '-1', 0, 0)",
-                "(12, 30, 0, NULL, '-1', 0, 0)",
-                "(13, 30, 0, NULL, '-1', 0, 0)",
-                "(14, 30, 0, NULL, '-1', 0, 0)",
-                "(15, 40, 0, NULL, '-1', 0, 0)",
-                "(16, 40, 0, NULL, '-1', 0, 0)",
-                "(17, 40, 0, NULL, '-1', 0, 0)",
-                "(18, 40, 0, NULL, '-1', 0, 0)",
-                "(19, 40, 0, NULL, '-1', 0, 0)",
+                // landIndex, price, lockStatus, plant, waterTime, fertilizeTime, stage
+                "(0, 1000, 0, NULL, '-1', '-1', 0)",
+                "(1, 1000, 0, NULL, '-1', '-1', 0)",
+                "(2, 1000, 0, NULL, '-1', '-1', 0)",
+                "(3, 1000, 0, NULL, '-1', '-1', 0)",
+                "(4, 1000, 0, NULL, '-1', '-1', 0)",
+                "(5, 2000, 0, NULL, '-1', '-1', 0)",
+                "(6, 2000, 0, NULL, '-1', '-1', 0)",
+                "(7, 2000, 0, NULL, '-1', '-1', 0)",
+                "(8, 2000, 0, NULL, '-1', '-1', 0)",
+                "(9, 2000, 0, NULL, '-1', '-1', 0)",
+                "(10, 3000, 0, NULL, '-1', '-1', 0)",
+                "(11, 3000, 0, NULL, '-1', '-1', 0)",
+                "(12, 3000, 0, NULL, '-1', '-1', 0)",
+                "(13, 3000, 0, NULL, '-1', '-1', 0)",
+                "(14, 3000, 0, NULL, '-1', '-1', 0)",
+                "(15, 4000, 0, NULL, '-1', '-1', 0)",
+                "(16, 4000, 0, NULL, '-1', '-1', 0)",
+                "(17, 4000, 0, NULL, '-1', '-1', 0)",
+                "(18, 4000, 0, NULL, '-1', '-1', 0)",
+                "(19, 4000, 0, NULL, '-1', '-1', 0)",
         };
 
         return "INSERT INTO " + LAND + " VALUES" + String.join(", ", array);
