@@ -6,7 +6,7 @@ will be updated during game
 Table Player(
     name  TEXT,
     level INT,
-    exp INT,
+    playerExp INT,
     money INT,
     PRIMARY KEY (name)
 )
@@ -21,7 +21,7 @@ Table Plant(
     time INT,
     buyPrice INT,
     sellPrice INT,
-    exp INT,
+    plantExp INT,
     unlockLevel INT,
     PRIMARY KEY (id)
 )
@@ -32,7 +32,7 @@ will NOT be updated during game
 Table Item(
     id INT,
     name TEXT,
-    unlockLevel INT,
+    type TEXT,
     PRIMARY KEY (id)
 )
 
@@ -69,16 +69,6 @@ Table Land(
     fertilizeTime INT,
     stage INT,
     PRIMARY KEY (index)
-)
-
-table of items available at the stored
-will NOT be updated during game
-
-Table Store(
-    id INT,
-    type TEXT,
-    unlockLevel INT,
-    PRIMARY KEY (id)
 )
 
 
