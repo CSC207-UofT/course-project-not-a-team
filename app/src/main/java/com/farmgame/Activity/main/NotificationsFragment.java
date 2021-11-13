@@ -1,4 +1,4 @@
-package com.farmgame.Activity.ui.home;
+package com.farmgame.Activity.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,28 +13,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
-import com.farmgame.databinding.FragmentHomeBinding;
+import com.farmgame.databinding.FragmentNotificationsBinding;
 
-public class HomeFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+
+    private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        final TextView textView = binding.textNotifications;
+
         return root;
     }
 

@@ -1,4 +1,4 @@
-package com.farmgame.Activity;
+package com.farmgame.Activity.main;
 
 import android.os.Bundle;
 

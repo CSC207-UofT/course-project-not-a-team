@@ -14,14 +14,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentSecondBinding;
 import com.farmgame.entity.Player;
-import com.farmgame.viewModel.LoginViewModel;
+import com.farmgame.viewModel.MainViewModel;
 
 class PlayerInfoFragment extends Fragment {
 
 
     private FragmentSecondBinding binding;
-    final LoginViewModel viewModel =
-            new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+
 
 
     public PlayerInfoFragment() {
@@ -38,9 +37,6 @@ class PlayerInfoFragment extends Fragment {
         return binding.getRoot();
 
 
-        Player player = viewModel.getPlayer();
-        TextView textView = (TextView) findViewById(R.id.player_name);
-        textView.setText(player.getName());
 
     }
 
@@ -49,10 +45,14 @@ class PlayerInfoFragment extends Fragment {
 
         binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(PlayerInfoFragment.this)
                 .navigate(R.id.action_SecondFragment_to_RegisterFragment));
-        final LoginViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        final MainViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
 
+
+        Player player = viewModel.getPlayer();
+        TextView textView = (TextView) requireActivity().findViewById(R.id.player_name);
+        textView.setText(player.getName());
     }
 
     @Override

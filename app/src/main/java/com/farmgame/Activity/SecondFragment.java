@@ -12,7 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentSecondBinding;
-import com.farmgame.viewModel.LoginViewModel;
+import com.farmgame.viewModel.MainViewModel;
 
 public class SecondFragment extends Fragment {
 
@@ -34,8 +34,8 @@ public class SecondFragment extends Fragment {
 
         binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(SecondFragment.this)
                 .navigate(R.id.action_SecondFragment_to_RegisterFragment));
-        final LoginViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        final MainViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
 
     @Override
