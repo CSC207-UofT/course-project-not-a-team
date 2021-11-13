@@ -15,12 +15,14 @@ import com.farmgame.viewModel.RegisterViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Initializer init = new Initializer(getApplication());
-        SQLiteDatabase db = init.getReadableDatabase();
+        db = init.getReadableDatabase();
 
 
         RegisterViewModel viewModel = new RegisterViewModel(db);
@@ -31,12 +33,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (viewModel.hasPlayer()){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            db.close();
-            startActivity(intent);
-            this.finish();
+            jumpToMain();
         }
 
+    }
+
+    public void jumpToMain(){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        db.close();
+        startActivity(intent);
+        this.finish();
     }
 
 }

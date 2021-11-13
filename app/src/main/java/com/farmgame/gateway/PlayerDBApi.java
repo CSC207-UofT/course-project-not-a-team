@@ -12,12 +12,6 @@ import java.util.HashMap;
 public class PlayerDBApi extends DataBaseAPI {
 
 
-
-
-    public static boolean hasPlayer(){
-        return PlayerDBApi.getPlayer() != null;
-    }
-
     public static Player getPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);
@@ -64,14 +58,6 @@ public class PlayerDBApi extends DataBaseAPI {
         return map;
     }
 
-
-    // player get money, spend money
-
-    // plant
-
-    // store buy, read, sell
-
-    //
 
 
 }

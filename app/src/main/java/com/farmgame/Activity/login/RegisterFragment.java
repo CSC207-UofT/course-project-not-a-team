@@ -13,8 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.databinding.FragmentRegisterBinding;
 import com.farmgame.gateway.InitData;
-import com.farmgame.gateway.PlayerDBApi;
-import com.farmgame.viewModel.MainViewModel;
+import com.farmgame.viewModel.RegisterViewModel;
 
 public class RegisterFragment extends Fragment {
 
@@ -34,18 +33,14 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final MainViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-
-        Context that = this.getActivity();
 
 
         binding.register.setOnClickListener(v -> {
             if (binding.username.getText().toString().length() > 0){
                 InitData.createPlayer(binding.username.getText().toString());
-                viewModel.initWhenHasPlayer();
-            } else { Toast.makeText(that, "please enter your player name", Toast.LENGTH_SHORT).show(); }
+                ((LoginActivity) requireActivity()).jumpToMain();
+            } else { Toast.makeText(requireActivity(), "please enter your player name", Toast.LENGTH_SHORT).show(); }
         });
 
     }

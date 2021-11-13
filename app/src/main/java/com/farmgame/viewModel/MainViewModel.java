@@ -2,10 +2,8 @@ package com.farmgame.viewModel;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
 import com.farmgame.controller.StoreSystem;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
@@ -35,9 +33,8 @@ public class MainViewModel extends ViewModel {
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
-        if (PlayerDBApi.hasPlayer()){
-            initWhenHasPlayer();
-        }
+        initWhenHasPlayer();
+
     }
 
     public void initWhenHasPlayer(){
