@@ -16,7 +16,6 @@ public class Constants {
     public static final String WAREHOUSE = "Warehouse";
     public static final String LEVEL = "Level";
     public static final String LAND = "Land";
-    public static final String STORE = "Store";
 
 
     // SQLite Column Type
@@ -66,13 +65,6 @@ public class Constants {
     public static final String LAND_WATER_TIME = "waterTime";
     public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
     public static final String LAND_STAGE = "stage";
-
-
-    // Store SQL Column names
-    public static final String STORE_ID = "id";
-    public static final String STORE_TYPE = "type";
-    public static final String STORE_UNLOCK_LEVEL = "unlockLevel";
-
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
