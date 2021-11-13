@@ -3,33 +3,37 @@ package com.farmgame.presenter;
 public class StorePresenter {
     public StorePresenter(){}
 
-    public void remaining_money(int money){
-        System.out.println("You have " + money + " remaining");
+    public String remaining_money(int money){
+        return "You have " + money + " remaining";
     }
 
-    public void invalid_product(){
-        System.out.println("This product is not provided in store.");
+    public String invalid_product(){
+        return "This product is not provided in store.";
     }
 
-    public void not_enough_money(){
-        System.out.println("The purchase is unsuccessfully. Please check whether you have enough" +
-                "money left.");
+    public String not_enough_money(){
+        return "The purchase is unsuccessfully. Please check whether you have enough" +
+                "money left.";
     }
 
-    public void not_enough_capacity(){
-        System.out.println("The purchase is unsuccessfully. The warehouse does not have enough" +
-                "capacity.");
+    public String not_enough_capacity(){
+        return "The purchase is unsuccessfully. The warehouse does not have enough" +
+                "capacity.";
     }
 
-    public void purchase_success(){
-        System.out.println("Congratulations! You have successfully made a purchase");
+    public String purchase_success(){
+        return "Congratulations! You have successfully made a purchase";
     }
 
-    public void sell_success(int money){
-        System.out.println("Congratulations! You have earned " + money);
+    public String sell_success(int money){
+        return "Congratulations! You have earned " + money;
     }
 
-    public void update_success(){
-        System.out.println("The purchased object has already been added to warehouse.");
+    public String sell_fail(){
+        return "Sorry! This product is not able to sell";
+    }
+
+    public String update_success(){
+        return "The purchased object has already been added to warehouse.";
     }
 }

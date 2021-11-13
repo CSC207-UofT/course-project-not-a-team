@@ -23,37 +23,40 @@ public class LandHarvestPlantSystem extends System {
 
     }
 
-    public void planting(String plant) {
+    public String planting(String plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
         HarvestPresenter harvestPresenter = new HarvestPresenter();
+        String message = "";
         if (landManager.getLand().getLockStatus() == 2
                 && landManager.getLand().getPlant() == null
                 && seed !=null) {
             landManager.planting(seed);
             warehouseManager.removeProduct(seed);
             // inform player that he/she has planted the plant successfully
-            harvestPresenter.plantSuccess();
+            message += harvestPresenter.plantSuccess() + "\n";
 
         }
         else if (landManager.getLand().getLockStatus() != 2) {
             // inform player that this land hasn't been owned by him/her
-            harvestPresenter.invalidLand();
+            message += harvestPresenter.invalidLand() + "\n";
         }
         else if (landManager.getLand().getPlant() != null) {
             // inform player that this land has been planted already
-            harvestPresenter.landOccupied();
+            message += harvestPresenter.landOccupied() + "\n";
         }
         else if (seed == null) {
             // inform player that this seed is not in warehouse
-            harvestPresenter.not_enough_Seed();
+            message += harvestPresenter.not_enough_Seed() + "\n";
         }
         else {
             // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
+        return message;
     }
 
-    public void harvest() {
+    public String harvest() {
         HarvestPresenter harvestPresenter = new HarvestPresenter();
+        String message = "";
         if (landManager.getLand().getPlant() != null
                 && landManager.getLand().getStage() == 2
                 && !landManager.getLand().isWet()) {
@@ -64,15 +67,16 @@ public class LandHarvestPlantSystem extends System {
         }
         else if (landManager.getLand().getPlant() == null) {
             // inform player that this land has not been planted yet
-            harvestPresenter.landNotPlant();
+            message += harvestPresenter.landNotPlant() + "\n";
 
         }
         else if (landManager.getLand().getStage() < 2 | landManager.getLand().isWet()) {
             // inform player that this plant has not fully grown
-            harvestPresenter.growingPlant();
+            message += harvestPresenter.growingPlant() + "\n";
         }
         else {
             // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
+        return message;
     }
 }
