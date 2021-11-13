@@ -6,20 +6,14 @@ import android.os.Bundle;
 
 import com.farmgame.Activity.main.MainActivity;
 import com.farmgame.gateway.Initializer;
-import com.farmgame.viewModel.MainViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.ui.AppBarConfiguration;
-
 import com.farmgame.databinding.ActivityLoginBinding;
+import com.farmgame.viewModel.RegisterViewModel;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +23,16 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase db = init.getReadableDatabase();
 
 
-        final MainViewModel viewModel =
-                new ViewModelProvider(this).get(MainViewModel.class);
-
-        viewModel.initViewModel(db);
+        RegisterViewModel viewModel = new RegisterViewModel(db);
 
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
-        if (viewModel.getPlayer() != null){
+        if (viewModel.hasPlayer()){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            db.close();
             startActivity(intent);
         }
 

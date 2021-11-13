@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.databinding.FragmentRegisterBinding;
+import com.farmgame.gateway.InitData;
 import com.farmgame.gateway.PlayerDBApi;
 import com.farmgame.viewModel.MainViewModel;
 
@@ -42,7 +43,7 @@ public class RegisterFragment extends Fragment {
 
         binding.register.setOnClickListener(v -> {
             if (binding.username.getText().toString().length() > 0){
-                PlayerDBApi.createPlayer(binding.username.getText().toString());
+                InitData.createPlayer(binding.username.getText().toString());
                 viewModel.initWhenHasPlayer();
             } else { Toast.makeText(that, "please enter your player name", Toast.LENGTH_SHORT).show(); }
         });
