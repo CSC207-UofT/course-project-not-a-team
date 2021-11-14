@@ -83,7 +83,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public void updateWarehouse(){
-
+        Warehouse w  = WarehouseDBApi.getWarehouse();
     }
 
     public void updateLand(int landIndex){

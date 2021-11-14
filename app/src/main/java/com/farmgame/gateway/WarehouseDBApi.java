@@ -30,9 +30,11 @@ public class WarehouseDBApi extends DataBaseAPI {
                 null,
                 null);
 
+        Log.d("sev", "1");
         HashMap<Integer, ArrayList<Plants>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
+            Log.d("sev", "11");
             ArrayList<Plants> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
@@ -61,7 +63,7 @@ public class WarehouseDBApi extends DataBaseAPI {
 
         HashMap<Integer, ArrayList<Seeds>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
             ArrayList<Seeds> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(PLANT_SEED_NAME));
@@ -84,8 +86,8 @@ public class WarehouseDBApi extends DataBaseAPI {
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
                 new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_NAME},
-                null,
-                null,
+                WAREHOUSE_TYPE + " != ? AND " + WAREHOUSE_TYPE + " != ?",
+                new String[]{TYPE_PLANT, TYPE_SEED},
                 null,
                 null,
                 null);
@@ -108,7 +110,6 @@ public class WarehouseDBApi extends DataBaseAPI {
                         break;
                 }
             }
-
             map.put(id, list);
         }
         cursor.close();
@@ -175,8 +176,7 @@ public class WarehouseDBApi extends DataBaseAPI {
     }
 
     private static void update(HashMap<Integer, ArrayList<StoreAble>> map,
-                               HashMap<Integer, ArrayList<StoreAble>> prevMap){
-        HashMap<Integer, ArrayList<StoreAble>> prev = prevMap;
+                               HashMap<Integer, ArrayList<StoreAble>> prev){
         for (int key: map.keySet()){
             ArrayList<StoreAble> lst = map.get(key);
             if (!prev.containsKey(key) && lst.size() > 0){
@@ -189,13 +189,13 @@ public class WarehouseDBApi extends DataBaseAPI {
             } else if (prev.containsKey(key) && lst.size() == 0){
                 db.delete(WAREHOUSE, WAREHOUSE_ID + " = ? AND " +
                                 WAREHOUSE_TYPE + " = ?",
-                        new String[]{String.valueOf(key), lst.get(0).getType()});
+                        new String[]{String.valueOf(key), prev.get(key).get(0).getType()});
                 Log.d("sev", "2");
             } else if (prev.containsKey(key)){
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(WAREHOUSE_QUANTITY, lst.size());
                 db.update(WAREHOUSE, contentValues, WAREHOUSE_ID + " = ? AND " +
-                                WAREHOUSE_TYPE + " = ? " + WAREHOUSE_QUANTITY + " != ?",
+                                WAREHOUSE_TYPE + " = ? AND " + WAREHOUSE_QUANTITY + " != ?",
                         new String[]{
                                 String.valueOf(key),
                                 lst.get(0).getType(),
