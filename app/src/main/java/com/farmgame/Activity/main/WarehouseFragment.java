@@ -14,10 +14,13 @@ import com.farmgame.databinding.FragmentNotificationsBinding;
 import com.farmgame.databinding.FragmentWarehouseBinding;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Plants;
+import com.farmgame.entity.Seeds;
 import com.farmgame.gateway.LandDBApi;
 import com.farmgame.gateway.WarehouseDBApi;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.viewModel.MainViewModel;
+
+import static com.farmgame.constants.Constants.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +29,9 @@ public class WarehouseFragment extends Fragment {
 
     private FragmentWarehouseBinding binding;
 
-    private boolean isPlant = true;
+    private String isPlant = TYPE_PLANT;
+
+    private MainViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,35 +40,33 @@ public class WarehouseFragment extends Fragment {
         binding = FragmentWarehouseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
-        MainViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
-        HashMap<Integer, ArrayList<Item>> itemMap = viewModel.getWarehouse().getItemInventory();
-        HashMap<Integer, ArrayList<Plants>> plantMap = viewModel.getWarehouse().getPlantInventory();
-
-        GridView gridView = binding.gv;
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
         binding.plants.setOnClickListener(v -> {
-            isPlant = true;
-            setAdapter(itemMap, plantMap);
+            isPlant = TYPE_PLANT;
+            binding.capacity.setText(text());
+            setAdapter();
+        });
+
+        binding.seeds.setOnClickListener(v -> {
+            isPlant = TYPE_SEED;
+            binding.capacity.setText(text());
+            setAdapter();
         });
 
         binding.item.setOnClickListener(v -> {
-            isPlant = false;
-            setAdapter(itemMap, plantMap);
+            isPlant = "item";
+            binding.capacity.setText(text());
+            setAdapter();
         });
 
         viewModel.playerData.observe(requireActivity(), player -> {
-            binding.capacity.setText("Capacity: " +WarehouseDBApi.getCur() +
-                    "/" + WarehouseDBApi.getCapacity());
+            binding.capacity.setText(text());
         });
 
         viewModel.warehouseData.observe(requireActivity(), warehouse -> {
-                binding.capacity.setText("Capacity: " +WarehouseDBApi.getCur() +
-                        "/" + WarehouseDBApi.getCapacity());
-            setAdapter(itemMap, plantMap);
+                binding.capacity.setText(text());
+            setAdapter();
 
         });
 
@@ -72,11 +75,26 @@ public class WarehouseFragment extends Fragment {
 
     }
 
-    private void setAdapter(HashMap<Integer, ArrayList<Item>> itemMap, HashMap<Integer, ArrayList<Plants>> plantMap){
+    private String text(){
+        return "Capacity: " +WarehouseDBApi.getCur() +
+                "/" + WarehouseDBApi.getCapacity() + " Currently Showing: " + isPlant;
+    }
+
+    private void setAdapter(){
+        ArrayList<ArrayList<StoreAble>> list;
         if (this.isVisible()){
-            WarehouseAdapter adapter =
-                    isPlant ? new WarehouseAdapter(requireActivity(), convertPlant(plantMap)) :
-                            new WarehouseAdapter(requireActivity(), convertItem(itemMap));
+            switch (isPlant){
+                case TYPE_PLANT:
+                    list = convertPlant(viewModel.getWarehouse().getPlantInventory());
+                    break;
+                case TYPE_SEED:
+                    list = convertSeed(viewModel.getWarehouse().getSeedInventory());
+                    break;
+                default:
+                    list = convertItem(viewModel.getWarehouse().getItemInventory());
+                    break;
+            }
+            WarehouseAdapter adapter = new WarehouseAdapter(requireActivity(), list);
             binding.gv.setAdapter(adapter);
         }
 
@@ -93,6 +111,14 @@ public class WarehouseFragment extends Fragment {
     private ArrayList<ArrayList<StoreAble>> convertPlant(HashMap<Integer, ArrayList<Plants>> itemMap){
         ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
         for (ArrayList<Plants> list : itemMap.values()){
+            result.add(new ArrayList<>(list));
+        }
+        return result;
+    }
+
+    private ArrayList<ArrayList<StoreAble>> convertSeed(HashMap<Integer, ArrayList<Seeds>> itemMap){
+        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
+        for (ArrayList<Seeds> list : itemMap.values()){
             result.add(new ArrayList<>(list));
         }
         return result;
