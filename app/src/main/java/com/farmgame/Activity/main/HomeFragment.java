@@ -26,7 +26,6 @@ public class HomeFragment extends Fragment {
     private static final int COL_NUM = 4;
     private FragmentHomeBinding binding;
 
-    Button buttons[][] = new Button[ROW_NUM][COL_NUM];
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -68,13 +67,11 @@ public class HomeFragment extends Fragment {
                         landButtonClick(finalRow, finalCol);
                     }
                 });
-                buttons[row][col] = button;
             }
         }
     }
     private void landButtonClick(int col, int row){
         Toast.makeText(requireActivity(), col + "," + row + "Has been Clicked", Toast.LENGTH_SHORT).show();
-        Button button = buttons[row][col];
         // if this land is unlocked and purchased
             //show attributes(plant, waterTime, etc...
             //show action buttons: harvest, water, fertilize...
