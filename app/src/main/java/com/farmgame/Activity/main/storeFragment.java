@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,35 +42,29 @@ public class storeFragment extends Fragment {
                 new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
 
-        viewModel.playerData.observe(requireActivity(), new Observer<Player>() {
-            @Override
-            public void onChanged(Player player) {
-                binding.money.setText(String.valueOf(player.getMoney()));
-            }
-        });
+        viewModel.playerData.observe(requireActivity(), player ->
+                binding.money.setText("money:" + player.getMoney()));
 
-//        binding.money.setText("Money :" + viewModel.getPlayer().getMoney());
 
 
         ArrayList<StoreAble> lst = new ArrayList<>();
         lst.addAll(StoreDBApi.getSeedList());
+        lst.addAll(StoreDBApi.getItemList());
         StoreGridViewAdapter adapter = new StoreGridViewAdapter(requireActivity(), lst);
 
 
         GridView gridView = binding.gv;
         gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setMessage("Buy the product")
-                        .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                viewModel.getStoreSystem().makePurchase(adapter.getItem(position));
-                            }
-                        }).create().show();
-            }
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Buy the product")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getStoreSystem().makePurchase(adapter.getItem(position)),
+                            Toast.LENGTH_LONG).show()
+                            )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
         });
 
         return root;
