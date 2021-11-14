@@ -8,6 +8,8 @@
         android:orientation="vertical"
         tools:context=".Activity.main.storeFragment">
 
+
+
     <TextView
         android:id="@+id/money"
         android:layout_width="wrap_content"

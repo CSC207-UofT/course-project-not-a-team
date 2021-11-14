@@ -40,6 +40,7 @@ public class MainViewModel extends ViewModel {
     private HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
 
     public final MutableLiveData<Player> playerData = new MutableLiveData<>();
+    public final MutableLiveData<Warehouse> warehouseData = new MutableLiveData<>();
 
     public void initViewModel(SQLiteDatabase database){
         db = database;
@@ -49,7 +50,7 @@ public class MainViewModel extends ViewModel {
 
         pm = new PlayerManager(player);
 
-        Warehouse warehouse = WarehouseDBApi.getWarehouse();
+        Warehouse warehouse = updateWarehouse();
 
         wm = new WarehouseManager(warehouse);
 
@@ -82,8 +83,10 @@ public class MainViewModel extends ViewModel {
         return player;
     }
 
-    public void updateWarehouse(){
-        Warehouse w  = WarehouseDBApi.getWarehouse();
+    public Warehouse updateWarehouse(){
+        Warehouse warehouse  = WarehouseDBApi.getWarehouse();
+        this.warehouseData.setValue(warehouse);
+        return warehouse;
     }
 
     public void updateLand(int landIndex){

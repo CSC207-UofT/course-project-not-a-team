@@ -1,10 +1,13 @@
 package com.farmgame.Activity.main;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +17,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentNotificationsBinding;
+import com.farmgame.gateway.StoreDBApi;
+import com.farmgame.usecase.StoreAble;
+import com.farmgame.viewModel.MainViewModel;
+
+import java.util.ArrayList;
 
 public class NotificationsFragment extends Fragment {
 
@@ -27,14 +35,34 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
+        MainViewModel viewModel =
+                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+
+        viewModel.playerData.observe(requireActivity(), player ->
+                binding.money.setText("money:" + player.getMoney()));
+
+
+        ArrayList<StoreAble> lst = new ArrayList<>();
+        lst.addAll(StoreDBApi.getSeedList());
+        lst.addAll(StoreDBApi.getItemList());
+        StoreGridViewAdapter adapter = new StoreGridViewAdapter(requireActivity(), lst);
+
+
+        GridView gridView = binding.gv;
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Buy the product")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getStoreSystem().makePurchase(adapter.getItem(position)),
+                            Toast.LENGTH_LONG).show()
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
+        });
 
         return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

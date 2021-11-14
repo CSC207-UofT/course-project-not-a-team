@@ -213,6 +213,19 @@ public class WarehouseDBApi extends DataBaseAPI {
         return new Warehouse(getItemsMap(), getPlantsMap(), getSeedsMap(), getCapacity());
     }
 
+    public static int getCur(){
+        Cursor cursor = db.query(WAREHOUSE, new String[]{"sum(" + WAREHOUSE_QUANTITY + ")"},
+                null, null, null, null, null);
+        int cur;
+        if (!cursor.moveToFirst()){
+            cur =  0;
+        } else {
+            cur = cursor.getInt(cursor.getColumnIndex("sum(" + WAREHOUSE_QUANTITY + ")"));
+        }
+        cursor.close();
+        return cur;
+    }
+
     public static int getCapacity(){
 
         Player player = vm.getPlayer();
