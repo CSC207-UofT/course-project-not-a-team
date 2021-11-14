@@ -46,7 +46,8 @@ public class StoreGridViewAdapter extends BaseAdapter {
         ((TextView) convertView.findViewById(R.id.name)).setText("name");
         ((TextView) convertView.findViewById(R.id.item)).setText(getItem(position).getName());
         ((TextView) convertView.findViewById(R.id.priceName)).setText("price");
-        ((TextView) convertView.findViewById(R.id.price)).setText(getItem(position).getPrice());
+        ((TextView) convertView.findViewById(
+                R.id.price)).setText(String.valueOf(getItem(position).getPrice()));
         return convertView;
     }
 }

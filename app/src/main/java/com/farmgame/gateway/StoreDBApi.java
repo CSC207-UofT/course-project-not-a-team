@@ -55,9 +55,9 @@ public class StoreDBApi extends DataBaseAPI {
 
         while (cursor.moveToNext()){
 
-            String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
+            String name = cursor.getString(cursor.getColumnIndex(PLANT_SEED_NAME));
             int time = cursor.getInt(cursor.getColumnIndex(PLANT_TIME));
-            int buying = cursor.getInt(cursor.getColumnIndex(PLANT_SEED_NAME));
+            int buying = cursor.getInt(cursor.getColumnIndex(PLANT_BUY_PRICE));
             int exp = cursor.getInt(cursor.getColumnIndex(PLANT_EXP));
             int id = cursor.getInt(cursor.getColumnIndex(PLANT_ID));
 
