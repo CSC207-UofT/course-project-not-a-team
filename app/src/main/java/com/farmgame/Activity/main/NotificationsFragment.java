@@ -45,22 +45,24 @@ public class NotificationsFragment extends Fragment {
         GridView gridView = binding.gv;
 
         viewModel.warehouseData.observe(requireActivity(), warehouse -> {
-            sellAdapter adapter = new sellAdapter(requireActivity(),
-                    viewModel.getWarehouse().getPlantInventory());
+            if (this.isVisible()){
+                sellAdapter adapter = new sellAdapter(requireActivity(),
+                        viewModel.getWarehouse().getPlantInventory());
 
 
-            gridView.setAdapter(adapter);
-            gridView.setOnItemClickListener((parent, view, position, id) -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setMessage("Sell the product")
-                        .setPositiveButton(R.string.confirm, (dialog, which)
-                                -> Toast.makeText(requireActivity(),
-                                viewModel.getStoreSystem().sell(adapter.getItem(position).get(0)),
-                                Toast.LENGTH_LONG).show()
-                        )
-                        .setNegativeButton(R.string.cancel, null)
-                        .create().show();
-            });
+                gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener((parent, view, position, id) -> {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                    builder.setMessage("Sell the product")
+                            .setPositiveButton(R.string.confirm, (dialog, which)
+                                    -> Toast.makeText(requireActivity(),
+                                    viewModel.getStoreSystem().sell(adapter.getItem(position).get(0)),
+                                    Toast.LENGTH_LONG).show()
+                            )
+                            .setNegativeButton(R.string.cancel, null)
+                            .create().show();
+                });
+            }
         });
 
 

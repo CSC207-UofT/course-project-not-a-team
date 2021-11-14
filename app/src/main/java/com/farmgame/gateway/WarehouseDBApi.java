@@ -85,7 +85,7 @@ public class WarehouseDBApi extends DataBaseAPI {
     public static HashMap<Integer, ArrayList<Item>> getItemsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
-                new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_NAME},
+                new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_TYPE},
                 WAREHOUSE_TYPE + " != ? AND " + WAREHOUSE_TYPE + " != ?",
                 new String[]{TYPE_PLANT, TYPE_SEED},
                 null,
@@ -97,11 +97,11 @@ public class WarehouseDBApi extends DataBaseAPI {
         while (cursor.moveToNext()){
             ArrayList<Item> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
-            String name = cursor.getString(cursor.getColumnIndex(ITEM_NAME));
+            String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
             int id = cursor.getInt(cursor.getColumnIndex(ITEM_ID));
 
             for (int i = 0; i < quantity; i ++){
-                switch (name){
+                switch (type){
                     case TYPE_FERTILIZER:
                         list.add(new Fertilizer());
                         break;

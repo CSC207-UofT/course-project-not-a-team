@@ -76,7 +76,7 @@ public class StoreDBApi extends DataBaseAPI {
 
         Cursor cursor = db.query(
                 ITEM,
-                new String[]{"type"}, null, null,
+                new String[]{ITEM_TYPE}, null, null,
                 null, null, null);
 
 
