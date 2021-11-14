@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-<<<<<<<<< Temporary merge branch 1
         Initializer init = new Initializer(getApplication());
         SQLiteDatabase db = init.getReadableDatabase();
 
@@ -41,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.initViewModel(db);
-=========
->>>>>>>>> Temporary merge branch 2
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
