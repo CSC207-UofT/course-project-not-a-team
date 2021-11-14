@@ -15,7 +15,7 @@ public class PlantsTest {
 
     @Test(timeout = 50)
     public void test_selling(){
-        assertEquals(Potato.getSellingPrice(), 60);
+        assertEquals(Potato.getPrice(), 60);
     }
 
     @Test(timeout = 50)

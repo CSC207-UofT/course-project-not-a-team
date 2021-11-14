@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentStoreBinding;
+import com.farmgame.entity.Plants;
+import com.farmgame.gateway.StoreDBApi;
+import com.farmgame.usecase.StoreAble;
 import com.farmgame.viewModel.MainViewModel;
+
+import java.util.ArrayList;
 
 public class storeFragment extends Fragment {
 
@@ -31,6 +37,15 @@ public class storeFragment extends Fragment {
                 new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
 
+        binding.money.setText("Money :" + viewModel.getPlayer().getMoney());
+
+
+        ArrayList<StoreAble> lst = new ArrayList<>();
+        lst.addAll(StoreDBApi.getSeedList());
+        StoreGridViewAdapter adapter = new StoreGridViewAdapter(requireActivity(), lst);
+
+        GridView gridView = binding.gv;
+        gridView.setAdapter(adapter);
 
         return root;
     }

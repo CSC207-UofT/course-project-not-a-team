@@ -21,7 +21,7 @@ public class SeedsTest {
 
     @Test(timeout = 50)
     public void test_buyingprice(){
-        assertEquals(potatoseed.getBuyingPrice(), 12);
+        assertEquals(potatoseed.getPrice(), 12);
     }
 
     @Test(timeout = 50)

@@ -43,7 +43,7 @@ public class Plants implements StoreAble {
      * @return int
      */
 
-    public int getSellingPrice(){
+    public int getPrice(){
 
         return this.SELLING_PRICE;
     }

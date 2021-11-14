@@ -38,8 +38,6 @@ public class MainViewModel extends ViewModel {
     private HashMap<Integer, LandHarvestPlantSystem> lhs = new HashMap<>();
     private HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
 
-    public String money;
-
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
