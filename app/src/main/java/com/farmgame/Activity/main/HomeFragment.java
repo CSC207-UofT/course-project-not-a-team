@@ -13,7 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.farmgame.R;
 import com.farmgame.databinding.FragmentHomeBinding;
+import com.farmgame.entity.LandEntity;
+import com.farmgame.gateway.LandDBApi;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -21,6 +26,7 @@ public class HomeFragment extends Fragment {
     private static final int COL_NUM = 4;
     private FragmentHomeBinding binding;
 
+    Button buttons[][] = new Button[ROW_NUM][COL_NUM];
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -32,6 +38,8 @@ public class HomeFragment extends Fragment {
         return root;
     }
     private void populateLandButtons() {
+        LandDBApi landDBApi = new LandDBApi();
+        ArrayList<LandEntity> landList = landDBApi.getLandList();
         for(int row = 0; row < ROW_NUM; row ++){
             TableLayout table = binding.tableForLandButtons;
             TableRow tableRow = new TableRow(requireActivity());
@@ -47,13 +55,33 @@ public class HomeFragment extends Fragment {
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f));
+                // Setting up LandButtons
                 button.setText(row + "," + col);
-                button.setOnClickListener(v -> landButtonClick());
+                button.setPadding(0,0,0, 0);
+                button.setBackgroundResource(R.drawable.land_background);
+
+                int finalCol = col;
+                int finalRow = row;
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        landButtonClick(finalRow, finalCol);
+                    }
+                });
+                buttons[row][col] = button;
             }
         }
     }
-    private void landButtonClick(){
-        Toast.makeText(requireActivity(), "Click", Toast.LENGTH_SHORT).show();
+    private void landButtonClick(int col, int row){
+        Toast.makeText(requireActivity(), col + "," + row + "Has been Clicked", Toast.LENGTH_SHORT).show();
+        Button button = buttons[row][col];
+        // if this land is unlocked and purchased
+            //show attributes(plant, waterTime, etc...
+            //show action buttons: harvest, water, fertilize...
+        // Else if this land is unlock and not purchased
+            // show buy button
+        // else
+            // show text message
     }
     @Override
     public void onDestroyView() {
