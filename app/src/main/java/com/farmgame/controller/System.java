@@ -1,8 +1,6 @@
 package com.farmgame.controller;
 
-import static com.farmgame.constants.Constants.UPDATE_PLAYER;
-import static com.farmgame.constants.Constants.UPDATE_LAND;
-import static com.farmgame.constants.Constants.UPDATE_WAREHOUSE;
+import static com.farmgame.constants.Constants.*;
 
 import com.farmgame.gateway.LandDBApi;
 import com.farmgame.gateway.PlayerDBApi;

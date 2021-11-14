@@ -72,8 +72,8 @@ public class InitData{
     private static String initItem(){
         String[] array = new String[]{
                 // id, name, type
-                "(14159, 'fertilizer', 'Fertilizer')",
-                "(26535, 'watering can', 'WateringCan')"
+                "(14159, 'fertilizer', 'fertilizer')",
+                "(26535, 'watering can', 'wateringcan')"
         };
         return "INSERT INTO " + ITEM + " VALUES" + String.join(", ", array);
     }
