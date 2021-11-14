@@ -23,8 +23,7 @@ import com.farmgame.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private static final int ROW_NUM = 4;
-    private static final int COL_NUM = 5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +53,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    private void populateLandButtons() {
-        TableLayout table = findViewById(R.id.tableForLandButtons);
-        for(int row = 0; row < ROW_NUM; row ++){
-            TableRow tableRow = new TableRow(this);
-            table.addView(tableRow);
-            for (int col = 0; col < COL_NUM; col ++){
-                Button button = new Button(this);
-                tableRow.addView(button);
-            }
-        }
-    }
+
 
 }
