@@ -110,7 +110,7 @@ public class InitData{
 
         String[] array = new String[]{
                 // landIndex, price, lockStatus, plant, waterTime, fertilizeTime, stage
-                "(0, 1000, 0, -1, '-1', 0, 0)",
+                "(0, 1000, 2, -1, '-1', 0, 0)",
                 "(1, 1000, 0, -1, '-1', 0, 0)",
                 "(2, 1000, 0, -1, '-1', 0, 0)",
                 "(3, 1000, 0, -1, '-1', 0, 0)",
