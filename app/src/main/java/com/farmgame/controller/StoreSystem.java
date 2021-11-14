@@ -45,7 +45,7 @@ public class StoreSystem extends System {
          } else if (object instanceof Seeds) {
              for (Seeds seed : this.store.getCurrentSeed()){
                  if (((Seeds) object).getSeedId() == seed.getSeedId()){
-                     return seed.getBuyingPrice();
+                     return seed.getPrice();
                  }
              }
      }
@@ -122,7 +122,7 @@ public class StoreSystem extends System {
          if (object instanceof Plants) {
              for (Plants plant : this.store.getCurrentProducts_plants()){
                  if (plant.getPlantID() == ((Plants) object).getPlantID()){
-                 int sellingPrice = ((Plants) object).getSellingPrice();
+                 int sellingPrice = ((Plants) object).getPrice();
                  playerManager.addMoney(sellingPrice);
                  warehouseManager.removeProduct(object);
                  message.append(storePresenter.sell_success(
