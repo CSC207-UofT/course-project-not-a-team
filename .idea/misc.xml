@@ -6,6 +6,8 @@
         <entry key="..\:/CSC207/course-project-not-a-team/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/CSC207/course-project-not-a-team/app/src/main/res/layout/fragment_first.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.23697916666666666" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_player_info.xml" value="0.3353182397910483" />
@@ -16,6 +18,7 @@
         <entry key="app/src/main/res/layout/fragment_player_info.xml" value="1.2479365671937281" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_store.xml" value="0.22135416666666666" />
         <entry key="app/src/main/res/layout/player_info.xml" value="0.4053448912471435" />
         <entry key="app/src/main/res/layout/player_info_fragment.xml" value="0.22785704515419675" />
         <entry key="app/src/main/res/layout/shop_page.xml" value="0.23872276505585893" />
