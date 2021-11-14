@@ -81,7 +81,7 @@ public class StoreDBApi extends DataBaseAPI {
 
 
         while (cursor.moveToNext()){
-            String type = cursor.getColumnName(cursor.getColumnIndex(ITEM_TYPE));
+            String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
             switch (type){
                 case TYPE_FERTILIZER:
                     list.add(new Fertilizer());
