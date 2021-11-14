@@ -2,6 +2,7 @@ package com.farmgame.viewModel;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.farmgame.controller.LandActivitySystem.LandChangeStatusSystem;
@@ -38,13 +39,13 @@ public class MainViewModel extends ViewModel {
     private HashMap<Integer, LandHarvestPlantSystem> lhs = new HashMap<>();
     private HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
 
-    public String money;
+    public final MutableLiveData<Player> playerData = new MutableLiveData<>();
 
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
 
-        Player player = PlayerDBApi.getPlayer();
+        Player player = updatePlayer();
 
         pm = new PlayerManager(player);
 
@@ -69,8 +70,16 @@ public class MainViewModel extends ViewModel {
     }
 
 
-    public void updatePlayer(){
 
+    public StoreSystem getStoreSystem(){
+        return ss;
+    }
+
+
+    public Player updatePlayer(){
+        Player player = PlayerDBApi.getPlayer();
+        this.playerData.setValue(player);
+        return player;
     }
 
     public void updateWarehouse(){

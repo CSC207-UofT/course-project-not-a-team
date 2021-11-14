@@ -57,7 +57,7 @@ public class Seeds implements StoreAble {
      *
      * @return int
      */
-    public int getBuyingPrice(){
+    public int getPrice(){
 
         return this.BUYING_PRICE;
     }
