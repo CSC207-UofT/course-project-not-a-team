@@ -15,7 +15,7 @@ public class LandEntity {
     private int lockStatus;
     private Seeds plant;
     private String waterTime;
-    private int fertilizeTime;
+    private boolean isFertilize;
     private int stage;
     private int price;
     private int index;
@@ -66,12 +66,12 @@ public class LandEntity {
      * @param price the price of the land
      * @param index the index of the land
      */
-    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, int fertilizeTime, int price, int index) {
+    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, boolean isFertilize, int price, int index) {
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.waterTime = waterTime;
         this.stage = stage;
-        this.fertilizeTime = fertilizeTime;
+        this.isFertilize = isFertilize;
         this.price = price;
         this.index = index;
     }
@@ -120,14 +120,6 @@ public class LandEntity {
         return !this.getWaterTime().equals("-1");
     }
 
-    /**
-     * Getter for fertilizeTime.
-     *
-     * @return the fertilize time of this land
-     */
-    public int getFertilizeTime() {
-        return fertilizeTime;
-    }
 
     /**
      * Whether this land is fertilized or not.
@@ -135,7 +127,7 @@ public class LandEntity {
      * @return true if and only if the land is fertilized.
      */
     public boolean isFertilize() {
-        return this.getFertilizeTime() != 0;
+        return this.isFertilize;
     }
 
 
@@ -220,6 +212,6 @@ public class LandEntity {
         this.plant = null;
         this.waterTime = "-1";
         this.stage = 0;
-        this.fertilizeTime = 0;
+        this.isFertilize = false;
     }
 }

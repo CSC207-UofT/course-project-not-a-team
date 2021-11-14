@@ -16,13 +16,12 @@ public class Constants {
     public static final String WAREHOUSE = "Warehouse";
     public static final String LEVEL = "Level";
     public static final String LAND = "Land";
-    public static final String STORE = "Store";
 
 
     // SQLite Column Type
-    public static final int INT = 0;
-    public static final int TEXT = 1;
-    public static final int BOOLEAN = 2;
+    public static final String INT = "INT";
+    public static final String TEXT = "TEXT";
+    public static final String BOOLEAN = "BOOLEAN";
 
     // User SQL Column names
     public static final String PLAYER_NAME = "name";
@@ -64,15 +63,8 @@ public class Constants {
     public static final String LAND_LOCK_STATUS = "lockStatus";
     public static final String LAND_PLANT = "plant";
     public static final String LAND_WATER_TIME = "waterTime";
-    public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
+    public static final String LAND_IS_FERTILIZED = "isFertilized";
     public static final String LAND_STAGE = "stage";
-
-
-    // Store SQL Column names
-    public static final String STORE_ID = "id";
-    public static final String STORE_TYPE = "type";
-    public static final String STORE_UNLOCK_LEVEL = "unlockLevel";
-
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
@@ -83,6 +75,10 @@ public class Constants {
 
     // Missing Value
     public static final int MISSING_VALUE = -1;
+    //Invalid Purchase
+    public static final int NOT_ENOUGH_MONEY = -10;
+    public static final int NOT_ENOUGH_SPACE = -20;
+    public static final int SUCCESS = 10;
 
 
     // observable messages Store
