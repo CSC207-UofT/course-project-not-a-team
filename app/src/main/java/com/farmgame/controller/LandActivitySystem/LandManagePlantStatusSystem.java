@@ -21,8 +21,9 @@ public class LandManagePlantStatusSystem extends System {
         this.landManager = landManager;
     }
 
-    public void fertilize() {
+    public String fertilize() {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
+        String message = "";
         Item fertilizer = this.warehouseManager.getWarehouse().getItem(TYPE_FERTILIZER);
         if (fertilizer != null
                 && landManager.getLand().getPlant() != null
@@ -30,31 +31,34 @@ public class LandManagePlantStatusSystem extends System {
             landManager.fertilize((Fertilizer) fertilizer);
             warehouseManager.removeProduct((StoreAble) fertilizer);
             // inform player that he/she has fertilized the land successfully
-            plantStatusPresenter.fertilizerSuccess();
+            message += plantStatusPresenter.fertilizerSuccess() + "\n";
 
         }
         else if (fertilizer == null) {
             // inform player that the warehouse has not fertilizer left
             plantStatusPresenter.not_enough_Fertilizer();
+            message += plantStatusPresenter.not_enough_Fertilizer() + "\n";
 
         }
         else if (landManager.getLand().getPlant() == null) {
             // inform player that this land hasn't been planted yet
-            plantStatusPresenter.landNotPlant();
+            message += plantStatusPresenter.landNotPlant() + "\n";
         }
         else if (landManager.getLand().isFertilize()) {
             // inform player that this land has been fertilized recently, thus should wait for a few minutes for next fertilization.
-            plantStatusPresenter.invalidFertilize();
+            message += plantStatusPresenter.invalidFertilize() + "\n";
         }
         else {
             // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
+        return message;
     }
 
 
 
-    public void watering() {
+    public String watering() {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
+        String message = "";
         Item wateringCan = this.warehouseManager.getWarehouse().getItem(TYPE_WATERING_CAN);
         if (wateringCan != null
                 && landManager.getLand().getPlant() != null
@@ -66,22 +70,23 @@ public class LandManagePlantStatusSystem extends System {
         }
         else if (wateringCan == null) {
             // inform player that the warehouse has not watering can left
-            plantStatusPresenter.not_enough_WaterCan();
+            message += plantStatusPresenter.not_enough_WaterCan() + "\n";
         }
         else if (landManager.getLand().getPlant() == null) {
             // inform player that this land hasn't been planted yet
-            plantStatusPresenter.landNotPlant();
+            message += plantStatusPresenter.landNotPlant() + "\n";
         }
         else if (landManager.getLand().isWet()) {
             // inform player that this land has been water recently, thus should wait for a few minutes for next watering.
-            plantStatusPresenter.invalidWater();
+            message += plantStatusPresenter.invalidWater() + "\n";
         }
         else if (landManager.getLand().getStage() == 2) {
             // inform player that this land has a fully grown plant, thus should not be watered
-            plantStatusPresenter.invalidWaterMature();
+            message += plantStatusPresenter.invalidWaterMature() + "\n";
         }
         else {
             // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
+        return message;
     }
 }

@@ -34,6 +34,30 @@ public class LandDBApi extends DataBaseAPI {
         return map;
     }
 
+    public static ArrayList<LandEntity> getLandList(){
+        ArrayList<LandEntity> list = new ArrayList<>();
+        Cursor cursor = db.query(
+                LAND,
+                new String[]{"*"},
+                null,null,null,null,null
+        );
+        while (cursor.moveToNext()){
+            int lockStatus = cursor.getInt(cursor.getColumnIndex(LAND_LOCK_STATUS));
+            int seedID = cursor.getInt(cursor.getColumnIndex(LAND_PLANT));
+            Seeds seed = seedID != -1 ? PlantDBApi.getSeed(seedID) : null;
+            String waterTime = cursor.getString(cursor.getColumnIndex(LAND_WATER_TIME));
+            boolean isFertilize = cursor.getInt(cursor.getColumnIndex(LAND_IS_FERTILIZED)) == 1;
+            int stage = cursor.getInt(cursor.getColumnIndex(LAND_STAGE));
+            int price = cursor.getInt(cursor.getColumnIndex(LAND_PRICE));
+            int index = cursor.getInt(cursor.getColumnIndex(LAND_INDEX));
+            list.add(new LandEntity(lockStatus, seed, waterTime, stage, isFertilize, price, index));
+        }
+
+        cursor.close();
+
+        return list;
+    }
+
 
 
     public static void updateLand(int landIndex){
@@ -42,12 +66,15 @@ public class LandDBApi extends DataBaseAPI {
         contentValues.put(LAND_LOCK_STATUS, land.getLockStatus());
         contentValues.put(LAND_PLANT, land.getPlant().getSeedId());
         contentValues.put(LAND_WATER_TIME, land.getWaterTime());
-        contentValues.put(LAND_FERTILIZE_TIME, land.getFertilizeTime());
+        contentValues.put(LAND_IS_FERTILIZED, land.isFertilize()? 1 : 0);
+        contentValues.put(LAND_PRICE, land.getPrice());
         contentValues.put(LAND_STAGE, land.getStage());
 
         db.update(
                 LAND, contentValues, LAND_INDEX + " = ?",
                 new String[]{String.valueOf(land.getIndex())});
+
+        vm.updateLand(landIndex);
     }
 
 }

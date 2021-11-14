@@ -15,7 +15,7 @@ public class LandChangeStatusSystem extends System {
         this.playerManager = playerManager;
     }
 
-    public void unlockLand() {
+    public String unlockLand() {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
         Integer max_unlock = LandDBApi.getLandMaxTable().get(playerManager.getPlayer().getLevel());
         if (landManager.getLand().getLockStatus() == 0
@@ -23,31 +23,34 @@ public class LandChangeStatusSystem extends System {
                 && landManager.getLand().getIndex() <= max_unlock) {
             landManager.getLand().setLockStatus(1);
             // inform player that he/she has unlocked the land successfully
-            changeStatusPresenter.lockSuccess();
 
         }
         else {
             // return error: invalid initial lock status. This should not happen during game
         }
+        return changeStatusPresenter.lockSuccess();
     }
 
-    public void buyLand() {
+    public String buyLand() {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
+        String message = "";
         if (landManager.getLand().getLockStatus() == 1) {
             if (playerManager.subtractMoney(landManager.getLand().getPrice())) {
                 landManager.getLand().setLockStatus(2);
                 // inform player that he/she has bought the land successfully
-                changeStatusPresenter.buySuccess();
+                message += changeStatusPresenter.buySuccess() + "\n";
             }
             else {
                 // inform player that he/she doesn't have enough money to buy
-                changeStatusPresenter.not_enough_money();
-                changeStatusPresenter.remaining_money(playerManager.getPlayer().getMoney());
+                message += changeStatusPresenter.not_enough_money() + "\n";
+                message += changeStatusPresenter.remaining_money(
+                        playerManager.getPlayer().getMoney()) + "\n";
 
             }
         }
         else {
             // return error" invalid initial lock status. This should not happen during game
         }
+        return message;
     }
 }
