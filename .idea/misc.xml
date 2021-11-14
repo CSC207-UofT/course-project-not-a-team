@@ -10,11 +10,14 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_player_info.xml" value="0.3353182397910483" />
         <entry key="app/src/main/res/layout/content_login.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3502824858757062" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_player_info.xml" value="1.2479365671937281" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.165" />
         <entry key="app/src/main/res/layout/player_info.xml" value="0.4053448912471435" />
-        <entry key="app/src/main/res/layout/player_info_fragment.xml" value="0.6644903071757349" />
+        <entry key="app/src/main/res/layout/player_info_fragment.xml" value="0.22785704515419675" />
         <entry key="app/src/main/res/layout/shop_page.xml" value="0.23872276505585893" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22395833333333334" />
@@ -74,5 +77,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
