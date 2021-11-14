@@ -4,6 +4,7 @@ import static com.farmgame.constants.Constants.*;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
@@ -12,6 +13,7 @@ import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Warehouse;
+import com.farmgame.usecase.StoreAble;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +30,11 @@ public class WarehouseDBApi extends DataBaseAPI {
                 null,
                 null);
 
+        Log.d("sev", "1");
         HashMap<Integer, ArrayList<Plants>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
+            Log.d("sev", "11");
             ArrayList<Plants> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
@@ -59,7 +63,7 @@ public class WarehouseDBApi extends DataBaseAPI {
 
         HashMap<Integer, ArrayList<Seeds>> map = new HashMap<>();
 
-        while (cursor.moveToFirst()){
+        while (cursor.moveToNext()){
             ArrayList<Seeds> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String name = cursor.getString(cursor.getColumnIndex(PLANT_SEED_NAME));
@@ -82,8 +86,8 @@ public class WarehouseDBApi extends DataBaseAPI {
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
                 new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_NAME},
-                null,
-                null,
+                WAREHOUSE_TYPE + " != ? AND " + WAREHOUSE_TYPE + " != ?",
+                new String[]{TYPE_PLANT, TYPE_SEED},
                 null,
                 null,
                 null);
@@ -106,12 +110,12 @@ public class WarehouseDBApi extends DataBaseAPI {
                         break;
                 }
             }
-
             map.put(id, list);
         }
         cursor.close();
         return map;
     }
+
 
     public static void update_warehouse(){
         Warehouse warehouse = vm.getWarehouse();
@@ -120,8 +124,90 @@ public class WarehouseDBApi extends DataBaseAPI {
         HashMap<Integer, ArrayList<Plants>> plantMap = warehouse.getPlantInventory();
         HashMap<Integer, ArrayList<Seeds>> seedMap = warehouse.getSeedInventory();
 
+        convertItemMap(itemMap);
+        convertSeedMap(seedMap);
+        convertPlantMap(plantMap);
+
+    }
+
+    private static void convertItemMap(HashMap<Integer, ArrayList<Item>> itemMap){
+        HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
+        for (int key : itemMap.keySet()){
+            result.put(key, new ArrayList<>(itemMap.get(key)));
+        }
+
+        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
+        HashMap<Integer, ArrayList<Item>> prevMap = getItemsMap();
+        for (int key : prevMap.keySet()){
+            prev.put(key, new ArrayList<>(prevMap.get(key)));
+        }
+
+        update(result, prev);
+    }
+
+    private static void convertSeedMap(HashMap<Integer, ArrayList<Seeds>> seedMap){
+        HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
+        for (int key : seedMap.keySet()){
+            result.put(key, new ArrayList<>(seedMap.get(key)));
+        }
+
+        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
+        HashMap<Integer, ArrayList<Seeds>> prevMap = getSeedsMap();
+        for (int key : prevMap.keySet()){
+            prev.put(key, new ArrayList<>(prevMap.get(key)));
+        }
+
+        update(result, prev);
+    }
+
+    private static void convertPlantMap(HashMap<Integer, ArrayList<Plants>> plantMap){
+        HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
+        for (int key : plantMap.keySet()){
+            result.put(key, new ArrayList<>(plantMap.get(key)));
+        }
+
+        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
+        HashMap<Integer, ArrayList<Plants>> prevMap = getPlantsMap();
+        for (int key : prevMap.keySet()){
+            prev.put(key, new ArrayList<>(prevMap.get(key)));
+        }
+
+        update(result, prev);
+    }
+
+    private static void update(HashMap<Integer, ArrayList<StoreAble>> map,
+                               HashMap<Integer, ArrayList<StoreAble>> prev){
+        for (int key: map.keySet()){
+            ArrayList<StoreAble> lst = map.get(key);
+            if (!prev.containsKey(key) && lst.size() > 0){
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(WAREHOUSE_ID, key);
+                contentValues.put(WAREHOUSE_TYPE, lst.get(0).getType());
+                contentValues.put(WAREHOUSE_QUANTITY, lst.size());
+                db.insert(WAREHOUSE, null, contentValues);
+                Log.d("sev", "1");
+            } else if (prev.containsKey(key) && lst.size() == 0){
+                db.delete(WAREHOUSE, WAREHOUSE_ID + " = ? AND " +
+                                WAREHOUSE_TYPE + " = ?",
+                        new String[]{String.valueOf(key), prev.get(key).get(0).getType()});
+                Log.d("sev", "2");
+            } else if (prev.containsKey(key)){
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(WAREHOUSE_QUANTITY, lst.size());
+                db.update(WAREHOUSE, contentValues, WAREHOUSE_ID + " = ? AND " +
+                                WAREHOUSE_TYPE + " = ? AND " + WAREHOUSE_QUANTITY + " != ?",
+                        new String[]{
+                                String.valueOf(key),
+                                lst.get(0).getType(),
+                                String.valueOf(lst.size())});
+                Log.d("sev", "3");
+            }
+        }
+        Log.d("sev", "4");
+
         vm.updateWarehouse();
     }
+
 
     public static Warehouse getWarehouse(){
         return new Warehouse(getItemsMap(), getPlantsMap(), getSeedsMap(), getCapacity());

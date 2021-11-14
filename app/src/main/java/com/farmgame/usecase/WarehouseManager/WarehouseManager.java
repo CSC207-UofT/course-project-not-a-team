@@ -137,7 +137,7 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
             this.warehouse.setSeedInventory(tempSeedList);
         }
         setChanged();
-        notifyObservers(Constants.UPDATE_WAREHOUSE);
+        notifyObservers(UPDATE_WAREHOUSE);
     }
 
 

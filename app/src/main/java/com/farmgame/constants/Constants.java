@@ -67,8 +67,8 @@ public class Constants {
     public static final String LAND_STAGE = "stage";
 
     // Type of StoreAble
-    public static final String TYPE_FERTILIZER = "Fertilizer";
-    public static final String TYPE_WATERING_CAN = "WateringCan";
+    public static final String TYPE_FERTILIZER = "fertilizer";
+    public static final String TYPE_WATERING_CAN = "wateringcan";
     public static final String TYPE_SEED = "seed";
     public static final String TYPE_PLANT = "plant";
 
