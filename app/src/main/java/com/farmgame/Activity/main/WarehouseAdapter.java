@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.farmgame.R;
+import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.StoreAble;
 
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class WarehouseAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public int getSeedId(int position){
+        return ((Seeds) getItem(position).get(0)).getSeedId();
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.farmgame.entity.Item.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Warehouse {
     private int capacity;
@@ -153,6 +154,13 @@ public class Warehouse {
             if(itemArrayList.get(0).getName().equals(item)){
                 return itemArrayList.get(0);
             }
+        }
+        return null;
+    }
+
+    public Seeds getSeeds(int id){
+        if (seedInventory.containsKey(id)){
+            return Objects.requireNonNull(seedInventory.get(id)).get(0);
         }
         return null;
     }
