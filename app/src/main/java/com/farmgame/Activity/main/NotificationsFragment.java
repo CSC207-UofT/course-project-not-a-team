@@ -42,26 +42,27 @@ public class NotificationsFragment extends Fragment {
         viewModel.playerData.observe(requireActivity(), player ->
                 binding.money.setText("money:" + player.getMoney()));
 
-
-        ArrayList<StoreAble> lst = new ArrayList<>();
-        lst.addAll(StoreDBApi.getSeedList());
-        lst.addAll(StoreDBApi.getItemList());
-        StoreGridViewAdapter adapter = new StoreGridViewAdapter(requireActivity(), lst);
-
-
         GridView gridView = binding.gv;
-        gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener((parent, view, position, id) -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-            builder.setMessage("Buy the product")
-                    .setPositiveButton(R.string.confirm, (dialog, which)
-                            -> Toast.makeText(requireActivity(),
-                            viewModel.getStoreSystem().makePurchase(adapter.getItem(position)),
-                            Toast.LENGTH_LONG).show()
-                    )
-                    .setNegativeButton(R.string.cancel, null)
-                    .create().show();
+
+        viewModel.warehouseData.observe(requireActivity(), warehouse -> {
+            sellAdapter adapter = new sellAdapter(requireActivity(),
+                    viewModel.getWarehouse().getPlantInventory());
+
+
+            gridView.setAdapter(adapter);
+            gridView.setOnItemClickListener((parent, view, position, id) -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                builder.setMessage("Sell the product")
+                        .setPositiveButton(R.string.confirm, (dialog, which)
+                                -> Toast.makeText(requireActivity(),
+                                viewModel.getStoreSystem().sell(adapter.getItem(position).get(0)),
+                                Toast.LENGTH_LONG).show()
+                        )
+                        .setNegativeButton(R.string.cancel, null)
+                        .create().show();
+            });
         });
+
 
         return root;
     }

@@ -55,6 +55,11 @@ public class WarehouseFragment extends Fragment {
             setAdapter(itemMap, plantMap);
         });
 
+        viewModel.playerData.observe(requireActivity(), player -> {
+            binding.capacity.setText("Capacity: " +WarehouseDBApi.getCur() +
+                    "/" + WarehouseDBApi.getCapacity());
+        });
+
         viewModel.warehouseData.observe(requireActivity(), warehouse -> {
                 binding.capacity.setText("Capacity: " +WarehouseDBApi.getCur() +
                         "/" + WarehouseDBApi.getCapacity());
