@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
     }
     private void landButtonClick(int col, int row){
         Toast.makeText(requireActivity(), col + "," + row + "Has been Clicked", Toast.LENGTH_SHORT).show();
+
         // if this land is unlocked and purchased
             //show attributes(plant, waterTime, etc...
             //show action buttons: harvest, water, fertilize...
