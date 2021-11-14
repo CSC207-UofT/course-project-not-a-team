@@ -8,20 +8,17 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.farmgame.R;
 import com.farmgame.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
-    private static final int ROW_NUM = 4;
-    private static final int COL_NUM = 5;
+    private static final int ROW_NUM = 5;
+    private static final int COL_NUM = 4;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,7 +27,7 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        populateLandButtons();
         final TextView textView = binding.textHome;
         return root;
     }
@@ -50,8 +47,13 @@ public class HomeFragment extends Fragment {
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f));
+                button.setText(row + "," + col);
+                button.setOnClickListener(v -> landButtonClick());
             }
         }
+    }
+    private void landButtonClick(){
+        Toast.makeText(requireActivity(), "Click", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onDestroyView() {
