@@ -9,12 +9,11 @@ public class MainViewModelTest extends DatabaseTest{
 
     MainViewModel vm;
 
-    @Before
-    public void SetUp(){
+    @Override
+    public void createDb() {
         super.createDb();
         vm = new MainViewModel();
     }
-
 
     @Test
     public void TestSetDB(){

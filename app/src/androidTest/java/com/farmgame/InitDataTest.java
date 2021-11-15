@@ -3,24 +3,18 @@ package com.farmgame;
 
 import static com.farmgame.constants.Constants.*;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
-import androidx.test.platform.app.InstrumentationRegistry;
+import android.database.Cursor;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.junit.After;
-import org.junit.Before;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
 import com.farmgame.gateway.InitData;
-import com.farmgame.gateway.Initializer;
 
-
-import java.io.IOException;
 
 @RunWith(AndroidJUnit4.class)
 public class InitDataTest extends DatabaseTest{
@@ -53,12 +47,8 @@ public class InitDataTest extends DatabaseTest{
         InitData.createPlayer(name);
         Cursor cursor = db.query(PLANT, new String[]{"*"}, null, null,
                 null, null, null);
-        int count = 0;
-        while (cursor.moveToNext()){
-            count += 1;
-        }
+        assert countRow(cursor) == 21;
         cursor.close();
-        assert count == 21;
 
     }
 
@@ -69,12 +59,9 @@ public class InitDataTest extends DatabaseTest{
         InitData.createPlayer(name);
         Cursor cursor = db.query(ITEM, new String[]{"*"}, null, null,
                 null, null, null);
-        int count = 0;
-        while (cursor.moveToNext()){
-            count += 1;
-        }
+
+        assert countRow(cursor) == 2;
         cursor.close();
-        assert count == 2;
 
     }
 
@@ -85,12 +72,9 @@ public class InitDataTest extends DatabaseTest{
         InitData.createPlayer(name);
         Cursor cursor = db.query(WAREHOUSE, new String[]{"*"}, null, null,
                 null, null, null);
-        int count = 0;
-        while (cursor.moveToNext()){
-            count += 1;
-        }
+
+        assert countRow(cursor) == 0;
         cursor.close();
-        assert count == 0;
 
     }
 
@@ -101,12 +85,9 @@ public class InitDataTest extends DatabaseTest{
         InitData.createPlayer(name);
         Cursor cursor = db.query(LEVEL, new String[]{"*"}, null, null,
                 null, null, null);
-        int count = 0;
-        while (cursor.moveToNext()){
-            count += 1;
-        }
+
+        assert countRow(cursor) == 20;
         cursor.close();
-        assert count == 20;
 
     }
 
@@ -117,12 +98,9 @@ public class InitDataTest extends DatabaseTest{
         InitData.createPlayer(name);
         Cursor cursor = db.query(LAND, new String[]{"*"}, null, null,
                 null, null, null);
-        int count = 0;
-        while (cursor.moveToNext()){
-            count += 1;
-        }
+
+        assert countRow(cursor) == 20;
         cursor.close();
-        assert count == 20;
 
     }
 

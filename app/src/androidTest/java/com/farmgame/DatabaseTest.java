@@ -4,6 +4,7 @@ package com.farmgame;
 import static com.farmgame.constants.Constants.*;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -41,8 +42,8 @@ public class DatabaseTest {
     }
 
     @Test
-    public void TestNothing(){
-
+    public void TestConnected(){
+        assert db != null;
     }
 
     protected void dropTables(){
@@ -51,5 +52,13 @@ public class DatabaseTest {
             String sql = "DELETE FROM " + table;
             db.execSQL(sql);
         }
+    }
+
+    protected int countRow(Cursor cursor){
+        int count = 0;
+        while (cursor.moveToNext()){
+            count += 1;
+        }
+        return count;
     }
 }
