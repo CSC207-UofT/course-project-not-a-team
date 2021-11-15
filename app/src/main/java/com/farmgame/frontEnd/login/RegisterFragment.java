@@ -1,6 +1,5 @@
-package com.farmgame.Activity.login;
+package com.farmgame.frontEnd.login;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.databinding.FragmentRegisterBinding;
 import com.farmgame.gateway.InitData;
-import com.farmgame.viewModel.RegisterViewModel;
 
 public class RegisterFragment extends Fragment {
 

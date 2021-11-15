@@ -1,4 +1,4 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.databinding.FragmentWarehouseBinding;
+import com.farmgame.frontEnd.main.adapter.WarehouseAdapter;
 import com.farmgame.gateway.WarehouseDBApi;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.viewModel.MainViewModel;

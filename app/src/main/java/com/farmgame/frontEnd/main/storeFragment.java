@@ -1,26 +1,20 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentStoreBinding;
-import com.farmgame.entity.Plants;
-import com.farmgame.entity.Player;
+import com.farmgame.frontEnd.main.adapter.StoreGridViewAdapter;
 import com.farmgame.gateway.StoreDBApi;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.viewModel.MainViewModel;

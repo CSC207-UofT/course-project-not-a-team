@@ -1,4 +1,4 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -24,6 +24,8 @@ import com.farmgame.databinding.FragmentLandBinding;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
+import com.farmgame.frontEnd.main.adapter.LandAdapter;
+import com.farmgame.frontEnd.main.adapter.WarehouseAdapter;
 import com.farmgame.gateway.LandDBApi;
 import com.farmgame.viewModel.MainViewModel;
 

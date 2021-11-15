@@ -7,21 +7,9 @@
 
     <fragment
         android:id="@+id/RegisterFragment"
-        android:name="com.farmgame.Activity.login.RegisterFragment"
+        android:name="com.farmgame.frontEnd.login.RegisterFragment"
         tools:layout="@layout/fragment_register">
 
-        <action
-            android:id="@+id/action_RegisterFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.farmgame.Activity.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_RegisterFragment"
-            app:destination="@id/RegisterFragment" />
-    </fragment>
 </navigation>

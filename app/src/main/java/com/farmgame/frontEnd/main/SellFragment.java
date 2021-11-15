@@ -1,4 +1,4 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentSellBinding;
+import com.farmgame.frontEnd.main.adapter.SellAdapter;
 import com.farmgame.viewModel.MainViewModel;
 
 public class SellFragment extends Fragment {
