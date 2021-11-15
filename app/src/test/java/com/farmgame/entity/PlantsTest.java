@@ -1,7 +1,7 @@
 package com.farmgame.entity;
 
+import static com.farmgame.constants.Constants.TYPE_PLANT;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class PlantsTest {
@@ -9,22 +9,22 @@ public class PlantsTest {
 
     @Test(timeout = 50)
     public void test_name(){
-        assertEquals(Potato.getName(), "Potato");
+        assertEquals("Potato", Potato.getName());
     }
 
     @Test(timeout = 50)
     public void test_selling(){
-        assertEquals(Potato.getPrice(), 60);
+        assertEquals(60, Potato.getPrice());
     }
 
     @Test(timeout = 50)
     public void test_id(){
-        assertEquals(Potato.getId(), 1);
+        assertEquals(1, Potato.getId());
     }
 
     @Test(timeout = 50)
     public void test_type(){
-        assertEquals(Potato.getType(), "plant");
+        assertEquals(TYPE_PLANT, Potato.getType());
     }
 }
 
