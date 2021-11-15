@@ -22,26 +22,26 @@ public class ItemUnitTest {
 
     @Test
     public void test_getPrice() {
-        assertEquals(fertilizer.getPrice(), 10);
-        assertEquals(wateringCan.getPrice(), 5);
+        assertEquals(10, fertilizer.getPrice());
+        assertEquals(5, wateringCan.getPrice());
     }
 
     @Test
     public void test_getName() {
-        assertEquals(fertilizer.getName(), TYPE_FERTILIZER);
-        assertEquals(wateringCan.getName(), TYPE_WATERING_CAN);
+        assertEquals(TYPE_FERTILIZER, fertilizer.getName());
+        assertEquals(TYPE_WATERING_CAN, wateringCan.getName());
     }
 
     @Test
     public void test_getId() {
-        assertEquals(fertilizer.getId(), 14159);
-        assertEquals(wateringCan.getId(), 26535);
+        assertEquals(14159, fertilizer.getId());
+        assertEquals(26535, wateringCan.getId());
     }
 
     @Test
     public void test_getType() {
-        assertEquals(fertilizer.getType(), TYPE_FERTILIZER);
-        assertEquals(wateringCan.getType(), TYPE_WATERING_CAN);
+        assertEquals(TYPE_FERTILIZER, fertilizer.getType());
+        assertEquals(TYPE_WATERING_CAN, wateringCan.getType());
     }
 
     // use method is test in LandActivitySystem
