@@ -9,8 +9,11 @@ import com.farmgame.controller.LandActivitySystem.LandChangeStatusSystem;
 import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
 import com.farmgame.controller.LandActivitySystem.LandManagePlantStatusSystem;
 import com.farmgame.controller.StoreSystem;
+import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.LandEntity;
+import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
+import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Store;
 import com.farmgame.entity.Warehouse;
 import com.farmgame.gateway.LandDBApi;
@@ -20,6 +23,7 @@ import com.farmgame.gateway.StoreDBApi;
 import com.farmgame.gateway.WarehouseDBApi;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
+import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 import java.util.ArrayList;
@@ -76,6 +80,18 @@ public class MainViewModel extends ViewModel {
         return ss;
     }
 
+    public LandHarvestPlantSystem getLHS(int index){
+        return lhs.get(index);
+    }
+
+    public LandChangeStatusSystem getLCS(int index){
+        return lcs.get(index);
+    }
+
+    public LandManagePlantStatusSystem getLMS(int index){
+        return lms.get(index);
+    }
+
 
     public Player updatePlayer(){
         Player player = PlayerDBApi.getPlayer();
@@ -114,6 +130,30 @@ public class MainViewModel extends ViewModel {
         PlayerDBApi.setViewModel(this);
         WarehouseDBApi.setViewModel(this);
         PlantDBApi.setViewModel(this);
+    }
+
+    public ArrayList<ArrayList<StoreAble>> convertItem(){
+        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
+        for (ArrayList<Item> list : getWarehouse().getItemInventory().values()){
+            result.add(new ArrayList<>(list));
+        }
+        return result;
+    }
+
+    public ArrayList<ArrayList<StoreAble>> convertPlant(){
+        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
+        for (ArrayList<Plants> list : getWarehouse().getPlantInventory().values()){
+            result.add(new ArrayList<>(list));
+        }
+        return result;
+    }
+
+    public ArrayList<ArrayList<StoreAble>> convertSeed(){
+        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
+        for (ArrayList<Seeds> list : getWarehouse().getSeedInventory().values()){
+            result.add(new ArrayList<>(list));
+        }
+        return result;
     }
 
 }

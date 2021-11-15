@@ -85,13 +85,13 @@ public class WarehouseFragment extends Fragment {
         if (this.isVisible()){
             switch (isPlant){
                 case TYPE_PLANT:
-                    list = convertPlant(viewModel.getWarehouse().getPlantInventory());
+                    list = viewModel.convertPlant();
                     break;
                 case TYPE_SEED:
-                    list = convertSeed(viewModel.getWarehouse().getSeedInventory());
+                    list = viewModel.convertSeed();
                     break;
                 default:
-                    list = convertItem(viewModel.getWarehouse().getItemInventory());
+                    list = viewModel.convertItem();
                     break;
             }
             WarehouseAdapter adapter = new WarehouseAdapter(requireActivity(), list);
@@ -100,28 +100,5 @@ public class WarehouseFragment extends Fragment {
 
     }
 
-    private ArrayList<ArrayList<StoreAble>> convertItem(HashMap<Integer, ArrayList<Item>> itemMap){
-        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
-        for (ArrayList<Item> list : itemMap.values()){
-            result.add(new ArrayList<>(list));
-        }
-        return result;
-    }
-
-    private ArrayList<ArrayList<StoreAble>> convertPlant(HashMap<Integer, ArrayList<Plants>> itemMap){
-        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
-        for (ArrayList<Plants> list : itemMap.values()){
-            result.add(new ArrayList<>(list));
-        }
-        return result;
-    }
-
-    private ArrayList<ArrayList<StoreAble>> convertSeed(HashMap<Integer, ArrayList<Seeds>> itemMap){
-        ArrayList<ArrayList<StoreAble>> result = new ArrayList<>();
-        for (ArrayList<Seeds> list : itemMap.values()){
-            result.add(new ArrayList<>(list));
-        }
-        return result;
-    }
 
 }

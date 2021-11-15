@@ -19,6 +19,9 @@ public class LandManagePlantStatusSystem extends System {
     public LandManagePlantStatusSystem(WarehouseManager warehouseManager, LandManager landManager) {
         this.warehouseManager = warehouseManager;
         this.landManager = landManager;
+
+        this.warehouseManager.addObserver(this);
+        this.landManager.addObserver(this);
     }
 
     public String fertilize() {

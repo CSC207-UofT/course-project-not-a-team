@@ -21,9 +21,13 @@ public class LandHarvestPlantSystem extends System {
         this.playerManager = playerManager;
         this.warehouseManager = warehouseManager;
 
+        this.landManager.addObserver(this);
+        this.playerManager.addObserver(this);
+        this.warehouseManager.addObserver(this);
+
     }
 
-    public String planting(String plant) {
+    public String planting(int plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
         HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
