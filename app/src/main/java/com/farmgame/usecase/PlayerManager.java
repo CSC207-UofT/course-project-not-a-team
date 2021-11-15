@@ -1,10 +1,7 @@
 package com.farmgame.usecase;
 
 import static com.farmgame.constants.Constants.*;
-
 import com.farmgame.entity.Player;
-import com.farmgame.gateway.PlayerDBApi;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Observable;
@@ -12,8 +9,6 @@ import java.util.Observable;
 public class PlayerManager extends Observable {
     private final Player player;
     private final HashMap<Integer, Integer> expMap;
-
-    // constant
     private final int MAX_LEVEL;
 
     /**
@@ -52,7 +47,7 @@ public class PlayerManager extends Observable {
     }
 
     /**
-     * Level up for player, called during gaining exp.
+     * Helper function, level up for player, called during gaining exp.
      */
     private void levelUp() {
         if (this.player.getLevel() < MAX_LEVEL) {
