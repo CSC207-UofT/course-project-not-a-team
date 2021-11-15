@@ -63,7 +63,7 @@ public class LandManager extends Observable {
      */
     public void harvest(PlayerManager pm, WarehouseManipulate wm){
         if (land.getStage() == 2 && land.getWaterTime().equals("-1")){
-            wm.addProduct((StoreAble) this.land.getPlant());
+            wm.addProduct(this.land.getPlant());
             pm.gainExp(this.land.getPlant().getExperiencePoint());
             this.land.reset();
             setChanged();
