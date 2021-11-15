@@ -58,18 +58,11 @@ public class LandManager extends Observable {
 
     /**
      * To harvest the land if it is harvestable
-     *
-     * @param pm the player manager to manage the player
-     * @param wm the warehouse manipulate to manage the warehouse
      */
-    public void harvest(PlayerManager pm, WarehouseManipulate wm){
-        if (land.getStage() == 2 && land.getWaterTime().equals("-1")){
-            wm.addProduct(this.land.getPlant());
-            pm.gainExp(this.land.getPlant().getExperiencePoint());
-            this.land.reset();
-            setChanged();
-            notifyObservers(UPDATE_LAND + land.getIndex());
-        }
+    public void harvest(){
+        this.land.reset();
+        setChanged();
+        notifyObservers(UPDATE_LAND + land.getIndex());
     }
 
 

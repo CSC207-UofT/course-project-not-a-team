@@ -23,7 +23,7 @@ public class PlayerDBApi extends DataBaseAPI {
         int exp = cursor.getInt(cursor.getColumnIndex(PLAYER_EXP));
         int money = cursor.getInt(cursor.getColumnIndex(PLAYER_MONEY));
         cursor.close();
-        return new Player(name, level, money, new int[]{exp, 10});
+        return new Player(name, level, money, new int[]{exp, getExpTable().get(level)});
     }
 
     public static void updatePlayer(){
@@ -50,7 +50,7 @@ public class PlayerDBApi extends DataBaseAPI {
                 null, null, null ,null, null);
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        if (cursor.moveToNext()){
+        while (cursor.moveToNext()){
             int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
             int exp = cursor.getInt(cursor.getColumnIndex(LEVEL_EXP));
             map.put(level, exp);

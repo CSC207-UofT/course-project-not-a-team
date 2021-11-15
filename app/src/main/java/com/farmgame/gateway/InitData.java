@@ -42,7 +42,7 @@ public class InitData{
     private static String initPlant(){
         String[] array = new String[]{
                 // id, plantName, seedName, time, buyPrice, sellPrice, exp, unlockLevel
-                "(1001,'Apple','AppleSeed',5,20,30,1,1)",
+                "(1001,'SuperPlant','SuperSeed',1,20,30,200,1)",
                 "(1002,'Banana','BananaSeed',6,25,40,2,2)",
                 "(1003,'Beans','BeansSeed',7,40,70,3,3)",
                 "(1004,'Blueberry','BlueberrySeed',10,50,90,4,4)",

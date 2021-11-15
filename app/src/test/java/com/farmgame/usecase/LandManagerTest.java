@@ -54,7 +54,7 @@ public class LandManagerTest {
     public void Harvest() {
         landManager.getLand().addStage();
         landManager.getLand().addStage();
-        landManager.harvest(pm, wm);
+        landManager.harvest();
         assertArrayEquals(new int[]{5, 10}, pm.getPlayer().getExp_bar());
 
     }
