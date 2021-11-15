@@ -7,6 +7,10 @@ public class PlantStatusPresenter {
         return "You have fertilized this land! The plants are growing faster now!";
     }
 
+    public String wateringSuccess(){
+        return "You have watered this land! The plants are growing successfully now!";
+    }
+
     public String not_enough_Fertilizer(){
         return "Ouch! Your warehouse does not have enough fertilizer!";
     }
