@@ -15,6 +15,7 @@ public class Plants implements StoreAble {
      * @param selling -- The price of the plant when you sell it
      * @param id -- the id of the plant, same as seed
      */
+
     public Plants(String name, int selling, int id) {
         this.PLANTS_NAME = name;
         this.SELLING_PRICE = selling;
