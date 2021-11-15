@@ -96,7 +96,7 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
         if (Objects.requireNonNull(list).size() == 1){
             map.remove(id);
         } else {
-            list.remove(object);
+            list.remove(list.get(0));
         }
     }
 }
