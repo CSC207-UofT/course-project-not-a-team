@@ -92,7 +92,7 @@ public class StoreSystem extends System {
 
      /**
      * If the buy is valid, then subtract money from this player's account and then add
-     * this object to warehouse, the store will show corresponding messages.
+     * this object to warehouse.
      *
      * @param  object: The object the player wants to purchase.
      */
