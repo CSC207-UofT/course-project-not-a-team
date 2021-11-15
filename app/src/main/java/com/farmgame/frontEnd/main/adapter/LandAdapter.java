@@ -1,4 +1,4 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.farmgame.R;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,17 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.farmgame.R;
-import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.StoreAble;
 
 import java.util.ArrayList;
 
-public class WarehouseAdapter extends BaseAdapter {
+
+public class StoreGridViewAdapter extends BaseAdapter {
+
     LayoutInflater layoutInflater;
-    ArrayList<ArrayList<StoreAble>> list;
+    ArrayList<StoreAble> list;
 
 
-    public WarehouseAdapter(Context context, ArrayList<ArrayList<StoreAble>> lst){
+    public StoreGridViewAdapter(Context context, ArrayList<StoreAble> lst){
         layoutInflater = LayoutInflater.from(context);
         list = lst;
     }
@@ -29,7 +30,7 @@ public class WarehouseAdapter extends BaseAdapter {
     }
 
     @Override
-    public ArrayList<StoreAble> getItem(int position) {
+    public StoreAble getItem(int position) {
         return list.get(position);
     }
 
@@ -38,18 +39,14 @@ public class WarehouseAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getSeedId(int position){
-        return ((Seeds) getItem(position).get(0)).getId();
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = layoutInflater.inflate(R.layout.warehouse_item, null);
+        convertView = layoutInflater.inflate(R.layout.store_item, null);
         ((TextView) convertView.findViewById(R.id.name)).setText("name");
-        ((TextView) convertView.findViewById(R.id.item)).setText(getItem(position).get(0).getName());
-        ((TextView) convertView.findViewById(R.id.quantity)).setText("quantity");
+        ((TextView) convertView.findViewById(R.id.item)).setText(getItem(position).getName());
+        ((TextView) convertView.findViewById(R.id.priceName)).setText("price");
         ((TextView) convertView.findViewById(
-                R.id.quantityValue)).setText(String.valueOf(getItem(position).size()));
+                R.id.price)).setText(String.valueOf(getItem(position).getPrice()));
         return convertView;
     }
 }

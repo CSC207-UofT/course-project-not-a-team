@@ -1,9 +1,6 @@
 package com.farmgame.usecase.WarehouseManager;
 
-import com.farmgame.entity.Seeds;
 import com.farmgame.usecase.StoreAble;
-import com.farmgame.entity.Item.Item;
-import com.farmgame.entity.Plants;
 import com.farmgame.entity.Warehouse;
 
 import java.util.ArrayList;
@@ -40,50 +37,33 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
     @Override
     public void addProduct(StoreAble object) {
         if (warehouse.checkCapacity()){
-            if (object instanceof Item) {
-                HashMap<Integer, ArrayList<Item>> tempItemList = this.warehouse.getItemInventory();
-                if(tempItemList.containsKey(((Item) object).getId())){
-                    ArrayList<Item> addItemArrayList =  tempItemList.get(((Item) object).getId());
-                    assert addItemArrayList != null;
-                    addItemArrayList.add((Item) object);
-                    tempItemList.put(((Item) object).getId(),addItemArrayList);
-                }else{
-                    ArrayList<Item> addItemArrayListCP = new ArrayList<>();
-                    addItemArrayListCP.add((Item) object);
-                    tempItemList.put(((Item) object).getId(),addItemArrayListCP);
-                }
-                this.warehouse.setItemInventory(tempItemList);
-            }else if (object instanceof Plants){
-                HashMap<Integer, ArrayList<Plants>>tempPlantsList = this.warehouse.getPlantInventory();
-                if(tempPlantsList.containsKey(((Plants) object).getId())){
-                    ArrayList<Plants> addPlantsArrayList =  tempPlantsList.get(((Plants) object).getId());
-                    assert addPlantsArrayList != null;
-                    addPlantsArrayList.add((Plants) object);
-                    tempPlantsList.put(((Plants) object).getId(), addPlantsArrayList);
-                }else{
-                    ArrayList<Plants> addPlantsArrayListCP = new ArrayList<>();
-                    addPlantsArrayListCP.add((Plants) object);
-                    tempPlantsList.put(((Plants) object).getId(), addPlantsArrayListCP);
-                }
-                this.warehouse.setPlantInventory(tempPlantsList);
-            }else if (object instanceof Seeds){
-                HashMap<Integer, ArrayList<Seeds>>tempSeedList = this.warehouse.getSeedInventory();
-                if(tempSeedList.containsKey(((Seeds) object).getId())){
-                    ArrayList<Seeds> addSeedsArrayList =  tempSeedList.get(((Seeds) object).getId());
-                    assert addSeedsArrayList != null;
-                    addSeedsArrayList.add((Seeds) object);
-                    tempSeedList.put(((Seeds) object).getId(), addSeedsArrayList);
-                }else{
-                    ArrayList<Seeds> addSeedsArrayListCP =  new ArrayList<>();
-                    addSeedsArrayListCP.add((Seeds) object);
-                    tempSeedList.put(((Seeds) object).getId(), addSeedsArrayListCP);
-                }
-                this.warehouse.setSeedInventory(tempSeedList);
+            switch (object.getType()){
+                case TYPE_PLANT:
+                    add(this.warehouse.getPlantInventory(), object);
+                    break;
+                case TYPE_SEED:
+                    add(this.warehouse.getSeedInventory(), object);
+                    break;
+                default:
+                    add(this.warehouse.getItemInventory(), object);
+                    break;
             }
+            setChanged();
+            notifyObservers(UPDATE_WAREHOUSE);
         }
-        setChanged();
-        notifyObservers(UPDATE_WAREHOUSE);
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T extends StoreAble> void add(HashMap<Integer, ArrayList<T>> map, StoreAble object){
+        int id = object.getId();
+        if (map.containsKey(id)){
+            Objects.requireNonNull(map.get(id)).add((T) object);
+        } else {
+            ArrayList<T> list = new ArrayList<>();
+            list.add((T) object);
+            map.put(id, list);
+        }
     }
 
     /**

@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.farmgame.Activity.main.LandFragment"
+        android:name="com.farmgame.frontEnd.main.LandFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_land" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.farmgame.Activity.main.storeFragment"
+        android:name="com.farmgame.frontEnd.main.storeFragment"
         android:label="Buy"
         tools:layout="@layout/fragment_store" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.farmgame.Activity.main.NotificationsFragment"
+        android:name="com.farmgame.frontEnd.main.SellFragment"
         android:label="Sell"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_sell" />
 
     <fragment
         android:id="@+id/navigation_warehouse"
-        android:name="com.farmgame.Activity.main.WarehouseFragment"
+        android:name="com.farmgame.frontEnd.main.WarehouseFragment"
         android:label="Warehouse"
         tools:layout="@layout/fragment_warehouse" />
 </navigation>

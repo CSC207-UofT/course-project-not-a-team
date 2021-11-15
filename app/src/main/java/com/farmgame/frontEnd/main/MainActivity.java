@@ -1,10 +1,8 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+
 
 import com.farmgame.R;
 import com.farmgame.gateway.Initializer;

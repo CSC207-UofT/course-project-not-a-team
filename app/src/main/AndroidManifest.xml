@@ -10,15 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FarmGame">
         <activity
-            android:name=".Activity.main.MainActivity"
+            android:name=".frontEnd.main.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".Activity.PlayerInfo_Activity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.login.LoginActivity"
-            android:label="@string/title_activity_login"
+            android:name=".frontEnd.login.LoginActivity"
             android:theme="@style/Theme.FarmGame.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
