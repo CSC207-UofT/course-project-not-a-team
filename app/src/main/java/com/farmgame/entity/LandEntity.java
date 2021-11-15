@@ -125,7 +125,14 @@ public class LandEntity {
      * @return true if and only if the land is wet
      */
     public boolean isWet() {
-        return !this.getWaterTime().equals("-1");
+        if (this.getWaterTime().equals("-1")) {
+            return false;
+        }
+        else {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar nowTime = Calendar.getInstance();
+            return sdf.format(nowTime.getTime()).compareTo(waterTime) < 0;
+        }
     }
 
 
