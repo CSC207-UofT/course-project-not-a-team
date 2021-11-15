@@ -18,7 +18,6 @@ public class ItemFactory {
             return new WateringCan();
         }
         else {
-            // Question: throw exception?
             return null;
         }
     }
