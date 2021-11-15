@@ -1,44 +1,45 @@
 package com.farmgame.entity;
 
+import static com.farmgame.constants.Constants.TYPE_SEED;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 public class SeedsTest {
-    Seeds potatoseed = new Seeds("PotatoSeed", 30, 12, 10, 1);
+    Seeds potatoSeed = new Seeds("PotatoSeed", 30, 12, 10, 1);
 
     @Test(timeout = 50)
-    public void test_name(){
-        assertEquals(potatoseed.getName(), "PotatoSeed");
+    public void test_getName(){
+        assertEquals("PotatoSeed", potatoSeed.getName());
     }
 
     @Test(timeout = 50)
-    public void test_planttime(){
-        assertEquals(potatoseed.getPlantingTime(), 30);
+    public void test_getPlantTime(){
+        assertEquals(30, potatoSeed.getPlantingTime());
     }
 
     @Test(timeout = 50)
-    public void test_buyingprice(){
-        assertEquals(potatoseed.getPrice(), 12);
+    public void test_getPrice(){
+        assertEquals(12, potatoSeed.getPrice());
     }
 
     @Test(timeout = 50)
-    public void test_exp(){
-        assertEquals(potatoseed.getExperiencePoint(), 10);
+    public void test_getExperiencePoint(){
+        assertEquals(10, potatoSeed.getExperiencePoint());
     }
 
     @Test(timeout = 50)
-    public void test_namechange(){
-        assertEquals(potatoseed.getPlantFromSeed(), "Potato");
+    public void test_getPlantFromSeed(){
+        assertEquals("Potato", potatoSeed.getPlantFromSeed());
     }
 
     @Test(timeout = 50)
-    public void test_id(){
-        assertEquals(potatoseed.getId(), 1);
+    public void test_getId(){
+        assertEquals(1, potatoSeed.getId());
     }
 
     @Test(timeout = 50)
     public void test_type(){
-        assertEquals(potatoseed.getType(), "seed");
+        assertEquals(TYPE_SEED, potatoSeed.getType());
     }
 }

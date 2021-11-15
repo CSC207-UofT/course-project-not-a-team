@@ -21,6 +21,26 @@ public class LandEntity {
     private int index;
 
     /**
+     * Constructor of LandEntity class
+     *
+     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     * @param plant the plant grown on the land.
+     * @param waterTime the cool down of water time, which depends on the plant.
+     * @param stage the stage of the land.
+     * @param price the price of the land
+     * @param index the index of the land
+     */
+    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, boolean isFertilize, int price, int index) {
+        this.lockStatus = lockStatus;
+        this.plant = plant;
+        this.waterTime = waterTime;
+        this.stage = stage;
+        this.isFertilize = isFertilize;
+        this.price = price;
+        this.index = index;
+    }
+
+    /**
      * Getter for price attribute.
      *
      * @return the price of this land
@@ -57,44 +77,12 @@ public class LandEntity {
     }
 
     /**
-     * Constructor of LandEntity class
-     *
-     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
-     * @param plant the plant grown on the land.
-     * @param waterTime the cool down of water time, which depends on the plant.
-     * @param stage the stage of the land.
-     * @param price the price of the land
-     * @param index the index of the land
-     */
-    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, boolean isFertilize, int price, int index) {
-        this.lockStatus = lockStatus;
-        this.plant = plant;
-        this.waterTime = waterTime;
-        this.stage = stage;
-        this.isFertilize = isFertilize;
-        this.price = price;
-        this.index = index;
-    }
-
-
-
-    /**
      * getter for LockStatus.
      *
      * @return the lock status
      */
     public int getLockStatus(){
         return this.lockStatus;
-    }
-
-
-    /**
-     * setter for isFertilize
-     *
-     * @param fertilize the state of fertilized to be set
-     */
-    public void setFertilize(boolean fertilize) {
-        isFertilize = fertilize;
     }
 
     /**
@@ -106,7 +94,23 @@ public class LandEntity {
         this.lockStatus = lockStatus;
     }
 
+    /**
+     * setter for isFertilize
+     *
+     * @param fertilize the state of fertilized to be set
+     */
+    public void setFertilize(boolean fertilize) {
+        isFertilize = fertilize;
+    }
 
+    /**
+     * Whether this land is fertilized or not.
+     *
+     * @return true if and only if the land is fertilized.
+     */
+    public boolean isFertilize() {
+        return this.isFertilize;
+    }
 
     /**
      * Whether this land is empty
@@ -116,8 +120,6 @@ public class LandEntity {
     public boolean isEmpty() {
         return this.plant == null;
     }
-
-
 
     /**
      * Whether this land is wet
@@ -135,18 +137,6 @@ public class LandEntity {
         }
     }
 
-
-    /**
-     * Whether this land is fertilized or not.
-     *
-     * @return true if and only if the land is fertilized.
-     */
-    public boolean isFertilize() {
-        return this.isFertilize;
-    }
-
-
-
     /**
      * getter
      * @return the remaining water time
@@ -154,7 +144,6 @@ public class LandEntity {
     public String getWaterTime() {
         return waterTime;
     }
-
 
 
     /**
@@ -169,8 +158,6 @@ public class LandEntity {
 
     }
 
-
-
     /**
      * getter for plants on the land
      *
@@ -179,8 +166,6 @@ public class LandEntity {
     public Seeds getPlant() {
         return plant;
     }
-
-
 
     /**
      * setter of plant
@@ -195,8 +180,6 @@ public class LandEntity {
         this.waterTime = sdf.format(nowTime.getTime());
     }
 
-
-
     /**
      * getter for the stage of the land.
      *
@@ -206,8 +189,6 @@ public class LandEntity {
         return stage;
     }
 
-
-
     /**
      * add 1 to the stage
      */
@@ -216,8 +197,6 @@ public class LandEntity {
             this.stage += 1;
         }
     }
-
-
 
     /**
      * Reset the land to an empty land, which has null plant, zero water time and fertilize time,
