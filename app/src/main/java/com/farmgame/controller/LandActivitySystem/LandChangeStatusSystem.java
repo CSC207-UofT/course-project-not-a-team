@@ -28,9 +28,6 @@ public class LandChangeStatusSystem extends System {
             // inform player that he/she has unlocked the land successfully
 
         }
-        else {
-            // return error: invalid initial lock status. This should not happen during game
-        }
         return changeStatusPresenter.lockSuccess();
     }
 
@@ -50,9 +47,6 @@ public class LandChangeStatusSystem extends System {
                         playerManager.getPlayer().getMoney()) + "\n";
 
             }
-        }
-        else {
-            // return error" invalid initial lock status. This should not happen during game
         }
         return message;
     }

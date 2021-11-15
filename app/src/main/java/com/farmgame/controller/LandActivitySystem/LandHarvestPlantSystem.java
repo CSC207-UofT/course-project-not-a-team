@@ -7,7 +7,6 @@ import com.farmgame.gateway.PlantDBApi;
 import com.farmgame.presenter.LandPresenter.HarvestPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
-import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 public class LandHarvestPlantSystem extends System {
@@ -52,9 +51,6 @@ public class LandHarvestPlantSystem extends System {
             // inform player that this seed is not in warehouse
             message += harvestPresenter.not_enough_Seed() + "\n";
         }
-        else {
-            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
-        }
         return message;
     }
 
@@ -62,8 +58,7 @@ public class LandHarvestPlantSystem extends System {
         HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
         if (landManager.getLand().getPlant() != null
-                && landManager.getLand().getStage() == 2
-                && !landManager.getLand().isWet()) {
+                && landManager.getLand().getStage() == 2) {
             playerManager.gainExp(landManager.getLand().getPlant().getExperiencePoint());
             int plantId = landManager.getLand().getPlant().getId();
             Plants plant = PlantDBApi.createPlant(plantId);
@@ -77,9 +72,6 @@ public class LandHarvestPlantSystem extends System {
         else if (landManager.getLand().getStage() < 2 | landManager.getLand().isWet()) {
             // inform player that this plant has not fully grown
             message += harvestPresenter.growingPlant() + "\n";
-        }
-        else {
-            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
         }
         return message;
     }
