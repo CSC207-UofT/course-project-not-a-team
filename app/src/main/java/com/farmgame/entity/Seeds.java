@@ -15,8 +15,8 @@ public class Seeds implements StoreAble {
      * Constructor for seeds.
      *
      * @param name -- Name of plant
-     * @param time -- The time it takes for a plant to mature
-     * @param buying -- The price of the plant when you buy it
+     * @param time -- The time it takes for a seed to mature
+     * @param buying -- The price of the seed when you buy it
      * @param exp -- Experience points gained while harvesting plants
      * @param id -- The id of seed
      */
