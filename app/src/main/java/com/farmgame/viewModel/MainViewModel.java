@@ -34,43 +34,41 @@ public class MainViewModel extends ViewModel {
 
     private SQLiteDatabase db;
 
-    private PlayerManager pm;
-    private WarehouseManager wm;
-    private HashMap<Integer, LandManager> lmMap = new HashMap<>();
 
     private StoreSystem ss;
-    private HashMap<Integer, LandChangeStatusSystem> lcs = new HashMap<>();
-    private HashMap<Integer, LandHarvestPlantSystem> lhs = new HashMap<>();
-    private HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
+    private final HashMap<Integer, LandChangeStatusSystem> lcs = new HashMap<>();
+    private final HashMap<Integer, LandHarvestPlantSystem> lhs = new HashMap<>();
+    private final HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
 
     public final MutableLiveData<Player> playerData = new MutableLiveData<>();
     public final MutableLiveData<Warehouse> warehouseData = new MutableLiveData<>();
+    public final MutableLiveData<HashMap<Integer, LandEntity>> landMapData = new MutableLiveData<>();
+    public final MutableLiveData<Store> storeData = new MutableLiveData<>();
 
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
 
-        Player player = updatePlayer();
 
-        pm = new PlayerManager(player);
+        playerData.setValue(PlayerDBApi.getPlayer());
+        warehouseData.setValue(WarehouseDBApi.getWarehouse());
+        landMapData.setValue(new HashMap<>());
+        storeData.setValue(StoreDBApi.getStore());
+        for (LandEntity land : LandDBApi.getLandList()){
+            Objects.requireNonNull(landMapData.getValue()).put(land.getIndex(), land);
+        }
 
-        Warehouse warehouse = updateWarehouse();
+        PlayerManager pm = new PlayerManager(playerData.getValue());
 
-        wm = new WarehouseManager(warehouse);
+        WarehouseManager wm = new WarehouseManager(warehouseData.getValue());
 
-        ArrayList<LandEntity> landList = LandDBApi.getLandList();
-        Store store = StoreDBApi.getStore();
-
-        ss = new StoreSystem(store, pm, wm);
-
-        for (LandEntity land : landList){
-            int index = land.getIndex();
-            LandManager lm = new LandManager(land);
-            lmMap.put(index, lm);
+        for (int index : Objects.requireNonNull(landMapData.getValue()).keySet()){
+            LandManager lm = new LandManager(landMapData.getValue().get(index));
             lcs.put(index, new LandChangeStatusSystem(lm, pm));
             lhs.put(index, new LandHarvestPlantSystem(wm, lm, pm));
             lms.put(index, new LandManagePlantStatusSystem(wm, lm));
         }
+        ss = new StoreSystem(storeData.getValue(), pm, wm);
 
     }
 
@@ -93,20 +91,21 @@ public class MainViewModel extends ViewModel {
     }
 
 
-    public Player updatePlayer(){
-        Player player = PlayerDBApi.getPlayer();
-        this.playerData.setValue(player);
-        return player;
+    public void updatePlayer(){
+        playerData.setValue(this.playerData.getValue());
     }
 
-    public Warehouse updateWarehouse(){
-        Warehouse warehouse  = WarehouseDBApi.getWarehouse();
-        this.warehouseData.setValue(warehouse);
-        return warehouse;
+    public void updateWarehouse(){
+        warehouseData.setValue(warehouseData.getValue());
     }
 
-    public void updateLand(int landIndex){
+    public void updateLand(){
+        landMapData.setValue(landMapData.getValue());
+    }
 
+    public void updateStore(){
+        storeData.setValue(StoreDBApi.getStore());
+        ss.setStore(storeData.getValue());
     }
 
     public SQLiteDatabase getDB(){
@@ -114,15 +113,15 @@ public class MainViewModel extends ViewModel {
     }
 
     public Player getPlayer(){
-        return pm.getPlayer();
+        return playerData.getValue();
     }
 
     public Warehouse getWarehouse(){
-            return wm.getWarehouse();
+            return warehouseData.getValue();
     }
 
     public LandEntity getLand(int landIndex){
-        return Objects.requireNonNull(lmMap.get(landIndex)).getLand();
+        return Objects.requireNonNull(landMapData.getValue()).get(landIndex);
     }
 
 

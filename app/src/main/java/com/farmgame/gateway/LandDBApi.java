@@ -74,7 +74,7 @@ public class LandDBApi extends DataBaseAPI {
                 LAND, contentValues, LAND_INDEX + " = ?",
                 new String[]{String.valueOf(land.getIndex())});
 
-        vm.updateLand(landIndex);
+        vm.updateLand();
     }
 
 }

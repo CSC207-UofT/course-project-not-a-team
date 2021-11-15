@@ -41,6 +41,7 @@ public class PlayerDBApi extends DataBaseAPI {
                 new String[]{player.getName()});
 
         vm.updatePlayer();
+        vm.updateStore();
     }
 
     public static HashMap<Integer, Integer> getExpTable(){

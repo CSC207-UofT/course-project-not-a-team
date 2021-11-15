@@ -16,7 +16,7 @@ public class StoreSystem extends System {
      * and store. The player can only trade plants, items with store. The attribute store is the
      * store this class will manage, the attribute object can either be item or plants.
      */
-     private final Store store;
+     private Store store;
      private final PlayerManager playerManager;
      private final WarehouseManager warehouseManager;
 
@@ -27,6 +27,10 @@ public class StoreSystem extends System {
 
          this.playerManager.addObserver(this);
          this.warehouseManager.addObserver(this);
+     }
+
+     public void setStore(Store store){
+         this.store = store;
      }
 
      /**
@@ -122,7 +126,7 @@ public class StoreSystem extends System {
          if (object instanceof Plants) {
              for (Plants plant : this.store.getCurrentProducts_plants()){
                  if (plant.getPlantID() == ((Plants) object).getPlantID()){
-                 int sellingPrice = ((Plants) object).getPrice();
+                 int sellingPrice = object.getPrice();
                  playerManager.addMoney(sellingPrice);
                  warehouseManager.removeProduct(object);
                  message.append(storePresenter.sell_success(
