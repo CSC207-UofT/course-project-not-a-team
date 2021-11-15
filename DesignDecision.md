@@ -56,4 +56,7 @@ Implemented design pattern:
 
     We use observable to monitor any change the player makes. The reason why we use the observer
     design pattern is that our database needs to be updated as the player makes changes(such as
-    clicking buttons) in real time. Once the database is updated,  entities, more specifically, land, player, store and warehouse will be updated accordingly. From the coding perspective, controllers will observe changes made in managers and transmit those changes back to the database.
+    clicking buttons) in real time. Once the database is updated,  entities, more specifically,
+    land, player, store and warehouse will be updated accordingly. From the coding perspective,
+    controllers will observe changes made in managers and transmit those changes back to the
+    database.
