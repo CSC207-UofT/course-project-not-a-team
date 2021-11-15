@@ -63,6 +63,7 @@ public class LandManagePlantStatusSystem extends System {
                 && !landManager.getLand().isWet()) {
             landManager.watering(wateringCan);
             warehouseManager.removeProduct(wateringCan);
+            message += plantStatusPresenter.wateringSuccess() + "\n";
             // inform player that he/she has watered the land successfully
         }
         else if (wateringCan == null) {
