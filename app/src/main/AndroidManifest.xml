@@ -15,7 +15,6 @@
             android:label="@string/title_activity_main" />
         <activity
             android:name=".frontEnd.login.LoginActivity"
-            android:label="@string/title_activity_login"
             android:theme="@style/Theme.FarmGame.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
