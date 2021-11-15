@@ -2,8 +2,6 @@ package com.farmgame.usecase;
 
 import static com.farmgame.constants.Constants.*;
 
-import android.util.Log;
-
 import com.farmgame.entity.Player;
 import com.farmgame.gateway.PlayerDBApi;
 
@@ -13,10 +11,10 @@ import java.util.Observable;
 
 public class PlayerManager extends Observable {
     private final Player player;
-    private final HashMap<Integer, Integer> expMap = PlayerDBApi.getExpTable();
+    private final HashMap<Integer, Integer> expMap;
 
     // constant
-    private final int MAX_LEVEL = Collections.max(expMap.keySet());
+    private final int MAX_LEVEL;
 
     /**
      * Constructor for PlayerManager
@@ -25,6 +23,8 @@ public class PlayerManager extends Observable {
      */
     public PlayerManager(Player player) {
         this.player = player;
+        expMap = PlayerDBApi.getExpTable();
+        MAX_LEVEL = Collections.max(expMap.keySet());
     }
 
     /**
@@ -57,9 +57,7 @@ public class PlayerManager extends Observable {
             this.player.setLevel(this.player.getLevel() + 1) ;
 
             Integer exp = this.expMap.get(this.getPlayer().getLevel());
-            if (exp == null) {
-                Log.e("Error!", "exp is null!");} //???
-            else {
+            if (exp != null) {
                 this.player.getExp_bar()[1] = (int) exp;
             }
         }
@@ -67,7 +65,7 @@ public class PlayerManager extends Observable {
             this.player.getExp_bar()[0] = 0;
         }
         setChanged();
-        notifyObservers(OB_LEVEL_UP);
+        notifyObservers(UPDATE_PLAYER);
 
     }
 
@@ -79,7 +77,7 @@ public class PlayerManager extends Observable {
     public void addMoney(int money_num) {
         this.player.setMoney(this.player.getMoney() + money_num);
         setChanged();
-        notifyObservers(ADD_MONEY);
+        notifyObservers(UPDATE_PLAYER);
     }
 
     /**
@@ -95,7 +93,7 @@ public class PlayerManager extends Observable {
         else {
             this.player.setMoney(this.player.getMoney() - money_num);
             setChanged();
-            notifyObservers(SUBTRACT_MONEY);
+            notifyObservers(UPDATE_PLAYER);
             return true;
         }
     }

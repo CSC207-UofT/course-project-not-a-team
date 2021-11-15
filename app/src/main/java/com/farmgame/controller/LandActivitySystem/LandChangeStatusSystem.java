@@ -1,6 +1,7 @@
 package com.farmgame.controller.LandActivitySystem;
 
 import com.farmgame.controller.System;
+import com.farmgame.gateway.LandDBApi;
 import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
@@ -14,36 +15,42 @@ public class LandChangeStatusSystem extends System {
         this.playerManager = playerManager;
     }
 
-    public void unlockLand() {
+    public String unlockLand() {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
-        if (landManager.getLand().getLockStatus() == 0) {
+        Integer max_unlock = LandDBApi.getLandMaxTable().get(playerManager.getPlayer().getLevel());
+        if (landManager.getLand().getLockStatus() == 0
+                && max_unlock !=null
+                && landManager.getLand().getIndex() <= max_unlock) {
             landManager.getLand().setLockStatus(1);
             // inform player that he/she has unlocked the land successfully
-            changeStatusPresenter.lockSuccess();
 
         }
         else {
-            // return error: invalid initial lock status. This should happen during game
+            // return error: invalid initial lock status. This should not happen during game
         }
+        return changeStatusPresenter.lockSuccess();
     }
 
-    public void buyLand() {
+    public String buyLand() {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
+        String message = "";
         if (landManager.getLand().getLockStatus() == 1) {
             if (playerManager.subtractMoney(landManager.getLand().getPrice())) {
                 landManager.getLand().setLockStatus(2);
                 // inform player that he/she has bought the land successfully
-                changeStatusPresenter.buySuccess();
+                message += changeStatusPresenter.buySuccess() + "\n";
             }
             else {
                 // inform player that he/she doesn't have enough money to buy
-                changeStatusPresenter.not_enough_money();
-                changeStatusPresenter.remaining_money(playerManager.getPlayer().getMoney());
+                message += changeStatusPresenter.not_enough_money() + "\n";
+                message += changeStatusPresenter.remaining_money(
+                        playerManager.getPlayer().getMoney()) + "\n";
 
             }
         }
         else {
-            // return error" invalid initial lock status. This should happen during game
+            // return error" invalid initial lock status. This should not happen during game
         }
+        return message;
     }
 }

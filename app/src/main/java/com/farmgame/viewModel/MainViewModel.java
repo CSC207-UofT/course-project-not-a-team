@@ -2,10 +2,8 @@ package com.farmgame.viewModel;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
 import com.farmgame.controller.StoreSystem;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
@@ -20,8 +18,9 @@ import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 import java.util.HashMap;
+import java.util.Objects;
 
-public class LoginViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private SQLiteDatabase db;
 
@@ -34,9 +33,8 @@ public class LoginViewModel extends ViewModel {
     public void initViewModel(SQLiteDatabase database){
         db = database;
         initDatabaseAPIs();
-        if (PlayerDBApi.hasPlayer()){
-            initWhenHasPlayer();
-        }
+        initWhenHasPlayer();
+
     }
 
     public void initWhenHasPlayer(){
@@ -65,6 +63,10 @@ public class LoginViewModel extends ViewModel {
 
     public Warehouse getWarehouse(){
             return wm.getWarehouse();
+    }
+
+    public LandEntity getLand(int landIndex){
+        return Objects.requireNonNull(lmMap.get(landIndex)).getLand();
     }
 
 

@@ -10,10 +10,6 @@ import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 import com.farmgame.presenter.StorePresenter;
 import static com.farmgame.constants.Constants.*;
 
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
-
 public class StoreSystem extends System {
     /**
      * StoreManager is a class that manages the buying and selling transaction between player
@@ -62,56 +58,56 @@ public class StoreSystem extends System {
      *
      * @return boolean
      */
-     public boolean checkValidity(StoreAble object){
-             StorePresenter storePresenter = new StorePresenter();
+     public int checkValidity(StoreAble object){
              int object_price = getPrice(object);
              if (object_price == MISSING_VALUE){
-                 storePresenter.invalid_product();
-                 return false;
+                 return MISSING_VALUE;
              }
              else if (object_price > playerManager.getPlayer().getMoney()) {
-                 storePresenter.not_enough_money();
-                 return false;
+                return NOT_ENOUGH_MONEY;
              } else if (!this.warehouseManager.getWarehouse().checkCapacity()) {
-                 storePresenter.not_enough_capacity();
-                 return false;
+                 return NOT_ENOUGH_SPACE;
              } else {
-                 return true;
+                 return SUCCESS;
              }
          }
-
-
-//         if (getObjectPrice(object) == -1) {
-//                return false;
-//         } else if (object instanceof Item) {
-//                return getObjectPrice(object) <= this.store.getPlayerMoney();
-//         } else {
-//                return ((Seeds) object).getBuyingPrice() <= this.store.getPlayerMoney();
-
      /**
      * If the buy is valid, then subtract money from this player's account and then add
      * this object to warehouse.
      *
      * @param  object: The object the player wants to purchase.
      */
-     public void makePurchase(StoreAble object) {
+     public String makePurchase(StoreAble object) {
          StorePresenter storePresenter = new StorePresenter();
-         if (checkValidity(object)) {
-             playerManager.subtractMoney(getPrice(object));
-             storePresenter.purchase_success();
-             storePresenter.remaining_money(playerManager.getPlayer().getMoney());
-             updateWarehouse(object);
+         String message = "";
+         if (checkValidity(object) == MISSING_VALUE){
+             message += storePresenter.invalid_product() + "\n";
          }
+         else if (checkValidity(object) == SUCCESS) {
+             playerManager.subtractMoney(getPrice(object));
+             message += storePresenter.purchase_success() + "\n";
+             message += storePresenter.remaining_money(playerManager.getPlayer().getMoney()) + "\n";
+             message += updateWarehouse(object) + "\n";
+         }
+         else if (checkValidity(object) == NOT_ENOUGH_MONEY){
+             message += storePresenter.not_enough_money();
+         }
+         else if (checkValidity(object) == NOT_ENOUGH_SPACE){
+             message += storePresenter.not_enough_capacity();
+         }
+         return message;
      }
      /**
      * If the buy is successful, add the object to the warehouse.
      *
      *  @param object: The purchased object
      */
-     public void updateWarehouse(StoreAble object) {
+     public String updateWarehouse(StoreAble object) {
          StorePresenter storePresenter = new StorePresenter();
+         String message = "";
          warehouseManager.addProduct(object);
-         storePresenter.update_success();
+         message += storePresenter.update_success() + "\n";
+         return message;
      }
 
      /**
@@ -120,18 +116,24 @@ public class StoreSystem extends System {
      *
      * @param object: The object the player wants to sell, only plants are allowed to sell
      */
-     public void sell(StoreAble object) {
+     public String sell(StoreAble object) {
          StorePresenter storePresenter = new StorePresenter();
+         StringBuilder message = new StringBuilder();
          if (object instanceof Plants) {
              for (Plants plant : this.store.getCurrentProducts_plants()){
                  if (plant.getPlantID() == ((Plants) object).getPlantID()){
                  int sellingPrice = ((Plants) object).getSellingPrice();
                  playerManager.addMoney(sellingPrice);
                  warehouseManager.removeProduct(object);
-                 storePresenter.sell_success(playerManager.getPlayer().getMoney());
+                 message.append(storePresenter.sell_success(
+                         playerManager.getPlayer().getMoney())).append("\n");
              }
             }
         }
+         else {
+             message.append(storePresenter.sell_fail()).append("\n");
+         }
+         return message.toString();
     }
     
 }

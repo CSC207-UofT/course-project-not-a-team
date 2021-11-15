@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,11 +13,19 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.farmgame.R;
 import com.farmgame.databinding.FragmentSecondBinding;
+import com.farmgame.entity.Player;
 import com.farmgame.viewModel.MainViewModel;
 
-public class SecondFragment extends Fragment {
+class PlayerInfoFragment extends Fragment {
+
 
     private FragmentSecondBinding binding;
+
+
+
+    public PlayerInfoFragment() {
+        super(R.layout.player_info_fragment);
+    }
 
     @Override
     public View onCreateView(
@@ -27,15 +36,23 @@ public class SecondFragment extends Fragment {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
+
+
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(SecondFragment.this)
+        binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(PlayerInfoFragment.this)
                 .navigate(R.id.action_SecondFragment_to_RegisterFragment));
         final MainViewModel viewModel =
                 new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+
+
+        Player player = viewModel.getPlayer();
+        TextView textView = (TextView) requireActivity().findViewById(R.id.player_name);
+        textView.setText(player.getName());
     }
 
     @Override

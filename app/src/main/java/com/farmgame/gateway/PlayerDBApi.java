@@ -12,23 +12,6 @@ import java.util.HashMap;
 public class PlayerDBApi extends DataBaseAPI {
 
 
-    public static Player createPlayer(String name){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(PLAYER_NAME, name);
-        contentValues.put(PLAYER_LEVEL, 1);
-        contentValues.put(PLAYER_MONEY, 0);
-        contentValues.put(PLAYER_EXP, 0);
-        db.insert(PLAYER, null, contentValues);
-
-        return getPlayer();
-
-    }
-
-
-    public static boolean hasPlayer(){
-        return PlayerDBApi.getPlayer() != null;
-    }
-
     public static Player getPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);
@@ -43,16 +26,19 @@ public class PlayerDBApi extends DataBaseAPI {
         return new Player(name, level, money, new int[]{exp, 10});
     }
 
-    public static boolean levelUp(Player player){
+    public static void updatePlayer(){
+        Player player = vm.getPlayer();
         int level = player.getLevel();
         int exp = player.getExp_bar()[0];
+        int money = player.getMoney();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PLAYER_LEVEL, level);
         contentValues.put(PLAYER_EXP, exp);
+        contentValues.put(PLAYER_MONEY, money);
 
-        return db.update(
+        db.update(
                 PLAYER, contentValues, PLAYER_NAME + " = ?",
-                new String[]{player.getName()}) == 1;
+                new String[]{player.getName()});
     }
 
     public static HashMap<Integer, Integer> getExpTable(){
@@ -72,14 +58,6 @@ public class PlayerDBApi extends DataBaseAPI {
         return map;
     }
 
-
-    // player get money, spend money
-
-    // plant
-
-    // store buy, read, sell
-
-    //
 
 
 }

@@ -6,8 +6,6 @@ import android.annotation.SuppressLint;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
-
 public class LandEntity {
     /**
      * Land entity class defines a block of land. It has attribute to indicate if the land is
@@ -17,42 +15,63 @@ public class LandEntity {
     private int lockStatus;
     private Seeds plant;
     private String waterTime;
-    private int fertilizeTime;
+    private boolean isFertilize;
     private int stage;
     private int price;
     private int index;
 
+    /**
+     * Getter for price attribute.
+     *
+     * @return the price of this land
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * Setter for price attribute.
+     *
+     * @param price the price of this land
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
+    /**
+     * Getter for the index attribute.
+     *
+     * @return the index of this land
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Setter for the index attribute.
+     *
+     * @param index the index of this land
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
     /**
      * Constructor of LandEntity class
-     *  @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     *
+     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
      * @param plant the plant grown on the land.
      * @param waterTime the cool down of water time, which depends on the plant.
      * @param stage the stage of the land.
      * @param price the price of the land
      * @param index the index of the land
      */
-    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, int fertilizeTime, int price, int index) {
+    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, boolean isFertilize, int price, int index) {
         this.lockStatus = lockStatus;
         this.plant = plant;
         this.waterTime = waterTime;
         this.stage = stage;
-        this.fertilizeTime = fertilizeTime;
+        this.isFertilize = isFertilize;
         this.price = price;
         this.index = index;
     }
@@ -101,9 +120,6 @@ public class LandEntity {
         return !this.getWaterTime().equals("-1");
     }
 
-    public int getFertilizeTime() {
-        return fertilizeTime;
-    }
 
     /**
      * Whether this land is fertilized or not.
@@ -111,7 +127,7 @@ public class LandEntity {
      * @return true if and only if the land is fertilized.
      */
     public boolean isFertilize() {
-        return this.getFertilizeTime() != 0;
+        return this.isFertilize;
     }
 
 
@@ -196,6 +212,6 @@ public class LandEntity {
         this.plant = null;
         this.waterTime = "-1";
         this.stage = 0;
-        this.fertilizeTime = 0;
+        this.isFertilize = false;
     }
 }

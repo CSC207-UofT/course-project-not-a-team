@@ -16,7 +16,6 @@ public class Constants {
     public static final String WAREHOUSE = "Warehouse";
     public static final String LEVEL = "Level";
     public static final String LAND = "Land";
-    public static final String STORE = "Store";
 
 
     // SQLite Column Type
@@ -27,7 +26,7 @@ public class Constants {
     // User SQL Column names
     public static final String PLAYER_NAME = "name";
     public static final String PLAYER_LEVEL = "level";
-    public static final String PLAYER_EXP = "exp";
+    public static final String PLAYER_EXP = "playerExp";
     public static final String PLAYER_MONEY = "money";
 
 
@@ -38,7 +37,7 @@ public class Constants {
     public static final String PLANT_TIME = "time";
     public static final String PLANT_BUY_PRICE = "buyPrice";
     public static final String PLANT_SELL_PRICE = "sellPrice";
-    public static final String PLANT_EXP = "exp";
+    public static final String PLANT_EXP = "plantExp";
     public static final String PLANT_UNLOCK_LEVEL = "unlockLevel";
 
     // Item SQL Column names
@@ -67,13 +66,6 @@ public class Constants {
     public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
     public static final String LAND_STAGE = "stage";
 
-
-    // Store SQL Column names
-    public static final String STORE_ID = "id";
-    public static final String STORE_TYPE = "type";
-    public static final String STORE_UNLOCK_LEVEL = "unlockLevel";
-
-
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
     public static final String TYPE_WATERING_CAN = "WateringCan";
@@ -83,15 +75,16 @@ public class Constants {
 
     // Missing Value
     public static final int MISSING_VALUE = -1;
+    //Invalid Purchase
+    public static final int NOT_ENOUGH_MONEY = -10;
+    public static final int NOT_ENOUGH_SPACE = -20;
+    public static final int SUCCESS = 10;
 
 
     // observable messages Store
-    public static final int OB_LEVEL_UP = 0;
-    public static final int ADD_MONEY = 1;
-    public static final int SUBTRACT_MONEY = 2;
-    public static final int WAREHOUSE_ADD = 3;
-    public static final int WAREHOUSE_SUBTRACT = 4;
-    public static final int OB_LAND_CHANGED = 5;
+    public static final int UPDATE_PLAYER = 0;
+    public static final int UPDATE_WAREHOUSE = 1;
+    public static final int UPDATE_LAND = 2;
 
 
 }

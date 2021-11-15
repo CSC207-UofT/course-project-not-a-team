@@ -2,6 +2,7 @@ package com.farmgame.gateway;
 
 import static com.farmgame.constants.Constants.*;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.farmgame.entity.Item.Fertilizer;
@@ -112,22 +113,13 @@ public class WarehouseDBApi extends DataBaseAPI {
         return map;
     }
 
-//    public static HashMap<Integer, Integer> getCapacityTable(){
-//        Cursor cursor = db.query(
-//                LEVEL, new String[]{LEVEL_LEVEL, LEVEL_CAPACITY},
-//                null, null, null ,null, null);
-//
-//        HashMap<Integer, Integer> map = new HashMap<>();
-//        if (cursor.moveToNext()){
-//            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
-//            int capacity = cursor.getInt(cursor.getColumnIndex(LEVEL_CAPACITY));
-//            map.put(level, capacity);
-//        }
-//
-//        cursor.close();
-//
-//        return map;
-//    }
+    public static void update_warehouse(){
+        Warehouse warehouse = vm.getWarehouse();
+
+        HashMap<Integer, ArrayList<Item>> itemMap = warehouse.getItemInventory();
+        HashMap<Integer, ArrayList<Plants>> plantMap = warehouse.getPlantInventory();
+        HashMap<Integer, ArrayList<Seeds>> seedMap = warehouse.getSeedInventory();
+    }
 
     public static Warehouse getWarehouse(){
         return new Warehouse(getItemsMap(), getPlantsMap(), getSeedsMap(), getCapacity());
@@ -138,8 +130,11 @@ public class WarehouseDBApi extends DataBaseAPI {
         Player player = vm.getPlayer();
         String name = player.getName();
 
+//        String rawQuery = "SELECT ? FROM " + innerJoin(PLAYER, LEVEL, LEVEL_LEVEL);
+//        Cursor cursor = db.rawQuery(rawQuery, new String[]{LEVEL_CAPACITY});
+
         Cursor cursor = db.query(
-                LEVEL + " NATURAL JOIN " + PLAYER, new String[]{LEVEL_CAPACITY},
+                PLAYER + " NATURAL JOIN " + LEVEL, new String[]{LEVEL_CAPACITY},
                 PLAYER_NAME + " = ?", new String[]{name},
                 null ,null, null);
 

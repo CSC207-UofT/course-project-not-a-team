@@ -12,15 +12,26 @@ public class LandEntityTest {
     @Before
     public void setUp() {
 
-        Seeds plant = new Seeds("plantA", 30, 23, 43, 5);
-        land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , 0, 0, 0);
+        land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , false, 0, 0);
     }
 
     @Test
     public void getLockStatus() {
         assertEquals(land.getLockStatus(), LOCK_STATUS_LOCKED);
     }
-//
+
+    @Test
+    public void test_getIndex_setIndex(){
+        land.setIndex(1);
+        assertEquals(1, land.getIndex());
+    }
+
+    @Test
+    public void test_setPrice() {
+        land.setPrice(1000);
+        assertEquals(1000, land.getPrice());
+    }
+
     @Test
     public void setLockStatus() {
         land.setLockStatus(LOCK_STATUS_BOUGHT);
@@ -29,13 +40,13 @@ public class LandEntityTest {
 
     @Test
     public void isEmpty() {
-        assertFalse(land.isEmpty());
+        assertTrue(land.isEmpty());
     }
 
 
     @Test
     public void isWet() {
-        assertTrue(land.isWet());
+        assertFalse(land.isWet());
     }
 
 
@@ -47,17 +58,6 @@ public class LandEntityTest {
     @Test
     public void getWaterTime() {
         assertEquals(land.getWaterTime(), "-1");
-    }
-
-    @Test
-    public void setWaterTime() {
-        land.setWaterTime();
-        assertEquals(land.getWaterTime(), "-1");
-    }
-
-    @Test
-    public void getFertilizeTime() {
-        assertEquals(land.getFertilizeTime(), 0);
     }
 
     @Test
