@@ -1,16 +1,12 @@
 package com.farmgame.usecase;
 
 import static org.junit.Assert.assertEquals;
-
 import com.farmgame.entity.Item.Item;
-
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.entity.Warehouse;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
-
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,13 +17,11 @@ public class WarehouseManagerTest {
     Warehouse warehouse = new Warehouse(itemInventory, plantInventory,seedInventory,20);
     WarehouseManager wm = new WarehouseManager(warehouse);
 
-
     HashMap<Integer, ArrayList<Item>> itemInventory2 = new HashMap<>();
     HashMap<Integer, ArrayList<Plants>> plantInventory2 = new HashMap<>();
     HashMap<Integer, ArrayList<Seeds>> seedInventory2 = new HashMap<>();
     Warehouse warehouse2 = new Warehouse(itemInventory2, plantInventory2,seedInventory2,20);
     WarehouseManager wm2 = new WarehouseManager(warehouse2);
-
 
     Plants potato = new Plants("Potato", 60, 12);
     Plants berry = new Plants("Berry", 60, 11);
@@ -36,6 +30,7 @@ public class WarehouseManagerTest {
     public void test_getWarehouse(){
         assertEquals(this.warehouse, wm.getWarehouse());
     }
+
     @Test(timeout = 50)
     public void test_addProduct() {
         this.wm.addProduct(this.potato);

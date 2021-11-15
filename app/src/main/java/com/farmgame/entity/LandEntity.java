@@ -1,8 +1,6 @@
 package com.farmgame.entity;
 
-
 import android.annotation.SuppressLint;
-
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
@@ -21,6 +19,27 @@ public class LandEntity {
     private int index;
     private final int unLockLevel;
 
+    /**
+     * Constructor of LandEntity class
+     * @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
+     * @param plant the plant grown on the land.
+     * @param waterTime the cool down of water time, which depends on the plant.
+     * @param stage the stage of the land.
+     * @param price the price of the land
+     * @param index the index of the land
+     * @param unLockLevel the level this land will be unlocked
+     */
+    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage,
+                      boolean isFertilize, int price, int index, int unLockLevel) {
+        this.lockStatus = lockStatus;
+        this.plant = plant;
+        this.waterTime = waterTime;
+        this.stage = stage;
+        this.isFertilize = isFertilize;
+        this.price = price;
+        this.index = index;
+        this.unLockLevel = unLockLevel;
+    }
 
     /**
      * Getter for price attribute.
@@ -57,28 +76,6 @@ public class LandEntity {
     public void setIndex(int index) {
         this.index = index;
     }
-
-    /**
-     * Constructor of LandEntity class
-     *  @param lockStatus if the land is locked, or unlocked but un-bought, or bought.
-     * @param plant the plant grown on the land.
-     * @param waterTime the cool down of water time, which depends on the plant.
-     * @param stage the stage of the land.
-     * @param price the price of the land
-     * @param index the index of the land
-     * @param unLockLevel the level this land will be unlocked
-     */
-    public LandEntity(int lockStatus, Seeds plant, String waterTime, int stage, boolean isFertilize, int price, int index, int unLockLevel) {
-        this.lockStatus = lockStatus;
-        this.plant = plant;
-        this.waterTime = waterTime;
-        this.stage = stage;
-        this.isFertilize = isFertilize;
-        this.price = price;
-        this.index = index;
-        this.unLockLevel = unLockLevel;
-    }
-
 
 
     /**
@@ -214,6 +211,11 @@ public class LandEntity {
         this.isFertilize = false;
     }
 
+    /**
+     * Getter for unlock level
+     *
+      * @return the unlock level of this land
+     */
     public int getUnLockLevel() {
         return unLockLevel;
     }

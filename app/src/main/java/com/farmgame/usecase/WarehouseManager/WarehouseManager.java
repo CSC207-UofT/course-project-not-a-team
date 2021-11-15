@@ -2,23 +2,21 @@ package com.farmgame.usecase.WarehouseManager;
 
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.entity.Warehouse;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Observable;
 import static com.farmgame.constants.Constants.*;
 
-
 public class WarehouseManager extends Observable implements WarehouseManipulate{
     private final Warehouse warehouse;
+
     /**
      * Initialize warehouse
      * @param warehouse an warehouse instance
      */
     public WarehouseManager(Warehouse warehouse) {
         this.warehouse = warehouse;
-
     }
 
     /**
@@ -28,7 +26,6 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
     public Warehouse getWarehouse(){
         return this.warehouse;
     }
-
 
     /**
      * Add product to warehouse hashmap according to its type
@@ -54,6 +51,13 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
 
     }
 
+    /**
+     * helper function for addProduct
+     *
+     * @param map the inventory map
+     * @param object the object to add
+     * @param <T> the type of StoreAble object
+     */
     @SuppressWarnings("unchecked")
     private <T extends StoreAble> void add(HashMap<Integer, ArrayList<T>> map, StoreAble object){
         int id = object.getId();
@@ -70,7 +74,6 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
      * Remove product from warehouse hashmap according to its type
      * @param object object given an StoreAble object
      */
-
     @Override
     public void removeProduct(StoreAble object) {
         switch (object.getType()){
@@ -88,6 +91,13 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
         notifyObservers(UPDATE_WAREHOUSE);
     }
 
+    /**
+     * helper function for removeProduct
+     *
+     * @param map inventory map
+     * @param object the object to remove
+     * @param <T> the type of StoreAble object
+     */
     private <T extends StoreAble> void remove(
             HashMap<Integer, ArrayList<T>> map, StoreAble object
     ){
