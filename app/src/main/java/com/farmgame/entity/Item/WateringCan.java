@@ -2,65 +2,23 @@ package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 import com.farmgame.entity.LandEntity;
-import com.farmgame.usecase.StoreAble;
 
 
-public class WateringCan implements Item, StoreAble {
-    /**
-     * WateringCan is a class that implements Item interface, it has a fixed price, which is 5. Its
-     * purpose is to water a land if necessary.
-     */
-    private final int price;
-    private final String item_name;
-    private final int id;
-
-
+public class WateringCan extends Item {
 
     /**
      * Constructor of WateringCan.
      */
     public WateringCan(){
-        this.price = 5;
-        this.item_name = TYPE_WATERING_CAN;
-        this.id = 26535;
+        super(5, TYPE_WATERING_CAN, 26535);
     }
-
 
 
     /**
-     * A getter method for the price of watering can.
+     * Return the type of watering can
      *
-     * @return the price of watering can.
+     * @return the type of watering can
      */
-    @Override
-    public int getPrice() {
-        return this.price;
-    }
-
-
-
-    /**
-     * A getter method for id of watering can.
-     *
-     * @return the id of watering can.
-     */
-    @Override
-    public int getId() {
-        return this.id;
-    }
-
-
-
-    /**
-     * A getter method for the name of watering can.
-     *
-     * @return the name of watering can.
-     */
-    @Override
-    public String getName(){
-        return this.item_name;
-    }
-
     @Override
     public String getType() {
         return TYPE_WATERING_CAN;

@@ -4,12 +4,9 @@ import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 
 import com.farmgame.controller.System;
-import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
-import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.presenter.LandPresenter.PlantStatusPresenter;
 import com.farmgame.usecase.LandManager;
-import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
 public class LandManagePlantStatusSystem extends System {
@@ -19,6 +16,9 @@ public class LandManagePlantStatusSystem extends System {
     public LandManagePlantStatusSystem(WarehouseManager warehouseManager, LandManager landManager) {
         this.warehouseManager = warehouseManager;
         this.landManager = landManager;
+
+        this.warehouseManager.addObserver(this);
+        this.landManager.addObserver(this);
     }
 
     public String fertilize() {
@@ -28,8 +28,8 @@ public class LandManagePlantStatusSystem extends System {
         if (fertilizer != null
                 && landManager.getLand().getPlant() != null
                 && !landManager.getLand().isFertilize()) {
-            landManager.fertilize((Fertilizer) fertilizer);
-            warehouseManager.removeProduct((StoreAble) fertilizer);
+            landManager.fertilize(fertilizer);
+            warehouseManager.removeProduct(fertilizer);
             // inform player that he/she has fertilized the land successfully
             message += plantStatusPresenter.fertilizerSuccess() + "\n";
 
@@ -48,15 +48,12 @@ public class LandManagePlantStatusSystem extends System {
             // inform player that this land has been fertilized recently, thus should wait for a few minutes for next fertilization.
             message += plantStatusPresenter.invalidFertilize() + "\n";
         }
-        else {
-            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
-        }
         return message;
     }
 
 
 
-    public void watering() {
+    public String watering() {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";
         Item wateringCan = this.warehouseManager.getWarehouse().getItem(TYPE_WATERING_CAN);
@@ -64,8 +61,9 @@ public class LandManagePlantStatusSystem extends System {
                 && landManager.getLand().getPlant() != null
                 && landManager.getLand().getStage() < 2
                 && !landManager.getLand().isWet()) {
-            landManager.watering((WateringCan) wateringCan);
-            warehouseManager.removeProduct((StoreAble) wateringCan);
+            landManager.watering(wateringCan);
+            warehouseManager.removeProduct(wateringCan);
+            message += plantStatusPresenter.wateringSuccess() + "\n";
             // inform player that he/she has watered the land successfully
         }
         else if (wateringCan == null) {
@@ -76,16 +74,13 @@ public class LandManagePlantStatusSystem extends System {
             // inform player that this land hasn't been planted yet
             message += plantStatusPresenter.landNotPlant() + "\n";
         }
-        else if (landManager.getLand().isWet()) {
-            // inform player that this land has been water recently, thus should wait for a few minutes for next watering.
-            message += plantStatusPresenter.invalidWater() + "\n";
-        }
         else if (landManager.getLand().getStage() == 2) {
             // inform player that this land has a fully grown plant, thus should not be watered
             message += plantStatusPresenter.invalidWaterMature() + "\n";
         }
-        else {
-            // an error has occurred somehow, because the above else if should cover every possible cases. Maybe call this ImplementationError?
+        else if (landManager.getLand().isWet()) {
+            // inform player that this land has been water recently, thus should wait for a few minutes for next watering.
+            message += plantStatusPresenter.invalidWater() + "\n";
         }
         return message;
     }

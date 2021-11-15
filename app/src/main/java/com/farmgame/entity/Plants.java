@@ -1,12 +1,9 @@
 package com.farmgame.entity;
 
 import static com.farmgame.constants.Constants.TYPE_PLANT;
-
 import com.farmgame.usecase.StoreAble;
 
-
 public class Plants implements StoreAble {
-
     private final String PLANTS_NAME;
     private final int SELLING_PRICE;
     private final int PLANTS_ID;
@@ -18,7 +15,6 @@ public class Plants implements StoreAble {
      * @param selling -- The price of the plant when you sell it
      * @param id -- the id of the plant, same as seed
      */
-
     public Plants(String name, int selling, int id) {
         this.PLANTS_NAME = name;
         this.SELLING_PRICE = selling;
@@ -31,7 +27,6 @@ public class Plants implements StoreAble {
      *
      * @return String
      */
-
     @Override
     public String getName() {
         return this.PLANTS_NAME;
@@ -42,9 +37,8 @@ public class Plants implements StoreAble {
      *
      * @return int
      */
-
-    public int getSellingPrice(){
-
+    @Override
+    public int getPrice(){
         return this.SELLING_PRICE;
     }
 
@@ -53,9 +47,8 @@ public class Plants implements StoreAble {
      *
      * @return int
      */
-
-    public int getPlantID(){
-
+    @Override
+    public int getId(){
         return this.PLANTS_ID;
     }
 
@@ -64,13 +57,8 @@ public class Plants implements StoreAble {
      *
      * @return String
      */
-
     @Override
     public String getType() {
         return this.PLANTS_TYPE;
     }
-
-
-
-
 }

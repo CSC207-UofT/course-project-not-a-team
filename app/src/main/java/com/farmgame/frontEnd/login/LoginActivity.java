@@ -1,10 +1,10 @@
-package com.farmgame.Activity.login;
+package com.farmgame.frontEnd.login;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import com.farmgame.Activity.main.MainActivity;
+import com.farmgame.frontEnd.main.MainActivity;
 import com.farmgame.gateway.Initializer;
 
 import androidx.appcompat.app.AppCompatActivity;

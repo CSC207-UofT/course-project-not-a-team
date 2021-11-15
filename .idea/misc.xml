@@ -6,16 +6,28 @@
         <entry key="..\:/CSC207/course-project-not-a-team/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/CSC207/course-project-not-a-team/app/src/main/res/layout/fragment_first.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.23697916666666666" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_player_info.xml" value="0.3353182397910483" />
         <entry key="app/src/main/res/layout/content_login.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3502824858757062" />
+        <entry key="app/src/main/res/layout/fragment_land.xml" value="0.3890625" />
+        <entry key="app/src/main/res/layout/fragment_land_popup_menu.xml" value="0.1425925925925926" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_player_info.xml" value="1.2479365671937281" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_store.xml" value="0.22135416666666666" />
+        <entry key="app/src/main/res/layout/land_item.xml" value="0.3890625" />
         <entry key="app/src/main/res/layout/player_info.xml" value="0.4053448912471435" />
-        <entry key="app/src/main/res/layout/player_info_fragment.xml" value="0.6644903071757349" />
+        <entry key="app/src/main/res/layout/player_info_fragment.xml" value="0.22785704515419675" />
         <entry key="app/src/main/res/layout/shop_page.xml" value="0.23872276505585893" />
+        <entry key="app/src/main/res/layout/store_item.xml" value="0.3890625" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1425925925925926" />
+        <entry key="app/src/main/res/menu/land_popup_menu.xml" value="0.1425925925925926" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22395833333333334" />
       </map>
@@ -74,5 +86,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

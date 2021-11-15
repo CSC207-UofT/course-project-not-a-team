@@ -1,10 +1,7 @@
 package com.farmgame.usecase;
 
 import static com.farmgame.constants.Constants.*;
-
 import com.farmgame.entity.Player;
-import com.farmgame.gateway.PlayerDBApi;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Observable;
@@ -12,8 +9,6 @@ import java.util.Observable;
 public class PlayerManager extends Observable {
     private final Player player;
     private final HashMap<Integer, Integer> expMap;
-
-    // constant
     private final int MAX_LEVEL;
 
     /**
@@ -21,9 +16,9 @@ public class PlayerManager extends Observable {
      *
      * @param player an instance of player to manage
      */
-    public PlayerManager(Player player) {
+    public PlayerManager(Player player, HashMap<Integer, Integer> map) {
         this.player = player;
-        expMap = PlayerDBApi.getExpTable();
+        expMap = map;
         MAX_LEVEL = Collections.max(expMap.keySet());
     }
 
@@ -47,26 +42,27 @@ public class PlayerManager extends Observable {
                 this.levelUp();
             }
         }
+        setChanged();
+        notifyObservers(UPDATE_PLAYER);
     }
 
     /**
-     * Level up for player, called during gaining exp.
+     * Helper function, level up for player, called during gaining exp.
      */
-    public void levelUp() {
+    private void levelUp() {
         if (this.player.getLevel() < MAX_LEVEL) {
-            this.player.setLevel(this.player.getLevel() + 1) ;
+            this.player.setLevel(this.player.getLevel() + 1);
 
             Integer exp = this.expMap.get(this.getPlayer().getLevel());
             if (exp != null) {
-                this.player.getExp_bar()[1] = (int) exp;
+                this.player.getExp_bar()[1] = exp;
             }
         }
         else {
             this.player.getExp_bar()[0] = 0;
         }
         setChanged();
-        notifyObservers(UPDATE_PLAYER);
-
+        notifyObservers(AUTO_UNLOCK);
     }
 
     /**

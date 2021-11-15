@@ -3,11 +3,9 @@ package com.farmgame.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
-
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,9 +22,8 @@ public class WarehouseTest {
     Seeds potatoSeed = new Seeds("PotatoSeed", 10, 10,10,10);
     Seeds bananaSeed = new Seeds("BananaSeed", 10, 10,10,9);
 
-
     @Test(timeout = 50)
-    public void test_getItemInventory(){
+    public void test_getItemInventory_setItemInventory(){
         ArrayList<Item> fertilizerArrayList = new ArrayList<>();
         ArrayList<Item> wateringCanArrayList = new ArrayList<>();
         fertilizerArrayList.add(this.fertilizer);
@@ -38,7 +35,7 @@ public class WarehouseTest {
     }
 
     @Test(timeout = 50)
-    public void test_getPlantInventory(){
+    public void test_getPlantInventory_setPlantInventory(){
         ArrayList<Plants> potatoArrayList = new ArrayList<>();
         ArrayList<Plants> berryArrayList = new ArrayList<>();
         potatoArrayList.add(this.potato);
@@ -50,7 +47,7 @@ public class WarehouseTest {
     }
 
     @Test(timeout = 50)
-    public void test_getSeedsInventory(){
+    public void test_getSeedsInventory_setSeedInventory(){
         ArrayList<Seeds> potatoSeedsArrayList = new ArrayList<>();
         ArrayList<Seeds> bananaSeedsArrayList = new ArrayList<>();
         potatoSeedsArrayList.add(this.potatoSeed);
@@ -61,7 +58,6 @@ public class WarehouseTest {
         assertEquals(this.warehouse.getSeedInventory(), this.seedInventory);
     }
 
-
     @Test(timeout = 50)
     public void test_contains(){
         ArrayList<Plants> potatoArrayList = new ArrayList<>();
@@ -71,8 +67,9 @@ public class WarehouseTest {
         assertTrue(warehouse.contains("Potato"));
         assertFalse(warehouse.contains("Giraffe"));
     }
+
     @Test(timeout = 50)
-    public void test_getCapacity(){
+    public void test_getCapacity_setCapacity(){
         assertEquals(warehouse.getCapacity(),20);
         warehouse.setCapacity(10);
         assertEquals(warehouse.getCapacity(),10);
@@ -102,8 +99,9 @@ public class WarehouseTest {
         this.seedInventory.put(9, bananaSeedsArrayList);
         this.warehouse.setSeedInventory(this.seedInventory);
         assertEquals(this.warehouse.getSeeds("PotatoSeed"), this.potatoSeed);
-
+        assertEquals(this.warehouse.getSeeds(10), this.potatoSeed);
     }
+
     @Test(timeout = 50)
     public void test_getItems(){
         ArrayList<Item> fertilizerArrayList = new ArrayList<>();
@@ -116,4 +114,7 @@ public class WarehouseTest {
         assertEquals(this.warehouse.getItem("Fertilizer"), this.fertilizer);
     }
 
+    // unused code: @Test
+    // unused code: public void test_checkCapacity() {
+    // unused code: }
 }

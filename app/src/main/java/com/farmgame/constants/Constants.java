@@ -19,9 +19,9 @@ public class Constants {
 
 
     // SQLite Column Type
-    public static final int INT = 0;
-    public static final int TEXT = 1;
-    public static final int BOOLEAN = 2;
+    public static final String INT = "INT";
+    public static final String TEXT = "TEXT";
+    public static final String BOOLEAN = "BOOLEAN";
 
     // User SQL Column names
     public static final String PLAYER_NAME = "name";
@@ -43,7 +43,7 @@ public class Constants {
     // Item SQL Column names
     public static final String ITEM_ID = "id";
     public static final String ITEM_NAME = "name";
-    public static final String ITEM_TYPE = "type";
+    public static final String ITEM_TYPE = "itemType";
 
 
     // Warehouse SQL Column names
@@ -55,7 +55,6 @@ public class Constants {
     public static final String LEVEL_LEVEL = "level";
     public static final String LEVEL_EXP = "exp";
     public static final String LEVEL_CAPACITY = "capacity";
-    public static final String LEVEL_LAND_MAX = "landMax";
 
     // Land SQL Column names
     public static final String LAND_INDEX = "landIndex";
@@ -63,8 +62,9 @@ public class Constants {
     public static final String LAND_LOCK_STATUS = "lockStatus";
     public static final String LAND_PLANT = "plant";
     public static final String LAND_WATER_TIME = "waterTime";
-    public static final String LAND_FERTILIZE_TIME = "fertilizeTime";
+    public static final String LAND_IS_FERTILIZED = "isFertilized";
     public static final String LAND_STAGE = "stage";
+    public static final String LAND_UNLOCK_LEVEL = "unlockLevel";
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
@@ -85,6 +85,7 @@ public class Constants {
     public static final int UPDATE_PLAYER = 0;
     public static final int UPDATE_WAREHOUSE = 1;
     public static final int UPDATE_LAND = 2;
+    public static final int AUTO_UNLOCK = 3;
 
 
 }

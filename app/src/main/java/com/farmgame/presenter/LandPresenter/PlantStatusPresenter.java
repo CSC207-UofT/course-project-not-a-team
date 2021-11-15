@@ -7,6 +7,10 @@ public class PlantStatusPresenter {
         return "You have fertilized this land! The plants are growing faster now!";
     }
 
+    public String wateringSuccess(){
+        return "You have watered this land! The plants are growing successfully now!";
+    }
+
     public String not_enough_Fertilizer(){
         return "Ouch! Your warehouse does not have enough fertilizer!";
     }
@@ -16,8 +20,7 @@ public class PlantStatusPresenter {
     }
 
     public String invalidFertilize(){
-        return "Ouch! You have just fertilized this land. You may need to wait " +
-                "several minutes for the next round.";
+        return "Ouch! You have just fertilized this land. You may only fertilize once per plant.";
     }
 
     public String not_enough_WaterCan(){
@@ -26,7 +29,7 @@ public class PlantStatusPresenter {
 
     public String invalidWater(){
         return "Ouch! This land has just been watered. You may need to wait" +
-                "several minutes for the next round";
+                " several minutes for the next round";
     }
 
     public String invalidWaterMature(){

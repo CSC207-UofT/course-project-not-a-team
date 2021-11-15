@@ -1,7 +1,8 @@
-package com.farmgame.Activity.main;
+package com.farmgame.frontEnd.main;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
 
 import com.farmgame.R;
 import com.farmgame.gateway.Initializer;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = init.getReadableDatabase();
 
 
-        final MainViewModel viewModel =
+        MainViewModel viewModel =
                 new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.initViewModel(db);
@@ -47,5 +49,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+
 
 }

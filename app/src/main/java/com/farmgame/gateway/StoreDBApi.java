@@ -9,10 +9,16 @@ import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
+import com.farmgame.entity.Store;
 
 import java.util.ArrayList;
 
 public class StoreDBApi extends DataBaseAPI {
+
+
+    public static Store getStore(){
+        return new Store(getPlantList(), getSeedList(), getItemList());
+    }
 
     public static ArrayList<Plants> getPlantList(){
 
@@ -49,9 +55,9 @@ public class StoreDBApi extends DataBaseAPI {
 
         while (cursor.moveToNext()){
 
-            String name = cursor.getString(cursor.getColumnIndex(PLANT_MATURE_NAME));
+            String name = cursor.getString(cursor.getColumnIndex(PLANT_SEED_NAME));
             int time = cursor.getInt(cursor.getColumnIndex(PLANT_TIME));
-            int buying = cursor.getInt(cursor.getColumnIndex(PLANT_SEED_NAME));
+            int buying = cursor.getInt(cursor.getColumnIndex(PLANT_BUY_PRICE));
             int exp = cursor.getInt(cursor.getColumnIndex(PLANT_EXP));
             int id = cursor.getInt(cursor.getColumnIndex(PLANT_ID));
 
@@ -70,12 +76,12 @@ public class StoreDBApi extends DataBaseAPI {
 
         Cursor cursor = db.query(
                 ITEM,
-                new String[]{"type"}, null, null,
+                new String[]{ITEM_TYPE}, null, null,
                 null, null, null);
 
 
         while (cursor.moveToNext()){
-            String type = cursor.getColumnName(cursor.getColumnIndex(ITEM_TYPE));
+            String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
             switch (type){
                 case TYPE_FERTILIZER:
                     list.add(new Fertilizer());

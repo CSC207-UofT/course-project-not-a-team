@@ -14,7 +14,7 @@ public class HarvestPresenter {
 
     public String landOccupied(){
         return "Ouch! A plant is growing in this land. You are not " +
-                "allowed to plant a new one";
+                " allowed to plant a new one";
     }
 
     public String  not_enough_Seed(){

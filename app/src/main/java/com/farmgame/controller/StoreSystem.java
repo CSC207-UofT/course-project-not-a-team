@@ -16,7 +16,7 @@ public class StoreSystem extends System {
      * and store. The player can only trade plants, items with store. The attribute store is the
      * store this class will manage, the attribute object can either be item or plants.
      */
-     private final Store store;
+     private Store store;
      private final PlayerManager playerManager;
      private final WarehouseManager warehouseManager;
 
@@ -29,23 +29,41 @@ public class StoreSystem extends System {
          this.warehouseManager.addObserver(this);
      }
 
-     /**
+    /**
+     * setter of store
+     *
+     * @param store store to be set
+     */
+     public void setStore(Store store){
+         this.store = store;
+     }
+
+    /**
+     * getter of store
+     *
+     * @return the store used by StoreSystem
+     */
+    public Store getStore() {
+        return store;
+    }
+
+    /**
      * Return the price of the object.
+      *
       * @return int: return the price of this plant
       */
-
      public int getPrice(StoreAble object) {
          if (object instanceof Item) {
              for (Item item : this.store.getCurrentProducts_items()){
-                 if (((Item) object).getId() == item.getId()){
+                 if (object.getId() == item.getId()){
                      return item.getPrice();
                  }
              }
 
          } else if (object instanceof Seeds) {
              for (Seeds seed : this.store.getCurrentSeed()){
-                 if (((Seeds) object).getSeedId() == seed.getSeedId()){
-                     return seed.getBuyingPrice();
+                 if (object.getId() == seed.getId()){
+                     return seed.getPrice();
                  }
              }
      }
@@ -71,6 +89,7 @@ public class StoreSystem extends System {
                  return SUCCESS;
              }
          }
+
      /**
      * If the buy is valid, then subtract money from this player's account and then add
      * this object to warehouse.
@@ -97,6 +116,7 @@ public class StoreSystem extends System {
          }
          return message;
      }
+
      /**
      * If the buy is successful, add the object to the warehouse.
      *
@@ -121,8 +141,8 @@ public class StoreSystem extends System {
          StringBuilder message = new StringBuilder();
          if (object instanceof Plants) {
              for (Plants plant : this.store.getCurrentProducts_plants()){
-                 if (plant.getPlantID() == ((Plants) object).getPlantID()){
-                 int sellingPrice = ((Plants) object).getSellingPrice();
+                 if (plant.getId() == object.getId()){
+                 int sellingPrice = object.getPrice();
                  playerManager.addMoney(sellingPrice);
                  warehouseManager.removeProduct(object);
                  message.append(storePresenter.sell_success(
@@ -135,6 +155,4 @@ public class StoreSystem extends System {
          }
          return message.toString();
     }
-    
 }
-
