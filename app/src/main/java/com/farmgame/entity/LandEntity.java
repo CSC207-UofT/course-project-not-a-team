@@ -88,6 +88,14 @@ public class LandEntity {
     }
 
 
+    /**
+     * setter for isFertilize
+     *
+     * @param fertilize the state of fertilized to be set
+     */
+    public void setFertilize(boolean fertilize) {
+        isFertilize = fertilize;
+    }
 
     /**
      * setter of LockStatus.
