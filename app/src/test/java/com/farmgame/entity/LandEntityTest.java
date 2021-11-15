@@ -11,7 +11,6 @@ public class LandEntityTest {
 
     @Before
     public void setUp() {
-
         land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 ,
                 false, 10, 0, 1);
     }
@@ -62,7 +61,7 @@ public class LandEntityTest {
          land.setPlant(test_seed);
          assertEquals(test_seed, land.getPlant());
          land.setWaterTime();
-         // not sure how to test get water time here
+         // not sure how to test get water time after set water time
     }
 
     @Test
