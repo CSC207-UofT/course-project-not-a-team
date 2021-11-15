@@ -11,8 +11,9 @@ public class LandEntityTest {
 
     @Before
     public void setUp() {
+
         land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 ,
-                false, 10, 0);
+                false, 10, 0, 1);
     }
 
     @Test

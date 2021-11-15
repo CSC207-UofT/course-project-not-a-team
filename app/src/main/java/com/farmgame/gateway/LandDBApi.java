@@ -14,24 +14,6 @@ import java.util.HashMap;
 
 public class LandDBApi extends DataBaseAPI {
 
-    public static HashMap<Integer, Integer> getLandMaxTable(){
-        Cursor cursor = db.query(
-                LEVEL,
-                new String[]{LEVEL_LEVEL, LEVEL_LAND_MAX},
-                null, null, null ,null, null);
-
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        if (cursor.moveToNext()){
-            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
-            int max = cursor.getInt(cursor.getColumnIndex(LEVEL_LAND_MAX));
-            map.put(level, max);
-        }
-
-        cursor.close();
-
-        return map;
-    }
 
     public static ArrayList<LandEntity> getLandList(){
         ArrayList<LandEntity> list = new ArrayList<>();
@@ -49,7 +31,8 @@ public class LandDBApi extends DataBaseAPI {
             int stage = cursor.getInt(cursor.getColumnIndex(LAND_STAGE));
             int price = cursor.getInt(cursor.getColumnIndex(LAND_PRICE));
             int index = cursor.getInt(cursor.getColumnIndex(LAND_INDEX));
-            list.add(new LandEntity(lockStatus, seed, waterTime, stage, isFertilize, price, index));
+            int unLockLevel = cursor.getInt(cursor.getColumnIndex(LAND_UNLOCK_LEVEL));
+            list.add(new LandEntity(lockStatus, seed, waterTime, stage, isFertilize, price, index, unLockLevel));
         }
 
         cursor.close();
@@ -63,7 +46,11 @@ public class LandDBApi extends DataBaseAPI {
         LandEntity land = vm.getLand(landIndex);
         ContentValues contentValues = new ContentValues();
         contentValues.put(LAND_LOCK_STATUS, land.getLockStatus());
-        contentValues.put(LAND_PLANT, land.getPlant().getId());
+        if (land.getPlant() == null){
+            contentValues.put(LAND_PLANT, -1);
+        } else {
+            contentValues.put(LAND_PLANT, land.getPlant().getId());
+        }
         contentValues.put(LAND_WATER_TIME, land.getWaterTime());
         contentValues.put(LAND_IS_FERTILIZED, land.isFertilize()? 1 : 0);
         contentValues.put(LAND_PRICE, land.getPrice());

@@ -137,7 +137,7 @@ public class LandFragment extends Fragment {
                                 Toast.makeText(requireActivity(),
                                         viewModel.getLHS(landIndex).planting(
                                                 adapter.getSeedId(position)),
-                                        Toast.LENGTH_LONG).show();
+                                        Toast.LENGTH_SHORT).show();
                                 popupWindow.dismiss();
                             }
                     )
@@ -165,19 +165,19 @@ public class LandFragment extends Fragment {
                 v -> popupWindow.dismiss());
         layout.findViewById(R.id.harvest).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lhs.harvest(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireActivity(), lhs.harvest(), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
         layout.findViewById(R.id.fertilize).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lms.fertilize(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireActivity(), lms.fertilize(), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
         layout.findViewById(R.id.watering).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lms.watering(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireActivity(), lms.watering(), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
@@ -189,7 +189,7 @@ public class LandFragment extends Fragment {
                 .setPositiveButton(R.string.confirm, (dialog, which)
                                 -> {
                     Toast.makeText(requireActivity(), viewModel.getLCS(land.getIndex()).buyLand(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                         }
                 )
                 .setNegativeButton(R.string.cancel, null)

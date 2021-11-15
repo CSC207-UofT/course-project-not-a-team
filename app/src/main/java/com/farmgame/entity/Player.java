@@ -4,7 +4,7 @@ public class Player {
     private final String name;
     private int level;
     private int money;
-    private final int[] exp_bar;
+    private int[] exp_bar;
 
     /**
      * Constructor for Player.
@@ -55,6 +55,10 @@ public class Player {
      */
     public int[] getExp_bar() {
         return this.exp_bar;
+    }
+
+    public void setExpBar(int[] exp_bar){
+        this.exp_bar = exp_bar;
     }
 
     /**

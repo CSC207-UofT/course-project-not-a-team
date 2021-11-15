@@ -34,7 +34,7 @@ public class LandManagerTest {
     PlayerManager pm = new PlayerManager(player);
     Seeds plant1 = new Seeds("plantA", 30, 23, 10, 1);
     Seeds plant2 = new Seeds("plantB", 40, 33, 20, 2);
-    LandEntity land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , false, 0, 0);
+    LandEntity land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 , false, 0, 0, unLockLevel);
 
     @Before
     public void setUp() {
@@ -54,7 +54,7 @@ public class LandManagerTest {
     public void Harvest() {
         landManager.getLand().addStage();
         landManager.getLand().addStage();
-        landManager.harvest(pm, wm);
+        landManager.harvest();
         assertArrayEquals(new int[]{5, 10}, pm.getPlayer().getExp_bar());
 
     }

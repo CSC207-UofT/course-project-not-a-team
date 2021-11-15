@@ -63,6 +63,7 @@ public class LandHarvestPlantSystem extends System {
             int plantId = landManager.getLand().getPlant().getId();
             Plants plant = PlantDBApi.createPlant(plantId);
             warehouseManager.addProduct(plant);
+            landManager.harvest();
         }
         else if (landManager.getLand().getPlant() == null) {
             // inform player that this land has not been planted yet

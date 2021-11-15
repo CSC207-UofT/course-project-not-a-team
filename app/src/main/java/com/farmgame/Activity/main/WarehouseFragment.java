@@ -71,9 +71,10 @@ public class WarehouseFragment extends Fragment {
         });
 
         viewModel.warehouseData.observe(requireActivity(), warehouse -> {
+            if (this.isVisible()){
                 binding.capacity.setText(text());
-            setAdapter();
-
+                setAdapter();
+            }
         });
 
         setAdapter();

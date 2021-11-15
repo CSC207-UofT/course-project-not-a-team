@@ -58,7 +58,7 @@ public class MainViewModel extends ViewModel {
             Objects.requireNonNull(landMapData.getValue()).put(land.getIndex(), land);
         }
 
-        PlayerManager pm = new PlayerManager(playerData.getValue());
+        PlayerManager pm = new PlayerManager(playerData.getValue(), PlayerDBApi.getExpTable());
 
         WarehouseManager wm = new WarehouseManager(warehouseData.getValue());
 
