@@ -1,7 +1,6 @@
 package com.farmgame.entity;
 
 import com.farmgame.entity.Item.Item;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -11,7 +10,6 @@ public class Warehouse {
     private HashMap<Integer, ArrayList<Item>> itemInventory;
     private HashMap<Integer, ArrayList<Plants>> plantInventory;
     private HashMap<Integer, ArrayList<Seeds>> seedInventory;
-
 
     /**
      * Warehouse is a place where player can store items and plants.
@@ -24,7 +22,7 @@ public class Warehouse {
     public Warehouse( HashMap<Integer, ArrayList<Item>> itemInventory, HashMap<Integer,
             ArrayList<Plants>> plantInventory, HashMap<Integer, ArrayList<Seeds>> seedInventory, int capacity) {
         this.capacity = capacity;
-//        this.capacity = UserUpdater.getCapacity(playerLevel);
+        // unused code: this.capacity = UserUpdater.getCapacity(playerLevel);
         this.itemInventory = itemInventory;
         this.plantInventory = plantInventory;
         this.seedInventory = seedInventory;
@@ -32,6 +30,7 @@ public class Warehouse {
 
     /**
      * get item inventory
+     *
      * @return an arraylist that represents item inventory
      */
     public HashMap<Integer, ArrayList<Item>> getItemInventory() {
@@ -40,6 +39,7 @@ public class Warehouse {
 
     /**
      * given an arraylist, set it to item inventory
+     *
      * @param itemInventory an arraylist of items
      */
     public void setItemInventory(HashMap<Integer, ArrayList<Item>> itemInventory) {
@@ -48,6 +48,7 @@ public class Warehouse {
 
     /**
      * get seed inventory
+     *
      * @return an arraylist that represents seed inventory
      */
     public HashMap<Integer, ArrayList<Seeds>> getSeedInventory() {
@@ -56,6 +57,7 @@ public class Warehouse {
 
     /**
      * given an arraylist, set it to seed inventory
+     *
      * @param seedInventory an arraylist of items
      */
     public void setSeedInventory(HashMap<Integer, ArrayList<Seeds>> seedInventory) {
@@ -64,6 +66,7 @@ public class Warehouse {
 
     /**
      * get plant inventory
+     *
      * @return an arraylist that represents plant inventory
      */
     public HashMap<Integer, ArrayList<Plants>> getPlantInventory() {
@@ -71,7 +74,8 @@ public class Warehouse {
     }
 
     /**
-     *  given an arraylist, set it to plant inventory,
+     * given an arraylist, set it to plant inventory,
+     *
      * @param plantInventory an arraylist of plants
      */
     public void setPlantInventory(HashMap<Integer, ArrayList<Plants>> plantInventory) {
@@ -80,6 +84,7 @@ public class Warehouse {
 
     /**
      * Get the capacity
+     *
      * @return an int that represents capacity
      */
     public int getCapacity() {
@@ -88,6 +93,7 @@ public class Warehouse {
 
     /**
      * Set capacity to given integer
+     *
      * @param capacity given integer
      */
     public void setCapacity(int capacity) {
@@ -96,6 +102,7 @@ public class Warehouse {
 
     /**
      * check if s is contained in item inventory/plant inventory
+     *
      * @param s string s that need to be checked
      * @return true if s is contained, false otherwise
      */
@@ -118,6 +125,11 @@ public class Warehouse {
         return false;
     }
 
+    /**
+     * return if this warehouse can hold all the items in the inventory.
+     *
+     * @return boolean
+     */
     public boolean checkCapacity(){
         int use = 0;
         for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
@@ -130,9 +142,15 @@ public class Warehouse {
             use += itemArrayList.size();
         }
         return use < this.capacity;
-
     }
 
+    /**
+     * Return the plant that is represented by the input string, return null if warehouse doesn't
+     * contain this plant
+     *
+     * @param plant string representation of plant
+     * @return Plants
+     */
     public Plants getPlants(String plant){
         for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
             if(plantsArrayList.get(0).getName().equals(plant)){
@@ -141,6 +159,14 @@ public class Warehouse {
         }
         return null;
     }
+
+    /**
+     * Return the seed that is represented by the input string, return null if warehouse doesn't
+     * contain this seed
+     *
+     * @param seed string representation of seed
+     * @return Seeds
+     */
     public Seeds getSeeds(String seed){
         for(ArrayList<Seeds> seedsArrayList: this.seedInventory.values()){
             if(seedsArrayList.get(0).getName().equals(seed)){
@@ -149,6 +175,14 @@ public class Warehouse {
         }
         return null;
     }
+
+    /**
+     * Return the item that is represented by the input string, return null if warehouse doesn't
+     * contain this item
+     *
+     * @param item the string representation of item
+     * @return Item
+     */
     public Item getItem(String item){
         for(ArrayList<Item> itemArrayList: this.itemInventory.values()){
             if(itemArrayList.get(0).getName().equals(item)){
@@ -158,6 +192,13 @@ public class Warehouse {
         return null;
     }
 
+    /**
+     * Return the seed that is represented by the input id, return null if warehouse doesn't
+     * contain this seed
+     *
+     * @param id id representation of seed
+     * @return Seeds
+     */
     public Seeds getSeeds(int id){
         if (seedInventory.containsKey(id)){
             return Objects.requireNonNull(seedInventory.get(id)).get(0);

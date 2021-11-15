@@ -24,7 +24,7 @@ public class Player {
     /**
      * Getter for name attribute.
      *
-     * @return String
+     * @return String the name of player
      */
     public String getName() {
         return this.name;
@@ -33,7 +33,7 @@ public class Player {
     /**
      * Getter for level attribute.
      *
-     * @return int
+     * @return int the level of player
      */
     public int getLevel() {
         return this.level;
@@ -42,7 +42,7 @@ public class Player {
     /**
      * Getter for money attribute.
      *
-     * @return int
+     * @return int the money of player
      */
     public int getMoney() {
         return this.money;
@@ -51,7 +51,7 @@ public class Player {
     /**
      * Getter for exp bar attribute.
      *
-     * @return int[]
+     * @return int[] the exp bar of player
      */
     public int[] getExp_bar() {
         return this.exp_bar;

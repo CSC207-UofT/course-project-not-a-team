@@ -21,6 +21,7 @@ public class LandEntity {
     private int index;
     private final int unLockLevel;
 
+
     /**
      * Getter for price attribute.
      *
@@ -89,6 +90,14 @@ public class LandEntity {
         return this.lockStatus;
     }
 
+    /**
+     * setter of LockStatus.
+     *
+     * @param lockStatus lockStatus to be set, 0 is locked, 1 is unlocked but un-bought, or bought.
+     */
+    public void setLockStatus(int lockStatus) {
+        this.lockStatus = lockStatus;
+    }
 
     /**
      * setter for isFertilize
@@ -100,15 +109,13 @@ public class LandEntity {
     }
 
     /**
-     * setter of LockStatus.
+     * Whether this land is fertilized or not.
      *
-     * @param lockStatus lockStatus to be set, 0 is locked, 1 is unlocked but un-bought, or bought.
+     * @return true if and only if the land is fertilized.
      */
-    public void setLockStatus(int lockStatus) {
-        this.lockStatus = lockStatus;
+    public boolean isFertilize() {
+        return this.isFertilize;
     }
-
-
 
     /**
      * Whether this land is empty
@@ -118,8 +125,6 @@ public class LandEntity {
     public boolean isEmpty() {
         return this.plant == null;
     }
-
-
 
     /**
      * Whether this land is wet
@@ -137,18 +142,6 @@ public class LandEntity {
         }
     }
 
-
-    /**
-     * Whether this land is fertilized or not.
-     *
-     * @return true if and only if the land is fertilized.
-     */
-    public boolean isFertilize() {
-        return this.isFertilize;
-    }
-
-
-
     /**
      * getter
      * @return the remaining water time
@@ -156,7 +149,6 @@ public class LandEntity {
     public String getWaterTime() {
         return waterTime;
     }
-
 
 
     /**
@@ -171,8 +163,6 @@ public class LandEntity {
 
     }
 
-
-
     /**
      * getter for plants on the land
      *
@@ -181,8 +171,6 @@ public class LandEntity {
     public Seeds getPlant() {
         return plant;
     }
-
-
 
     /**
      * setter of plant
@@ -197,8 +185,6 @@ public class LandEntity {
         this.waterTime = sdf.format(nowTime.getTime());
     }
 
-
-
     /**
      * getter for the stage of the land.
      *
@@ -208,8 +194,6 @@ public class LandEntity {
         return stage;
     }
 
-
-
     /**
      * add 1 to the stage
      */
@@ -218,8 +202,6 @@ public class LandEntity {
             this.stage += 1;
         }
     }
-
-
 
     /**
      * Reset the land to an empty land, which has null plant, zero water time and fertilize time,
