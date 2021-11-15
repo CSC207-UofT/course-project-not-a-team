@@ -88,7 +88,7 @@ public class Seeds implements StoreAble {
      * @return int
      */
 
-    public int getSeedId(){
+    public int getId(){
 
         return this.SEEDS_ID;
     }

@@ -39,7 +39,7 @@ public class WarehouseAdapter extends BaseAdapter {
     }
 
     public int getSeedId(int position){
-        return ((Seeds) getItem(position).get(0)).getSeedId();
+        return ((Seeds) getItem(position).get(0)).getId();
     }
 
     @Override

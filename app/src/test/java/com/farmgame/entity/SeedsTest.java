@@ -2,8 +2,6 @@ package com.farmgame.entity;
 
 import static org.junit.Assert.assertEquals;
 
-import com.farmgame.entity.Seeds;
-
 import org.junit.Test;
 
 public class SeedsTest {
@@ -36,7 +34,7 @@ public class SeedsTest {
 
     @Test(timeout = 50)
     public void test_id(){
-        assertEquals(potatoseed.getSeedId(), 1);
+        assertEquals(potatoseed.getId(), 1);
     }
 
     @Test(timeout = 50)

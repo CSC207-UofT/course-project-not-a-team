@@ -17,6 +17,7 @@ import com.farmgame.usecase.StoreAble;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class WarehouseDBApi extends DataBaseAPI {
 
@@ -42,7 +43,7 @@ public class WarehouseDBApi extends DataBaseAPI {
             int selling = cursor.getInt(cursor.getColumnIndex(PLANT_SELL_PRICE));
 
             for (int i = 0; i < quantity; i ++){
-                list.add(new Plants(name, selling, selling));
+                list.add(new Plants(name, selling, id));
             }
             map.put(id, list);
         }
@@ -120,17 +121,17 @@ public class WarehouseDBApi extends DataBaseAPI {
     public static void update_warehouse(){
         Warehouse warehouse = vm.getWarehouse();
 
-        HashMap<Integer, ArrayList<Item>> itemMap = warehouse.getItemInventory();
-        HashMap<Integer, ArrayList<Plants>> plantMap = warehouse.getPlantInventory();
-        HashMap<Integer, ArrayList<Seeds>> seedMap = warehouse.getSeedInventory();
+        db.execSQL("DELETE FROM " + WAREHOUSE);
 
-        convertItemMap(itemMap);
-        convertSeedMap(seedMap);
-        convertPlantMap(plantMap);
+        convertItemMap(warehouse.getItemInventory());
+        convertItemMap(warehouse.getPlantInventory());
+        convertItemMap(warehouse.getSeedInventory());
+
+        vm.updateWarehouse();
 
     }
 
-    private static void convertItemMap(HashMap<Integer, ArrayList<Item>> itemMap){
+    private static <T extends StoreAble> void convertItemMap(HashMap<Integer, ArrayList<T>> itemMap){
         HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
         for (int key : itemMap.keySet()){
             result.put(key, new ArrayList<>(itemMap.get(key)));
@@ -142,70 +143,19 @@ public class WarehouseDBApi extends DataBaseAPI {
             prev.put(key, new ArrayList<>(prevMap.get(key)));
         }
 
-        update(result, prev);
+        update(result);
     }
 
-    private static void convertSeedMap(HashMap<Integer, ArrayList<Seeds>> seedMap){
-        HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
-        for (int key : seedMap.keySet()){
-            result.put(key, new ArrayList<>(seedMap.get(key)));
+    private static void update(HashMap<Integer, ArrayList<StoreAble>> map){
+
+        for (int key : map.keySet()){
+            ArrayList<StoreAble> list= map.get(key);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(WAREHOUSE_ID, key);
+            contentValues.put(WAREHOUSE_TYPE, Objects.requireNonNull(list).get(0).getType());
+            contentValues.put(WAREHOUSE_QUANTITY, list.size());
+            db.insert(WAREHOUSE, null, contentValues);
         }
-
-        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
-        HashMap<Integer, ArrayList<Seeds>> prevMap = getSeedsMap();
-        for (int key : prevMap.keySet()){
-            prev.put(key, new ArrayList<>(prevMap.get(key)));
-        }
-
-        update(result, prev);
-    }
-
-    private static void convertPlantMap(HashMap<Integer, ArrayList<Plants>> plantMap){
-        HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
-        for (int key : plantMap.keySet()){
-            result.put(key, new ArrayList<>(plantMap.get(key)));
-        }
-
-        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
-        HashMap<Integer, ArrayList<Plants>> prevMap = getPlantsMap();
-        for (int key : prevMap.keySet()){
-            prev.put(key, new ArrayList<>(prevMap.get(key)));
-        }
-
-        update(result, prev);
-    }
-
-    private static void update(HashMap<Integer, ArrayList<StoreAble>> map,
-                               HashMap<Integer, ArrayList<StoreAble>> prev){
-        for (int key: map.keySet()){
-            ArrayList<StoreAble> lst = map.get(key);
-            if (!prev.containsKey(key) && lst.size() > 0){
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(WAREHOUSE_ID, key);
-                contentValues.put(WAREHOUSE_TYPE, lst.get(0).getType());
-                contentValues.put(WAREHOUSE_QUANTITY, lst.size());
-                db.insert(WAREHOUSE, null, contentValues);
-                Log.d("sev", "1");
-            } else if (prev.containsKey(key) && lst.size() == 0){
-                db.delete(WAREHOUSE, WAREHOUSE_ID + " = ? AND " +
-                                WAREHOUSE_TYPE + " = ?",
-                        new String[]{String.valueOf(key), prev.get(key).get(0).getType()});
-                Log.d("sev", "2");
-            } else if (prev.containsKey(key)){
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(WAREHOUSE_QUANTITY, lst.size());
-                db.update(WAREHOUSE, contentValues, WAREHOUSE_ID + " = ? AND " +
-                                WAREHOUSE_TYPE + " = ? AND " + WAREHOUSE_QUANTITY + " != ?",
-                        new String[]{
-                                String.valueOf(key),
-                                lst.get(0).getType(),
-                                String.valueOf(lst.size())});
-                Log.d("sev", "3");
-            }
-        }
-        Log.d("sev", "4");
-
-        vm.updateWarehouse();
     }
 
 

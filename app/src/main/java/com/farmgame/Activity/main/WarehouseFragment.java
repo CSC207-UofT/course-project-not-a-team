@@ -43,21 +43,27 @@ public class WarehouseFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
         binding.plants.setOnClickListener(v -> {
-            isPlant = TYPE_PLANT;
-            binding.capacity.setText(text());
-            setAdapter();
+            if (this.isVisible()){
+                isPlant = TYPE_PLANT;
+                binding.capacity.setText(text());
+                setAdapter();
+            }
         });
 
         binding.seeds.setOnClickListener(v -> {
-            isPlant = TYPE_SEED;
-            binding.capacity.setText(text());
-            setAdapter();
+            if (this.isVisible()){
+                isPlant = TYPE_SEED;
+                binding.capacity.setText(text());
+                setAdapter();
+            }
         });
 
         binding.item.setOnClickListener(v -> {
-            isPlant = "item";
-            binding.capacity.setText(text());
-            setAdapter();
+            if (this.isVisible()){
+                isPlant = "item";
+                binding.capacity.setText(text());
+                setAdapter();
+            }
         });
 
         viewModel.playerData.observe(requireActivity(), player -> {
@@ -69,6 +75,8 @@ public class WarehouseFragment extends Fragment {
             setAdapter();
 
         });
+
+        setAdapter();
 
 
         return root;
@@ -82,21 +90,20 @@ public class WarehouseFragment extends Fragment {
 
     private void setAdapter(){
         ArrayList<ArrayList<StoreAble>> list;
-        if (this.isVisible()){
-            switch (isPlant){
-                case TYPE_PLANT:
-                    list = viewModel.convertPlant();
-                    break;
-                case TYPE_SEED:
-                    list = viewModel.convertSeed();
-                    break;
-                default:
-                    list = viewModel.convertItem();
-                    break;
-            }
-            WarehouseAdapter adapter = new WarehouseAdapter(requireActivity(), list);
-            binding.gv.setAdapter(adapter);
+        switch (isPlant) {
+            case TYPE_PLANT:
+                list = viewModel.convertPlant();
+                break;
+            case TYPE_SEED:
+                list = viewModel.convertSeed();
+                break;
+            default:
+                list = viewModel.convertItem();
+                break;
         }
+        WarehouseAdapter adapter = new WarehouseAdapter(requireActivity(), list);
+        binding.gv.setAdapter(adapter);
+
 
     }
 

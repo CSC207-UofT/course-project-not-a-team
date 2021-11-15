@@ -1,8 +1,7 @@
 package com.farmgame.entity;
 
 import static org.junit.Assert.assertEquals;
-import com.farmgame.usecase.StoreAble;
-import com.farmgame.entity.Plants;
+
 import org.junit.Test;
 
 public class PlantsTest {
@@ -20,7 +19,7 @@ public class PlantsTest {
 
     @Test(timeout = 50)
     public void test_id(){
-        assertEquals(Potato.getPlantID(), 1);
+        assertEquals(Potato.getId(), 1);
     }
 
     @Test(timeout = 50)

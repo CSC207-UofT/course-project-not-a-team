@@ -1,5 +1,6 @@
 package com.farmgame.Activity.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.farmgame.R;
-import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Plants;
-import com.farmgame.usecase.StoreAble;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,14 +43,15 @@ public class sellAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint({"ViewHolder", "InflateParams"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = layoutInflater.inflate(R.layout.warehouse_item, null);
-        ((TextView) convertView.findViewById(R.id.name)).setText("name");
+        convertView = layoutInflater.inflate(R.layout.sell_item, null);
         ((TextView) convertView.findViewById(R.id.item)).setText(getItem(position).get(0).getName());
-        ((TextView) convertView.findViewById(R.id.priceName)).setText("price");
+        ((TextView) convertView.findViewById(R.id.quantityValue)).setText(
+                String.valueOf(getItem(position).size()));
         ((TextView) convertView.findViewById(
-                R.id.price)).setText(String.valueOf(getItem(position).get(0).getPrice()));
+                R.id.priceValue)).setText(String.valueOf(getItem(position).get(0).getPrice()));
         return convertView;
     }
 }

@@ -28,6 +28,8 @@ public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
 
+    private MainViewModel viewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -35,37 +37,43 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        MainViewModel viewModel =
-                new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        setAdapter();
+
 
 
         viewModel.playerData.observe(requireActivity(), player ->
                 binding.money.setText("money:" + player.getMoney()));
 
-        GridView gridView = binding.gv;
-
         viewModel.warehouseData.observe(requireActivity(), warehouse -> {
             if (this.isVisible()){
-                sellAdapter adapter = new sellAdapter(requireActivity(),
-                        viewModel.getWarehouse().getPlantInventory());
-
-
-                gridView.setAdapter(adapter);
-                gridView.setOnItemClickListener((parent, view, position, id) -> {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                    builder.setMessage("Sell the product")
-                            .setPositiveButton(R.string.confirm, (dialog, which)
-                                    -> Toast.makeText(requireActivity(),
-                                    viewModel.getStoreSystem().sell(adapter.getItem(position).get(0)),
-                                    Toast.LENGTH_LONG).show()
-                            )
-                            .setNegativeButton(R.string.cancel, null)
-                            .create().show();
-                });
+                setAdapter();
             }
         });
 
 
         return root;
+    }
+
+
+    private void setAdapter(){
+        sellAdapter adapter = new sellAdapter(requireActivity(),
+                viewModel.getWarehouse().getPlantInventory());
+
+        GridView gridView = binding.gv;
+
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Sell the product")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getStoreSystem().sell(adapter.getItem(position).get(0)),
+                            Toast.LENGTH_LONG).show()
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
+        });
     }
 }

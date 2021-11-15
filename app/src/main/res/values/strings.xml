@@ -19,4 +19,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="item">item</string>
+    <string name="price">price</string>
+    <string name="quantity">quantity</string>
+    <string name="name">name</string>
 </resources>

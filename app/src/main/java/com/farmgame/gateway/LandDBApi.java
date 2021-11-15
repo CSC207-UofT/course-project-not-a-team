@@ -7,7 +7,6 @@ import android.database.Cursor;
 
 
 import com.farmgame.entity.LandEntity;
-import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
 
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class LandDBApi extends DataBaseAPI {
         LandEntity land = vm.getLand(landIndex);
         ContentValues contentValues = new ContentValues();
         contentValues.put(LAND_LOCK_STATUS, land.getLockStatus());
-        contentValues.put(LAND_PLANT, land.getPlant().getSeedId());
+        contentValues.put(LAND_PLANT, land.getPlant().getId());
         contentValues.put(LAND_WATER_TIME, land.getWaterTime());
         contentValues.put(LAND_IS_FERTILIZED, land.isFertilize()? 1 : 0);
         contentValues.put(LAND_PRICE, land.getPrice());

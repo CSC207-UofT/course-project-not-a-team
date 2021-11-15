@@ -61,6 +61,21 @@ public class LandFragment extends Fragment {
         viewModel.playerData.observe(requireActivity(), player -> {
             if (this.isVisible()){
                 binding.playerInfo.setText(playerInfo());
+                setAdapter();
+            }
+        });
+
+        viewModel.landMapData.observe(requireActivity(), land -> {
+            if (this.isVisible()){
+                binding.playerInfo.setText(playerInfo());
+                setAdapter();
+            }
+        });
+
+        viewModel.warehouseData.observe(requireActivity(), land -> {
+            if (this.isVisible()){
+                binding.playerInfo.setText(playerInfo());
+                setAdapter();
             }
         });
 

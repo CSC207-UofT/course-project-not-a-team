@@ -65,9 +65,9 @@ public class LandHarvestPlantSystem extends System {
                 && landManager.getLand().getStage() == 2
                 && !landManager.getLand().isWet()) {
             playerManager.gainExp(landManager.getLand().getPlant().getExperiencePoint());
-            int plantId = landManager.getLand().getPlant().getSeedId();
+            int plantId = landManager.getLand().getPlant().getId();
             Plants plant = PlantDBApi.createPlant(plantId);
-            warehouseManager.addProduct((StoreAble) plant);
+            warehouseManager.addProduct(plant);
         }
         else if (landManager.getLand().getPlant() == null) {
             // inform player that this land has not been planted yet

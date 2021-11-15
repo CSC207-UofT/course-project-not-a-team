@@ -4,4 +4,5 @@ public interface StoreAble {
     String getName();
     String getType();
     int getPrice();
+    int getId();
 }

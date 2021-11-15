@@ -54,7 +54,7 @@ public class Plants implements StoreAble {
      * @return int
      */
 
-    public int getPlantID(){
+    public int getId(){
 
         return this.PLANTS_ID;
     }
