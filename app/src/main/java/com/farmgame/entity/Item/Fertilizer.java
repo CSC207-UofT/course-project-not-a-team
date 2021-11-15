@@ -33,5 +33,6 @@ public class Fertilizer extends Item {
     @Override
     public void use(LandEntity land) {
         land.addStage();
+        land.setFertilize(true);
     }
 }
