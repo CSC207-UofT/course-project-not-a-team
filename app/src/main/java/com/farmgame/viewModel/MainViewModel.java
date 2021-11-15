@@ -46,9 +46,7 @@ public class MainViewModel extends ViewModel {
     public final MutableLiveData<Store> storeData = new MutableLiveData<>();
 
     public void initViewModel(SQLiteDatabase database){
-        db = database;
-        initDatabaseAPIs();
-
+        initDB(database);
 
         playerData.setValue(PlayerDBApi.getPlayer());
         warehouseData.setValue(WarehouseDBApi.getWarehouse());
@@ -72,6 +70,10 @@ public class MainViewModel extends ViewModel {
 
     }
 
+    public void initDB(SQLiteDatabase database){
+        db = database;
+        initDatabaseAPIs();
+    }
 
 
     public StoreSystem getStoreSystem(){
