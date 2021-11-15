@@ -95,7 +95,7 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
     public void removeProduct(StoreAble object) {
         if (object instanceof Item) {
             HashMap<Integer, ArrayList<Item>>tempItemList = this.warehouse.getItemInventory();
-            if(tempItemList.containsKey(((Plants) object).getPlantID())){
+            if(tempItemList.containsKey(((Item) object).getId())){
                 ArrayList<Item> tempRemove = tempItemList.get(((Item) object).getId());
                 if (tempRemove != null){
                     if(tempRemove.size()>0){

@@ -84,6 +84,14 @@ public class MainViewModel extends ViewModel {
         return lhs.get(index);
     }
 
+    public LandChangeStatusSystem getLCS(int index){
+        return lcs.get(index);
+    }
+
+    public LandManagePlantStatusSystem getLMS(int index){
+        return lms.get(index);
+    }
+
 
     public Player updatePlayer(){
         Player player = PlayerDBApi.getPlayer();

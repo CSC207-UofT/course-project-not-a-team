@@ -12,13 +12,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmgame.R;
+import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
+import com.farmgame.controller.LandActivitySystem.LandManagePlantStatusSystem;
 import com.farmgame.databinding.FragmentLandBinding;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
@@ -95,6 +96,9 @@ public class LandFragment extends Fragment {
                         setActionWindow(land);
                     }
                     break;
+                case LOCK_STATUS_NOT_BOUGHT:
+                    setBuyLandAlert(land);
+                    break;
             }
         });
     }
@@ -128,6 +132,52 @@ public class LandFragment extends Fragment {
     }
 
     private void setActionWindow(LandEntity land){
+        View contentView = LayoutInflater.from(requireActivity()).inflate(R.layout.land_action_popup, null);
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT, true);
+        View rootView = LayoutInflater.from(requireActivity()).inflate(R.layout.fragment_land, null);
+        popupWindow.showAtLocation(rootView, Gravity.CENTER, 0, 0);
+        View layout = popupWindow.getContentView();
+        ((TextView) layout.findViewById(R.id.name)).setText("plant: " + land.getPlant().getName());
+        ((TextView) layout.findViewById(R.id.stage)).setText("stage: " + land.getStage());
+        ((TextView) layout.findViewById(R.id.water_time)).setText("water time: " + land.getWaterTime());
+        ((TextView) layout.findViewById(R.id.is_wet)).setText("wet: " + (land.isWet()? "Yes" : "No"));
+        ((TextView) layout.findViewById(R.id.fertilized)).setText("fertilized: " + (land.isFertilize()? "Yes" : "No"));
+        int landIndex = land.getIndex();
+        LandManagePlantStatusSystem lms = viewModel.getLMS(landIndex);
+        LandHarvestPlantSystem lhs = viewModel.getLHS(landIndex);
+        layout.findViewById(R.id.exit).setOnClickListener(
+                v -> popupWindow.dismiss());
+        layout.findViewById(R.id.harvest).setOnClickListener(
+                v -> {
+                    Toast.makeText(requireActivity(), lhs.harvest(), Toast.LENGTH_LONG).show();
+                    popupWindow.dismiss();
+                }
+        );
+        layout.findViewById(R.id.fertilize).setOnClickListener(
+                v -> {
+                    Toast.makeText(requireActivity(), lms.fertilize(), Toast.LENGTH_LONG).show();
+                    popupWindow.dismiss();
+                }
+        );
+        layout.findViewById(R.id.watering).setOnClickListener(
+                v -> {
+                    Toast.makeText(requireActivity(), lms.watering(), Toast.LENGTH_LONG).show();
+                    popupWindow.dismiss();
+                }
+        );
+    }
 
+    private void setBuyLandAlert(LandEntity land){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setMessage("Buy the land? Cost: " + land.getPrice())
+                .setPositiveButton(R.string.confirm, (dialog, which)
+                                -> {
+                    Toast.makeText(requireActivity(), viewModel.getLCS(land.getIndex()).buyLand(),
+                            Toast.LENGTH_LONG).show();
+                        }
+                )
+                .setNegativeButton(R.string.cancel, null)
+                .create().show();
     }
 }

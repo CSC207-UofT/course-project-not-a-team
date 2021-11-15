@@ -13,6 +13,9 @@ public class LandChangeStatusSystem extends System {
     public LandChangeStatusSystem(LandManager landManager, PlayerManager playerManager) {
         this.landManager = landManager;
         this.playerManager = playerManager;
+
+        this.playerManager.addObserver(this);
+        this.landManager.addObserver(this);
     }
 
     public String unlockLand() {

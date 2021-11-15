@@ -50,7 +50,8 @@ public class LandManager extends Observable {
             land.setPlant(plant);
             land.setWaterTime();
             setChanged();
-            notifyObservers(UPDATE_LAND + land.getIndex());
+            int arg = UPDATE_LAND + land.getIndex();
+            notifyObservers(arg);
     }
 
 
