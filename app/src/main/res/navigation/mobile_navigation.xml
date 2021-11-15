@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.farmgame.Activity.main.NotificationsFragment"
+        android:name="com.farmgame.Activity.main.SellFragment"
         android:label="Sell"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_sell" />
 
     <fragment
         android:id="@+id/navigation_warehouse"

@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class sellAdapter extends BaseAdapter {
+public class SellAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     ArrayList<ArrayList<Plants>> list = new ArrayList<>();
 
 
-    public sellAdapter(Context context, HashMap<Integer, ArrayList<Plants>> map){
+    public SellAdapter(Context context, HashMap<Integer, ArrayList<Plants>> map){
         layoutInflater = LayoutInflater.from(context);
         for (ArrayList<Plants> list: map.values()){
             this.list.add(new ArrayList<>(list));

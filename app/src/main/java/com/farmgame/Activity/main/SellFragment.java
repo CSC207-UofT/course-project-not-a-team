@@ -1,40 +1,35 @@
 package com.farmgame.Activity.main;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmgame.R;
-import com.farmgame.databinding.FragmentNotificationsBinding;
-import com.farmgame.gateway.StoreDBApi;
-import com.farmgame.usecase.StoreAble;
+import com.farmgame.databinding.FragmentSellBinding;
 import com.farmgame.viewModel.MainViewModel;
 
-import java.util.ArrayList;
-
-public class NotificationsFragment extends Fragment {
+public class SellFragment extends Fragment {
 
 
-    private FragmentNotificationsBinding binding;
+    private FragmentSellBinding binding;
 
     private MainViewModel viewModel;
 
+    @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentSellBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
@@ -58,7 +53,7 @@ public class NotificationsFragment extends Fragment {
 
 
     private void setAdapter(){
-        sellAdapter adapter = new sellAdapter(requireActivity(),
+        SellAdapter adapter = new SellAdapter(requireActivity(),
                 viewModel.getWarehouse().getPlantInventory());
 
         GridView gridView = binding.gv;
