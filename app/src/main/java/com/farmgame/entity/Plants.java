@@ -12,7 +12,7 @@ public class Plants implements StoreAble {
     /**
      * Constructor for plants.
      * @param name -- The name of the plant
-     * @param selling -- The price of the plant when you sell it
+     * @param selling -- The price that you get when you sell the plant
      * @param id -- the id of the plant, same as seed
      */
 
@@ -22,7 +22,6 @@ public class Plants implements StoreAble {
         this.PLANTS_ID = id;
         this.PLANTS_TYPE = TYPE_PLANT;
     }
-
     /**
      * Getter for PLANTS_NAME attributes.
      *
