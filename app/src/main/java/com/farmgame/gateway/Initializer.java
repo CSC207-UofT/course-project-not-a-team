@@ -79,7 +79,6 @@ public class Initializer extends SQLiteOpenHelper {
         list.add(new String[]{LEVEL_LEVEL, INT});
         list.add(new String[]{LEVEL_EXP, INT});
         list.add(new String[]{LEVEL_CAPACITY, INT});
-        list.add(new String[]{LEVEL_LAND_MAX, INT});
         return createTable(LEVEL, list, new String[]{LEVEL_LEVEL});
     }
 
@@ -92,6 +91,7 @@ public class Initializer extends SQLiteOpenHelper {
         list.add(new String[]{LAND_WATER_TIME, TEXT});
         list.add(new String[]{LAND_IS_FERTILIZED, BOOLEAN});
         list.add(new String[]{LAND_STAGE, INT});
+        list.add(new String[]{LAND_UNLOCK_LEVEL, INT});
         return createTable(LAND, list, new String[]{LAND_INDEX});
     }
 

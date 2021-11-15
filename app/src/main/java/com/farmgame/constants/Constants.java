@@ -55,7 +55,6 @@ public class Constants {
     public static final String LEVEL_LEVEL = "level";
     public static final String LEVEL_EXP = "exp";
     public static final String LEVEL_CAPACITY = "capacity";
-    public static final String LEVEL_LAND_MAX = "landMax";
 
     // Land SQL Column names
     public static final String LAND_INDEX = "landIndex";
@@ -65,6 +64,7 @@ public class Constants {
     public static final String LAND_WATER_TIME = "waterTime";
     public static final String LAND_IS_FERTILIZED = "isFertilized";
     public static final String LAND_STAGE = "stage";
+    public static final String LAND_UNLOCK_LEVEL = "unlockLevel";
 
     // Type of StoreAble
     public static final String TYPE_FERTILIZER = "Fertilizer";
@@ -85,6 +85,7 @@ public class Constants {
     public static final int UPDATE_PLAYER = 0;
     public static final int UPDATE_WAREHOUSE = 1;
     public static final int UPDATE_LAND = 2;
+    public static final int AUTO_UNLOCK = 3;
 
 
 }

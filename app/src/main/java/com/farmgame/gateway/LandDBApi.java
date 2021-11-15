@@ -14,24 +14,6 @@ import java.util.HashMap;
 
 public class LandDBApi extends DataBaseAPI {
 
-    public static HashMap<Integer, Integer> getLandMaxTable(){
-        Cursor cursor = db.query(
-                LEVEL,
-                new String[]{LEVEL_LEVEL, LEVEL_LAND_MAX},
-                null, null, null ,null, null);
-
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        if (cursor.moveToNext()){
-            int level = cursor.getInt(cursor.getColumnIndex(LEVEL_LEVEL));
-            int max = cursor.getInt(cursor.getColumnIndex(LEVEL_LAND_MAX));
-            map.put(level, max);
-        }
-
-        cursor.close();
-
-        return map;
-    }
 
     public static ArrayList<LandEntity> getLandList(){
         ArrayList<LandEntity> list = new ArrayList<>();
@@ -49,7 +31,8 @@ public class LandDBApi extends DataBaseAPI {
             int stage = cursor.getInt(cursor.getColumnIndex(LAND_STAGE));
             int price = cursor.getInt(cursor.getColumnIndex(LAND_PRICE));
             int index = cursor.getInt(cursor.getColumnIndex(LAND_INDEX));
-            list.add(new LandEntity(lockStatus, seed, waterTime, stage, isFertilize, price, index));
+            int unLockLevel = cursor.getInt(cursor.getColumnIndex(LAND_UNLOCK_LEVEL));
+            list.add(new LandEntity(lockStatus, seed, waterTime, stage, isFertilize, price, index, unLockLevel));
         }
 
         cursor.close();

@@ -67,7 +67,7 @@ public class PlayerManager extends Observable {
             this.player.getExp_bar()[0] = 0;
         }
         setChanged();
-        notifyObservers(UPDATE_LAND);
+        notifyObservers(AUTO_UNLOCK);
     }
 
     /**

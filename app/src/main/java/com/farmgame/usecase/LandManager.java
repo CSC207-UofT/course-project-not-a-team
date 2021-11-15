@@ -17,7 +17,7 @@ public class LandManager extends Observable {
      */
     private final LandEntity land;
 
-
+    private final int MESSAGE;
 
     /**
      * Construct a land manager
@@ -26,6 +26,7 @@ public class LandManager extends Observable {
      */
     public LandManager(LandEntity land){
         this.land = land;
+        MESSAGE = UPDATE_LAND + land.getIndex();
     }
 
 
@@ -50,8 +51,7 @@ public class LandManager extends Observable {
             land.setPlant(plant);
             land.setWaterTime();
             setChanged();
-            int arg = UPDATE_LAND + land.getIndex();
-            notifyObservers(arg);
+            notifyObservers(MESSAGE);
     }
 
 
@@ -62,7 +62,7 @@ public class LandManager extends Observable {
     public void harvest(){
         this.land.reset();
         setChanged();
-        notifyObservers(UPDATE_LAND + land.getIndex());
+        notifyObservers(MESSAGE);
     }
 
 
@@ -73,11 +73,10 @@ public class LandManager extends Observable {
      * @param fertilizer the fertilizer used to fertilize the land
      */
     public void fertilize(StoreAble fertilizer){
-        if (!land.isFertilize()) {
-            ((Fertilizer) fertilizer).use(this.land);
-            setChanged();
-            notifyObservers(UPDATE_LAND + land.getIndex());
-        }
+        ((Fertilizer) fertilizer).use(this.land);
+        setChanged();
+        notifyObservers(MESSAGE);
+
     }
 
 
@@ -88,10 +87,21 @@ public class LandManager extends Observable {
      * @param wateringCan the watering can used to water the land
      */
     public void watering(StoreAble wateringCan){
-        if (land.getStage() < 2 && !land.isWet()){
-            ((WateringCan) wateringCan).use(this.land);
-            setChanged();
-            notifyObservers(UPDATE_LAND + land.getIndex());
-        }
+        ((WateringCan) wateringCan).use(this.land);
+        setChanged();
+        notifyObservers(MESSAGE);
+
+    }
+
+    public void buy(){
+        land.setLockStatus(LOCK_STATUS_BOUGHT);
+        setChanged();
+        notifyObservers(MESSAGE);
+    }
+
+    public void unLock(){
+        land.setLockStatus(LOCK_STATUS_NOT_BOUGHT);
+        setChanged();
+        notifyObservers(MESSAGE);
     }
 }

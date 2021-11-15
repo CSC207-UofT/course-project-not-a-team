@@ -61,7 +61,7 @@ public class storeFragment extends Fragment {
                     .setPositiveButton(R.string.confirm, (dialog, which)
                             -> Toast.makeText(requireActivity(),
                             viewModel.getStoreSystem().makePurchase(adapter.getItem(position)),
-                            Toast.LENGTH_LONG).show()
+                            Toast.LENGTH_SHORT).show()
                             )
                     .setNegativeButton(R.string.cancel, null)
                     .create().show();
