@@ -27,50 +27,53 @@ public class LandManagerTest {
     Seeds plant2 = new Seeds("plantB", 40, 33, 20, 2);
     LandEntity land = new LandEntity(LOCK_STATUS_LOCKED, null,  "-1", 0 ,
             false, 0, 0, 2);
+    HashMap<Integer, LandEntity> landMap = new HashMap<>();
 
     @Before
     public void setUp() {
-        landManager = new LandManager(land);
+        landManager = new LandManager(landMap);
+        landMap.put(1, land);
         test_exp_map.put(1, 10);
         pm = new PlayerManager(player, test_exp_map);
     }
 
+
     @Test
     public void test_getLand() {
-        assertEquals(land, landManager.getLand());
+        assertEquals(land, landManager.getLand(1));
     }
 
     @Test
     public void planting() {
-        landManager.getLand().reset();
-        landManager.planting(plant2);
-        assertEquals(plant2, landManager.getLand().getPlant());
+        landManager.getLand(1).reset();
+        landManager.planting(1, plant2);
+        assertEquals(plant2, landManager.getLand(1).getPlant());
     }
 
     @Test
     public void Harvest() {
-        landManager.harvest();
-        assertNull(landManager.getLand().getPlant());
+        landManager.harvest(1);
+        assertNull(landManager.getLand(1).getPlant());
 
     }
     @Test
     public void fertilize(){
-        landManager.fertilize(fertilizer);
-        assertTrue(landManager.getLand().isFertilize());
+        landManager.fertilize(1, fertilizer);
+        assertTrue(landManager.getLand(1).isFertilize());
 
     }
     @Test
     public void watering(){
-        landManager.getLand().setPlant(plant2);
-        landManager.watering(wateringCan);
-        assertEquals(1, landManager.getLand().getStage());
+        landManager.getLand(1).setPlant(plant2);
+        landManager.watering(1, wateringCan);
+        assertEquals(1, landManager.getLand(1).getStage());
     }
 
     @Test
     public void test_buy_unlock() {
-        landManager.unLock();
-        assertEquals(1, landManager.getLand().getLockStatus());
-        landManager.buy();
-        assertEquals(2, landManager.getLand().getLockStatus());
+        landManager.unLock(1);
+        assertEquals(1, landManager.getLand(1).getLockStatus());
+        landManager.buy(1);
+        assertEquals(2, landManager.getLand(1).getLockStatus());
     }
 }
