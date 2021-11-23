@@ -36,9 +36,9 @@ public class MainViewModel extends ViewModel {
 
 
     private StoreSystem ss;
-    private final HashMap<Integer, LandChangeStatusSystem> lcs = new HashMap<>();
-    private final HashMap<Integer, LandHarvestPlantSystem> lhs = new HashMap<>();
-    private final HashMap<Integer, LandManagePlantStatusSystem> lms = new HashMap<>();
+    private LandChangeStatusSystem lcs;
+    private LandHarvestPlantSystem lhs;
+    private LandManagePlantStatusSystem lms;
 
     public final MutableLiveData<Player> playerData = new MutableLiveData<>();
     public final MutableLiveData<Warehouse> warehouseData = new MutableLiveData<>();
@@ -56,16 +56,16 @@ public class MainViewModel extends ViewModel {
             Objects.requireNonNull(landMapData.getValue()).put(land.getIndex(), land);
         }
 
+        LandManager lm = new LandManager(landMapData.getValue());
+
         PlayerManager pm = new PlayerManager(playerData.getValue(), PlayerDBApi.getExpTable());
 
         WarehouseManager wm = new WarehouseManager(warehouseData.getValue());
 
-        for (int index : Objects.requireNonNull(landMapData.getValue()).keySet()){
-            LandManager lm = new LandManager(landMapData.getValue().get(index));
-            lcs.put(index, new LandChangeStatusSystem(lm, pm));
-            lhs.put(index, new LandHarvestPlantSystem(wm, lm, pm));
-            lms.put(index, new LandManagePlantStatusSystem(wm, lm));
-        }
+        lcs = new LandChangeStatusSystem(lm, pm);
+        lhs = new LandHarvestPlantSystem(wm, lm, pm);
+        lms = new LandManagePlantStatusSystem(wm, lm);
+
         ss = new StoreSystem(storeData.getValue(), pm, wm);
 
     }
@@ -80,16 +80,16 @@ public class MainViewModel extends ViewModel {
         return ss;
     }
 
-    public LandHarvestPlantSystem getLHS(int index){
-        return lhs.get(index);
+    public LandHarvestPlantSystem getLHS(){
+        return lhs;
     }
 
-    public LandChangeStatusSystem getLCS(int index){
-        return lcs.get(index);
+    public LandChangeStatusSystem getLCS(){
+        return lcs;
     }
 
-    public LandManagePlantStatusSystem getLMS(int index){
-        return lms.get(index);
+    public LandManagePlantStatusSystem getLMS(){
+        return lms;
     }
 
 

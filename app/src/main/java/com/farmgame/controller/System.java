@@ -20,6 +20,8 @@ public abstract class System implements Observer {
             case UPDATE_WAREHOUSE:
                 WarehouseDBApi.update_warehouse();
                 break;
+            case AUTO_UNLOCK:
+                break;
             default:
                 // To handle land
                 int landIndex = state - UPDATE_LAND;

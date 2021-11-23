@@ -137,7 +137,7 @@ public class LandFragment extends Fragment {
                     .setPositiveButton(R.string.confirm, (dialog, which)
                             -> {
                                 Toast.makeText(requireActivity(),
-                                        viewModel.getLHS(landIndex).planting(
+                                        viewModel.getLHS().planting(landIndex,
                                                 adapter.getSeedId(position)),
                                         Toast.LENGTH_SHORT).show();
                                 popupWindow.dismiss();
@@ -161,25 +161,25 @@ public class LandFragment extends Fragment {
         ((TextView) layout.findViewById(R.id.is_wet)).setText("wet: " + (land.isWet()? "Yes" : "No"));
         ((TextView) layout.findViewById(R.id.fertilized)).setText("fertilized: " + (land.isFertilize()? "Yes" : "No"));
         int landIndex = land.getIndex();
-        LandManagePlantStatusSystem lms = viewModel.getLMS(landIndex);
-        LandHarvestPlantSystem lhs = viewModel.getLHS(landIndex);
+        LandManagePlantStatusSystem lms = viewModel.getLMS();
+        LandHarvestPlantSystem lhs = viewModel.getLHS();
         layout.findViewById(R.id.exit).setOnClickListener(
                 v -> popupWindow.dismiss());
         layout.findViewById(R.id.harvest).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lhs.harvest(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), lhs.harvest(landIndex), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
         layout.findViewById(R.id.fertilize).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lms.fertilize(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), lms.fertilize(landIndex), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
         layout.findViewById(R.id.watering).setOnClickListener(
                 v -> {
-                    Toast.makeText(requireActivity(), lms.watering(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), lms.watering(landIndex), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
         );
@@ -190,7 +190,7 @@ public class LandFragment extends Fragment {
         builder.setMessage("Buy the land? Cost: " + land.getPrice())
                 .setPositiveButton(R.string.confirm, (dialog, which)
                                 -> {
-                    Toast.makeText(requireActivity(), viewModel.getLCS(land.getIndex()).buyLand(),
+                    Toast.makeText(requireActivity(), viewModel.getLCS().buyLand(land.getIndex()),
                             Toast.LENGTH_SHORT).show();
                         }
                 )

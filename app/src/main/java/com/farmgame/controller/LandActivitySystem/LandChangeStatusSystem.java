@@ -8,6 +8,7 @@ import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class LandChangeStatusSystem extends System {
@@ -23,22 +24,24 @@ public class LandChangeStatusSystem extends System {
     }
 
     public void unlockLand() {
-//        ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
-        if (playerManager.getPlayer().getLevel() >= landManager.getLand().getUnLockLevel()
-                && landManager.getLand().getLockStatus() == LOCK_STATUS_LOCKED) {
-            landManager.unLock();
-            // inform player that he/she has unlocked the land successfully
-
+        ArrayList<Integer> indexList = landManager.getAllIndices();
+        for (int index : indexList){
+            if (playerManager.getPlayer().getLevel() >= landManager.getLand(index).getUnLockLevel()
+                    && landManager.getLand(index).getLockStatus() == LOCK_STATUS_LOCKED) {
+                landManager.unLock(index);
+                // inform player that he/she has unlocked the land successfully
+            }
         }
+//        ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
 //        return changeStatusPresenter.lockSuccess();
     }
 
-    public String buyLand() {
+    public String buyLand(int index) {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
         String message = "";
-        if (landManager.getLand().getLockStatus() == LOCK_STATUS_NOT_BOUGHT) {
-            if (playerManager.subtractMoney(landManager.getLand().getPrice())) {
-                landManager.buy();
+        if (landManager.getLand(index).getLockStatus() == LOCK_STATUS_NOT_BOUGHT) {
+            if (playerManager.subtractMoney(landManager.getLand(index).getPrice())) {
+                landManager.buy(index);
                 // inform player that he/she has bought the land successfully
                 message += changeStatusPresenter.buySuccess() + "\n";
             }
