@@ -85,7 +85,7 @@ public class Constants {
     public static final int UPDATE_PLAYER = 0;
     public static final int UPDATE_WAREHOUSE = 1;
     public static final int UPDATE_LAND = 2;
-    public static final int AUTO_UNLOCK = 3;
+    public static final int AUTO_UNLOCK = -1;
 
 
 }

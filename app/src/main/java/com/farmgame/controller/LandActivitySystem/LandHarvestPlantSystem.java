@@ -26,24 +26,24 @@ public class LandHarvestPlantSystem extends System {
 
     }
 
-    public String planting(int plant) {
+    public String planting(int index, int plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
         HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
-        if (landManager.getLand().getLockStatus() == 2
-                && landManager.getLand().getPlant() == null
+        if (landManager.getLand(index).getLockStatus() == 2
+                && landManager.getLand(index).getPlant() == null
                 && seed !=null) {
-            landManager.planting(seed);
+            landManager.planting(index,seed);
             warehouseManager.removeProduct(seed);
             // inform player that he/she has planted the plant successfully
             message += harvestPresenter.plantSuccess() + "\n";
 
         }
-        else if (landManager.getLand().getLockStatus() != 2) {
+        else if (landManager.getLand(index).getLockStatus() != 2) {
             // inform player that this land hasn't been owned by him/her
             message += harvestPresenter.invalidLand() + "\n";
         }
-        else if (landManager.getLand().getPlant() != null) {
+        else if (landManager.getLand(index).getPlant() != null) {
             // inform player that this land has been planted already
             message += harvestPresenter.landOccupied() + "\n";
         }
@@ -54,23 +54,23 @@ public class LandHarvestPlantSystem extends System {
         return message;
     }
 
-    public String harvest() {
+    public String harvest(int index) {
         HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
-        if (landManager.getLand().getPlant() != null
-                && landManager.getLand().getStage() == 2) {
-            playerManager.gainExp(landManager.getLand().getPlant().getExperiencePoint());
-            int plantId = landManager.getLand().getPlant().getId();
+        if (landManager.getLand(index).getPlant() != null
+                && landManager.getLand(index).getStage() == 2) {
+            playerManager.gainExp(landManager.getLand(index).getPlant().getExperiencePoint());
+            int plantId = landManager.getLand(index).getPlant().getId();
             Plants plant = PlantDBApi.createPlant(plantId);
             warehouseManager.addProduct(plant);
-            landManager.harvest();
+            landManager.harvest(index);
         }
-        else if (landManager.getLand().getPlant() == null) {
+        else if (landManager.getLand(index).getPlant() == null) {
             // inform player that this land has not been planted yet
             message += harvestPresenter.landNotPlant() + "\n";
 
         }
-        else if (landManager.getLand().getStage() < 2 | landManager.getLand().isWet()) {
+        else if (landManager.getLand(index).getStage() < 2 | landManager.getLand(index).isWet()) {
             // inform player that this plant has not fully grown
             message += harvestPresenter.growingPlant() + "\n";
         }
