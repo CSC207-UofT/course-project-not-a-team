@@ -1,9 +1,12 @@
 package com.farmgame.frontEnd.login;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +38,7 @@ public class RegisterFragment extends Fragment {
 
         binding.register.setOnClickListener(v -> {
             if (binding.username.getText().toString().length() > 0){
+                binding.register.setClickable(false);
                 InitData.createPlayer(binding.username.getText().toString());
                 ((LoginActivity) requireActivity()).jumpToMain();
             } else { Toast.makeText(requireActivity(), "please enter your player name", Toast.LENGTH_SHORT).show(); }
