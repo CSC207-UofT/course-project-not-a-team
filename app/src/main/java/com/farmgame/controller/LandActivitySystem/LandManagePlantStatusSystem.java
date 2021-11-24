@@ -13,6 +13,13 @@ public class LandManagePlantStatusSystem extends System {
     private final WarehouseManager warehouseManager;
     private final LandManager landManager;
 
+    /**
+     * Constructor for LandManagePlantStatusSystem
+     *
+     * @param warehouseManager the warehouse(manager) that LandManagePlantStatusSystem
+     *                         interacts with
+     * @param landManager the land(manager) that LandManagePlantStatusSystem interacts with
+     */
     public LandManagePlantStatusSystem(WarehouseManager warehouseManager, LandManager landManager) {
         this.warehouseManager = warehouseManager;
         this.landManager = landManager;
@@ -21,6 +28,12 @@ public class LandManagePlantStatusSystem extends System {
         this.landManager.addObserver(this);
     }
 
+    /**
+     * fertilize the land at given index if possible
+     *
+     * @param index the index of the land that player want to fertilize on
+     * @return a message indicating the result of fertilizing
+     */
     public String fertilize(int index) {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";
@@ -52,7 +65,12 @@ public class LandManagePlantStatusSystem extends System {
     }
 
 
-
+    /**
+     * water the land at given index if possible
+     *
+     * @param index the index of the land that player want to water on
+     * @return a message indicating the result of watering
+     */
     public String watering(int index) {
         PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";

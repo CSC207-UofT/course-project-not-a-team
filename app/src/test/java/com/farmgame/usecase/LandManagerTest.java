@@ -13,8 +13,8 @@ import java.util.HashMap;
 
 public class LandManagerTest {
     LandManager landManager;
-    Fertilizer fertilizer = new Fertilizer();
-    WateringCan wateringCan = new WateringCan();
+    Fertilizer fertilizer = new Fertilizer(10, 14159);
+    WateringCan wateringCan = new WateringCan(5, 26535);
     Player player = new Player("Connor", 1, 1000, new int[]{0, 10});
     // unused code: HashMap<Integer, ArrayList<Item>> itemInventory = new HashMap<>();
     // unused code: HashMap<Integer, ArrayList<Plants>> plantInventory = new HashMap<>();

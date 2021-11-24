@@ -20,8 +20,8 @@ public class StoreTest {
     Store store = new Store(plantsArrayList, seedsArrayList, itemArrayList);
     Seeds potatoSeed = new Seeds("PotatoSeed", 10, 10,10,10);
     Seeds bananaSeed = new Seeds("BananaSeed", 10, 10,10,9);
-    Fertilizer fertilizer = new Fertilizer();
-    WateringCan wateringCan = new WateringCan();
+    Fertilizer fertilizer = new Fertilizer(10, 14159);
+    WateringCan wateringCan = new WateringCan(5, 26535);
 
     @Test(timeout = 50)
     public void test_getCurrentProducts_plants(){
