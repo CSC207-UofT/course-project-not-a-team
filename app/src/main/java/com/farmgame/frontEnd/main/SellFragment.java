@@ -18,6 +18,10 @@ import com.farmgame.databinding.FragmentSellBinding;
 import com.farmgame.frontEnd.main.adapter.SellAdapter;
 import com.farmgame.viewModel.MainViewModel;
 
+
+/**
+ * The sell fragment of the main activity (third tab page)
+ */
 public class SellFragment extends Fragment {
 
 
@@ -25,6 +29,10 @@ public class SellFragment extends Fragment {
 
     private MainViewModel viewModel;
 
+    /**
+     * when creating the fragment, call the viewModel from activity, set observer to live data, set
+     * adapter to the grid view
+     */
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +61,9 @@ public class SellFragment extends Fragment {
     }
 
 
+    /**
+     * set adapter to the sell grid view
+     */
     private void setAdapter(){
         SellAdapter adapter = new SellAdapter(requireActivity(),
                 viewModel.getWarehouse().getPlantInventory());

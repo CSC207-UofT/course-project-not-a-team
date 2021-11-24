@@ -20,7 +20,9 @@ import static com.farmgame.constants.Constants.*;
 
 import java.util.ArrayList;
 
-
+/**
+ * the warehouse fragment of the main activity (fourth tab page)
+ */
 public class WarehouseFragment extends Fragment {
 
     private FragmentWarehouseBinding binding;
@@ -29,6 +31,10 @@ public class WarehouseFragment extends Fragment {
 
     private MainViewModel viewModel;
 
+    /**
+     * when creating the fragment, call viewModel from activity, set onclick listeners to the
+     * buttons, set observers to live data
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -78,11 +84,18 @@ public class WarehouseFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * @return the texting showing capacity and currently showing inventory
+     */
     private String text(){
         return "Capacity: " +WarehouseDBApi.getCur() +
                 "/" + WarehouseDBApi.getCapacity() + " Currently Showing: " + isPlant;
     }
 
+    /**
+     * set adapter to the grid view
+     */
     private void setAdapter(){
         ArrayList<ArrayList<StoreAble>> list;
         switch (isPlant) {

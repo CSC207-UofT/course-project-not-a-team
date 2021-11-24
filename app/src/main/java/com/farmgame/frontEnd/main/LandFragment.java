@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -33,13 +32,18 @@ import static com.farmgame.constants.Constants.*;
 
 import java.util.ArrayList;
 
-
+/**
+ * the fragment of the land page (first tab page), in MainActivity
+ */
 public class LandFragment extends Fragment {
 
 
     private FragmentLandBinding binding;
     private MainViewModel viewModel;
 
+    /**
+     * create the fragment
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,15 +51,16 @@ public class LandFragment extends Fragment {
         binding = FragmentLandBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
         return root;
     }
 
 
+    /**
+     * when the fragment started, initialize viewModel and add observers to live data
+     */
     @Override
-    public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
         binding.playerInfo.setText(playerInfo());
@@ -84,6 +89,10 @@ public class LandFragment extends Fragment {
         setAdapter();
     }
 
+    /**
+     *
+     * @return the player's info to be presented
+     */
     private String playerInfo(){
         ArrayList<String> list = new ArrayList<>();
         Player player = viewModel.getPlayer();
@@ -99,6 +108,9 @@ public class LandFragment extends Fragment {
         return String.join("\n", list);
     }
 
+    /**
+     * set adapter to land grid view
+     */
     private void setAdapter(){
         LandAdapter adapter = new LandAdapter(requireActivity(), LandDBApi.getLandList());
         binding.landGv.setAdapter(adapter);
@@ -120,6 +132,10 @@ public class LandFragment extends Fragment {
         });
     }
 
+    /**
+     * set the window of planting a plant into an empty bought land
+     * @param landIndex the index of the plant
+     */
     private void setPlantingWindow(int landIndex){
         View contentView = LayoutInflater.from(requireActivity()).inflate(R.layout.planting_popup, null);
         PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -138,7 +154,7 @@ public class LandFragment extends Fragment {
                             -> {
                                 Toast.makeText(requireActivity(),
                                         viewModel.getLHS().planting(landIndex,
-                                                adapter.getSeedId(position)),
+                                                adapter.getItem(position).get(0).getId()),
                                         Toast.LENGTH_SHORT).show();
                                 popupWindow.dismiss();
                             }
@@ -148,6 +164,10 @@ public class LandFragment extends Fragment {
         });
     }
 
+    /**
+     * set the window of planting actions(watering, harvest, fertilize) of a land
+     * @param land the land that the actions to be executed on
+     */
     private void setActionWindow(LandEntity land){
         View contentView = LayoutInflater.from(requireActivity()).inflate(R.layout.land_action_popup, null);
         PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -185,6 +205,10 @@ public class LandFragment extends Fragment {
         );
     }
 
+    /**
+     * set the window of buying an unlocked but unbought land
+     * @param land the land to be bought
+     */
     private void setBuyLandAlert(LandEntity land){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setMessage("Buy the land? Cost: " + land.getPrice())

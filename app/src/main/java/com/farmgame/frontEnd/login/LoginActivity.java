@@ -13,10 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.farmgame.databinding.ActivityLoginBinding;
 import com.farmgame.viewModel.RegisterViewModel;
 
+/**
+ * The launch activity of the app, also responsible for the register of player if the player is not
+ * registered.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
 
+
+    /**
+     * Create the activity, initialize viewModel
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * jump to MainActivity if the player is created
+     */
     public void jumpToMain(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         db.close();

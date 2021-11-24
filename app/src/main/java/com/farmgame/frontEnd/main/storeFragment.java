@@ -21,10 +21,16 @@ import com.farmgame.viewModel.MainViewModel;
 
 import java.util.ArrayList;
 
+/**
+ * the store fragment in the main activity (second tab page)
+ */
 public class storeFragment extends Fragment {
 
     private FragmentStoreBinding binding;
 
+    /**
+     * when creating the fragment, call the viewModel from activity, set adapter to the grid view
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

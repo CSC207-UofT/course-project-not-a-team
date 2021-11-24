@@ -18,11 +18,17 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.farmgame.databinding.ActivityMainBinding;
 
+/**
+ * the main activity of the program
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
 
+    /**
+     * when creating the activity: initialize the viewModel, set bottom navigation
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
