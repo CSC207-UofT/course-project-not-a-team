@@ -1,5 +1,7 @@
 package com.farmgame.entity.Item;
 
+import static com.farmgame.constants.Constants.Fertilizer_ID;
+import static com.farmgame.constants.Constants.Fertilizer_Price;
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import com.farmgame.entity.LandEntity;
 
@@ -9,8 +11,8 @@ public class Fertilizer extends Item {
     /**
      * Constructor for Fertilizer.
      */
-    public Fertilizer(){
-        super(10, TYPE_FERTILIZER, 14159);
+    public Fertilizer(int price, int id){
+        super(price, TYPE_FERTILIZER, id);
     }
 
 

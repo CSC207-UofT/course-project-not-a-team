@@ -20,6 +20,13 @@ public class StoreSystem extends System {
      private final PlayerManager playerManager;
      private final WarehouseManager warehouseManager;
 
+    /**
+     * Constructor for StoreSystem
+     *
+     * @param store the store that StoreSystem interacts with
+     * @param playerManager the player(manager) that StoreSystem interacts with
+     * @param warehouseManager the warehouse(manager) that StoreSystem interacts with
+     */
      public StoreSystem(Store store, PlayerManager playerManager, WarehouseManager warehouseManager) {
          this.store = store;
          this.playerManager = playerManager;

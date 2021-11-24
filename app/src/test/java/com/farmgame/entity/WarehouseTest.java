@@ -17,8 +17,8 @@ public class WarehouseTest {
     Warehouse warehouse = new Warehouse(itemInventory, plantInventory,seedInventory,20);
     Plants potato = new Plants("Potato", 60, 12);
     Plants berry = new Plants("Berry", 60, 11);
-    Fertilizer fertilizer = new Fertilizer();
-    WateringCan wateringCan = new WateringCan();
+    Fertilizer fertilizer = new Fertilizer(10, 14159);
+    WateringCan wateringCan = new WateringCan(5, 26535);
     Seeds potatoSeed = new Seeds("PotatoSeed", 10, 10,10,10);
     Seeds bananaSeed = new Seeds("BananaSeed", 10, 10,10,9);
 

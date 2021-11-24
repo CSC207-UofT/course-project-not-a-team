@@ -1,6 +1,9 @@
 package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
+import static com.farmgame.constants.Constants.WateringCan_ID;
+import static com.farmgame.constants.Constants.WateringCan_Price;
+
 import com.farmgame.entity.LandEntity;
 
 
@@ -9,8 +12,8 @@ public class WateringCan extends Item {
     /**
      * Constructor of WateringCan.
      */
-    public WateringCan(){
-        super(5, TYPE_WATERING_CAN, 26535);
+    public WateringCan(int price, int id){
+        super(price, TYPE_WATERING_CAN, id);
     }
 
 

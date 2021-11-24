@@ -15,6 +15,12 @@ public class LandChangeStatusSystem extends System {
     private final LandManager landManager;
     private final PlayerManager playerManager;
 
+    /**
+     * Constructor for LandChangeStatusSystem
+     *
+     * @param landManager the land(manager) that LandChangeStatusSystem interacts with
+     * @param playerManager the player(manager) that LandChangeStatusSystem interacts with
+     */
     public LandChangeStatusSystem(LandManager landManager, PlayerManager playerManager) {
         this.landManager = landManager;
         this.playerManager = playerManager;
@@ -23,6 +29,9 @@ public class LandChangeStatusSystem extends System {
         this.landManager.addObserver(this);
     }
 
+    /**
+     * If the land is locked, then unlock this land
+     */
     public void unlockLand() {
         ArrayList<Integer> indexList = landManager.getAllIndices();
         for (int index : indexList){
@@ -36,6 +45,12 @@ public class LandChangeStatusSystem extends System {
 //        return changeStatusPresenter.lockSuccess();
     }
 
+    /**
+     * Buy the land at the given index, if the land is unlocked and player has enough money
+     *
+     * @param index the index of the land that player want to buy
+     * @return a message indicating the result of buying land
+     */
     public String buyLand(int index) {
         ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
         String message = "";
@@ -56,6 +71,12 @@ public class LandChangeStatusSystem extends System {
         return message;
     }
 
+    /**
+     * update this Observer
+     *
+     * @param o Observable
+     * @param arg argument
+     */
     @Override
     public void update(Observable o, Object arg) {
         super.update(o, arg);

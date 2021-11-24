@@ -14,6 +14,13 @@ public class LandHarvestPlantSystem extends System {
     private final LandManager landManager;
     private final PlayerManager playerManager;
 
+    /**
+     * Constructor for LandHarvestPlantSystem
+     *
+     * @param warehouseManager the warehouse(manager) that LandHarvestPlantSystem interacts with
+     * @param landManager the land(manager) that LandHarvestPlantSystem interacts with
+     * @param playerManager the player(manager) that LandHarvestPlantSystem interacts with
+     */
     public LandHarvestPlantSystem(WarehouseManager warehouseManager, LandManager landManager,
                                   PlayerManager playerManager) {
         this.landManager = landManager;
@@ -26,6 +33,13 @@ public class LandHarvestPlantSystem extends System {
 
     }
 
+    /**
+     * Plant the given plant at the given index if possible
+     *
+     * @param index the index of land that Player want to plant on
+     * @param plant the plant that Player want to plant
+     * @return a message indicating the result of planting
+     */
     public String planting(int index, int plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
         HarvestPresenter harvestPresenter = new HarvestPresenter();
@@ -54,6 +68,12 @@ public class LandHarvestPlantSystem extends System {
         return message;
     }
 
+    /**
+     * harvest the land at given index if possible
+     *
+     * @param index the index of land that Player want to harvest
+     * @return a message indicating the result of harvesting
+     */
     public String harvest(int index) {
         HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
