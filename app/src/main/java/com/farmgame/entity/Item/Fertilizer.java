@@ -1,7 +1,5 @@
 package com.farmgame.entity.Item;
 
-import static com.farmgame.constants.Constants.Fertilizer_ID;
-import static com.farmgame.constants.Constants.Fertilizer_Price;
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import com.farmgame.entity.LandEntity;
 

@@ -1,8 +1,6 @@
 package com.farmgame.entity.Item;
 
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
-import static com.farmgame.constants.Constants.WateringCan_ID;
-import static com.farmgame.constants.Constants.WateringCan_Price;
 
 import com.farmgame.entity.LandEntity;
 
