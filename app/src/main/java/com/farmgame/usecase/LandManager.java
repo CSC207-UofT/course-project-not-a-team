@@ -26,7 +26,11 @@ public class LandManager extends Observable {
         this.landMap = landMap;
     }
 
-
+    /**
+     * Get the indices for all the lands
+     *
+     * @return the list of indices
+     */
     public ArrayList<Integer> getAllIndices(){
         return new ArrayList<>(landMap.keySet());
     }
