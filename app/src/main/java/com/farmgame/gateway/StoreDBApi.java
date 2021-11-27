@@ -84,10 +84,10 @@ public class StoreDBApi extends DataBaseAPI {
             String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
             switch (type){
                 case TYPE_FERTILIZER:
-                    list.add(new Fertilizer());
+                    list.add(new Fertilizer(10, 14159));
                     break;
                 case TYPE_WATERING_CAN:
-                    list.add(new WateringCan());
+                    list.add(new WateringCan(5, 26535));
                     break;
             }
         }

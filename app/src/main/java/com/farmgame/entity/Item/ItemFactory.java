@@ -12,10 +12,10 @@ public class ItemFactory {
      */
     public Item createItem(String itemType) {
         if (itemType.equals(TYPE_FERTILIZER)) {
-            return new Fertilizer();
+            return new Fertilizer(10, 14159);
         }
         else if (itemType.equals(TYPE_WATERING_CAN)) {
-            return new WateringCan();
+            return new WateringCan(5, 26535);
         }
         else {
             return null;

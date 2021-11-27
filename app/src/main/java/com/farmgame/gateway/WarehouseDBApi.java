@@ -104,10 +104,10 @@ public class WarehouseDBApi extends DataBaseAPI {
             for (int i = 0; i < quantity; i ++){
                 switch (type){
                     case TYPE_FERTILIZER:
-                        list.add(new Fertilizer());
+                        list.add(new Fertilizer(10, 14159));
                         break;
                     case TYPE_WATERING_CAN:
-                        list.add(new WateringCan());
+                        list.add(new WateringCan(5, 26535));
                         break;
                 }
             }

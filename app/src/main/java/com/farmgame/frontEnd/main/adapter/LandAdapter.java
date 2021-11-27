@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.farmgame.R;
@@ -12,6 +13,7 @@ import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Seeds;
 
 import java.util.ArrayList;
+
 import static com.farmgame.constants.Constants.*;
 
 /**
@@ -21,7 +23,6 @@ public class LandAdapter extends BaseAdapter {
 
     ArrayList<LandEntity> lst;
     LayoutInflater layoutInflater;
-
     /**
      * Constructor of the adapter
      * @param context the context of the adapter
@@ -68,6 +69,13 @@ public class LandAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = layoutInflater.inflate(R.layout.land_item, null);
+
+        ImageView imageView;
+        imageView = new ImageView(layoutInflater.getContext());
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(65,65));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+
         Seeds plant = getItem(position).getPlant();
         String lockStatus;
         switch (getItem(position).getLockStatus()){
@@ -82,7 +90,18 @@ public class LandAdapter extends BaseAdapter {
                 break;
         }
         ((TextView) convertView.findViewById(R.id.lockStatus)).setText(lockStatus);
-        String plantName = plant ==  null ? "No Plant" : plant.getName();
+//        String plantName = plant ==  null ? "No Plant" : plant.getName();
+        String plantName;
+        if (plant == null) {
+            plantName = "No Plant";
+            convertView.findViewById(R.id.landBackground).setBackgroundResource(R.drawable.land_background);
+        }else{
+            plantName = plant.getName();
+            String imageName = "p" + plant.getId();
+            int resID = layoutInflater.getContext().getResources().getIdentifier(imageName, "drawable", layoutInflater.getContext().getPackageName());
+            ((ImageView) convertView.findViewById(R.id.landimage)).setImageResource(resID);
+            convertView.findViewById(R.id.landBackground).setBackgroundResource(R.drawable.land_background);
+        }
         ((TextView) convertView.findViewById(R.id.plant_name)).setText(plantName);
         return convertView;
     }
