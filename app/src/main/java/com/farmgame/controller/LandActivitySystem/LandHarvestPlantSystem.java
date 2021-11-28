@@ -102,9 +102,9 @@ public class LandHarvestPlantSystem extends System {
     }
 
     /**
+     * auto harvest all plants if land is harvestable
      *
-     *
-     *
+     * @return a message indicating the result of auto-harvest
      */
     public String auto_harvest() {
         ArrayList<Integer> map_index = landManager.getAllIndices();
@@ -113,9 +113,7 @@ public class LandHarvestPlantSystem extends System {
             LandEntity land = landManager.getLand(i);
             if (land.getPlant() != null && land.getStage() == 2) {
                 harvest(i);
-            }
-            else {
-                output.append("land at index ").append(i).append(" is not harvested");
+                output.append("land at index ").append(i).append(" is harvested/n");
             }
         }
         return output.toString();
