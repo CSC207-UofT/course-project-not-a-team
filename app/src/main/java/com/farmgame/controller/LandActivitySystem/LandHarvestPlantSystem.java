@@ -114,7 +114,9 @@ public class LandHarvestPlantSystem extends System {
             if (land.getPlant() != null && land.getStage() == 2) {
                 harvest(i);
             }
-
+            else {
+                output.append("land at index ").append(i).append(" is not harvested");
+            }
         }
         return output.toString();
     }
