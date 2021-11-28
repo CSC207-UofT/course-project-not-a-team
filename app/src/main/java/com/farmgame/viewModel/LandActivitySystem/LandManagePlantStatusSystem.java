@@ -1,9 +1,9 @@
-package com.farmgame.controller.LandActivitySystem;
+package com.farmgame.viewModel.LandActivitySystem;
 
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
 
-import com.farmgame.controller.System;
+import com.farmgame.viewModel.System;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.presenter.LandPresenter.PlantStatusPresenter;
 import com.farmgame.usecase.LandManager;

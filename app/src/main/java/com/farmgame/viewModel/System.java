@@ -1,4 +1,4 @@
-package com.farmgame.controller;
+package com.farmgame.viewModel;
 
 import static com.farmgame.constants.Constants.*;
 

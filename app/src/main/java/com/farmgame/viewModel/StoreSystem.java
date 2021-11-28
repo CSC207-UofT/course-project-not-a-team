@@ -1,4 +1,4 @@
-package com.farmgame.controller;
+package com.farmgame.viewModel;
 
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
