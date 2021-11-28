@@ -11,7 +11,7 @@ This project is team project for Team “Not A Team” of 2021 Fall CSC207. It i
     /WrittenDocument/Phase2’s specification and progress report
 
 Instruction for the game:
-    
+
     Players first enter register interface if it is their first time playing this game, player only
     needs to input a username. Then player can start his/her game by going to store to buy seeds.
     Then player can plant this seed and wait for a period of time to water this plant. After a few

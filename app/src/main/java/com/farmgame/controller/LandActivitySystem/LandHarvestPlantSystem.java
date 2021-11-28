@@ -1,6 +1,7 @@
 package com.farmgame.controller.LandActivitySystem;
 
 import com.farmgame.controller.System;
+import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.gateway.PlantDBApi;
@@ -8,6 +9,8 @@ import com.farmgame.presenter.LandPresenter.HarvestPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
+
+import java.util.ArrayList;
 
 public class LandHarvestPlantSystem extends System {
     private final WarehouseManager warehouseManager;
@@ -96,5 +99,25 @@ public class LandHarvestPlantSystem extends System {
             message += harvestPresenter.growingPlant() + "\n";
         }
         return message;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public String auto_harvest() {
+        ArrayList<Integer> map_index = landManager.getAllIndices();
+        StringBuilder output = new StringBuilder();
+        for (int i : map_index) {
+            LandEntity land = landManager.getLand(i);
+            if (land.getPlant() != null && land.getStage() == 2) {
+                harvest(i);
+            }
+            else {
+                output.append("land at index ").append(i).append(" is not harvested");
+            }
+        }
+        return output.toString();
     }
 }
