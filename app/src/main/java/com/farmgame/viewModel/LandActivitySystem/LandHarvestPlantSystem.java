@@ -1,6 +1,6 @@
-package com.farmgame.controller.LandActivitySystem;
+package com.farmgame.viewModel.LandActivitySystem;
 
-import com.farmgame.controller.System;
+import com.farmgame.viewModel.System;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;

@@ -1,9 +1,8 @@
-package com.farmgame.controller.LandActivitySystem;
+package com.farmgame.viewModel.LandActivitySystem;
 
 import static com.farmgame.constants.Constants.*;
 
-import com.farmgame.controller.System;
-import com.farmgame.gateway.LandDBApi;
+import com.farmgame.viewModel.System;
 import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;

@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmgame.R;
-import com.farmgame.controller.LandActivitySystem.LandHarvestPlantSystem;
-import com.farmgame.controller.LandActivitySystem.LandManagePlantStatusSystem;
+import com.farmgame.viewModel.LandActivitySystem.LandHarvestPlantSystem;
+import com.farmgame.viewModel.LandActivitySystem.LandManagePlantStatusSystem;
 import com.farmgame.databinding.FragmentLandBinding;
 import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Player;
