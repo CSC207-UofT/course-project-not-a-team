@@ -7,8 +7,8 @@ import com.farmgame.entity.Item.Item;
 import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.StoreAble;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
-import com.farmgame.presenter.StorePresenter;
 import static com.farmgame.constants.Constants.*;
+import static com.farmgame.constants.Message.*;
 
 public class StoreSystem extends System {
     /**
@@ -104,22 +104,20 @@ public class StoreSystem extends System {
      * @param  object: The object the player wants to purchase.
      */
      public String makePurchase(StoreAble object) {
-         StorePresenter storePresenter = new StorePresenter();
          String message = "";
          if (checkValidity(object) == MISSING_VALUE){
-             message += storePresenter.invalid_product() + "\n";
+             message += INVALID_PRODUCT + "\n";
          }
          else if (checkValidity(object) == SUCCESS) {
              playerManager.subtractMoney(getPrice(object));
-             message += storePresenter.purchase_success() + "\n";
-             message += storePresenter.remaining_money(playerManager.getPlayer().getMoney()) + "\n";
+             message += PURCHASE_SUCCESS + "\n";
              message += updateWarehouse(object) + "\n";
          }
          else if (checkValidity(object) == NOT_ENOUGH_MONEY){
-             message += storePresenter.not_enough_money();
+             message += NO_ENOUGH_MONEY;
          }
          else if (checkValidity(object) == NOT_ENOUGH_SPACE){
-             message += storePresenter.not_enough_capacity();
+             message += NOT_ENOUGH_CAPACITY;
          }
          return message;
      }
@@ -130,10 +128,9 @@ public class StoreSystem extends System {
      *  @param object: The purchased object
      */
      public String updateWarehouse(StoreAble object) {
-         StorePresenter storePresenter = new StorePresenter();
          String message = "";
          warehouseManager.addProduct(object);
-         message += storePresenter.update_success() + "\n";
+         message += UPDATE_SUCCESS + "\n";
          return message;
      }
 
@@ -144,7 +141,6 @@ public class StoreSystem extends System {
      * @param object: The object the player wants to sell, only plants are allowed to sell
      */
      public String sell(StoreAble object) {
-         StorePresenter storePresenter = new StorePresenter();
          StringBuilder message = new StringBuilder();
          if (object instanceof Plants) {
              for (Plants plant : this.store.getCurrentProducts_plants()){
@@ -152,13 +148,13 @@ public class StoreSystem extends System {
                  int sellingPrice = object.getPrice();
                  playerManager.addMoney(sellingPrice);
                  warehouseManager.removeProduct(object);
-                 message.append(storePresenter.sell_success(
-                         playerManager.getPlayer().getMoney())).append("\n");
+                 message.append(
+                         SELL_SUCCESS).append(playerManager.getPlayer().getMoney()).append("\n");
              }
             }
         }
          else {
-             message.append(storePresenter.sell_fail()).append("\n");
+             message.append(SELL_FAIL).append("\n");
          }
          return message.toString();
     }

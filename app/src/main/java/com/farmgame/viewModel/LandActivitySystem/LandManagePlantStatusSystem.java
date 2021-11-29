@@ -2,10 +2,10 @@ package com.farmgame.viewModel.LandActivitySystem;
 
 import static com.farmgame.constants.Constants.TYPE_FERTILIZER;
 import static com.farmgame.constants.Constants.TYPE_WATERING_CAN;
+import static com.farmgame.constants.Message.*;
 
 import com.farmgame.viewModel.System;
 import com.farmgame.entity.Item.Item;
-import com.farmgame.presenter.LandPresenter.PlantStatusPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
 
@@ -35,7 +35,6 @@ public class LandManagePlantStatusSystem extends System {
      * @return a message indicating the result of fertilizing
      */
     public String fertilize(int index) {
-        PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";
         Item fertilizer = this.warehouseManager.getWarehouse().getItem(TYPE_FERTILIZER);
         if (fertilizer != null
@@ -44,22 +43,22 @@ public class LandManagePlantStatusSystem extends System {
             landManager.fertilize(index,fertilizer);
             warehouseManager.removeProduct(fertilizer);
             // inform player that he/she has fertilized the land successfully
-            message += plantStatusPresenter.fertilizerSuccess() + "\n";
+            message +=  FERTILIZE_SUCCESS + "\n";
 
         }
         else if (fertilizer == null) {
             // inform player that the warehouse has not fertilizer left
-            plantStatusPresenter.not_enough_Fertilizer();
-            message += plantStatusPresenter.not_enough_Fertilizer() + "\n";
+            message += NOT_ENOUGH_FERTILIZER + "\n";
 
         }
         else if (landManager.getLand(index).getPlant() == null) {
             // inform player that this land hasn't been planted yet
-            message += plantStatusPresenter.landNotPlant() + "\n";
+            message += LAND_NOT_PLANT + "\n";
         }
         else if (landManager.getLand(index).isFertilize()) {
-            // inform player that this land has been fertilized recently, thus should wait for a few minutes for next fertilization.
-            message += plantStatusPresenter.invalidFertilize() + "\n";
+            // inform player that this land has been fertilized recently, thus
+            // should wait for a few minutes for next fertilization.
+            message += INVALID_FERTILIZER + "\n";
         }
         return message;
     }
@@ -72,7 +71,6 @@ public class LandManagePlantStatusSystem extends System {
      * @return a message indicating the result of watering
      */
     public String watering(int index) {
-        PlantStatusPresenter plantStatusPresenter = new PlantStatusPresenter();
         String message = "";
         Item wateringCan = this.warehouseManager.getWarehouse().getItem(TYPE_WATERING_CAN);
         if (wateringCan != null
@@ -81,24 +79,25 @@ public class LandManagePlantStatusSystem extends System {
                 && !landManager.getLand(index).isWet()) {
             landManager.watering(index, wateringCan);
             warehouseManager.removeProduct(wateringCan);
-            message += plantStatusPresenter.wateringSuccess() + "\n";
+            message += WATERING_SUCCESS + "\n";
             // inform player that he/she has watered the land successfully
         }
         else if (wateringCan == null) {
             // inform player that the warehouse has not watering can left
-            message += plantStatusPresenter.not_enough_WaterCan() + "\n";
+            message += NOT_ENOUGH_WATERING + "\n";
         }
         else if (landManager.getLand(index).getPlant() == null) {
             // inform player that this land hasn't been planted yet
-            message += plantStatusPresenter.landNotPlant() + "\n";
+            message += LAND_NOT_PLANT + "\n";
         }
         else if (landManager.getLand(index).getStage() == 2) {
             // inform player that this land has a fully grown plant, thus should not be watered
-            message += plantStatusPresenter.invalidWaterMature() + "\n";
+            message += INVALID_WATER_MATURE + "\n";
         }
         else if (landManager.getLand(index).isWet()) {
-            // inform player that this land has been water recently, thus should wait for a few minutes for next watering.
-            message += plantStatusPresenter.invalidWater() + "\n";
+            // inform player that this land has been water recently, thus should wait for a few
+            // minutes for next watering.
+            message += INVALID_WATER + "\n";
         }
         return message;
     }
