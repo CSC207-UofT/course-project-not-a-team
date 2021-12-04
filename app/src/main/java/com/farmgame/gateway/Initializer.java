@@ -61,6 +61,7 @@ public class Initializer extends SQLiteOpenHelper {
         list.add(new String[]{ITEM_ID, INT});
         list.add(new String[]{ITEM_NAME, TEXT});
         list.add(new String[]{ITEM_TYPE, TEXT});
+        list.add(new String[]{ITEM_PRICE, INT});
         return createTable(ITEM, list, new String[]{ITEM_ID});
     }
 

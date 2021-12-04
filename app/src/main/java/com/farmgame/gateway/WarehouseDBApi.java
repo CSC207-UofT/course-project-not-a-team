@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
+import com.farmgame.entity.Item.ItemFactory;
 import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
@@ -86,7 +87,7 @@ public class WarehouseDBApi extends DataBaseAPI {
     public static HashMap<Integer, ArrayList<Item>> getItemsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
-                new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_TYPE},
+                new String[]{WAREHOUSE_QUANTITY, ITEM_ID, ITEM_TYPE, ITEM_PRICE},
                 WAREHOUSE_TYPE + " != ? AND " + WAREHOUSE_TYPE + " != ?",
                 new String[]{TYPE_PLANT, TYPE_SEED},
                 null,
@@ -99,17 +100,12 @@ public class WarehouseDBApi extends DataBaseAPI {
             ArrayList<Item> list = new ArrayList<>();
             int quantity = cursor.getInt(cursor.getColumnIndex(WAREHOUSE_QUANTITY));
             String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
+            int price = cursor.getInt(cursor.getColumnIndex(ITEM_PRICE));
             int id = cursor.getInt(cursor.getColumnIndex(ITEM_ID));
 
+            ItemFactory itemFactory = new ItemFactory();
             for (int i = 0; i < quantity; i ++){
-                switch (type){
-                    case TYPE_FERTILIZER:
-                        list.add(new Fertilizer());
-                        break;
-                    case TYPE_WATERING_CAN:
-                        list.add(new WateringCan());
-                        break;
-                }
+                list.add(itemFactory.createItem(type, price, id));
             }
             map.put(id, list);
         }
@@ -134,13 +130,13 @@ public class WarehouseDBApi extends DataBaseAPI {
     private static <T extends StoreAble> void convertItemMap(HashMap<Integer, ArrayList<T>> itemMap){
         HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
         for (int key : itemMap.keySet()){
-            result.put(key, new ArrayList<>(itemMap.get(key)));
+            result.put(key, new ArrayList<>(Objects.requireNonNull(itemMap.get(key))));
         }
 
         HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
         HashMap<Integer, ArrayList<Item>> prevMap = getItemsMap();
         for (int key : prevMap.keySet()){
-            prev.put(key, new ArrayList<>(prevMap.get(key)));
+            prev.put(key, new ArrayList<>(Objects.requireNonNull(prevMap.get(key))));
         }
 
         update(result);

@@ -44,6 +44,7 @@ public class Constants {
     public static final String ITEM_ID = "id";
     public static final String ITEM_NAME = "name";
     public static final String ITEM_TYPE = "itemType";
+    public static final String ITEM_PRICE = "itemPrice";
 
 
     // Warehouse SQL Column names
