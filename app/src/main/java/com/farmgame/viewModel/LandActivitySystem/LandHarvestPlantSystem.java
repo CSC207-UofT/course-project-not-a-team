@@ -111,7 +111,7 @@ public class LandHarvestPlantSystem extends System {
             LandEntity land = landManager.getLand(i);
             if (land.getPlant() != null && land.getStage() == 2) {
                 harvest(i);
-                output.append("land at index ").append(i).append(" is harvested/n");
+                output.append("land at index ").append(i).append(" is harvested");
             }
         }
         return output.toString();

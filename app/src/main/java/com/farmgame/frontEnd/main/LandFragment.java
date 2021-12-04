@@ -66,7 +66,20 @@ public class LandFragment extends Fragment {
 
         binding.playerInfo.setText(playerInfo());
 
-        binding.harvestAll.setOnClickListener(v -> viewModel.getLHS().auto_harvest());
+        binding.harvestAll.setOnClickListener(v -> Toast.makeText(requireActivity(),
+                viewModel.getLHS().auto_harvest(), Toast.LENGTH_SHORT).show());
+
+        binding.harvestAll.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Harvest All?")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getLHS().auto_harvest(),
+                            Toast.LENGTH_SHORT).show()
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
+        });
 
         viewModel.playerData.observe(requireActivity(), player -> {
             if (this.isVisible()){

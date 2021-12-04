@@ -13,6 +13,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/sellAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sell_all"/>
+
     <GridView
         android:id="@+id/gv"
         android:numColumns="3"
