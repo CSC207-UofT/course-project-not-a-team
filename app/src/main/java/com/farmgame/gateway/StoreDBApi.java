@@ -15,13 +15,24 @@ import com.farmgame.entity.Store;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/***
+ * the database gateway to store
+ */
 public class StoreDBApi extends DataBaseAPI {
 
 
+    /***
+     *
+     * @return the store instance
+     */
     public static Store getStore(){
         return new Store(getPlantList(), getSeedList(), getItemList());
     }
 
+    /***
+     *
+     * @return list of plant
+     */
     public static ArrayList<Plants> getPlantList(){
 
         ArrayList<Plants> list = new ArrayList<>();
@@ -45,6 +56,10 @@ public class StoreDBApi extends DataBaseAPI {
         return list;
     }
 
+    /***
+     *
+     * @return list of seeds that can be bought under the current level
+     */
     public static ArrayList<Seeds> getSeedList(){
 
         ArrayList<Seeds> list = new ArrayList<>();
@@ -73,6 +88,10 @@ public class StoreDBApi extends DataBaseAPI {
 
     }
 
+    /***
+     *
+     * @return list of item
+     */
     public static ArrayList<Item> getItemList(){
 
         ArrayList<Item> list = new ArrayList<>();

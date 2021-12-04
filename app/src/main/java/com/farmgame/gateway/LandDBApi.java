@@ -12,9 +12,16 @@ import com.farmgame.entity.Seeds;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/***
+ * the database gateway to land
+ */
 public class LandDBApi extends DataBaseAPI {
 
 
+    /***
+     *
+     * @return list of all lands
+     */
     public static ArrayList<LandEntity> getLandList(){
         ArrayList<LandEntity> list = new ArrayList<>();
         Cursor cursor = db.query(
@@ -41,7 +48,10 @@ public class LandDBApi extends DataBaseAPI {
     }
 
 
-
+    /***
+     * update the land with the index
+     * @param landIndex index of the land
+     */
     public static void updateLand(int landIndex){
         LandEntity land = vm.getLand(landIndex);
         ContentValues contentValues = new ContentValues();

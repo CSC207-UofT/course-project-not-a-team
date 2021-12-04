@@ -6,10 +6,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.farmgame.entity.Item.Fertilizer;
 import com.farmgame.entity.Item.Item;
 import com.farmgame.entity.Item.ItemFactory;
-import com.farmgame.entity.Item.WateringCan;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Player;
 import com.farmgame.entity.Seeds;
@@ -20,8 +18,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+/***
+ * dababase gateway of warebouse
+ */
 public class WarehouseDBApi extends DataBaseAPI {
 
+    /***
+     *
+     * @return list of plants in warehouse
+     */
     public static HashMap<Integer, ArrayList<Plants>> getPlantsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + PLANT,
@@ -52,6 +57,10 @@ public class WarehouseDBApi extends DataBaseAPI {
         return map;
     }
 
+    /***
+     *
+     * @return list of seeds in warehouse
+     */
     public static HashMap<Integer, ArrayList<Seeds>> getSeedsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + PLANT,
@@ -84,6 +93,10 @@ public class WarehouseDBApi extends DataBaseAPI {
         return map;
     }
 
+    /***
+     *
+     * @return list of items in warehouse
+     */
     public static HashMap<Integer, ArrayList<Item>> getItemsMap(){
         Cursor cursor = db.query(
                 WAREHOUSE + " NATURAL JOIN " + ITEM,
@@ -114,6 +127,9 @@ public class WarehouseDBApi extends DataBaseAPI {
     }
 
 
+    /***
+     * update the warehouse when there is a change
+     */
     public static void update_warehouse(){
         Warehouse warehouse = vm.getWarehouse();
 
@@ -127,21 +143,24 @@ public class WarehouseDBApi extends DataBaseAPI {
 
     }
 
+    /***
+     * convert map of child class into map of store able objects
+     * @param itemMap map where key is id and value is the arrayList of store able objects
+     * @param <T> type of the store able object
+     */
     private static <T extends StoreAble> void convertItemMap(HashMap<Integer, ArrayList<T>> itemMap){
         HashMap<Integer, ArrayList<StoreAble>> result = new HashMap<>();
         for (int key : itemMap.keySet()){
             result.put(key, new ArrayList<>(Objects.requireNonNull(itemMap.get(key))));
         }
 
-        HashMap<Integer, ArrayList<StoreAble>> prev = new HashMap<>();
-        HashMap<Integer, ArrayList<Item>> prevMap = getItemsMap();
-        for (int key : prevMap.keySet()){
-            prev.put(key, new ArrayList<>(Objects.requireNonNull(prevMap.get(key))));
-        }
-
         update(result);
     }
 
+    /***
+     * update the database
+     * @param map map of store able objects
+     */
     private static void update(HashMap<Integer, ArrayList<StoreAble>> map){
 
         for (int key : map.keySet()){
@@ -155,10 +174,18 @@ public class WarehouseDBApi extends DataBaseAPI {
     }
 
 
+    /***
+     *
+     * @return the warehouse instance
+     */
     public static Warehouse getWarehouse(){
         return new Warehouse(getItemsMap(), getPlantsMap(), getSeedsMap(), getCapacity());
     }
 
+    /***
+     *
+     * @return current number of objects in the warehouse
+     */
     public static int getCur(){
         Cursor cursor = db.query(WAREHOUSE, new String[]{"sum(" + WAREHOUSE_QUANTITY + ")"},
                 null, null, null, null, null);
@@ -172,13 +199,14 @@ public class WarehouseDBApi extends DataBaseAPI {
         return cur;
     }
 
+    /***
+     *
+     * @return current capacity of the warehouse
+     */
     public static int getCapacity(){
 
         Player player = vm.getPlayer();
         String name = player.getName();
-
-//        String rawQuery = "SELECT ? FROM " + innerJoin(PLAYER, LEVEL, LEVEL_LEVEL);
-//        Cursor cursor = db.rawQuery(rawQuery, new String[]{LEVEL_CAPACITY});
 
         Cursor cursor = db.query(
                 PLAYER + " NATURAL JOIN " + LEVEL, new String[]{LEVEL_CAPACITY},

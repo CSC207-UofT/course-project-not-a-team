@@ -10,15 +10,25 @@ import java.util.ArrayList;
 
 import static com.farmgame.constants.Constants.*;
 
+/***
+ * initializer of all tables when first enter the game
+ */
 public class Initializer extends SQLiteOpenHelper {
 
 
-
+    /***
+     *
+     * @param context the context of the sqlite helper
+     */
     public Initializer(@Nullable Context context) {
 
         super(context, "farm.db", null, 1);
     }
 
+    /***
+     * create all tables
+     * @param db database instance
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createUserTable());
@@ -29,11 +39,21 @@ public class Initializer extends SQLiteOpenHelper {
         db.execSQL(createLandTable());
     }
 
+    /***
+     * here we only have 1 database version, so we are not using this currently(but may be used
+     * later)
+     * @param db database
+     * @param oldVersion old version of database
+     * @param newVersion new version of database
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
+    /***
+     *
+     * @return the sql string to create user table
+     */
     private String createUserTable(){
         ArrayList<String[]> list = new ArrayList<>();
         list.add(new String[]{PLAYER_NAME, TEXT});
@@ -42,7 +62,10 @@ public class Initializer extends SQLiteOpenHelper {
         list.add(new String[]{PLAYER_MONEY, INT});
         return createTable(PLAYER, list , new String[]{PLAYER_NAME});
     }
-
+    /***
+     *
+     * @return the sql string to create plant table
+     */
     private String createPlantTable(){
         ArrayList<String[]> list = new ArrayList<>();
         list.add(new String[]{PLANT_ID, INT});
@@ -56,6 +79,10 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(PLANT, list, new String[]{PLANT_ID});
     }
 
+    /***
+     *
+     * @return the sql string to create item table
+     */
     private String createItemTable(){
         ArrayList<String[]> list = new ArrayList<>();
         list.add(new String[]{ITEM_ID, INT});
@@ -66,6 +93,10 @@ public class Initializer extends SQLiteOpenHelper {
     }
 
 
+    /***
+     *
+     * @return the sql string to create warehouse table
+     */
     private String createWarehouseTable(){
         ArrayList<String[]> list = new ArrayList<>();
 
@@ -75,6 +106,10 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(WAREHOUSE, list, new String[]{WAREHOUSE_ID, WAREHOUSE_TYPE});
     }
 
+    /***
+     *
+     * @return the sql string to create level table
+     */
     private String createLevelTable(){
         ArrayList<String[]> list = new ArrayList<>();
         list.add(new String[]{LEVEL_LEVEL, INT});
@@ -83,6 +118,10 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(LEVEL, list, new String[]{LEVEL_LEVEL});
     }
 
+    /***
+     *
+     * @return the sql string to create land table
+     */
     private String createLandTable(){
         ArrayList<String[]> list = new ArrayList<>();
         list.add(new String[]{LAND_INDEX, INT});
@@ -96,13 +135,25 @@ public class Initializer extends SQLiteOpenHelper {
         return createTable(LAND, list, new String[]{LAND_INDEX});
     }
 
-
+    /***
+     *
+     * @param tableName name of the table
+     * @param list list of attributes
+     * @param primaryKeys list of primary keys
+     * @return the sql string to create a table
+     */
     private String createTable(String tableName, ArrayList<String[]> list,
                                       String[] primaryKeys){
         return "CREATE TABLE IF NOT EXISTS " +
                 tableName + "(" + handlePropertySet(list, primaryKeys) + ")";
     }
 
+    /***
+     *
+     * @param list list of attributes and its type
+     * @param primaryKeys list of primary keys
+     * @return converted sql string
+     */
     private String handlePropertySet(ArrayList<String[]> list, String[] primaryKeys){
         ArrayList<String> lst = new ArrayList<>();
         for (String[] pair: list){
