@@ -8,15 +8,15 @@ import org.junit.Test;
 
 public class ItemUnitTest {
     ItemFactory factory = new ItemFactory();
-    Item fertilizer =  factory.createItem(TYPE_FERTILIZER);
-    Item wateringCan =  factory.createItem(TYPE_WATERING_CAN);
+    Item fertilizer =  factory.createItem(TYPE_FERTILIZER, 5, 10);
+    Item wateringCan =  factory.createItem(TYPE_WATERING_CAN, 10, 20);
 
 
     @Test
     public void test_createItem() {
         assertTrue(fertilizer instanceof Fertilizer);
         assertTrue(wateringCan instanceof WateringCan);
-        Item null_obj = factory.createItem("blah");
+        Item null_obj = factory.createItem("blah", 10, 10);
         assertNull(null_obj);
     }
 
