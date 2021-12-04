@@ -19,10 +19,6 @@ public class Store {
      * StoreLevel an integer that shows the level of the store
      */
     public Store(ArrayList<Plants> plantList, ArrayList<Seeds> seedList, ArrayList<Item> itemList){
-        // constructor, take StoreLevel as parameter, initiate ArrayList currentProducts given the
-        // StoreLevel
-        // unused code: this.StoreLevel = playerManager.getPlayer().getLevel();
-        // unused code: this.PlayerMoney = playerManager.getPlayer().getMoney()
         this.currentPlants = plantList;
         this.currentSeed = seedList;
         this.currentItem = itemList;
@@ -55,11 +51,4 @@ public class Store {
        return new ArrayList<>(this.currentItem);
    }
 
-// unused code:    /**
-// unused code:     * Return the current player money
-// unused code:     * @return int
-// unused code:     */
-// unused code:    public int getPlayerMoney() {
-// unused code:        return PlayerMoney;
-// unused code:    }
 }
