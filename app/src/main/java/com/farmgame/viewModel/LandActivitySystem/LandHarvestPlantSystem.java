@@ -83,7 +83,7 @@ public class LandHarvestPlantSystem extends System {
             playerManager.gainExp(landManager.getLand(index).getPlant().getExperiencePoint());
             int plantId = landManager.getLand(index).getPlant().getId();
             Plants plant = PlantDBApi.createPlant(plantId);
-            warehouseManager.addProduct(plant);
+            warehouseManager.addProduct(plant, 1);
             landManager.harvest(index);
             message += HARVEST_PLANT + "\n";
         }
