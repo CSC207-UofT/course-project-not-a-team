@@ -48,7 +48,7 @@ Use of Github Features
         We used issues as a reminder of what we should do next. Since we were working in person for the majority time of the term, we 
         only created five issues, but our group still finds it useful.
  
- For refactor feature of github, see 'Refactoring' session; for major pull request, see 'Brief summary of each member's work since phase 1' session
+ For refactor feature of github, see 'Refactoring' section; for major pull request, see 'Brief summary of each member's work since phase 1' section
  
 ---
 
@@ -92,7 +92,7 @@ Code Organization
     We choose package by layers as our packaging strategy. We have six major packages that are constructed according to the clean
     architecture.
 
-See Clean Architecture for a picture of our packaging strategy.
+See 'Clean architecture' section for a picture of our packaging strategy.
 
 ---
 
@@ -142,7 +142,17 @@ Major design decisions in Phase 2
 
 Brief summary of each member's work since phase 1
 
-    Jingquan Cao, github name: J-D-CONNOR: My major code work is that I implement auto-harvest feature on pull request 137. This pull is 
-    significant since this feature allows us to follow 7 principles of universal design.
+    Jingquan Cao, github name: J-D-CONNOR: My major code work on phase 2 is implementation of auto harvest feature and rearranging files
+    so our project's github repo looks cleaner. As for a significant pull request of mine, I think #137 is the desired one since in this
+    pull, I implement (semi-)auto-harvest feature so that we follow Low Physical Effort Principle from the 7 principle of universal design. With
+    this feature, players no longer need to repeat the 'harvest' action over and over again.
     
-Relevent pull request link: [#137](https://github.com/CSC207-UofT/course-project-not-a-team/pull/137)
+    Yi Yang, github name: ZacYiYang: After the phase 1 I reviewed all the problem that pointed by TA, and update our code through the 
+    feedback from him. I made some changes in docstring and some structure of code. I think the #139 pull request is a significant 
+    contribution for me. In this pull request, I changed the controller into ViewModel to make our code follow the MVVM pattern. This 
+    change needs knowledge of the MVVM model. Then I reviewed the lecture notes and recording, also asked my teammate to make sure our 
+    thoughts are correct. Then I made this change and got this pull request.
+    
+Relevent pull request link: 
+[#137](https://github.com/CSC207-UofT/course-project-not-a-team/pull/137), 
+[#139](https://github.com/CSC207-UofT/course-project-not-a-team/pull/139)
