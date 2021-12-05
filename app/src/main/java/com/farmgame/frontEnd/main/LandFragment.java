@@ -1,5 +1,6 @@
 package com.farmgame.frontEnd.main;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 /**
  * the fragment of the land page (first tab page), in MainActivity
  */
+@SuppressLint("InflateParams")
 public class LandFragment extends Fragment {
 
 
@@ -49,9 +51,8 @@ public class LandFragment extends Fragment {
 
 
         binding = FragmentLandBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        return root;
+        return binding.getRoot();
     }
 
 
@@ -64,6 +65,21 @@ public class LandFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
         binding.playerInfo.setText(playerInfo());
+
+        binding.harvestAll.setOnClickListener(v -> Toast.makeText(requireActivity(),
+                viewModel.getLHS().auto_harvest(), Toast.LENGTH_SHORT).show());
+
+        binding.harvestAll.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Harvest All?")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getLHS().auto_harvest(),
+                            Toast.LENGTH_SHORT).show()
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
+        });
 
         viewModel.playerData.observe(requireActivity(), player -> {
             if (this.isVisible()){
@@ -168,6 +184,7 @@ public class LandFragment extends Fragment {
      * set the window of planting actions(watering, harvest, fertilize) of a land
      * @param land the land that the actions to be executed on
      */
+    @SuppressLint("SetTextI18n")
     private void setActionWindow(LandEntity land){
         View contentView = LayoutInflater.from(requireActivity()).inflate(R.layout.land_action_popup, null);
         PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -213,10 +230,8 @@ public class LandFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setMessage("Buy the land? Cost: " + land.getPrice())
                 .setPositiveButton(R.string.confirm, (dialog, which)
-                                -> {
-                    Toast.makeText(requireActivity(), viewModel.getLCS().buyLand(land.getIndex()),
-                            Toast.LENGTH_SHORT).show();
-                        }
+                                -> Toast.makeText(requireActivity(), viewModel.getLCS().buyLand(
+                                        land.getIndex()), Toast.LENGTH_SHORT).show()
                 )
                 .setNegativeButton(R.string.cancel, null)
                 .create().show();
