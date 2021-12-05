@@ -105,6 +105,7 @@ public class StoreDBApi extends DataBaseAPI {
         ItemFactory itemFactory = new ItemFactory();
         while (cursor.moveToNext()){
             String type = cursor.getString(cursor.getColumnIndex(ITEM_TYPE));
+
             int price = cursor.getInt(cursor.getColumnIndex(ITEM_PRICE));
             int id = cursor.getInt(cursor.getColumnIndex(ITEM_ID));
             list.add(itemFactory.createItem(type, price, id));
