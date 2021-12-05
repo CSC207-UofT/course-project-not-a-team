@@ -127,10 +127,10 @@ public class Warehouse {
 
     /**
      * return if this warehouse can hold all the items in the inventory.
-     *
+     * @param quantity quantity of item
      * @return boolean
      */
-    public boolean checkCapacity(){
+    public boolean checkCapacity(int quantity){
         int use = 0;
         for(ArrayList<Plants> plantsArrayList: this.plantInventory.values()){
             use += plantsArrayList.size();
@@ -141,7 +141,7 @@ public class Warehouse {
         for(ArrayList<Item> itemArrayList: this.itemInventory.values()){
             use += itemArrayList.size();
         }
-        return use < this.capacity;
+        return use + quantity <= this.capacity;
     }
 
     /**
@@ -206,6 +206,5 @@ public class Warehouse {
         return null;
     }
 }
-
 
 

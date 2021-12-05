@@ -30,19 +30,20 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
     /**
      * Add product to warehouse hashmap according to its type
      * @param object given an StoreAble object
+     * @param quantity quantity of object to be added
      */
     @Override
-    public void addProduct(StoreAble object) {
-        if (warehouse.checkCapacity()){
+    public void addProduct(StoreAble object, int quantity) {
+        if (warehouse.checkCapacity(quantity)){
             switch (object.getType()){
                 case TYPE_PLANT:
-                    add(this.warehouse.getPlantInventory(), object);
+                    add(this.warehouse.getPlantInventory(), object, quantity);
                     break;
                 case TYPE_SEED:
-                    add(this.warehouse.getSeedInventory(), object);
+                    add(this.warehouse.getSeedInventory(), object, quantity);
                     break;
                 default:
-                    add(this.warehouse.getItemInventory(), object);
+                    add(this.warehouse.getItemInventory(), object, quantity);
                     break;
             }
             setChanged();
@@ -59,14 +60,17 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
      * @param <T> the type of StoreAble object
      */
     @SuppressWarnings("unchecked")
-    private <T extends StoreAble> void add(HashMap<Integer, ArrayList<T>> map, StoreAble object){
+    private <T extends StoreAble> void add(HashMap<Integer, ArrayList<T>> map, StoreAble object,
+                                           int quantity){
         int id = object.getId();
-        if (map.containsKey(id)){
-            Objects.requireNonNull(map.get(id)).add((T) object);
-        } else {
-            ArrayList<T> list = new ArrayList<>();
-            list.add((T) object);
-            map.put(id, list);
+        for (int i=0; i < quantity; i ++){
+            if (map.containsKey(id)){
+                Objects.requireNonNull(map.get(id)).add((T) object);
+            } else {
+                ArrayList<T> list = new ArrayList<>();
+                list.add((T) object);
+                map.put(id, list);
+            }
         }
     }
 
@@ -87,6 +91,15 @@ public class WarehouseManager extends Observable implements WarehouseManipulate{
                 remove(this.warehouse.getItemInventory(), object);
                 break;
         }
+        setChanged();
+        notifyObservers(UPDATE_WAREHOUSE);
+    }
+
+    /**
+     * Remove all matured plants in the warehouse
+     */
+    public void removeAllPlants(){
+        this.warehouse.setPlantInventory(new HashMap<>());
         setChanged();
         notifyObservers(UPDATE_WAREHOUSE);
     }
