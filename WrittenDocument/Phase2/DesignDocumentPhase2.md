@@ -56,10 +56,6 @@ Code Style and Documentation
 
     We fixed all the warning and checked that Javadoc are all written whenever needed during our last final check before deadline of 
     presentation.
-    
-**TODO**
-gateway, viewModel, MainViewModel, viewModel, System
-need docstring
 
 ---
 
@@ -68,9 +64,11 @@ Testing
     Most part of our project's code are tested, including controller classes, use case classes and entity classes (i.e. code other than
     the outmost layer of clean architecture). We did test our database part of the code through AndriodStudio feature instead of using 
     unit test, so this is not shown on the test coverage. However, we do find it difficult to test the front end part of the program.
-    
-**TODO**
-maybe include screenshot of test coverage
+ 
+The followings are screenshots of test_coverage
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test1.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test2.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test3.png)
 
 ---
 
