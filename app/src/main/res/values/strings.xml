@@ -25,4 +25,8 @@
     <string name="name">name</string>
     <string name="harvest_all">Harvest All</string>
     <string name="sell_all">Sell All</string>
+    <string name="buy_the_product">Buy the Product</string>
+    <string name="_1">1</string>
+    <string name="add">+</string>
+    <string name="minus">-</string>
 </resources>
