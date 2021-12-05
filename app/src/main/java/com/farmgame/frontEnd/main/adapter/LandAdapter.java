@@ -1,5 +1,6 @@
 package com.farmgame.frontEnd.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,43 +67,37 @@ public class LandAdapter extends BaseAdapter {
      * @param position the position of the land
      * set info about the land to be seen in the grid of the land
      */
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = layoutInflater.inflate(R.layout.land_item, null);
 
-        ImageView imageView;
-        imageView = new ImageView(layoutInflater.getContext());
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(65,65));
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
+        TextView landText = convertView.findViewById(R.id.landtext);
+        ImageView landImage = convertView.findViewById(R.id.landimage);
 
         Seeds plant = getItem(position).getPlant();
-        String lockStatus;
         switch (getItem(position).getLockStatus()){
-            case LOCK_STATUS_BOUGHT:
-                lockStatus = "Bought";
-                break;
             case LOCK_STATUS_NOT_BOUGHT:
-                lockStatus = "Not Bought";
+                landText.setText("Not Bought");
+                break;
+            case LOCK_STATUS_LOCKED:
+                landText.setText("Locked");
                 break;
             default:
-                lockStatus = "Locked";
                 break;
         }
-        ((TextView) convertView.findViewById(R.id.lockStatus)).setText(lockStatus);
-//        String plantName = plant ==  null ? "No Plant" : plant.getName();
-        String plantName;
+        convertView.findViewById(R.id.landBackground).setBackgroundResource(R.drawable.land_background);
         if (plant == null) {
-            plantName = "No Plant";
-            convertView.findViewById(R.id.landBackground).setBackgroundResource(R.drawable.land_background);
-        }else{
-            plantName = plant.getName();
+            landText.setVisibility(View.VISIBLE);
+            landImage.setVisibility(View.INVISIBLE);
+        } else {
             String imageName = "p" + plant.getId();
             int resID = layoutInflater.getContext().getResources().getIdentifier(imageName, "drawable", layoutInflater.getContext().getPackageName());
-            ((ImageView) convertView.findViewById(R.id.landimage)).setImageResource(resID);
-            convertView.findViewById(R.id.landBackground).setBackgroundResource(R.drawable.land_background);
+            landImage.setBackgroundResource(resID);
+
+            landText.setVisibility(View.INVISIBLE);
+            landImage.setVisibility(View.VISIBLE);
         }
-        ((TextView) convertView.findViewById(R.id.plant_name)).setText(plantName);
         return convertView;
     }
 }
