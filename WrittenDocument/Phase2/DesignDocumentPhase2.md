@@ -144,8 +144,8 @@ Brief summary of each member's work since phase 1
 
     Jingquan Cao, github name: J-D-CONNOR: My major code work on phase 2 is implementation of auto harvest feature and rearranging files
     so our project's github repo looks cleaner. As for a significant pull request of mine, I think #137 is the desired one since in this
-    pull, I implement (semi-)auto-harvest feature so that we follow Low Physical Effort Principle from the 7 principle of universal design. With
-    this feature, players no longer need to repeat the 'harvest' action over and over again.
+    pull, I implement (semi-)auto-harvest feature so that we follow Low Physical Effort Principle from the 7 principle of universal design. 
+    With this feature, players no longer need to repeat the 'harvest' action over and over again.
     
     Yi Yang, github name: ZacYiYang: After the phase 1 I reviewed all the problem that pointed by TA, and update our code through the 
     feedback from him. I made some changes in docstring and some structure of code. I think the #139 pull request is a significant 
