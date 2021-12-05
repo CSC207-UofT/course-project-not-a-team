@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<!--    <View-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/need_water"/>-->
+    <!--    <View-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/need_water"/>-->
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:id="@+id/lockStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+    <!--    <TextView-->
+    <!--        android:id="@+id/lockStatus"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        android:foregroundGravity="center" />-->
 
-    <TextView
-        android:layout_marginBottom="30dp"
-        android:id="@+id/plant_name"
+    <!--    <TextView-->
+    <!--        android:id="@+id/plant_name"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:foregroundGravity="center"-->
+    <!--        android:text="test" />-->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/landimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:translationZ="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/landBackground"
+            app:layout_constraintEnd_toEndOf="@+id/landBackground"
+            app:layout_constraintStart_toStartOf="@+id/landBackground"
+            app:layout_constraintTop_toTopOf="@+id/landBackground"/>
+
+        <TextView
+            android:id="@+id/landtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:translationZ="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/landBackground"
+            app:layout_constraintEnd_toEndOf="@+id/landBackground"
+            app:layout_constraintStart_toStartOf="@+id/landBackground"
+            app:layout_constraintTop_toTopOf="@+id/landBackground"/>
+
+        <View
+            android:id="@+id/landBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
