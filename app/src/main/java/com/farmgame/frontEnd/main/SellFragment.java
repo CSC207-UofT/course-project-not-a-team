@@ -56,6 +56,18 @@ public class SellFragment extends Fragment {
             }
         });
 
+        binding.sellAll.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder.setMessage("Sell All?")
+                    .setPositiveButton(R.string.confirm, (dialog, which)
+                            -> Toast.makeText(requireActivity(),
+                            viewModel.getStoreSystem().sellAll(),
+                            Toast.LENGTH_SHORT).show()
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .create().show();
+        });
+
 
         return root;
     }
