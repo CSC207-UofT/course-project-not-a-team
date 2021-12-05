@@ -7,14 +7,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
+/***
+ * a utility class to initialize all data needed
+ */
 public class InitData{
 
     private static SQLiteDatabase db;
 
+    /**
+     * set a database instance to use
+     * @param database database instance
+     */
     public static void setDb(SQLiteDatabase database){
         db = database;
     }
 
+    /***
+     *
+     * @return whether the player has been created
+     */
     public static boolean hasPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);
@@ -23,6 +34,10 @@ public class InitData{
         return result;
     }
 
+    /***
+     * create the player and all other needed data - put them into the database
+     * @param name player name
+     */
     public static void createPlayer(String name){
         ContentValues contentValues = new ContentValues();
         contentValues.put(PLAYER_NAME, name);
@@ -39,6 +54,10 @@ public class InitData{
 
     }
 
+    /***
+     *
+     * @return the sql query string that inserts all needed plant data into the database
+     */
     private static String initPlant(){
         String[] array = new String[]{
                 // id, plantName, seedName, time, buyPrice, sellPrice, exp, unlockLevel
@@ -69,15 +88,23 @@ public class InitData{
         return "INSERT INTO " + PLANT + " VALUES" + String.join(", ", array);
     }
 
+    /***
+     *
+     * @return the sql query string that inserts all needed item data into the database
+     */
     private static String initItem(){
         String[] array = new String[]{
-                // id, name, type
-                "(14159, 'fertilizer', 'Fertilizer')",
-                "(26535, 'watering can', 'WateringCan')"
+                // id, name, type, price
+                "(14159, 'fertilizer', 'Fertilizer', 10)",
+                "(26535, 'watering can', 'WateringCan', 5)"
         };
         return "INSERT INTO " + ITEM + " VALUES" + String.join(", ", array);
     }
 
+    /***
+     *
+     * @return the sql query string that inserts all needed level data into the database
+     */
     private static String initLevel(){
         String[] array = new String[]{
                 // level, exp, capacity
@@ -106,6 +133,10 @@ public class InitData{
         return "INSERT INTO " + LEVEL + " VALUES" + String.join(", ", array);
     }
 
+    /***
+     *
+     * @return the sql query string that inserts all needed land data into the database
+     */
     private static String initLand(){
 
         String[] array = new String[]{

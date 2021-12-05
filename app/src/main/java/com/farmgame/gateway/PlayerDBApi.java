@@ -8,10 +8,18 @@ import android.database.Cursor;
 import com.farmgame.entity.Player;
 
 import java.util.HashMap;
+import java.util.Objects;
 
+/***
+ * database gateway to player
+ */
 public class PlayerDBApi extends DataBaseAPI {
 
 
+    /***
+     *
+     * @return the player instance
+     */
     public static Player getPlayer(){
         Cursor cursor = db.query(PLAYER, new String[]{"*"},
                 null, null, null, null, null);
@@ -23,9 +31,13 @@ public class PlayerDBApi extends DataBaseAPI {
         int exp = cursor.getInt(cursor.getColumnIndex(PLAYER_EXP));
         int money = cursor.getInt(cursor.getColumnIndex(PLAYER_MONEY));
         cursor.close();
-        return new Player(name, level, money, new int[]{exp, getExpTable().get(level)});
+        return new Player(name, level, money, new int[]{exp,
+                Objects.requireNonNull(getExpTable().get(level))});
     }
 
+    /***
+     * update the player
+     */
     public static void updatePlayer(){
         Player player = vm.getPlayer();
         int level = player.getLevel();
@@ -44,6 +56,10 @@ public class PlayerDBApi extends DataBaseAPI {
         vm.updateStore();
     }
 
+    /***
+     *
+     * @return the exp table
+     */
     public static HashMap<Integer, Integer> getExpTable(){
         Cursor cursor = db.query(
                 LEVEL, new String[]{LEVEL_LEVEL, LEVEL_EXP},

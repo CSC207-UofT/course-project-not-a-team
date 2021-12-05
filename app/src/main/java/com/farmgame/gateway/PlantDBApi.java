@@ -10,10 +10,17 @@ import com.farmgame.entity.Seeds;
 
 import java.util.HashMap;
 
-
+/***
+ * database gateway to plant
+ */
 public class PlantDBApi extends DataBaseAPI {
 
 
+    /***
+     *
+     * @param id id of the plant
+     * @return Plants instance from the given id
+     */
     public static Plants createPlant(int id){
         Cursor cursor = db.query(
                 PLANT, new String[]{PLANT_SELL_PRICE, PLANT_MATURE_NAME},
@@ -30,6 +37,11 @@ public class PlantDBApi extends DataBaseAPI {
         return new Plants(name, price, id);
     }
 
+    /***
+     *
+     * @param seedId id of the seed
+     * @return Seeds instance from the given id
+     */
     public static Seeds getSeed(int seedId){
 
         Cursor cursor = db.query(

@@ -1,10 +1,10 @@
-package com.farmgame.controller.LandActivitySystem;
+package com.farmgame.viewModel.LandActivitySystem;
 
 import static com.farmgame.constants.Constants.*;
+import static com.farmgame.constants.Message.*;
 
-import com.farmgame.controller.System;
-import com.farmgame.gateway.LandDBApi;
-import com.farmgame.presenter.LandPresenter.ChangeStatusPresenter;
+import com.farmgame.constants.Message;
+import com.farmgame.viewModel.System;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
 
@@ -52,20 +52,16 @@ public class LandChangeStatusSystem extends System {
      * @return a message indicating the result of buying land
      */
     public String buyLand(int index) {
-        ChangeStatusPresenter changeStatusPresenter = new ChangeStatusPresenter();
         String message = "";
         if (landManager.getLand(index).getLockStatus() == LOCK_STATUS_NOT_BOUGHT) {
             if (playerManager.subtractMoney(landManager.getLand(index).getPrice())) {
                 landManager.buy(index);
                 // inform player that he/she has bought the land successfully
-                message += changeStatusPresenter.buySuccess() + "\n";
+                message += BUY_SUCCESS + "\n";
             }
             else {
                 // inform player that he/she doesn't have enough money to buy
-                message += changeStatusPresenter.not_enough_money() + "\n";
-                message += changeStatusPresenter.remaining_money(
-                        playerManager.getPlayer().getMoney()) + "\n";
-
+                message += Message.NO_ENOUGH_MONEY + "\n";
             }
         }
         return message;

@@ -1,13 +1,16 @@
-package com.farmgame.controller.LandActivitySystem;
+package com.farmgame.viewModel.LandActivitySystem;
 
-import com.farmgame.controller.System;
+import com.farmgame.viewModel.System;
+import com.farmgame.entity.LandEntity;
 import com.farmgame.entity.Plants;
 import com.farmgame.entity.Seeds;
 import com.farmgame.gateway.PlantDBApi;
-import com.farmgame.presenter.LandPresenter.HarvestPresenter;
 import com.farmgame.usecase.LandManager;
 import com.farmgame.usecase.PlayerManager;
 import com.farmgame.usecase.WarehouseManager.WarehouseManager;
+import static com.farmgame.constants.Message.*;
+
+import java.util.ArrayList;
 
 public class LandHarvestPlantSystem extends System {
     private final WarehouseManager warehouseManager;
@@ -42,7 +45,6 @@ public class LandHarvestPlantSystem extends System {
      */
     public String planting(int index, int plant) {
         Seeds seed = this.warehouseManager.getWarehouse().getSeeds(plant);
-        HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
         if (landManager.getLand(index).getLockStatus() == 2
                 && landManager.getLand(index).getPlant() == null
@@ -50,20 +52,20 @@ public class LandHarvestPlantSystem extends System {
             landManager.planting(index,seed);
             warehouseManager.removeProduct(seed);
             // inform player that he/she has planted the plant successfully
-            message += harvestPresenter.plantSuccess() + "\n";
+            message += PLANT_SUCCESS + "\n";
 
         }
         else if (landManager.getLand(index).getLockStatus() != 2) {
             // inform player that this land hasn't been owned by him/her
-            message += harvestPresenter.invalidLand() + "\n";
+            message += INVALID_LAND + "\n";
         }
         else if (landManager.getLand(index).getPlant() != null) {
             // inform player that this land has been planted already
-            message += harvestPresenter.landOccupied() + "\n";
+            message += LAND_OCCUPIED + "\n";
         }
         else if (seed == null) {
             // inform player that this seed is not in warehouse
-            message += harvestPresenter.not_enough_Seed() + "\n";
+            message += NOT_ENOUGH_SEED + "\n";
         }
         return message;
     }
@@ -75,7 +77,6 @@ public class LandHarvestPlantSystem extends System {
      * @return a message indicating the result of harvesting
      */
     public String harvest(int index) {
-        HarvestPresenter harvestPresenter = new HarvestPresenter();
         String message = "";
         if (landManager.getLand(index).getPlant() != null
                 && landManager.getLand(index).getStage() == 2) {
@@ -84,17 +85,35 @@ public class LandHarvestPlantSystem extends System {
             Plants plant = PlantDBApi.createPlant(plantId);
             warehouseManager.addProduct(plant);
             landManager.harvest(index);
-            message += harvestPresenter.harvestPlant() + "\n";
+            message += HARVEST_PLANT + "\n";
         }
         else if (landManager.getLand(index).getPlant() == null) {
             // inform player that this land has not been planted yet
-            message += harvestPresenter.landNotPlant() + "\n";
+            message += LAND_NOT_PLANT + "\n";
 
         }
         else if (landManager.getLand(index).getStage() < 2 | landManager.getLand(index).isWet()) {
             // inform player that this plant has not fully grown
-            message += harvestPresenter.growingPlant() + "\n";
+            message += GROWING_PLANT + "\n";
         }
         return message;
+    }
+
+    /**
+     * auto harvest all plants if land is harvestable
+     *
+     * @return a message indicating the result of auto-harvest
+     */
+    public String auto_harvest() {
+        ArrayList<Integer> map_index = landManager.getAllIndices();
+        StringBuilder output = new StringBuilder();
+        for (int i : map_index) {
+            LandEntity land = landManager.getLand(i);
+            if (land.getPlant() != null && land.getStage() == 2) {
+                harvest(i);
+                output.append("land at index ").append(i).append(" is harvested/n");
+            }
+        }
+        return output.toString();
     }
 }

@@ -10,12 +10,12 @@ public class ItemFactory {
      * @param itemType the type of item.
      * @return an item with desired type.
      */
-    public Item createItem(String itemType) {
+    public Item createItem(String itemType, int price, int id) {
         if (itemType.equals(TYPE_FERTILIZER)) {
-            return new Fertilizer(10, 14159);
+            return new Fertilizer(price, id);
         }
         else if (itemType.equals(TYPE_WATERING_CAN)) {
-            return new WateringCan(5, 26535);
+            return new WateringCan(price, id);
         }
         else {
             return null;
