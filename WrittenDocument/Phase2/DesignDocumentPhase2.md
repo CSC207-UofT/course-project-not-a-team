@@ -135,6 +135,7 @@ Major design decisions in Phase 2
        and put the simple message in presenter into the constant file. Then our code will follow the MVVM pattern.
     4. Add new features to follow the 7 principles: Auto Harvest, buy multiple items in one click. We found that our UI could be more 
        easy for users to operate, these features can help to reduce the physical effort.
+    5. Add fertilizer: Added a new feature for our game.
 
 ---
 
