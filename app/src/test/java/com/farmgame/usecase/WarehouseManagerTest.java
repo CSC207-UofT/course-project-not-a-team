@@ -33,7 +33,7 @@ public class WarehouseManagerTest {
 
     @Test(timeout = 50)
     public void test_addProduct() {
-        this.wm.addProduct(this.potato);
+        this.wm.addProduct(this.potato, 1);
 
         ArrayList<Plants> plantsArrayList = new ArrayList<>();
         plantsArrayList.add(this.potato);

@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class ItemUnitTest {
     ItemFactory factory = new ItemFactory();
-    Item fertilizer =  factory.createItem(TYPE_FERTILIZER, 5, 10);
-    Item wateringCan =  factory.createItem(TYPE_WATERING_CAN, 10, 20);
+    Item fertilizer =  factory.createItem(TYPE_FERTILIZER, 10, 14159);
+    Item wateringCan =  factory.createItem(TYPE_WATERING_CAN, 5, 26535);
 
 
     @Test
