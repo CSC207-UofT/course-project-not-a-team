@@ -166,6 +166,13 @@ Brief summary of each member's work since phase 1
     Saifei Liao, github name: SophieLiao0109: My major work in phase 2 is to remove the presenters and make our project structure to be
     consistent with the MVVM architecuture. I think the most significant pull request is pull request #140, I delete the presenters and
     move them into a new class called Message.
+
+    Xuhui Chen, github name: ShangDanLuXian: The first thing I did in phase 2 is to make landManager manage all lands - in our previous
+    stage, one landManager will only manage one land so we need many instances of landManagers. And therefore each of our three land system
+    is responsible for all of the lands. This change will significantly reduce the number of requests sent to our database, and it will
+    be easier for us to implement the auto-harvest feature. I also contributed to the front end, I made the customized dialog that will should
+    when the player clicked a commodity in the store. I also add buttons to our new features(harvest all and sell all). The most significant
+    two pull requests I thought I made are #26 and #51, these two request together structured our database implementation.
     
     
 Relevent pull request link: 
@@ -174,3 +181,5 @@ Relevent pull request link:
 [#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151)
 [#63](https://github.com/CSC207-UofT/course-project-not-a-team/pull/63)
 [#140](https://github.com/CSC207-UofT/course-project-not-a-team/pull/140)
+[#26](https://github.com/CSC207-UofT/course-project-not-a-team/pull/26)
+[#51](https://github.com/CSC207-UofT/course-project-not-a-team/pull/51)

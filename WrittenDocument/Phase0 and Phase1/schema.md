@@ -33,6 +33,7 @@ Table Item(
     id INT,
     name TEXT,
     type TEXT,
+    price INT,
     PRIMARY KEY (id)
 )
 
