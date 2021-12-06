@@ -156,7 +156,15 @@ Brief summary of each member's work since phase 1
     by adding graphics to the UI.  I think the most significant pull request of mine is pull request #151. In this pull request, I
     have completed all the front-end impelmentations.
     
+    Harriet Zhu, githubname: primavera-dolce: The most significant pull request: pull request#63. This pull request settles the 
+    warehouse's fundamental data storing strategie. We used to use arraylist to store all the elements——including seeds,  plants and 
+    items; in this pull request(and other merges), we have not only changed the storing strategy to hashmap but also modified the 
+    specific method to access and store each elements. In phase 2, I implemented two features: buying multiple seeds/items with one 
+    click and selling all the sellable stuff with one click. Also, I wrote the unit test for all usecases class and part of controller 
+    class. In the end, I wrote the AccessibilityReport to demonstrate how our project fits the 7 universal principle.
+    
 Relevent pull request link: 
 [#137](https://github.com/CSC207-UofT/course-project-not-a-team/pull/137), 
 [#139](https://github.com/CSC207-UofT/course-project-not-a-team/pull/139)
 [#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151)
+[#63](https://github.com/CSC207-UofT/course-project-not-a-team/pull/63)
