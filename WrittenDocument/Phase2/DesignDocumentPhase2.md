@@ -1,5 +1,5 @@
 
-SLOID
+SOLID
 
     1. We use interfaces or abstract classes when some classes have the same methods, and enforce those classes to inherit or implement
        those abstractions. This follows Interface Segregation Principle.
@@ -163,8 +163,14 @@ Brief summary of each member's work since phase 1
     click and selling all the sellable stuff with one click. Also, I wrote the unit test for all usecases class and part of controller 
     class. In the end, I wrote the AccessibilityReport to demonstrate how our project fits the 7 universal principle.
     
+    Saifei Liao, github name: SophieLiao0109: My major work in phase 2 is to remove the presenters and make our project structure to be
+    consistent with the MVVM architecuture. I think the most significant pull request is pull request #140, I delete the presenters and
+    move them into a new class called Message.
+    
+    
 Relevent pull request link: 
 [#137](https://github.com/CSC207-UofT/course-project-not-a-team/pull/137), 
 [#139](https://github.com/CSC207-UofT/course-project-not-a-team/pull/139)
 [#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151)
 [#63](https://github.com/CSC207-UofT/course-project-not-a-team/pull/63)
+[#140](https://github.com/CSC207-UofT/course-project-not-a-team/pull/140)
