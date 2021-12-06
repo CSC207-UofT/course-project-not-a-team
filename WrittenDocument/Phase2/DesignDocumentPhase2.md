@@ -152,6 +152,11 @@ Brief summary of each member's work since phase 1
     change needs knowledge of the MVVM model. Then I reviewed the lecture notes and recording, also asked my teammate to make sure our 
     thoughts are correct. Then I made this change and got this pull request.
     
+    Jason Liu, github name: Jason-YW-L: My major work in phase 2 is to impelment and improve the front-end of the game. Sepecificlly 
+    by adding graphics to the UI.  I think the most significant pull request of mine is pull request #151. In this pull request, I
+    have completed all the front-end impelmentations.
+    
 Relevent pull request link: 
 [#137](https://github.com/CSC207-UofT/course-project-not-a-team/pull/137), 
 [#139](https://github.com/CSC207-UofT/course-project-not-a-team/pull/139)
+[#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151)
