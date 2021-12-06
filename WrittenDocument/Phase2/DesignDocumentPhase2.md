@@ -1,11 +1,9 @@
 
 SOLID
 
-    1. We use interfaces or abstract classes when some classes have the same methods, and enforce those classes to inherit or implement
-       those abstractions. This follows Interface Segregation Principle.
-    2. We define a Storable interface for Plants, Seeds, Items(entity classes). The warehouse needs to interact with those classes. 
-       When the WarehouseManager(use cases) manipulates those classes, the parameters are passed as Storable type. This makes use of 
-       the Dependency Inversion Principle since the higher modules depend on abstraction to interact with lower modules.
+    1. When viewmodel interacts with use cases classes, we define a System interface between them. This is an abstraction class 
+       and the viewmodel will update information to the database by interacting with the abstract class. This follows the 
+       Depedency Injection Principle.
     3. Every class in our program only has one responsibility. For example, the Store class is only responsible for the transaction 
        between player and store; the Warehouse class is only responsible for storing items; the land class is only responsible for 
        cultivating seeds, etc. When we design our program, we clearly follow the Single Responsibility Principle.
