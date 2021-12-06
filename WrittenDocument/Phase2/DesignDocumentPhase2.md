@@ -55,8 +55,8 @@ Use of Github Features
 Code Style and Documentation
 
     After phase 1 grading, TA pointed out magic number code smell in our project, we fixed it right after.
-    We fixed all the IntellJi warning and checked that Javadoc are all written whenever needed during our last final check before deadline of 
-    presentation.
+    We fixed all the IntellJi warning and checked that Javadoc are all written whenever needed during our last final check before
+    deadline of presentation.
 
 ---
 
@@ -170,10 +170,10 @@ Brief summary of each member's work since phase 1
 
     Xuhui Chen, github name: ShangDanLuXian: The first thing I did in phase 2 is to make landManager manage all lands - in our previous
     stage, one landManager will only manage one land so we need many instances of landManagers. And therefore each of our three land 
-    system is responsible for all of the lands. This change will significantly reduce the number of requests sent to our database, and it 
-    will be easier for us to implement the auto-harvest feature. I also contributed to the front end, I made the customized dialog that will
-    should when the player clicked a commodity in the store. I also add buttons to our new features(harvest all and sell all). The most 
-    significant two pull requests I thought I made are #26 and #51, these two request together structured our database implementation.
+    system is responsible for all of the lands. This change will significantly reduce the number of requests sent to our database, and 
+    it will be easier for us to implement the auto-harvest feature. I also contributed to the front end, I made the customized dialog 
+    that will should when the player clicked a commodity in the store. I also add buttons to our new features(harvest all and sell all). 
+    The most significant two pull requests I thought I made are #26 and #51, these two request together structured our database implementation.
     
     
 Relevent pull request link: 
