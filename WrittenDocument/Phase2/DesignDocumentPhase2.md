@@ -173,7 +173,8 @@ Brief summary of each member's work since phase 1
     system is responsible for all of the lands. This change will significantly reduce the number of requests sent to our database, and 
     it will be easier for us to implement the auto-harvest feature. I also contributed to the front end, I made the customized dialog 
     that will should when the player clicked a commodity in the store. I also add buttons to our new features(harvest all and sell all). 
-    The most significant two pull requests I thought I made are #26 and #51, these two request together structured our database implementation.
+    The most significant two pull requests I thought I made are #26 and #51, these two request together structured our database 
+    implementation.
     
     
 Relevent pull request link: 
