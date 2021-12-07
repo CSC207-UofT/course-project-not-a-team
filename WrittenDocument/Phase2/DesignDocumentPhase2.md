@@ -22,6 +22,10 @@ Clean architecture ([reference link](https://blog.cleancoder.com/uncle-bob/2012/
 The following is a picture of how we organized our package using clean architecture(Packaging Strategy)
 ![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/packaging.jpg)
 
+The strcuture of our program:
+
+
+
 ---
 
 Design Pattern
@@ -183,3 +187,19 @@ Relevent pull request link:
 [#139](https://github.com/CSC207-UofT/course-project-not-a-team/pull/139),
 [#140](https://github.com/CSC207-UofT/course-project-not-a-team/pull/140),
 [#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151).
+
+---
+Major Design Decision in Phase 1
+In phase 0, we have only one entity——Plant——to represent all three stages(from seed to matured plants) of the plants. In phase 1, we have decided to add Seed to the entity. 
+Also, we have reached an agreement that Warehouse has only use cases but no controller while Store has only controller but no use cases. 
+
+---
+Major Design Decision in Phase 2
+1.LandManager update:In phase 1 we use one LandManager for one land, as the number of land increase the number of LandManager also increase, so in phase 2 we use one LandManager for all lands.
+2.UI upgrade: Add pictures in UI and make it follow the simple and intuitive use. 
+3.Apply MVVM
+4.Add new features to follow the 7 principles: Auto Harvest, buy multiple items in one click and sell multiple items in one click
+5.Add fertilizer
+
+---
+
