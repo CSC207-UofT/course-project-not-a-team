@@ -20,14 +20,14 @@ Clean architecture ([reference link](https://blog.cleancoder.com/uncle-bob/2012/
         3. The source code dependencies only point inwards (the inner layers do not depend on outer layers).
 
 The following is a picture of how we organized our package using clean architecture(Packaging Strategy)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/packaging.jpg)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/packaging.jpg)
 
 ---
 
 The strcuture of our program:
 
 
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/project_strcuture.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/project_strcuture.png)
 
 ---
 
@@ -72,9 +72,9 @@ Testing
     unit test, so this is not shown on the test coverage. However, we do find it difficult to test the front end part of the program.
  
 The followings are screenshots of test_coverage
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test1.png)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test2.png)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/test_coverage/test3.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test1.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test2.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test3.png)
 
 ---
 
@@ -145,7 +145,7 @@ Major design decisions in Phase 2
 
 ---
 
-Brief summary of each member's work since phase 1(progress report)
+Brief summary of each member's work since phase 1 (progress report)
 
     Jingquan Cao, github name: J-D-CONNOR: My major code work on phase 2 is implementation of auto harvest feature and rearranging 
     files so our project's github repo looks cleaner. As for a significant pull request of mine, I think #137 is the desired one since 
@@ -192,12 +192,3 @@ Relevent pull request link:
 [#151](https://github.com/CSC207-UofT/course-project-not-a-team/pull/151).
 
 ---
-Major Design Decision in Phase 1
-In phase 0, we have only one entity——Plant——to represent all three stages(from seed to matured plants) of the plants. In phase 1, we have decided to add Seed to the entity. 
-Also, we have reached an agreement that Warehouse has only use cases but no controller while Store has only controller but no use cases. 
-
----
-
-
----
-
