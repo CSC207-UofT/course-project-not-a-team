@@ -197,12 +197,7 @@ In phase 0, we have only one entity——Plant——to represent all three stage
 Also, we have reached an agreement that Warehouse has only use cases but no controller while Store has only controller but no use cases. 
 
 ---
-Major Design Decision in Phase 2
-1.LandManager update:In phase 1 we use one LandManager for one land, as the number of land increase the number of LandManager also increase, so in phase 2 we use one LandManager for all lands.
-2.UI upgrade: Add pictures in UI and make it follow the simple and intuitive use. 
-3.Apply MVVM
-4.Add new features to follow the 7 principles: Auto Harvest, buy multiple items in one click and sell multiple items in one click
-5.Add fertilizer
+
 
 ---
 
