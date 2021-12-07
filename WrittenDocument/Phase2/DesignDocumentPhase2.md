@@ -138,7 +138,7 @@ Major design decisions in Phase 2
 
 ---
 
-Brief summary of each member's work since phase 1
+Brief summary of each member's work since phase 1(progress report)
 
     Jingquan Cao, github name: J-D-CONNOR: My major code work on phase 2 is implementation of auto harvest feature and rearranging 
     files so our project's github repo looks cleaner. As for a significant pull request of mine, I think #137 is the desired one since 
