@@ -19,7 +19,7 @@ Clean architecture ([reference link](https://blog.cleancoder.com/uncle-bob/2012/
            the inner layers.
         3. The source code dependencies only point inwards (the inner layers do not depend on outer layers).
 
-The following is a picture of how we organized our package using clean architecture
+The following is a picture of how we organized our package using clean architecture(Packaging Strategy)
 ![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/packaging.jpg)
 
 ---
