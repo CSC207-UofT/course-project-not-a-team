@@ -20,14 +20,14 @@ Clean architecture ([reference link](https://blog.cleancoder.com/uncle-bob/2012/
         3. The source code dependencies only point inwards (the inner layers do not depend on outer layers).
 
 The following is a picture of how we organized our package using clean architecture(Packaging Strategy)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/packaging.jpg)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/picture/packaging.jpg)
 
 ---
 
 The strcuture of our program:
 
 
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/project_strcuture.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/picture/project_strcuture.png)
 
 ---
 
@@ -72,9 +72,9 @@ Testing
     unit test, so this is not shown on the test coverage. However, we do find it difficult to test the front end part of the program.
  
 The followings are screenshots of test_coverage
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test1.png)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test2.png)
-![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/pictures/test_coverage/test3.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/picture/test_coverage/test1.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/picture/test_coverage/test2.png)
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/picture/test_coverage/test3.png)
 
 ---
 
