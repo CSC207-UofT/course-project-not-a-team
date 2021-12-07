@@ -22,9 +22,9 @@ Clean architecture ([reference link](https://blog.cleancoder.com/uncle-bob/2012/
 The following is a picture of how we organized our package using clean architecture(Packaging Strategy)
 ![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/packaging.jpg)
 
+---
 The strcuture of our program:
-
-
+![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/project_structure.png)
 
 ---
 
