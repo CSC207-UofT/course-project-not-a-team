@@ -23,7 +23,10 @@ The following is a picture of how we organized our package using clean architect
 ![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/packaging.jpg)
 
 ---
+
 The strcuture of our program:
+
+
 ![a](https://github.com/CSC207-UofT/course-project-not-a-team/blob/main/WrittenDocument/Phase2/project_structure.png)
 
 ---
